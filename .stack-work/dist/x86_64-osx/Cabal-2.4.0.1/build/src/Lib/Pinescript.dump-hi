@@ -1,0 +1,691 @@
+
+==================== FINAL INTERFACE ====================
+2019-10-21 10:04:17.819194 UTC
+
+interface HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Lib.Pinescript 8065
+  interface hash: 72860074f372ac21f379d3e937362925
+  ABI hash: c53e80dce692a0497d92094599faf165
+  export-list hash: 22c0e7f2285219f646be6ecf2ed07ec9
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 0f7343278d2a04300ce016d814cb4055
+  opt_hash: 6faf2de08de32d19db9870899d88e59a
+  hpc_hash: 93b885adfe0da089cdf634904fd59f71
+  plugin_hash: ad164012d6b1e14942349d58b1132007
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Lib.Pinescript.crossover
+  Lib.Pinescript.ema
+  Lib.Pinescript.macd
+  Lib.Pinescript.macd_signal
+  Lib.Pinescript.sma
+  Lib.Pinescript.sumLast
+  Lib.Pinescript.wma
+module dependencies: Lib.Utils Lola Syntax.Booleans
+                     Syntax.HLPrelude Syntax.Num Syntax.Ord
+package dependencies: aeson-1.4.5.0 array-0.5.3.0
+                      attoparsec-0.13.2.3 base-4.12.0.0 base-compat-0.10.5
+                      base-orphans-0.8.1 binary-0.8.6.0 bytestring-0.10.8.2
+                      containers-0.6.0.1 deepseq-1.4.4.0 dlist-0.8.0.7 ghc-boot-th-8.6.5
+                      ghc-prim-0.5.3 hashable-1.2.7.0 integer-gmp-1.0.2.0
+                      integer-logarithms-1.0.3 primitive-0.6.4.0 random-1.1
+                      scientific-0.3.6.2 tagged-0.8.6 template-haskell-2.14.0.0
+                      text-1.2.3.1 time-1.8.0.2 time-compat-1.9.2.2 transformers-0.5.6.2
+                      unordered-containers-0.2.10.0 uuid-types-1.0.3 vector-0.12.0.3
+orphans: HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Syntax.Num
+         attoparsec-0.13.2.3:Data.Attoparsec.Text.Internal
+         attoparsec-0.13.2.3:Data.Attoparsec.ByteString.Char8
+         time-1.8.0.2:Data.Time.Clock.TAI
+         vector-0.12.0.3:Data.Vector.Unboxed
+         time-1.8.0.2:Data.Time.Format.Parse
+         time-1.8.0.2:Data.Time.LocalTime.Internal.ZonedTime
+         time-1.8.0.2:Data.Time.LocalTime.Internal.LocalTime
+         time-1.8.0.2:Data.Time.Calendar.Gregorian
+         hashable-1.2.7.0:Data.Hashable.Generic text-1.2.3.1:Data.Text.Lazy
+         text-1.2.3.1:Data.Text binary-0.8.6.0:Data.Binary.Generic
+         bytestring-0.10.8.2:Data.ByteString.Builder
+         text-1.2.3.1:Data.Text.Show
+         vector-0.12.0.3:Data.Vector.Fusion.Bundle
+         transformers-0.5.6.2:Control.Monad.Trans.Error
+         base-4.12.0.0:GHC.Float base-4.12.0.0:GHC.Base
+family instance modules: aeson-1.4.5.0:Data.Aeson.Types.Internal
+                         attoparsec-0.13.2.3:Data.Attoparsec.Internal.Types
+                         base-4.12.0.0:Control.Applicative base-4.12.0.0:Data.Complex
+                         base-4.12.0.0:Data.Functor.Compose base-4.12.0.0:Data.Functor.Const
+                         base-4.12.0.0:Data.Functor.Identity
+                         base-4.12.0.0:Data.Functor.Product base-4.12.0.0:Data.Functor.Sum
+                         base-4.12.0.0:Data.Monoid base-4.12.0.0:Data.Semigroup
+                         base-4.12.0.0:Data.Semigroup.Internal base-4.12.0.0:Data.Version
+                         base-4.12.0.0:Data.Void base-4.12.0.0:GHC.Exts
+                         base-4.12.0.0:GHC.Generics base-4.12.0.0:GHC.IO.Exception
+                         containers-0.6.0.1:Data.IntMap.Internal
+                         containers-0.6.0.1:Data.IntSet.Internal
+                         containers-0.6.0.1:Data.Map.Internal
+                         containers-0.6.0.1:Data.Sequence.Internal
+                         containers-0.6.0.1:Data.Set.Internal containers-0.6.0.1:Data.Tree
+                         dlist-0.8.0.7:Data.DList ghc-boot-th-8.6.5:GHC.ForeignSrcLang.Type
+                         ghc-boot-th-8.6.5:GHC.LanguageExtensions.Type
+                         primitive-0.6.4.0:Control.Monad.Primitive
+                         primitive-0.6.4.0:Data.Primitive.Array
+                         primitive-0.6.4.0:Data.Primitive.ByteArray
+                         primitive-0.6.4.0:Data.Primitive.PrimArray
+                         primitive-0.6.4.0:Data.Primitive.SmallArray
+                         primitive-0.6.4.0:Data.Primitive.UnliftedArray
+                         tagged-0.8.6:Data.Tagged
+                         template-haskell-2.14.0.0:Language.Haskell.TH.Syntax
+                         text-1.2.3.1:Data.Text text-1.2.3.1:Data.Text.Lazy
+                         unordered-containers-0.2.10.0:Data.HashMap.Base
+                         unordered-containers-0.2.10.0:Data.HashSet.Base
+                         uuid-types-1.0.3:Data.UUID.Types.Internal
+                         uuid-types-1.0.3:Data.UUID.Types.Internal.Builder
+                         vector-0.12.0.3:Data.Vector vector-0.12.0.3:Data.Vector.Primitive
+                         vector-0.12.0.3:Data.Vector.Storable
+                         vector-0.12.0.3:Data.Vector.Unboxed
+                         vector-0.12.0.3:Data.Vector.Unboxed.Base
+import  -/  Lib.Utils a741977eb01fbbecda6505024611855e
+  exports: 179ea7b1e0fab088922dc6fd18e202be
+  instantN 329515ec52a13b096692d80ddb99d6e2
+import  -/  Lola f52d080a9c6c535055cc2d321870899c
+  exports: f0b2b11faceeef480fb3969a0b54aac2
+  :@ 0e91454cfe22ab22364b2d071c8db005
+  <$> 5dbf6fc938f9b138f5c32cf20fb73d22
+  <*> 8031fcbaf5917c21a272faf5dc82b09a
+  <: ede31a85d24f5fc58211abc6c1cf47eb
+  =: 8a68e19014f2cf73a7f77ec6fc12c12c
+  Leaf beb804f20541fc627fd77821a11a3d02
+  Now 19aae6044cf44591930683cbda472505
+  Stream 842b407b0b18370d0d7d6fdd47ddc27b
+  Streamable 47494beae3139bbfdc210ceee05782ca
+import  -/  Syntax.Booleans 2f5b0f6265d2d6e23f9e27da32119b5f
+  exports: 71728b3a0c694557a14ef0fe375df96d
+  && 7e6b9d4df7b120968a890a88a341cfce
+import  -/  Syntax.HLPrelude f80a67bea1d500b91e76dd8341487f94
+  exports: 68fbd00b85e22e00f4229825fd729bf8
+import  -/  Syntax.Num 42d53dc12ffc226b88f55b096d15fb83
+  exports: 883071c53baa629578d78c5289d88073
+  / 0d43b325d8b0b4c7e9e44d02afb69d82
+import  -/  Syntax.Ord 3abef8f6c923bbd6adef89f28a0cd4f8
+  exports: ee3875b9880152641006c5630eff6401
+  <= 71950b8323da44ade5981764b7915a6e
+import  -/  base-4.12.0.0:Data.Foldable efb37371da929e7bc88d896298d2d979
+import  -/  base-4.12.0.0:GHC.Base c00b75f0b052d05c55ba6a4dd1c63b26
+import  -/  base-4.12.0.0:GHC.Num c2039f03637c68f47b0bbff4c18ec616
+import  -/  base-4.12.0.0:GHC.Real af2b985dd29515c375fb78b2c9298d42
+import  -/  base-4.12.0.0:Prelude 3c779dfd6448bdd8e234c336802c2acb
+import  -/  ghc-prim-0.5.3:GHC.Classes 0f6fd7d7db53fc48f6e1f01803cc6c9d
+61448c3331a6eed392ce32e14c56f4ca
+  $s$fNumExpr1 :: Data.Typeable.Internal.TypeRep GHC.Types.Int
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ GHC.Types.Int
+                        5193196903533114208##
+                        8143820745237564347##
+                        GHC.Types.$trModule
+                        GHC.Types.$tcInt1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 Data.Typeable.Internal.TrTyCon
+                   @ *
+                   @ GHC.Types.Int
+                   ww8
+                   ww9
+                   ww10
+                   ww11
+                   ww12 }) -}
+14054e8b836d29de1d3143d0ba6f360f
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Lib.Pinescript.$trModule3
+                   Lib.Pinescript.$trModule1) -}
+56c817e4467975c67554798a230c77cc
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Lib.Pinescript.$trModule2) -}
+1551ee6b018e76e7630cb1500ce6eaa5
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Lib.Pinescript"#) -}
+7bb44eef40fccb18e4745e92af1fe84f
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Lib.Pinescript.$trModule4) -}
+170c2036f602f9f2e00a0fdf0b849d56
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs,
+     Unfolding: ("HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ"#) -}
+1ab9086d1c2171c51c2f34a6eabe83f7
+  $wmacd ::
+    (GHC.Real.Fractional a, Lola.Streamable a) =>
+    Lola.Stream a -> (# Lola.Streamable a, (Lola.Ident, Lola.Expr a) #)
+  {- Arity: 3,
+     Strictness: <L,U(U(U,A,U,U,A,A,C(U)),U,A,A)><L,U><L,U>,
+     Inline: [2],
+     Unfolding: (\ @ a
+                   (w :: GHC.Real.Fractional a)
+                   (w1 :: Lola.Streamable a)
+                   (w2 :: Lola.Stream a) ->
+                 let {
+                   $dNum :: GHC.Num.Num a = GHC.Real.$p1Fractional @ a w
+                 } in
+                 (# w1,
+                    (GHC.CString.unpackAppendCString#
+                       Lib.Pinescript.macd3
+                       (GHC.Types.:
+                          @ GHC.Types.Char
+                          Lola.<:3
+                          (case w2 of wild {
+                             Lola.Input $dFromJSON $dRead $dTypeable1 ident
+                             -> GHC.Base.++ @ GHC.Types.Char ident Lola.<:1
+                             Lola.Output $dTypeable1 ds1
+                             -> case ds1 of wild1 { (,) ident ds2 ->
+                                GHC.Base.++ @ GHC.Types.Char ident Lola.<:1 } })),
+                     Syntax.Num.$fNumExpr_$c+
+                       @ a
+                       w1
+                       $dNum
+                       (Lola.Now
+                          @ a
+                          (Lib.Pinescript.ema @ a w w1 w2 Lib.Pinescript.macd2))
+                       (Syntax.Num.$fNumExpr_$cnegate
+                          @ a
+                          w1
+                          $dNum
+                          (Lola.Now
+                             @ a
+                             (Lib.Pinescript.ema @ a w w1 w2 Lib.Pinescript.macd1)))) #)) -}
+517fb61bb9e1e70a3dbd825381729252
+  $wmacd_signal ::
+    (GHC.Real.Fractional a, Lola.Streamable a) =>
+    Lola.Stream a -> (# Lola.Streamable a, (Lola.Ident, Lola.Expr a) #)
+  {- Arity: 3,
+     Strictness: <L,U(U(U,A,U,U,A,A,C(U)),U,A,A)><L,U><L,U>,
+     Inline: [2],
+     Unfolding: (\ @ a
+                   (w :: GHC.Real.Fractional a)
+                   (w1 :: Lola.Streamable a)
+                   (w2 :: Lola.Stream a) ->
+                 (# w1,
+                    (GHC.CString.unpackAppendCString#
+                       Lib.Pinescript.macd_signal2
+                       (GHC.Types.:
+                          @ GHC.Types.Char
+                          Lola.<:3
+                          (case w2 of wild {
+                             Lola.Input $dFromJSON $dRead $dTypeable1 ident
+                             -> GHC.Base.++ @ GHC.Types.Char ident Lola.<:1
+                             Lola.Output $dTypeable1 ds1
+                             -> case ds1 of wild1 { (,) ident ds2 ->
+                                GHC.Base.++ @ GHC.Types.Char ident Lola.<:1 } })),
+                     Lola.Now
+                       @ a
+                       (Lib.Pinescript.ema
+                          @ a
+                          w
+                          w1
+                          (Lib.Pinescript.macd @ a w w1 w2)
+                          Lib.Pinescript.macd_signal1)) #)) -}
+eeb5506c3844a78df99849ee59e8ee56
+  $wsumLast ::
+    (GHC.Num.Num a, Lola.Streamable a) =>
+    Lola.Stream a
+    -> GHC.Types.Int
+    -> (# Lola.Streamable a, (Lola.Ident, Lola.Expr a) #)
+  {- Arity: 4, Strictness: <L,U(U,A,A,U,A,A,C(U))><L,U><L,U><L,U(U)>,
+     Inline: [2] -}
+76650a4586e0e1589c1a8c3c3779dbc9
+  crossover ::
+    (GHC.Num.Num a, GHC.Classes.Ord a, Lola.Streamable a) =>
+    Lola.Stream a -> Lola.Stream a -> Lola.Stream GHC.Types.Bool
+  {- Arity: 3,
+     Strictness: <L,1*U(A,A,A,A,A,A,1*C1(U))><L,1*U(A,A,A,1*U,A,A,A,A)><L,U>,
+     Unfolding: (\ @ a
+                   ($dNum :: GHC.Num.Num a)
+                   ($dOrd :: GHC.Classes.Ord a)
+                   ($dTypeable1 :: Lola.Streamable a) ->
+                 let {
+                   lvl25 :: a
+                   = GHC.Num.fromInteger @ a $dNum Lib.Pinescript.crossover4
+                 } in
+                 let {
+                   lvl26 :: (GHC.Types.Int, a) = (Lib.Pinescript.crossover3, lvl25)
+                 } in
+                 let {
+                   lvl27 :: Lola.Expr a -> Lola.Expr a -> Lola.Expr GHC.Types.Bool
+                   = Syntax.Ord.<= @ a $dOrd $dTypeable1
+                 } in
+                 \ (d0 :: Lola.Stream a) (d1 :: Lola.Stream a) ->
+                 Lola.Output
+                   @ GHC.Types.Bool
+                   Lib.Pinescript.crossover2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   (GHC.CString.unpackAppendCString#
+                      Lib.Pinescript.crossover1
+                      (GHC.Base.++_$s++
+                         @ GHC.Types.Char
+                         (GHC.Types.:
+                            @ GHC.Types.Char
+                            Lola.<:3
+                            (case d1 of wild {
+                               Lola.Input $dFromJSON $dRead $dTypeable3 ident
+                               -> GHC.Base.++ @ GHC.Types.Char ident Lola.<:1
+                               Lola.Output $dTypeable3 ds1
+                               -> case ds1 of wild1 { (,) ident ds2 ->
+                                  GHC.Base.++ @ GHC.Types.Char ident Lola.<:1 } }))
+                         Lola.<:3
+                         (case d0 of wild {
+                            Lola.Input $dFromJSON $dRead $dTypeable3 ident
+                            -> GHC.Base.++ @ GHC.Types.Char ident Lola.<:1
+                            Lola.Output $dTypeable3 ds1
+                            -> case ds1 of wild1 { (,) ident ds2 ->
+                               GHC.Base.++ @ GHC.Types.Char ident Lola.<:1 } })),
+                    Lola.App
+                      @ GHC.Types.Bool
+                      @ GHC.Types.Bool
+                      Syntax.Booleans.&&2
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                      Syntax.Booleans.&&_$dTypeable1
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool
+                                                                         -> GHC.Types.Bool>_N)
+                      Syntax.Booleans.&&2
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                      (Lola.App
+                         @ (GHC.Types.Bool -> GHC.Types.Bool)
+                         @ GHC.Types.Bool
+                         Syntax.Booleans.&&_$dTypeable1
+                           `cast`
+                         (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool
+                                                                            -> GHC.Types.Bool>_N)
+                         Syntax.Booleans.&&_$dTypeable2
+                           `cast`
+                         (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool
+                                                                            -> GHC.Types.Bool
+                                                                            -> GHC.Types.Bool>_N)
+                         Syntax.Booleans.&&2
+                           `cast`
+                         (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                         Syntax.Booleans.&&1
+                         (lvl27 (Lola.Now @ a d1) (Lola.Now @ a d0)))
+                      (lvl27
+                         (Lola.:@ @ a $dTypeable1 d0 lvl26)
+                         (Lola.:@ @ a $dTypeable1 d1 lvl26)))) -}
+a68bcee33af287af7de9104cd009b490
+  crossover1 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("crossover"#) -}
+08a3615c0782c084c8929cf9477d0b77
+  crossover2 :: Data.Typeable.Internal.TypeRep GHC.Types.Bool
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ GHC.Types.Bool
+                        14182099612280475667##
+                        2734577064602454082##
+                        GHC.Types.$trModule
+                        GHC.Types.$tcBool1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 Data.Typeable.Internal.TrTyCon
+                   @ *
+                   @ GHC.Types.Bool
+                   ww8
+                   ww9
+                   ww10
+                   ww11
+                   ww12 }) -}
+5eb6cc97b4f7ceef64cb9b855979d122
+  crossover3 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# -1#) -}
+4a1df1b0de7c634afda856fcf5c8110a
+  crossover4 :: GHC.Integer.Type.Integer
+  {- HasNoCafRefs, Unfolding: (0) -}
+8adeaa029e1a122c00dda18f233547f5
+  ema ::
+    (GHC.Real.Fractional a, Lola.Streamable a) =>
+    Lola.Stream a -> GHC.Types.Int -> Lola.Stream a
+  {- Arity: 2, Strictness: <L,U(U(U,A,U,U,A,A,C(U)),U,A,A)><L,U> -}
+cca0b98a89322ec1d1ef8ea4699d7c17
+  macd ::
+    (GHC.Real.Fractional a, Lola.Streamable a) =>
+    Lola.Stream a -> Lola.Stream a
+  {- Arity: 3,
+     Strictness: <L,U(U(U,A,U,U,A,A,C(U)),U,A,A)><L,U><L,U>m2,
+     Inline: [2],
+     Unfolding: InlineRule (3, True, False)
+                (\ @ a
+                   (w :: GHC.Real.Fractional a)
+                   (w1 :: Lola.Streamable a)
+                   (w2 :: Lola.Stream a) ->
+                 case Lib.Pinescript.$wmacd @ a w w1 w2 of ww { (#,#) ww1 ww2 ->
+                 Lola.Output @ a ww1 ww2 }) -}
+8ee5031f454e553d2825b51f10aa9741
+  macd1 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 26#) -}
+bb7f82ccf5a47c1746e00f61f65ff175
+  macd2 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 12#) -}
+44dd39964a8b82ceea754c0b8804d54c
+  macd3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("macd"#) -}
+6566c38e2ec0311aafa3ec913fa211e1
+  macd_signal ::
+    (GHC.Real.Fractional a, Lola.Streamable a) =>
+    Lola.Stream a -> Lola.Stream a
+  {- Arity: 3,
+     Strictness: <L,U(U(U,A,U,U,A,A,C(U)),U,A,A)><L,U><L,U>m2,
+     Inline: [2],
+     Unfolding: InlineRule (3, True, False)
+                (\ @ a
+                   (w :: GHC.Real.Fractional a)
+                   (w1 :: Lola.Streamable a)
+                   (w2 :: Lola.Stream a) ->
+                 case Lib.Pinescript.$wmacd_signal
+                        @ a
+                        w
+                        w1
+                        w2 of ww { (#,#) ww1 ww2 ->
+                 Lola.Output @ a ww1 ww2 }) -}
+234e35086b921e5e4908691b57ddd104
+  macd_signal1 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 9#) -}
+ae9dff6c5b1d1b95d795f3d8aa0a30b5
+  macd_signal2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("macd_signal"#) -}
+f5958df6edcf36d40735c2fa065db612
+  sma ::
+    (GHC.Real.Fractional a, Lola.Streamable a) =>
+    Lola.Stream a -> GHC.Types.Int -> Lola.Stream a
+  {- Arity: 2, Strictness: <L,U(1*U(U,A,A,U,A,A,C(U)),1*U,A,A)><L,U>,
+     Unfolding: (\ @ a
+                   ($dFractional :: GHC.Real.Fractional a)
+                   ($dTypeable1 :: Lola.Streamable a) ->
+                 let {
+                   $dTypeable3 :: Data.Typeable.Internal.TypeRep (GHC.Types.Int -> a)
+                   = case GHC.Magic.noinline
+                            @ ([GHC.Fingerprint.Type.Fingerprint]
+                               -> GHC.Fingerprint.Type.Fingerprint)
+                            GHC.Fingerprint.fingerprintFingerprints
+                            (GHC.Types.:
+                               @ GHC.Fingerprint.Type.Fingerprint
+                               Lib.Pinescript.sma12
+                               (GHC.Types.:
+                                  @ GHC.Fingerprint.Type.Fingerprint
+                                  (Data.Typeable.Internal.typeRepFingerprint
+                                     @ *
+                                     @ a
+                                     $dTypeable1
+                                       `cast`
+                                     (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                                  (GHC.Types.[]
+                                     @ GHC.Fingerprint.Type.Fingerprint))) of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                     case Lib.Pinescript.$s$fNumExpr1 of dt3 { Data.Typeable.Internal.TrTyCon ipv ipv1 ipv2 ipv3 ipv4 ->
+                     case $dTypeable1
+                            `cast`
+                          (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N) of dt4 { DEFAULT ->
+                     Data.Typeable.Internal.TrFun
+                       @ *
+                       @ (GHC.Types.Int -> a)
+                       @ 'GHC.Types.LiftedRep
+                       @ 'GHC.Types.LiftedRep
+                       @ GHC.Types.Int
+                       @ a
+                       @~ <*>_N
+                       @~ <GHC.Types.Int -> a>_N
+                       dt1
+                       dt2
+                       dt3
+                       dt4 } } }
+                 } in
+                 let {
+                   $dNum :: GHC.Num.Num a = GHC.Real.$p1Fractional @ a $dFractional
+                 } in
+                 let {
+                   lvl25 :: GHC.Types.Int -> a
+                     {- Arity: 1, Strictness: <L,1*U(U)>,
+                        Unfolding: InlineRule (1, True, False)
+                                   (\ (w2 :: GHC.Types.Int) ->
+                                    case $dNum of ww { GHC.Num.C:Num ww1 ww2 ww3 ww4 ww5 ww6 ww7 ->
+                                    ww7 (GHC.Real.$fIntegralInt_$ctoInteger w2) }) -}
+                   = \ (w2 :: GHC.Types.Int) ->
+                     case $dNum of ww { GHC.Num.C:Num ww1 ww2 ww3 ww4 ww5 ww6 ww7 ->
+                     ww7 (GHC.Real.$fIntegralInt_$ctoInteger w2) }
+                 } in
+                 let {
+                   lvl26 :: Lola.Expr (GHC.Types.Int -> a)
+                   = Lola.Leaf
+                       @ (GHC.Types.Int -> a)
+                       $dTypeable3
+                         `cast`
+                       (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int
+                                                                          -> a>_N)
+                       lvl25
+                 } in
+                 let {
+                   lvl27 :: Lola.Expr a -> Lola.Expr a -> Lola.Expr a
+                   = Syntax.Num./ @ a $dTypeable1 $dFractional
+                 } in
+                 \ (dec :: Lola.Stream a) (n :: GHC.Types.Int) ->
+                 Lola.Output
+                   @ a
+                   $dTypeable1
+                   (GHC.CString.unpackAppendCString#
+                      Lib.Pinescript.sma11
+                      (GHC.Base.++_$s++
+                         @ GHC.Types.Char
+                         (GHC.Types.:
+                            @ GHC.Types.Char
+                            Lola.<:3
+                            (case n of ww2 { GHC.Types.I# ww3 ->
+                             case GHC.Show.$wshowSignedInt
+                                    0#
+                                    ww3
+                                    (GHC.Types.[] @ GHC.Types.Char) of ww4 { (#,#) ww5 ww6 ->
+                             GHC.Base.++_$s++ @ GHC.Types.Char Lola.<:1 ww5 ww6 } }))
+                         Lola.<:3
+                         (case dec of wild {
+                            Lola.Input $dFromJSON $dRead $dTypeable4 ident
+                            -> GHC.Base.++ @ GHC.Types.Char ident Lola.<:1
+                            Lola.Output $dTypeable4 ds1
+                            -> case ds1 of wild1 { (,) ident ds2 ->
+                               GHC.Base.++ @ GHC.Types.Char ident Lola.<:1 } })),
+                    lvl27
+                      (Lola.Now @ a (Lib.Pinescript.sumLast @ a $dNum $dTypeable1 dec n))
+                      (Lola.App
+                         @ a
+                         @ GHC.Types.Int
+                         $dTypeable1
+                         $dTypeable3
+                           `cast`
+                         (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int
+                                                                            -> a>_N)
+                         Lib.Pinescript.$s$fNumExpr1
+                           `cast`
+                         (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int>_N)
+                         lvl26
+                         (Lola.App
+                            @ GHC.Types.Int
+                            @ GHC.Types.Int
+                            Lib.Pinescript.$s$fNumExpr1
+                              `cast`
+                            (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int>_N)
+                            Lib.Pinescript.sma4
+                              `cast`
+                            (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int
+                                                                               -> GHC.Types.Int>_N)
+                            Lib.Pinescript.$s$fNumExpr1
+                              `cast`
+                            (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int>_N)
+                            Lib.Pinescript.sma1
+                            (Lola.Leaf
+                               @ GHC.Types.Int
+                               Lib.Pinescript.$s$fNumExpr1
+                                 `cast`
+                               (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int>_N)
+                               n))))) -}
+b46a18523dbc5feae80c08b4058ab3a8
+  sma1 :: Lola.Expr (GHC.Types.Int -> GHC.Types.Int)
+  {- Unfolding: (Lola.App
+                   @ (GHC.Types.Int -> GHC.Types.Int)
+                   @ GHC.Types.Int
+                   Lib.Pinescript.sma4
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int
+                                                                      -> GHC.Types.Int>_N)
+                   Lib.Pinescript.sma_$dTypeable2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int
+                                                                      -> GHC.Types.Int
+                                                                      -> GHC.Types.Int>_N)
+                   Lib.Pinescript.$s$fNumExpr1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int>_N)
+                   Lib.Pinescript.sma3
+                   Lib.Pinescript.sma2) -}
+a57541c5ba544b5d4b9838761d8da0ca
+  sma10 :: GHC.Fingerprint.Type.Fingerprint
+  {- Unfolding: (case Lib.Pinescript.sma4 of wild {
+                   Data.Typeable.Internal.TrTyCon dt dt1 ds1 ds2 ds3
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1
+                   Data.Typeable.Internal.TrApp k1 a1 b co dt dt1 ds1 ds2 ds3
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1
+                   Data.Typeable.Internal.TrFun r1 r2 a1 b co co1 dt dt1 ds1 ds2
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1 }) -}
+26f2fb154302ae26d0fea4161e6cc1f0
+  sma11 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("sma"#) -}
+ddcceea4a7ca365d5779e498497c32b0
+  sma12 :: GHC.Fingerprint.Type.Fingerprint
+  {- Unfolding: (case Lib.Pinescript.$s$fNumExpr1 of wild { Data.Typeable.Internal.TrTyCon dt dt1 ds1 ds2 ds3 ->
+                 GHC.Fingerprint.Type.Fingerprint dt dt1 }) -}
+883c345c6ddfaaf2c4e374eaf06fc8a5
+  sma2 :: Lola.Expr GHC.Types.Int
+  {- Strictness: m3,
+     Unfolding: (Lola.Now @ GHC.Types.Int Lib.Utils.instantN) -}
+19e0665e3702b290564230d81634735c
+  sma3 :: Lola.Expr (GHC.Types.Int -> GHC.Types.Int -> GHC.Types.Int)
+  {- Strictness: m1,
+     Unfolding: (Lola.Leaf
+                   @ (GHC.Types.Int -> GHC.Types.Int -> GHC.Types.Int)
+                   Lib.Pinescript.sma_$dTypeable2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int
+                                                                      -> GHC.Types.Int
+                                                                      -> GHC.Types.Int>_N)
+                   GHC.Classes.$fOrdInt_$cmin) -}
+2db0aeeec451deea31c7d5ef82b6a63e
+  sma4 ::
+    Data.Typeable.Internal.TypeRep (GHC.Types.Int -> GHC.Types.Int)
+  {- Unfolding: (case GHC.Magic.noinline
+                        @ ([GHC.Fingerprint.Type.Fingerprint]
+                           -> GHC.Fingerprint.Type.Fingerprint)
+                        GHC.Fingerprint.fingerprintFingerprints
+                        Lib.Pinescript.sma5 of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                 case Lib.Pinescript.$s$fNumExpr1 of dt3 { Data.Typeable.Internal.TrTyCon ipv ipv1 ipv2 ipv3 ipv4 ->
+                 Data.Typeable.Internal.TrFun
+                   @ *
+                   @ (GHC.Types.Int -> GHC.Types.Int)
+                   @ 'GHC.Types.LiftedRep
+                   @ 'GHC.Types.LiftedRep
+                   @ GHC.Types.Int
+                   @ GHC.Types.Int
+                   @~ <*>_N
+                   @~ <GHC.Types.Int -> GHC.Types.Int>_N
+                   dt1
+                   dt2
+                   dt3
+                   dt3 } }) -}
+c9b5c85e267ca1ad28e1b333b703dd5a
+  sma5 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Lib.Pinescript.sma7
+                   Lib.Pinescript.sma6) -}
+73d1347c0d91ade68d10863d8f6555ca
+  sma6 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Lib.Pinescript.sma7
+                   (GHC.Types.[] @ GHC.Fingerprint.Type.Fingerprint)) -}
+a50cad313ee5ed9ab0f8a8e48f622034
+  sma7 :: GHC.Fingerprint.Type.Fingerprint
+  {- Unfolding: (case Lib.Pinescript.$s$fNumExpr1 of wild { Data.Typeable.Internal.TrTyCon dt dt1 ds1 ds2 ds3 ->
+                 GHC.Fingerprint.Type.Fingerprint dt dt1 }) -}
+45c33a30e27e5724ebc0da65a7cd94c6
+  sma8 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Lib.Pinescript.sma7
+                   Lib.Pinescript.sma9) -}
+c2e80d47aa0fd3f6a23ece9f4c2014f8
+  sma9 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Lib.Pinescript.sma10
+                   (GHC.Types.[] @ GHC.Fingerprint.Type.Fingerprint)) -}
+73e6eed8ab277a62ea145b232d89497b
+  sma_$dTypeable2 ::
+    Data.Typeable.Internal.TypeRep
+      (GHC.Types.Int -> GHC.Types.Int -> GHC.Types.Int)
+  {- Unfolding: (case GHC.Magic.noinline
+                        @ ([GHC.Fingerprint.Type.Fingerprint]
+                           -> GHC.Fingerprint.Type.Fingerprint)
+                        GHC.Fingerprint.fingerprintFingerprints
+                        Lib.Pinescript.sma8 of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                 case Lib.Pinescript.$s$fNumExpr1 of dt3 { Data.Typeable.Internal.TrTyCon ipv ipv1 ipv2 ipv3 ipv4 ->
+                 case Lib.Pinescript.sma4 of dt4 { DEFAULT ->
+                 Data.Typeable.Internal.TrFun
+                   @ *
+                   @ (GHC.Types.Int -> GHC.Types.Int -> GHC.Types.Int)
+                   @ 'GHC.Types.LiftedRep
+                   @ 'GHC.Types.LiftedRep
+                   @ GHC.Types.Int
+                   @ (GHC.Types.Int -> GHC.Types.Int)
+                   @~ <*>_N
+                   @~ <GHC.Types.Int -> GHC.Types.Int -> GHC.Types.Int>_N
+                   dt1
+                   dt2
+                   dt3
+                   dt4 } } }) -}
+7ff95708c53c56544a5ef57de3940f58
+  sumLast ::
+    (GHC.Num.Num a, Lola.Streamable a) =>
+    Lola.Stream a -> GHC.Types.Int -> Lola.Stream a
+  {- Arity: 4,
+     Strictness: <L,U(U,A,A,U,A,A,C(U))><L,U><L,U><L,U(U)>m2,
+     Inline: [2],
+     Unfolding: InlineRule (4, True, False)
+                (\ @ a
+                   (w :: GHC.Num.Num a)
+                   (w1 :: Lola.Streamable a)
+                   (w2 :: Lola.Stream a)
+                   (w3 :: GHC.Types.Int) ->
+                 case Lib.Pinescript.$wsumLast
+                        @ a
+                        w
+                        w1
+                        w2
+                        w3 of ww { (#,#) ww1 ww2 ->
+                 Lola.Output @ a ww1 ww2 }) -}
+245542009ef421031809de31b7b273e6
+  wma ::
+    (GHC.Real.Fractional a, Lola.Streamable a) =>
+    Lola.Stream a -> GHC.Types.Int -> Lola.Stream a
+  {- Arity: 2,
+     Strictness: <L,U(1*U(1*U,A,1*U,A,A,A,C(U)),1*U,A,A)><L,U> -}
+trusted: none
+require own pkg trusted: False
+module header:
+  Nothing
+declaration docs:
+arg docs:
+

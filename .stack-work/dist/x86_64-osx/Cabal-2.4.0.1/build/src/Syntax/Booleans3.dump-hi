@@ -1,0 +1,378 @@
+
+==================== FINAL INTERFACE ====================
+2019-10-21 10:04:20.129477 UTC
+
+interface HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Syntax.Booleans3 8065
+  interface hash: 4868fd471a03eab7703c7f5b0402178b
+  ABI hash: 54250c970d4f471f80431d9cfa4ed2a7
+  export-list hash: 73f1146c2090287f8a33dfb64d207f9c
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 3647df3ab7c5fd7960364a59d6d86979
+  opt_hash: 6faf2de08de32d19db9870899d88e59a
+  hpc_hash: 93b885adfe0da089cdf634904fd59f71
+  plugin_hash: ad164012d6b1e14942349d58b1132007
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Syntax.Booleans3.&&
+  Syntax.Booleans3.not
+  Syntax.Booleans3.||
+module dependencies: Lola Syntax.HLPrelude Theories.Booleans3
+package dependencies: aeson-1.4.5.0 array-0.5.3.0
+                      attoparsec-0.13.2.3 base-4.12.0.0 base-compat-0.10.5
+                      base-orphans-0.8.1 binary-0.8.6.0 bytestring-0.10.8.2
+                      containers-0.6.0.1 deepseq-1.4.4.0 dlist-0.8.0.7 ghc-boot-th-8.6.5
+                      ghc-prim-0.5.3 hashable-1.2.7.0 integer-gmp-1.0.2.0
+                      integer-logarithms-1.0.3 primitive-0.6.4.0 random-1.1
+                      scientific-0.3.6.2 tagged-0.8.6 template-haskell-2.14.0.0
+                      text-1.2.3.1 time-1.8.0.2 time-compat-1.9.2.2 transformers-0.5.6.2
+                      unordered-containers-0.2.10.0 uuid-types-1.0.3 vector-0.12.0.3
+orphans: attoparsec-0.13.2.3:Data.Attoparsec.Text.Internal
+         attoparsec-0.13.2.3:Data.Attoparsec.ByteString.Char8
+         time-1.8.0.2:Data.Time.Clock.TAI
+         vector-0.12.0.3:Data.Vector.Unboxed
+         time-1.8.0.2:Data.Time.Format.Parse
+         time-1.8.0.2:Data.Time.LocalTime.Internal.ZonedTime
+         time-1.8.0.2:Data.Time.LocalTime.Internal.LocalTime
+         time-1.8.0.2:Data.Time.Calendar.Gregorian
+         hashable-1.2.7.0:Data.Hashable.Generic text-1.2.3.1:Data.Text.Lazy
+         text-1.2.3.1:Data.Text binary-0.8.6.0:Data.Binary.Generic
+         bytestring-0.10.8.2:Data.ByteString.Builder
+         text-1.2.3.1:Data.Text.Show
+         vector-0.12.0.3:Data.Vector.Fusion.Bundle
+         transformers-0.5.6.2:Control.Monad.Trans.Error
+         base-4.12.0.0:GHC.Float base-4.12.0.0:GHC.Base
+family instance modules: HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Theories.Booleans3
+                         aeson-1.4.5.0:Data.Aeson.Types.Internal
+                         attoparsec-0.13.2.3:Data.Attoparsec.Internal.Types
+                         base-4.12.0.0:Control.Applicative base-4.12.0.0:Data.Complex
+                         base-4.12.0.0:Data.Functor.Compose base-4.12.0.0:Data.Functor.Const
+                         base-4.12.0.0:Data.Functor.Identity
+                         base-4.12.0.0:Data.Functor.Product base-4.12.0.0:Data.Functor.Sum
+                         base-4.12.0.0:Data.Monoid base-4.12.0.0:Data.Semigroup
+                         base-4.12.0.0:Data.Semigroup.Internal base-4.12.0.0:Data.Version
+                         base-4.12.0.0:Data.Void base-4.12.0.0:GHC.Exts
+                         base-4.12.0.0:GHC.Generics base-4.12.0.0:GHC.IO.Exception
+                         containers-0.6.0.1:Data.IntMap.Internal
+                         containers-0.6.0.1:Data.IntSet.Internal
+                         containers-0.6.0.1:Data.Map.Internal
+                         containers-0.6.0.1:Data.Sequence.Internal
+                         containers-0.6.0.1:Data.Set.Internal containers-0.6.0.1:Data.Tree
+                         dlist-0.8.0.7:Data.DList ghc-boot-th-8.6.5:GHC.ForeignSrcLang.Type
+                         ghc-boot-th-8.6.5:GHC.LanguageExtensions.Type
+                         primitive-0.6.4.0:Control.Monad.Primitive
+                         primitive-0.6.4.0:Data.Primitive.Array
+                         primitive-0.6.4.0:Data.Primitive.ByteArray
+                         primitive-0.6.4.0:Data.Primitive.PrimArray
+                         primitive-0.6.4.0:Data.Primitive.SmallArray
+                         primitive-0.6.4.0:Data.Primitive.UnliftedArray
+                         tagged-0.8.6:Data.Tagged
+                         template-haskell-2.14.0.0:Language.Haskell.TH.Syntax
+                         text-1.2.3.1:Data.Text text-1.2.3.1:Data.Text.Lazy
+                         unordered-containers-0.2.10.0:Data.HashMap.Base
+                         unordered-containers-0.2.10.0:Data.HashSet.Base
+                         uuid-types-1.0.3:Data.UUID.Types.Internal
+                         uuid-types-1.0.3:Data.UUID.Types.Internal.Builder
+                         vector-0.12.0.3:Data.Vector vector-0.12.0.3:Data.Vector.Primitive
+                         vector-0.12.0.3:Data.Vector.Storable
+                         vector-0.12.0.3:Data.Vector.Unboxed
+                         vector-0.12.0.3:Data.Vector.Unboxed.Base
+import  -/  Lola f52d080a9c6c535055cc2d321870899c
+  exports: f0b2b11faceeef480fb3969a0b54aac2
+  <$> 5dbf6fc938f9b138f5c32cf20fb73d22
+  <*> 8031fcbaf5917c21a272faf5dc82b09a
+  Expr b276a145c92628a19f5bf124ea374e0b
+import  -/  Syntax.HLPrelude f80a67bea1d500b91e76dd8341487f94
+  exports: 68fbd00b85e22e00f4229825fd729bf8
+import  -/  Theories.Booleans3 e40bbb1e3eb186a571925e70a404bd5d
+  exports: adc7e4dba1e337cd346eae19cb98689e
+  && 37ea868cee54a31c3fb610a16b82925b
+  Bool3 c7ee3f1b4425c95c031eb2b8b9f9c4e8
+  not edc66495e42fe742ac0bbea4d638c32a
+  || 6c607ea2588eafa2d334846ecb624453
+import  -/  base-4.12.0.0:Prelude 3c779dfd6448bdd8e234c336802c2acb
+fixities infixr 3 &&, infixr 2 ||
+05fb3fab73219e199237e8c63eba5ee9
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Syntax.Booleans3.$trModule3
+                   Syntax.Booleans3.$trModule1) -}
+6c0c25addd0ab122bf75c7b764d94c13
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Syntax.Booleans3.$trModule2) -}
+bdcd1d0c4c29bbb4370f2f62de5a9d7b
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Syntax.Booleans3"#) -}
+3f8f86c426f29e72fb7c50685c40e823
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Syntax.Booleans3.$trModule4) -}
+d90a77e4138c40fce8d1d4f641e4ad8b
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs,
+     Unfolding: ("HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ"#) -}
+6ee6b99b67ead6f0f9f14f3024abe740
+  (&&) ::
+    Lola.Expr Theories.Booleans3.Bool3
+    -> Lola.Expr Theories.Booleans3.Bool3
+    -> Lola.Expr Theories.Booleans3.Bool3
+  {- Arity: 2, Strictness: <L,U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (a :: Lola.Expr Theories.Booleans3.Bool3)
+                   (b :: Lola.Expr Theories.Booleans3.Bool3) ->
+                 Lola.App
+                   @ Theories.Booleans3.Bool3
+                   @ Theories.Booleans3.Bool3
+                   Syntax.Booleans3.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3>_N)
+                   Syntax.Booleans3.&&_$dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3
+                                                                      -> Theories.Booleans3.Bool3>_N)
+                   Syntax.Booleans3.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3>_N)
+                   (Lola.App
+                      @ (Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3)
+                      @ Theories.Booleans3.Bool3
+                      Syntax.Booleans3.&&_$dTypeable1
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3
+                                                                         -> Theories.Booleans3.Bool3>_N)
+                      Syntax.Booleans3.&&_$dTypeable2
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3
+                                                                         -> Theories.Booleans3.Bool3
+                                                                         -> Theories.Booleans3.Bool3>_N)
+                      Syntax.Booleans3.&&2
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3>_N)
+                      Syntax.Booleans3.&&1
+                      a)
+                   b) -}
+f40568f5cbc3f8a88d8fd986aa8de827
+  &&1 ::
+    Lola.Expr
+      (Theories.Booleans3.Bool3
+       -> Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3)
+  {- Strictness: m1,
+     Unfolding: (Lola.Leaf
+                   @ (Theories.Booleans3.Bool3
+                      -> Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3)
+                   Syntax.Booleans3.&&_$dTypeable2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3
+                                                                      -> Theories.Booleans3.Bool3
+                                                                      -> Theories.Booleans3.Bool3>_N)
+                   Theories.Booleans3.&&) -}
+4d88f69f3cacffc84d20212793046a73
+  &&2 :: Data.Typeable.Internal.TypeRep Theories.Booleans3.Bool3
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ Theories.Booleans3.Bool3
+                        363602386860197454##
+                        17240864773593573177##
+                        Theories.Booleans3.$trModule
+                        Theories.Booleans3.$tcBool1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 Data.Typeable.Internal.TrTyCon
+                   @ *
+                   @ Theories.Booleans3.Bool3
+                   ww8
+                   ww9
+                   ww10
+                   ww11
+                   ww12 }) -}
+8fb429b80aeda56394dd092c1ea59f07
+  &&3 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Syntax.Booleans3.&&5
+                   Syntax.Booleans3.&&4) -}
+51ebbb03142b9c32065c3a447b841918
+  &&4 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Syntax.Booleans3.&&5
+                   (GHC.Types.[] @ GHC.Fingerprint.Type.Fingerprint)) -}
+2f0f8f84e5f9a6994cec88015367aef3
+  &&5 :: GHC.Fingerprint.Type.Fingerprint
+  {- Unfolding: (case Syntax.Booleans3.&&2 of wild { Data.Typeable.Internal.TrTyCon dt dt1 ds1 ds2 ds3 ->
+                 GHC.Fingerprint.Type.Fingerprint dt dt1 }) -}
+eee73fad628a75af316a5cef6f36b48c
+  &&6 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Syntax.Booleans3.&&5
+                   Syntax.Booleans3.&&7) -}
+a497c8925869b27d0a19fc00e29254f5
+  &&7 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Syntax.Booleans3.&&8
+                   (GHC.Types.[] @ GHC.Fingerprint.Type.Fingerprint)) -}
+4046e3080d4357875a3546fa83dcebc1
+  &&8 :: GHC.Fingerprint.Type.Fingerprint
+  {- Unfolding: (case Syntax.Booleans3.&&_$dTypeable1 of wild {
+                   Data.Typeable.Internal.TrTyCon dt dt1 ds1 ds2 ds3
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1
+                   Data.Typeable.Internal.TrApp k1 a1 b co dt dt1 ds1 ds2 ds3
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1
+                   Data.Typeable.Internal.TrFun r1 r2 a1 b co co1 dt dt1 ds1 ds2
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1 }) -}
+5610747924c693bd50596ede1884af3d
+  &&_$dTypeable1 ::
+    Data.Typeable.Internal.TypeRep
+      (Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3)
+  {- Unfolding: (case GHC.Magic.noinline
+                        @ ([GHC.Fingerprint.Type.Fingerprint]
+                           -> GHC.Fingerprint.Type.Fingerprint)
+                        GHC.Fingerprint.fingerprintFingerprints
+                        Syntax.Booleans3.&&3 of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                 case Syntax.Booleans3.&&2 of dt3 { Data.Typeable.Internal.TrTyCon ipv ipv1 ipv2 ipv3 ipv4 ->
+                 Data.Typeable.Internal.TrFun
+                   @ *
+                   @ (Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3)
+                   @ 'GHC.Types.LiftedRep
+                   @ 'GHC.Types.LiftedRep
+                   @ Theories.Booleans3.Bool3
+                   @ Theories.Booleans3.Bool3
+                   @~ <*>_N
+                   @~ <Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3>_N
+                   dt1
+                   dt2
+                   dt3
+                   dt3 } }) -}
+8be86e8eb19bb420b8b9dd3c91c2b47b
+  &&_$dTypeable2 ::
+    Data.Typeable.Internal.TypeRep
+      (Theories.Booleans3.Bool3
+       -> Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3)
+  {- Unfolding: (case GHC.Magic.noinline
+                        @ ([GHC.Fingerprint.Type.Fingerprint]
+                           -> GHC.Fingerprint.Type.Fingerprint)
+                        GHC.Fingerprint.fingerprintFingerprints
+                        Syntax.Booleans3.&&6 of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                 case Syntax.Booleans3.&&2 of dt3 { Data.Typeable.Internal.TrTyCon ipv ipv1 ipv2 ipv3 ipv4 ->
+                 case Syntax.Booleans3.&&_$dTypeable1 of dt4 { DEFAULT ->
+                 Data.Typeable.Internal.TrFun
+                   @ *
+                   @ (Theories.Booleans3.Bool3
+                      -> Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3)
+                   @ 'GHC.Types.LiftedRep
+                   @ 'GHC.Types.LiftedRep
+                   @ Theories.Booleans3.Bool3
+                   @ (Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3)
+                   @~ <*>_N
+                   @~ <Theories.Booleans3.Bool3
+                       -> Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3>_N
+                   dt1
+                   dt2
+                   dt3
+                   dt4 } } }) -}
+9e0c5781f6695facac6be0c6c59d0d4d
+  not ::
+    Lola.Expr Theories.Booleans3.Bool3
+    -> Lola.Expr Theories.Booleans3.Bool3
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (a :: Lola.Expr Theories.Booleans3.Bool3) ->
+                 Lola.App
+                   @ Theories.Booleans3.Bool3
+                   @ Theories.Booleans3.Bool3
+                   Syntax.Booleans3.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3>_N)
+                   Syntax.Booleans3.&&_$dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3
+                                                                      -> Theories.Booleans3.Bool3>_N)
+                   Syntax.Booleans3.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3>_N)
+                   Syntax.Booleans3.not1
+                   a) -}
+e8544411095aa574029ab4d764ba3df7
+  not1 ::
+    Lola.Expr (Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3)
+  {- Strictness: m1,
+     Unfolding: (Lola.Leaf
+                   @ (Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3)
+                   Syntax.Booleans3.&&_$dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3
+                                                                      -> Theories.Booleans3.Bool3>_N)
+                   Theories.Booleans3.not) -}
+19da241d657c427fbb62bf1203109899
+  (||) ::
+    Lola.Expr Theories.Booleans3.Bool3
+    -> Lola.Expr Theories.Booleans3.Bool3
+    -> Lola.Expr Theories.Booleans3.Bool3
+  {- Arity: 2, Strictness: <L,U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (a :: Lola.Expr Theories.Booleans3.Bool3)
+                   (b :: Lola.Expr Theories.Booleans3.Bool3) ->
+                 Lola.App
+                   @ Theories.Booleans3.Bool3
+                   @ Theories.Booleans3.Bool3
+                   Syntax.Booleans3.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3>_N)
+                   Syntax.Booleans3.&&_$dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3
+                                                                      -> Theories.Booleans3.Bool3>_N)
+                   Syntax.Booleans3.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3>_N)
+                   (Lola.App
+                      @ (Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3)
+                      @ Theories.Booleans3.Bool3
+                      Syntax.Booleans3.&&_$dTypeable1
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3
+                                                                         -> Theories.Booleans3.Bool3>_N)
+                      Syntax.Booleans3.&&_$dTypeable2
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3
+                                                                         -> Theories.Booleans3.Bool3
+                                                                         -> Theories.Booleans3.Bool3>_N)
+                      Syntax.Booleans3.&&2
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3>_N)
+                      Syntax.Booleans3.||1
+                      a)
+                   b) -}
+4ab0b8c05900bc030bfcb8bdeabe89f9
+  ||1 ::
+    Lola.Expr
+      (Theories.Booleans3.Bool3
+       -> Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3)
+  {- Strictness: m1,
+     Unfolding: (Lola.Leaf
+                   @ (Theories.Booleans3.Bool3
+                      -> Theories.Booleans3.Bool3 -> Theories.Booleans3.Bool3)
+                   Syntax.Booleans3.&&_$dTypeable2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Booleans3.Bool3
+                                                                      -> Theories.Booleans3.Bool3
+                                                                      -> Theories.Booleans3.Bool3>_N)
+                   Theories.Booleans3.||) -}
+trusted: none
+require own pkg trusted: False
+module header:
+  Nothing
+declaration docs:
+arg docs:
+

@@ -1,0 +1,195 @@
+
+==================== FINAL INTERFACE ====================
+2019-10-21 10:04:16.694016 UTC
+
+interface HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Example.Liquid 8065
+  interface hash: dc98d99c3a05be20018de942e20a6197
+  ABI hash: 3b7434f5428fa870688f28083605ef30
+  export-list hash: 4cc2d1b832c94d74e37750245656739f
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 26374cde5e1fc958de85cfaf0c1b1d82
+  opt_hash: 6faf2de08de32d19db9870899d88e59a
+  hpc_hash: 93b885adfe0da089cdf634904fd59f71
+  plugin_hash: ad164012d6b1e14942349d58b1132007
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Example.Liquid.r
+  Example.Liquid.s
+  Example.Liquid.s'
+  Example.Liquid.sumLast
+module dependencies: DecDyn Lola Syntax.HLPrelude Syntax.Num
+package dependencies: aeson-1.4.5.0 array-0.5.3.0
+                      attoparsec-0.13.2.3 base-4.12.0.0 base-compat-0.10.5
+                      base-orphans-0.8.1 binary-0.8.6.0 bytestring-0.10.8.2
+                      containers-0.6.0.1 deepseq-1.4.4.0 dlist-0.8.0.7 ghc-boot-th-8.6.5
+                      ghc-prim-0.5.3 hashable-1.2.7.0 integer-gmp-1.0.2.0
+                      integer-logarithms-1.0.3 primitive-0.6.4.0 random-1.1
+                      scientific-0.3.6.2 tagged-0.8.6 template-haskell-2.14.0.0
+                      text-1.2.3.1 time-1.8.0.2 time-compat-1.9.2.2 transformers-0.5.6.2
+                      unordered-containers-0.2.10.0 uuid-types-1.0.3 vector-0.12.0.3
+orphans: HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Syntax.Num
+         attoparsec-0.13.2.3:Data.Attoparsec.Text.Internal
+         attoparsec-0.13.2.3:Data.Attoparsec.ByteString.Char8
+         time-1.8.0.2:Data.Time.Clock.TAI
+         vector-0.12.0.3:Data.Vector.Unboxed
+         time-1.8.0.2:Data.Time.Format.Parse
+         time-1.8.0.2:Data.Time.LocalTime.Internal.ZonedTime
+         time-1.8.0.2:Data.Time.LocalTime.Internal.LocalTime
+         time-1.8.0.2:Data.Time.Calendar.Gregorian
+         hashable-1.2.7.0:Data.Hashable.Generic text-1.2.3.1:Data.Text.Lazy
+         text-1.2.3.1:Data.Text binary-0.8.6.0:Data.Binary.Generic
+         bytestring-0.10.8.2:Data.ByteString.Builder
+         text-1.2.3.1:Data.Text.Show
+         vector-0.12.0.3:Data.Vector.Fusion.Bundle
+         transformers-0.5.6.2:Control.Monad.Trans.Error
+         base-4.12.0.0:GHC.Float base-4.12.0.0:GHC.Base
+family instance modules: aeson-1.4.5.0:Data.Aeson.Types.Internal
+                         attoparsec-0.13.2.3:Data.Attoparsec.Internal.Types
+                         base-4.12.0.0:Control.Applicative base-4.12.0.0:Data.Complex
+                         base-4.12.0.0:Data.Functor.Compose base-4.12.0.0:Data.Functor.Const
+                         base-4.12.0.0:Data.Functor.Identity
+                         base-4.12.0.0:Data.Functor.Product base-4.12.0.0:Data.Functor.Sum
+                         base-4.12.0.0:Data.Monoid base-4.12.0.0:Data.Semigroup
+                         base-4.12.0.0:Data.Semigroup.Internal base-4.12.0.0:Data.Version
+                         base-4.12.0.0:Data.Void base-4.12.0.0:GHC.Exts
+                         base-4.12.0.0:GHC.Generics base-4.12.0.0:GHC.IO.Exception
+                         containers-0.6.0.1:Data.IntMap.Internal
+                         containers-0.6.0.1:Data.IntSet.Internal
+                         containers-0.6.0.1:Data.Map.Internal
+                         containers-0.6.0.1:Data.Sequence.Internal
+                         containers-0.6.0.1:Data.Set.Internal containers-0.6.0.1:Data.Tree
+                         dlist-0.8.0.7:Data.DList ghc-boot-th-8.6.5:GHC.ForeignSrcLang.Type
+                         ghc-boot-th-8.6.5:GHC.LanguageExtensions.Type
+                         primitive-0.6.4.0:Control.Monad.Primitive
+                         primitive-0.6.4.0:Data.Primitive.Array
+                         primitive-0.6.4.0:Data.Primitive.ByteArray
+                         primitive-0.6.4.0:Data.Primitive.PrimArray
+                         primitive-0.6.4.0:Data.Primitive.SmallArray
+                         primitive-0.6.4.0:Data.Primitive.UnliftedArray
+                         tagged-0.8.6:Data.Tagged
+                         template-haskell-2.14.0.0:Language.Haskell.TH.Syntax
+                         text-1.2.3.1:Data.Text text-1.2.3.1:Data.Text.Lazy
+                         unordered-containers-0.2.10.0:Data.HashMap.Base
+                         unordered-containers-0.2.10.0:Data.HashSet.Base
+                         uuid-types-1.0.3:Data.UUID.Types.Internal
+                         uuid-types-1.0.3:Data.UUID.Types.Internal.Builder
+                         vector-0.12.0.3:Data.Vector vector-0.12.0.3:Data.Vector.Primitive
+                         vector-0.12.0.3:Data.Vector.Storable
+                         vector-0.12.0.3:Data.Vector.Unboxed
+                         vector-0.12.0.3:Data.Vector.Unboxed.Base
+import  -/  DecDyn e44279c7ab4d42b81c75c5ed2ac16b6e
+  exports: 040c7148a7a3f91e612a4e6a8a65bbcb
+import  -/  Lola f52d080a9c6c535055cc2d321870899c
+  exports: f0b2b11faceeef480fb3969a0b54aac2
+  :@ 0e91454cfe22ab22364b2d071c8db005
+  <: ede31a85d24f5fc58211abc6c1cf47eb
+  =: 8a68e19014f2cf73a7f77ec6fc12c12c
+  Input 84bbb625cf5c7ec015044d911c3c39d7
+  Now 19aae6044cf44591930683cbda472505
+  Stream 842b407b0b18370d0d7d6fdd47ddc27b
+import  -/  Syntax.Num 42d53dc12ffc226b88f55b096d15fb83
+  exports: 883071c53baa629578d78c5289d88073
+import  -/  base-4.12.0.0:GHC.Num c2039f03637c68f47b0bbff4c18ec616
+import  -/  base-4.12.0.0:Prelude 3c779dfd6448bdd8e234c336802c2acb
+ead07121f3ddcf63e814d41345c42c8b
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Example.Liquid.$trModule3
+                   Example.Liquid.$trModule1) -}
+505d57d05f58460e4d3aff6863c477ad
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Example.Liquid.$trModule2) -}
+a5820e7b2db8a1534f8adf455f6fa198
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Example.Liquid"#) -}
+544f3aa66ec8641fdb80cf5a59dffcff
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Example.Liquid.$trModule4) -}
+d83f6552ece55382f02060e4495f5e9e
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs,
+     Unfolding: ("HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ"#) -}
+c28cbccff4597b9abd169896508f40b9
+  $wsumLast ::
+    Lola.Stream GHC.Types.Int
+    -> GHC.Types.Int
+    -> (# Lola.Streamable GHC.Types.Int,
+          (Lola.Ident, Lola.Expr GHC.Types.Int) #)
+  {- Arity: 2, Strictness: <L,U><L,U(U)>, Inline: [2] -}
+a305ff1eb2aaede05bdf91b0361cdcb0
+  r :: Lola.Stream GHC.Types.Int
+  {- Strictness: m1,
+     Unfolding: (Lola.Input
+                   @ GHC.Types.Int
+                   Data.Aeson.Types.FromJSON.$fFromJSONInt
+                   GHC.Read.$fReadInt
+                   Example.Liquid.r3
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int>_N)
+                   Example.Liquid.r1) -}
+1e327ae4bc4c270a933da1e0cbc3910e
+  r1 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# Example.Liquid.r2) -}
+bb81be69f37c5d0ec3f7e89cdb6f0b41
+  r2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("r"#) -}
+22af7bc1b63aae24482d62f710345cf9
+  r3 :: Data.Typeable.Internal.TypeRep GHC.Types.Int
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ GHC.Types.Int
+                        5193196903533114208##
+                        8143820745237564347##
+                        GHC.Types.$trModule
+                        GHC.Types.$tcInt1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 Data.Typeable.Internal.TrTyCon
+                   @ *
+                   @ GHC.Types.Int
+                   ww8
+                   ww9
+                   ww10
+                   ww11
+                   ww12 }) -}
+7479cf617ada7cb0509d0438f20c2d58
+  s :: Lola.Stream GHC.Types.Int
+  {- Unfolding: (case Example.Liquid.$wsumLast
+                        Example.Liquid.r
+                        Example.Liquid.s1 of ww { (#,#) ww1 ww2 ->
+                 Lola.Output @ GHC.Types.Int ww1 ww2 }) -}
+3a0c872559bf61a1ebdffd124ef91f3f
+  s' :: Lola.Stream GHC.Types.Int
+  {- Unfolding: (case Example.Liquid.$wsumLast
+                        Example.Liquid.r
+                        Example.Liquid.s'1 of ww { (#,#) ww1 ww2 ->
+                 Lola.Output @ GHC.Types.Int ww1 ww2 }) -}
+b1c2869ef1e1b48db5ab292aaa800e62
+  s'1 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# -1#) -}
+5456a840c848bcc132def0e3808c5715
+  s1 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 5#) -}
+2a9f5adaedb809e5be004ab401de2da0
+  sumLast ::
+    Lola.Stream GHC.Types.Int
+    -> GHC.Types.Int -> Lola.Stream GHC.Types.Int
+  {- Arity: 2, Strictness: <L,U><L,U(U)>m2, Inline: [2],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: Lola.Stream GHC.Types.Int) (w1 :: GHC.Types.Int) ->
+                 case Example.Liquid.$wsumLast w w1 of ww { (#,#) ww1 ww2 ->
+                 Lola.Output @ GHC.Types.Int ww1 ww2 }) -}
+trusted: none
+require own pkg trusted: False
+module header:
+  Nothing
+declaration docs:
+arg docs:
+

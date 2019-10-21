@@ -1,0 +1,829 @@
+
+==================== FINAL INTERFACE ====================
+2019-10-21 10:04:18.946541 UTC
+
+interface HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Example.PinescriptEx 8065
+  interface hash: 1462216aac97353906818f979437af27
+  ABI hash: 3fee9ebcedef6f29fe50d8d3942be8dd
+  export-list hash: 481e9ed62cc0e47e6dfc61d02298153c
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: d5bd55554af082500bdbbcdfa34dcc60
+  opt_hash: 6faf2de08de32d19db9870899d88e59a
+  hpc_hash: 93b885adfe0da089cdf634904fd59f71
+  plugin_hash: ad164012d6b1e14942349d58b1132007
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Example.PinescriptEx.buy
+  Example.PinescriptEx.buy_size
+  Example.PinescriptEx.close
+  Example.PinescriptEx.ema18
+  Example.PinescriptEx.high
+  Example.PinescriptEx.macdLine
+  Example.PinescriptEx.macd_buy_sig
+  Example.PinescriptEx.macd_sell_sig
+  Example.PinescriptEx.pinescriptEx
+  Example.PinescriptEx.positionsize
+  Example.PinescriptEx.sell
+  Example.PinescriptEx.sell_size
+  Example.PinescriptEx.signalLine
+  Example.PinescriptEx.spec
+  Example.PinescriptEx.wmaUsage
+module dependencies: DecDyn Lib.Pinescript Lib.Utils Lola
+                     Syntax.Booleans Syntax.HLPrelude Syntax.Num Syntax.Ord
+package dependencies: aeson-1.4.5.0 array-0.5.3.0
+                      attoparsec-0.13.2.3 base-4.12.0.0 base-compat-0.10.5
+                      base-orphans-0.8.1 binary-0.8.6.0 bytestring-0.10.8.2
+                      containers-0.6.0.1 deepseq-1.4.4.0 dlist-0.8.0.7 ghc-boot-th-8.6.5
+                      ghc-prim-0.5.3 hashable-1.2.7.0 integer-gmp-1.0.2.0
+                      integer-logarithms-1.0.3 primitive-0.6.4.0 random-1.1
+                      scientific-0.3.6.2 tagged-0.8.6 template-haskell-2.14.0.0
+                      text-1.2.3.1 time-1.8.0.2 time-compat-1.9.2.2 transformers-0.5.6.2
+                      unordered-containers-0.2.10.0 uuid-types-1.0.3 vector-0.12.0.3
+orphans: HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Syntax.Num
+         attoparsec-0.13.2.3:Data.Attoparsec.Text.Internal
+         attoparsec-0.13.2.3:Data.Attoparsec.ByteString.Char8
+         time-1.8.0.2:Data.Time.Clock.TAI
+         vector-0.12.0.3:Data.Vector.Unboxed
+         time-1.8.0.2:Data.Time.Format.Parse
+         time-1.8.0.2:Data.Time.LocalTime.Internal.ZonedTime
+         time-1.8.0.2:Data.Time.LocalTime.Internal.LocalTime
+         time-1.8.0.2:Data.Time.Calendar.Gregorian
+         hashable-1.2.7.0:Data.Hashable.Generic text-1.2.3.1:Data.Text.Lazy
+         text-1.2.3.1:Data.Text binary-0.8.6.0:Data.Binary.Generic
+         bytestring-0.10.8.2:Data.ByteString.Builder
+         text-1.2.3.1:Data.Text.Show
+         vector-0.12.0.3:Data.Vector.Fusion.Bundle
+         transformers-0.5.6.2:Control.Monad.Trans.Error
+         base-4.12.0.0:GHC.Float base-4.12.0.0:GHC.Base
+family instance modules: aeson-1.4.5.0:Data.Aeson.Types.Internal
+                         attoparsec-0.13.2.3:Data.Attoparsec.Internal.Types
+                         base-4.12.0.0:Control.Applicative base-4.12.0.0:Data.Complex
+                         base-4.12.0.0:Data.Functor.Compose base-4.12.0.0:Data.Functor.Const
+                         base-4.12.0.0:Data.Functor.Identity
+                         base-4.12.0.0:Data.Functor.Product base-4.12.0.0:Data.Functor.Sum
+                         base-4.12.0.0:Data.Monoid base-4.12.0.0:Data.Semigroup
+                         base-4.12.0.0:Data.Semigroup.Internal base-4.12.0.0:Data.Version
+                         base-4.12.0.0:Data.Void base-4.12.0.0:GHC.Exts
+                         base-4.12.0.0:GHC.Generics base-4.12.0.0:GHC.IO.Exception
+                         containers-0.6.0.1:Data.IntMap.Internal
+                         containers-0.6.0.1:Data.IntSet.Internal
+                         containers-0.6.0.1:Data.Map.Internal
+                         containers-0.6.0.1:Data.Sequence.Internal
+                         containers-0.6.0.1:Data.Set.Internal containers-0.6.0.1:Data.Tree
+                         dlist-0.8.0.7:Data.DList ghc-boot-th-8.6.5:GHC.ForeignSrcLang.Type
+                         ghc-boot-th-8.6.5:GHC.LanguageExtensions.Type
+                         primitive-0.6.4.0:Control.Monad.Primitive
+                         primitive-0.6.4.0:Data.Primitive.Array
+                         primitive-0.6.4.0:Data.Primitive.ByteArray
+                         primitive-0.6.4.0:Data.Primitive.PrimArray
+                         primitive-0.6.4.0:Data.Primitive.SmallArray
+                         primitive-0.6.4.0:Data.Primitive.UnliftedArray
+                         tagged-0.8.6:Data.Tagged
+                         template-haskell-2.14.0.0:Language.Haskell.TH.Syntax
+                         text-1.2.3.1:Data.Text text-1.2.3.1:Data.Text.Lazy
+                         unordered-containers-0.2.10.0:Data.HashMap.Base
+                         unordered-containers-0.2.10.0:Data.HashSet.Base
+                         uuid-types-1.0.3:Data.UUID.Types.Internal
+                         uuid-types-1.0.3:Data.UUID.Types.Internal.Builder
+                         vector-0.12.0.3:Data.Vector vector-0.12.0.3:Data.Vector.Primitive
+                         vector-0.12.0.3:Data.Vector.Storable
+                         vector-0.12.0.3:Data.Vector.Unboxed
+                         vector-0.12.0.3:Data.Vector.Unboxed.Base
+import  -/  DecDyn e44279c7ab4d42b81c75c5ed2ac16b6e
+  exports: 040c7148a7a3f91e612a4e6a8a65bbcb
+  Specification 8ccdcd2b29287a77dbf01dead617648f
+  out fce5654af84855f268138b5525329c31
+import  -/  Lib.Pinescript c53e80dce692a0497d92094599faf165
+  exports: 22c0e7f2285219f646be6ecf2ed07ec9
+  crossover 76650a4586e0e1589c1a8c3c3779dbc9
+  ema 8adeaa029e1a122c00dda18f233547f5
+  macd cca0b98a89322ec1d1ef8ea4699d7c17
+  macd_signal 6566c38e2ec0311aafa3ec913fa211e1
+  wma 245542009ef421031809de31b7b273e6
+import  -/  Lola f52d080a9c6c535055cc2d321870899c
+  exports: f0b2b11faceeef480fb3969a0b54aac2
+  :@ 0e91454cfe22ab22364b2d071c8db005
+  =: 8a68e19014f2cf73a7f77ec6fc12c12c
+  Input 84bbb625cf5c7ec015044d911c3c39d7
+  Leaf beb804f20541fc627fd77821a11a3d02
+  Now 19aae6044cf44591930683cbda472505
+  Stream 842b407b0b18370d0d7d6fdd47ddc27b
+import  -/  Syntax.Booleans 2f5b0f6265d2d6e23f9e27da32119b5f
+  exports: 71728b3a0c694557a14ef0fe375df96d
+  && 7e6b9d4df7b120968a890a88a341cfce
+  ifThenElse 6b6a230e6325a7bbbc419a7011db1d8f
+  not 84b154f0cd561d6a4a5aa09dffe27593
+import  -/  Syntax.HLPrelude f80a67bea1d500b91e76dd8341487f94
+  exports: 68fbd00b85e22e00f4229825fd729bf8
+import  -/  Syntax.Num 42d53dc12ffc226b88f55b096d15fb83
+  exports: 883071c53baa629578d78c5289d88073
+import  -/  Syntax.Ord 3abef8f6c923bbd6adef89f28a0cd4f8
+  exports: ee3875b9880152641006c5630eff6401
+  < 24b44025f852123b634301d64d627956
+  > 461f582225ae2b16a79f9a8663c790a1
+import  -/  base-4.12.0.0:GHC.Num c2039f03637c68f47b0bbff4c18ec616
+59dce07f2acf686b533e544e5c299219
+  $sdec2Dyn1 :: Data.Typeable.Internal.TypeRep GHC.Types.Double
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ GHC.Types.Double
+                        1001516997883380745##
+                        15743804272740824943##
+                        GHC.Types.$trModule
+                        GHC.Types.$tcDouble1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 Data.Typeable.Internal.TrTyCon
+                   @ *
+                   @ GHC.Types.Double
+                   ww8
+                   ww9
+                   ww10
+                   ww11
+                   ww12 }) -}
+cbed44772952e4832e2dd1b697a28002
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Example.PinescriptEx.$trModule3
+                   Example.PinescriptEx.$trModule1) -}
+22ea0e50e203a4f0a2d9083eb8eee859
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Example.PinescriptEx.$trModule2) -}
+23bfcf71c746fbf3b4842ad728342239
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Example.PinescriptEx"#) -}
+699facaa3040f4673b5113eb48b4886d
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Example.PinescriptEx.$trModule4) -}
+bed8411eeac9fcf5e54b4cf4c5722ba2
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs,
+     Unfolding: ("HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ"#) -}
+c56ed5047e390866e4a8e1ccc4961c80
+  buy :: Lola.Declaration GHC.Types.Bool
+  {- Strictness: m2,
+     Unfolding: (Lola.Output
+                   @ GHC.Types.Bool
+                   Example.PinescriptEx.buy11
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Example.PinescriptEx.buy1) -}
+afa4585db2e2ca3719151be7af4d961c
+  buy1 :: (Lola.Ident, Lola.Expr GHC.Types.Bool)
+  {- Strictness: m,
+     Unfolding: ((Example.PinescriptEx.buy9,
+                  Example.PinescriptEx.buy2)) -}
+d120834549296b44d5724d2fa9c73182
+  buy10 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("buy"#) -}
+b327a6c69473fbb4e95dcc00b538f4f9
+  buy11 :: Data.Typeable.Internal.TypeRep GHC.Types.Bool
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ GHC.Types.Bool
+                        14182099612280475667##
+                        2734577064602454082##
+                        GHC.Types.$trModule
+                        GHC.Types.$tcBool1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 Data.Typeable.Internal.TrTyCon
+                   @ *
+                   @ GHC.Types.Bool
+                   ww8
+                   ww9
+                   ww10
+                   ww11
+                   ww12 }) -}
+86d2208bfceb9fb3fa6ccc2794fa500d
+  buy2 :: Lola.Expr GHC.Types.Bool
+  {- Unfolding: (Lola.App
+                   @ GHC.Types.Bool
+                   @ GHC.Types.Bool
+                   Syntax.Booleans.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&_$dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool
+                                                                      -> GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Example.PinescriptEx.buy4
+                   Example.PinescriptEx.buy3) -}
+e601770adc7198337c167192386904b5
+  buy3 :: Lola.Expr GHC.Types.Bool
+  {- Strictness: m3,
+     Unfolding: (Lola.Now
+                   @ GHC.Types.Bool
+                   Example.PinescriptEx.macd_buy_sig) -}
+13d9b22bbfeaee051cd4ac406c902b70
+  buy4 :: Lola.Expr (GHC.Types.Bool -> GHC.Types.Bool)
+  {- Unfolding: (Lola.App
+                   @ (GHC.Types.Bool -> GHC.Types.Bool)
+                   @ GHC.Types.Bool
+                   Syntax.Booleans.&&_$dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool
+                                                                      -> GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&_$dTypeable2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool
+                                                                      -> GHC.Types.Bool
+                                                                      -> GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&1
+                   Example.PinescriptEx.buy5) -}
+edb4ec26c6eb6705045858cb930bc1f2
+  buy5 :: Lola.Expr GHC.Types.Bool
+  {- Unfolding: (Example.PinescriptEx.buy8
+                   Example.PinescriptEx.buy7
+                   Example.PinescriptEx.buy6) -}
+21c71cd8eb46880e0e51504eee61511d
+  buy6 :: Lola.Expr GHC.Types.Double
+  {- Strictness: m3,
+     Unfolding: (Lola.Now
+                   @ GHC.Types.Double
+                   Example.PinescriptEx.high) -}
+9fdbbeb00e52bb5540a26c1ef41c79c3
+  buy7 :: Lola.Expr GHC.Types.Double
+  {- Strictness: m3,
+     Unfolding: (Lola.Now
+                   @ GHC.Types.Double
+                   Example.PinescriptEx.ema18) -}
+3f490d603b1ce2118d4788c654f4c076
+  buy8 ::
+    Lola.Expr GHC.Types.Double
+    -> Lola.Expr GHC.Types.Double -> Lola.Expr GHC.Types.Bool
+  {- Unfolding: (Syntax.Ord.<
+                   @ GHC.Types.Double
+                   GHC.Classes.$fOrdDouble
+                   Example.PinescriptEx.macdLine1) -}
+645f313a1a6a806320a385f0c338d273
+  buy9 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   Example.PinescriptEx.buy10) -}
+837471019be5e3f9ef0b15afede6c429
+  buy_size :: Lola.Expr GHC.Types.Double
+  {- Strictness: m1, Unfolding: (Example.PinescriptEx.sell_size) -}
+a5155c431ef61ec10e668ccf73a220f1
+  close :: Lola.Stream GHC.Types.Double
+  {- Strictness: m1,
+     Unfolding: (Lola.Input
+                   @ GHC.Types.Double
+                   Data.Aeson.Types.FromJSON.$fFromJSONDouble
+                   GHC.Read.$fReadDouble
+                   Example.PinescriptEx.$sdec2Dyn1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                   Example.PinescriptEx.close1) -}
+df18dfca42ec23862385186eb85dcd2c
+  close1 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   Example.PinescriptEx.close2) -}
+be88a645d2501eb1c10bf386c8f981b3
+  close2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("close"#) -}
+15f8afa6319c846bb7e98f2190b215e3
+  ema1 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 18#) -}
+8307c7a602d56f66bea380367a3c03d6
+  ema18 :: Lola.Stream GHC.Types.Double
+  {- Unfolding: (Example.PinescriptEx.signalLine4
+                   Example.PinescriptEx.close
+                   Example.PinescriptEx.ema1) -}
+3044d461fcc533149300bfe14e516a8f
+  high :: Lola.Stream GHC.Types.Double
+  {- Strictness: m1,
+     Unfolding: (Lola.Input
+                   @ GHC.Types.Double
+                   Data.Aeson.Types.FromJSON.$fFromJSONDouble
+                   GHC.Read.$fReadDouble
+                   Example.PinescriptEx.$sdec2Dyn1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                   Example.PinescriptEx.high1) -}
+e0553fcf1f080eeb06e9483714c07cd9
+  high1 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   Example.PinescriptEx.high2) -}
+b6f2ee48e9108e3d6baab9dea0729569
+  high2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("high"#) -}
+66140860aac5a0b24809e449040b25d8
+  macdLine :: Lola.Stream GHC.Types.Double
+  {- Unfolding: (case Lib.Pinescript.$wmacd
+                        @ GHC.Types.Double
+                        GHC.Float.$fFractionalDouble
+                        Example.PinescriptEx.macdLine1
+                        Example.PinescriptEx.close of ww { (#,#) ww1 ww2 ->
+                 Lola.Output @ GHC.Types.Double ww1 ww2 }) -}
+167fd8feb81d0680885f574127d4140f
+  macdLine1 :: Lola.Streamable GHC.Types.Double
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ GHC.Types.Double
+                        1001516997883380745##
+                        15743804272740824943##
+                        GHC.Types.$trModule
+                        GHC.Types.$tcDouble1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 (Data.Typeable.Internal.TrTyCon
+                    @ *
+                    @ GHC.Types.Double
+                    ww8
+                    ww9
+                    ww10
+                    ww11
+                    ww12)
+                   `cast`
+                 (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N) }) -}
+57010a6aa6f7dae29a24544123859c0f
+  macd_buy_sig :: Lola.Stream GHC.Types.Bool
+  {- Unfolding: (Example.PinescriptEx.macd_buy_sig1
+                   Example.PinescriptEx.macdLine
+                   Example.PinescriptEx.signalLine) -}
+8cbee99b3ffdce85d8ace7bbc78ca51c
+  macd_buy_sig1 ::
+    Lola.Stream GHC.Types.Double
+    -> Lola.Stream GHC.Types.Double -> Lola.Stream GHC.Types.Bool
+  {- Unfolding: (Lib.Pinescript.crossover
+                   @ GHC.Types.Double
+                   GHC.Float.$fNumDouble
+                   GHC.Classes.$fOrdDouble
+                   Example.PinescriptEx.macdLine1) -}
+e2e5cb14d31ef4ec1a2dcb1877c06e82
+  macd_sell_sig :: Lola.Stream GHC.Types.Bool
+  {- Unfolding: (Example.PinescriptEx.macd_buy_sig1
+                   Example.PinescriptEx.signalLine
+                   Example.PinescriptEx.macdLine) -}
+26c9ac7cc38ec43967b530909066b726
+  pinescriptEx :: [Lola.Stream GHC.Types.Double]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Lola.Stream GHC.Types.Double)
+                   Example.PinescriptEx.pinescriptEx_positionsize
+                   (GHC.Types.[] @ (Lola.Stream GHC.Types.Double))) -}
+45b67fb5c124fe70c133a71407d18f19
+  pinescriptEx1 :: (Lola.Ident, Lola.Expr GHC.Types.Double)
+  {- Strictness: m,
+     Unfolding: ((Example.PinescriptEx.pinescriptEx3,
+                  Example.PinescriptEx.pinescriptEx2)) -}
+19482a63af2c6aa1e967792a53661301
+  pinescriptEx2 :: Lola.Expr GHC.Types.Double
+c93170f25c9fb53aa19b94ac18f78713
+  pinescriptEx3 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   Example.PinescriptEx.pinescriptEx4) -}
+7df433c8c470cfb6151e0f3a354dd376
+  pinescriptEx4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("positionsize"#) -}
+34adf92a8bd353e5e9f626d01671dff1
+  pinescriptEx_positionsize :: Lola.Declaration GHC.Types.Double
+  {- Strictness: m2,
+     Unfolding: (Lola.Output
+                   @ GHC.Types.Double
+                   Example.PinescriptEx.$sdec2Dyn1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                   Example.PinescriptEx.pinescriptEx1) -}
+4af647012ae976c1c9b133925494ce08
+  positionsize :: Lola.Stream GHC.Types.Double
+  {- Strictness: m2,
+     Unfolding: (Lola.Output
+                   @ GHC.Types.Double
+                   Example.PinescriptEx.$sdec2Dyn1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                   Example.PinescriptEx.positionsize1) -}
+e3c6a3c869896cbe8fba69ed456ef3da
+  positionsize1 :: (Lola.Ident, Lola.Expr GHC.Types.Double)
+  {- Strictness: m,
+     Unfolding: ((Example.PinescriptEx.pinescriptEx3,
+                  Example.PinescriptEx.positionsize2)) -}
+54a717678fd93cb92d3a3abb9eaa53fc
+  positionsize2 :: Lola.Expr GHC.Types.Double
+9bc7ee7c6de3fd9758c2ef4480683a0c
+  sell :: Lola.Declaration GHC.Types.Bool
+  {- Strictness: m2,
+     Unfolding: (Lola.Output
+                   @ GHC.Types.Bool
+                   Example.PinescriptEx.buy11
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Example.PinescriptEx.sell1) -}
+fed2de8efe2790dc4f1025ed56062254
+  sell1 :: (Lola.Ident, Lola.Expr GHC.Types.Bool)
+  {- Strictness: m,
+     Unfolding: ((Example.PinescriptEx.sell17,
+                  Example.PinescriptEx.sell2)) -}
+a8e480616656ac8cff1e138f43e50a67
+  sell10 ::
+    Lola.Expr GHC.Types.Double
+    -> Lola.Expr GHC.Types.Double -> Lola.Expr GHC.Types.Bool
+  {- Unfolding: (Syntax.Ord.>
+                   @ GHC.Types.Double
+                   GHC.Classes.$fOrdDouble
+                   Example.PinescriptEx.$sdec2Dyn1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)) -}
+0ed51545c20e697f6990d72bfefafa35
+  sell11 :: Lola.Expr (GHC.Types.Bool -> GHC.Types.Bool)
+  {- Unfolding: (Lola.App
+                   @ (GHC.Types.Bool -> GHC.Types.Bool)
+                   @ GHC.Types.Bool
+                   Syntax.Booleans.&&_$dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool
+                                                                      -> GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&_$dTypeable2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool
+                                                                      -> GHC.Types.Bool
+                                                                      -> GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&1
+                   Example.PinescriptEx.sell12) -}
+3868ce0d868dfd5f8ec08a45a2e469d3
+  sell12 :: Lola.Expr GHC.Types.Bool
+  {- Strictness: m3,
+     Unfolding: (Lola.Now
+                   @ GHC.Types.Bool
+                   Example.PinescriptEx.macd_sell_sig) -}
+e7dd78163d7b7cc76e90cd08e1a7a589
+  sell13 :: Lola.Expr (GHC.Types.Bool -> GHC.Types.Bool)
+  {- Unfolding: (Lola.App
+                   @ (GHC.Types.Bool -> GHC.Types.Bool)
+                   @ GHC.Types.Bool
+                   Syntax.Booleans.&&_$dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool
+                                                                      -> GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&_$dTypeable2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool
+                                                                      -> GHC.Types.Bool
+                                                                      -> GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&1
+                   Example.PinescriptEx.sell14) -}
+2e1260869230b8be10f74521bd567bfb
+  sell14 :: Lola.Expr GHC.Types.Bool
+  {- Unfolding: (Lola.App
+                   @ GHC.Types.Bool
+                   @ GHC.Types.Bool
+                   Syntax.Booleans.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&_$dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool
+                                                                      -> GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Syntax.Booleans.implies1
+                   Example.PinescriptEx.sell15) -}
+473dcbb658d6703f488fcfbd70465b9a
+  sell15 :: Lola.Expr GHC.Types.Bool
+  {- Strictness: m4,
+     Unfolding: (Lola.:@
+                   @ GHC.Types.Bool
+                   Example.PinescriptEx.buy11
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Example.PinescriptEx.macd_buy_sig
+                   Example.PinescriptEx.sell16) -}
+0409a8390a7282364b848db0f752c657
+  sell16 :: (GHC.Types.Int, GHC.Types.Bool)
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: ((Example.PinescriptEx.sell9, GHC.Types.False)) -}
+8eacdf4cd0ecb361b70d17adb58bee99
+  sell17 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   Example.PinescriptEx.sell18) -}
+8b74bde0d40e9f67d85b08d83e3dd5f6
+  sell18 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("sell"#) -}
+7332bafe3f1851450eb782b48b19ef95
+  sell2 :: Lola.Expr GHC.Types.Bool
+  {- Unfolding: (Lola.App
+                   @ GHC.Types.Bool
+                   @ GHC.Types.Bool
+                   Syntax.Booleans.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&_$dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool
+                                                                      -> GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Example.PinescriptEx.sell13
+                   Example.PinescriptEx.sell3) -}
+70f99b71907ca05fd8378676dc9e7ce3
+  sell3 :: Lola.Expr GHC.Types.Bool
+  {- Unfolding: (Lola.App
+                   @ GHC.Types.Bool
+                   @ GHC.Types.Bool
+                   Syntax.Booleans.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&_$dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool
+                                                                      -> GHC.Types.Bool>_N)
+                   Syntax.Booleans.&&2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Example.PinescriptEx.sell11
+                   Example.PinescriptEx.sell4) -}
+6891ce4a920adf92affee7602dea82dc
+  sell4 :: Lola.Expr GHC.Types.Bool
+  {- Unfolding: (Example.PinescriptEx.sell10
+                   Example.PinescriptEx.sell7
+                   Example.PinescriptEx.sell5) -}
+5217c5da26e4853b99c35610a5b60e3a
+  sell5 :: Lola.Expr GHC.Types.Double
+  {- Strictness: m1,
+     Unfolding: (Lola.Leaf
+                   @ GHC.Types.Double
+                   Example.PinescriptEx.$sdec2Dyn1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                   Example.PinescriptEx.sell6) -}
+dcf686480850242f4e53efe35235f000
+  sell6 :: GHC.Types.Double
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.D# 0.0##) -}
+8848de4261ba49542c8b6123a62eb92a
+  sell7 :: Lola.Expr GHC.Types.Double
+  {- Strictness: m4,
+     Unfolding: (Lola.:@
+                   @ GHC.Types.Double
+                   Example.PinescriptEx.$sdec2Dyn1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                   Example.PinescriptEx.positionsize
+                   Example.PinescriptEx.sell8) -}
+07cadf9dc20025e9d775ace2445648d4
+  sell8 :: (GHC.Types.Int, GHC.Types.Double)
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: ((Example.PinescriptEx.sell9,
+                  Example.PinescriptEx.sell6)) -}
+f321f6f40500031102c2e71a2e0d2a28
+  sell9 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# -1#) -}
+faed820f55106d87c6ae5d20cd183788
+  sell_size :: Lola.Expr GHC.Types.Double
+  {- Strictness: m1,
+     Unfolding: (Lola.Leaf
+                   @ GHC.Types.Double
+                   Example.PinescriptEx.$sdec2Dyn1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                   Example.PinescriptEx.sell_size1) -}
+9cacdfcad05aadcf9bbcdab0955959b7
+  sell_size1 :: GHC.Types.Double
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.D# 10.0##) -}
+07474ead9cf5a1027a7635c093313484
+  signalLine :: Lola.Stream GHC.Types.Double
+  {- Strictness: m2,
+     Unfolding: (Lola.Output
+                   @ GHC.Types.Double
+                   Example.PinescriptEx.macdLine1
+                   Example.PinescriptEx.signalLine1) -}
+8343f4da52cfc5da917be0ffa07f5047
+  signalLine1 :: (Lola.Ident, Lola.Expr GHC.Types.Double)
+  {- Strictness: m,
+     Unfolding: ((Example.PinescriptEx.signalLine5,
+                  Example.PinescriptEx.signalLine2)) -}
+eb2edde2eec55075e7df87daf7df2c8c
+  signalLine2 :: Lola.Expr GHC.Types.Double
+  {- Strictness: m3,
+     Unfolding: (Lola.Now
+                   @ GHC.Types.Double
+                   Example.PinescriptEx.signalLine3) -}
+533db974684eef13540d12ad8c86aebd
+  signalLine3 :: Lola.Stream GHC.Types.Double
+  {- Unfolding: (Example.PinescriptEx.signalLine4
+                   Example.PinescriptEx.macdLine
+                   Lib.Pinescript.macd_signal1) -}
+0df0111e5bef6e055ca3d9a6e9484333
+  signalLine4 ::
+    Lola.Stream GHC.Types.Double
+    -> GHC.Types.Int -> Lola.Stream GHC.Types.Double
+  {- Unfolding: (Lib.Pinescript.ema
+                   @ GHC.Types.Double
+                   GHC.Float.$fFractionalDouble
+                   Example.PinescriptEx.macdLine1) -}
+d13e237f7039adc8b1bd9a1195752b89
+  signalLine5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackAppendCString#
+                   Lib.Pinescript.macd_signal2
+                   Example.PinescriptEx.signalLine6) -}
+9da3f70b12996c26ae857a0ceb8bebfc
+  signalLine6 :: [GHC.Types.Char]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Types.Char
+                   Lola.<:3
+                   Example.PinescriptEx.signalLine7) -}
+5c67796bd7593190854bdab3e27b2b21
+  signalLine7 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.Base.++
+                   @ GHC.Types.Char
+                   Example.PinescriptEx.close1
+                   Lola.<:1) -}
+4db5e654e8727502c752e0ac4e589476
+  spec :: DecDyn.Specification
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ DecDyn.DecDyn
+                   Example.PinescriptEx.spec1
+                   (GHC.Types.[] @ DecDyn.DecDyn)) -}
+5dab194916b835d353ee53e58e9da07e
+  spec1 ::
+    (DecDyn.DeclarationDyn,
+     (Data.Dynamic.Dynamic -> GHC.Base.String,
+      Data.Dynamic.Dynamic -> Data.Aeson.Types.Internal.Value),
+     DecDyn.Readers, DecDyn.FromJSONers)
+  {- Strictness: m,
+     Unfolding: ((Example.PinescriptEx.spec9,
+                  Example.PinescriptEx.spec4, Example.PinescriptEx.spec3,
+                  Example.PinescriptEx.spec2)) -}
+708f6bd5da6716147a8da8d748186570
+  spec2 :: DecDyn.FromJSONers
+  {- Unfolding: (case Example.PinescriptEx.spec_ds of wild { (,,) ed thereaders thejsoners ->
+                 thejsoners }) -}
+9526a9beb9289c03b8f9ee30157aa2c7
+  spec3 :: DecDyn.Readers
+  {- Unfolding: (case Example.PinescriptEx.spec_ds of wild { (,,) ed thereaders thejsoners ->
+                 thereaders }) -}
+650ff05057992e6cecbd5bb2154c3cbe
+  spec4 ::
+    (Data.Dynamic.Dynamic -> GHC.Base.String,
+     Data.Dynamic.Dynamic -> Data.Aeson.Types.Internal.Value)
+  {- Strictness: m,
+     Unfolding: ((Example.PinescriptEx.spec8,
+                  Example.PinescriptEx.spec5)) -}
+0aae783698aa32d34aeeef8103ebe846
+  spec5 :: Data.Dynamic.Dynamic -> Data.Aeson.Types.Internal.Value
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ (x :: Data.Dynamic.Dynamic) ->
+                 case x of wild { Data.Dynamic.Dynamic a1 t v ->
+                 case Data.Typeable.Internal.sameTypeRep
+                        @ *
+                        @ *
+                        @ a1
+                        @ GHC.Types.Double
+                        t
+                        Example.PinescriptEx.$sdec2Dyn1 of wild1 {
+                   GHC.Types.False
+                   -> case Data.Maybe.fromJust1
+                      ret_ty Data.Aeson.Types.Internal.Value
+                      of {}
+                   GHC.Types.True
+                   -> case v `cast`
+                           (UnsafeCo representational a1 GHC.Types.Double) of ds { GHC.Types.D# ds1 ->
+                      case {__pkg_ccall base-4.12.0.0 GHC.Prim.Double#
+                                                      -> GHC.Prim.State# GHC.Prim.RealWorld
+                                                      -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+                                                            GHC.Prim.Int# #)}
+                             ds1
+                             GHC.Prim.realWorld# of wild2 { (#,#) ds2 ds3 ->
+                      case ds3 of wild3 {
+                        DEFAULT -> Data.Aeson.Types.Internal.Null
+                        0#
+                        -> case {__pkg_ccall base-4.12.0.0 GHC.Prim.Double#
+                                                           -> GHC.Prim.State# GHC.Prim.RealWorld
+                                                           -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+                                                                 GHC.Prim.Int# #)}
+                                  ds1
+                                  GHC.Prim.realWorld# of wild4 { (#,#) ds4 ds5 ->
+                           case ds5 of wild5 {
+                             DEFAULT -> Data.Aeson.Types.Internal.Null
+                             0#
+                             -> case GHC.Prim.==## ds1 0.0## of lwild {
+                                  DEFAULT
+                                  -> case GHC.Prim.<## ds1 0.0## of lwild1 {
+                                       DEFAULT
+                                       -> case Data.Scientific.$wf2 ds of ww3 { (#,#) ww4 ww5 ->
+                                          Data.Aeson.Types.Internal.Number
+                                            (Data.Scientific.Scientific ww4 ww5) }
+                                       1#
+                                       -> case Data.Scientific.$wf2
+                                                 (GHC.Types.D#
+                                                    (GHC.Prim.negateDouble#
+                                                       ds1)) of ww3 { (#,#) ww4 ww5 ->
+                                          case GHC.Integer.Type.negateInteger ww4 of dt { DEFAULT ->
+                                          Data.Aeson.Types.Internal.Number
+                                            (Data.Scientific.Scientific dt ww5) } } }
+                                  1# -> Example.PinescriptEx.spec6 } } } } } } } }) -}
+f565b86428a716af9225ff144ec2fbf9
+  spec6 :: Data.Aeson.Types.Internal.Value
+  {- HasNoCafRefs, Strictness: m4,
+     Unfolding: (Data.Aeson.Types.Internal.Number
+                   Example.PinescriptEx.spec7) -}
+9f7e8ab7414686b96a2d6f5f7a6c1768
+  spec7 :: Data.Scientific.Scientific
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (Data.Scientific.Scientific
+                   Data.Scientific.$fEqScientific1
+                   0#) -}
+d3712b3b5ce0f160c41f9bf9fd592c3d
+  spec8 :: Data.Dynamic.Dynamic -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ (x :: Data.Dynamic.Dynamic) ->
+                 case x of wild { Data.Dynamic.Dynamic a1 t v ->
+                 case Data.Typeable.Internal.sameTypeRep
+                        @ *
+                        @ *
+                        @ a1
+                        @ GHC.Types.Double
+                        t
+                        Example.PinescriptEx.$sdec2Dyn1 of wild1 {
+                   GHC.Types.False
+                   -> case Data.Maybe.fromJust1 ret_ty GHC.Base.String of {}
+                   GHC.Types.True
+                   -> case v `cast`
+                           (UnsafeCo representational a1 GHC.Types.Double) of ww { GHC.Types.D# ww1 ->
+                      GHC.Float.$w$sshowSignedFloat
+                        GHC.Float.$fShowDouble2
+                        GHC.Float.minExpt
+                        ww1
+                        (GHC.Types.[] @ GHC.Types.Char) } } }) -}
+6831938ab0410c04617a4a50312ef089
+  spec9 :: DecDyn.DeclarationDyn
+  {- Unfolding: (case Example.PinescriptEx.spec_ds of wild { (,,) ed thereaders thejsoners ->
+                 ed }) -}
+264dc3c86db377b4fbc443f9a2822597
+  spec_ds ::
+    (DecDyn.DeclarationDyn, DecDyn.Readers, DecDyn.FromJSONers)
+  {- Unfolding: (DecDyn.$sfind1
+                   @ (DecDyn.DeclarationDyn, DecDyn.Readers, DecDyn.FromJSONers)
+                   Example.PinescriptEx.pinescriptEx3
+                   (DecDyn.dec2Dyn'
+                      @ GHC.Types.Double
+                      (Data.Map.Internal.Tip
+                         @ Lola.Ident
+                         @ (DecDyn.DeclarationDyn, DecDyn.Readers, DecDyn.FromJSONers))
+                      Example.PinescriptEx.positionsize)) -}
+fa8c89dbd14688bac0a487aabdeb9e6d
+  wmaUsage :: [Lola.Stream GHC.Types.Double]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ (Lola.Stream GHC.Types.Double)
+                   Example.PinescriptEx.wmaUsage1
+                   (GHC.Types.[] @ (Lola.Stream GHC.Types.Double))) -}
+015747d987c48770c735822ae812abab
+  wmaUsage1 :: Lola.Stream GHC.Types.Double
+  {- Unfolding: (Example.PinescriptEx.wmaUsage4
+                   Example.PinescriptEx.wmaUsage3
+                   Example.PinescriptEx.wmaUsage2) -}
+ba156d753a97222635bcb6c52e133687
+  wmaUsage2 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 10#) -}
+104e1c2c6348e475cd9001aa8c8ca19d
+  wmaUsage3 :: Lola.Declaration GHC.Types.Double
+  {- Strictness: m1,
+     Unfolding: (Lola.Input
+                   @ GHC.Types.Double
+                   Data.Aeson.Types.FromJSON.$fFromJSONDouble
+                   GHC.Read.$fReadDouble
+                   Example.PinescriptEx.macdLine1
+                   Example.PinescriptEx.close1) -}
+738b19e19544a447a2d75fec825134e6
+  wmaUsage4 ::
+    Lola.Stream GHC.Types.Double
+    -> GHC.Types.Int -> Lola.Stream GHC.Types.Double
+  {- Unfolding: (Lib.Pinescript.wma
+                   @ GHC.Types.Double
+                   GHC.Float.$fFractionalDouble
+                   Example.PinescriptEx.macdLine1) -}
+trusted: none
+require own pkg trusted: False
+module header:
+  Nothing
+declaration docs:
+arg docs:
+

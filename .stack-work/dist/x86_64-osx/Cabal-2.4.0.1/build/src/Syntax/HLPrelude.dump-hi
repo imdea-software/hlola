@@ -1,0 +1,209 @@
+
+==================== FINAL INTERFACE ====================
+2019-10-21 10:04:14.882868 UTC
+
+interface HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Syntax.HLPrelude 8065
+  interface hash: 7a193793e9d0965ee24abc4897041134
+  ABI hash: f80a67bea1d500b91e76dd8341487f94
+  export-list hash: 68fbd00b85e22e00f4229825fd729bf8
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 3647df3ab7c5fd7960364a59d6d86979
+  opt_hash: 6faf2de08de32d19db9870899d88e59a
+  hpc_hash: 93b885adfe0da089cdf634904fd59f71
+  plugin_hash: ad164012d6b1e14942349d58b1132007
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Data.Either.either
+  Data.Foldable.all
+  Data.Foldable.and
+  Data.Foldable.any
+  Data.Foldable.concat
+  Data.Foldable.concatMap
+  Data.Foldable.mapM_
+  Data.Foldable.notElem
+  Data.Foldable.or
+  Data.Foldable.sequence_
+  Data.Maybe.maybe
+  Data.OldList.lines
+  Data.OldList.unlines
+  Data.OldList.unwords
+  Data.OldList.words
+  Data.Tuple.curry
+  Data.Tuple.fst
+  Data.Tuple.snd
+  Data.Tuple.uncurry
+  GHC.Base.$
+  GHC.Base.$!
+  GHC.Base.++
+  GHC.Base..
+  GHC.Base.=<<
+  GHC.Base.asTypeOf
+  GHC.Base.const
+  GHC.Base.flip
+  GHC.Base.id
+  GHC.Base.map
+  GHC.Base.otherwise
+  GHC.Base.until
+  GHC.Err.error
+  GHC.Err.errorWithoutStackTrace
+  GHC.Err.undefined
+  GHC.IO.Exception.ioError
+  GHC.IO.Exception.userError
+  GHC.List.!!
+  GHC.List.break
+  GHC.List.cycle
+  GHC.List.drop
+  GHC.List.dropWhile
+  GHC.List.filter
+  GHC.List.head
+  GHC.List.init
+  GHC.List.iterate
+  GHC.List.last
+  GHC.List.lookup
+  GHC.List.repeat
+  GHC.List.replicate
+  GHC.List.reverse
+  GHC.List.scanl
+  GHC.List.scanl1
+  GHC.List.scanr
+  GHC.List.scanr1
+  GHC.List.span
+  GHC.List.splitAt
+  GHC.List.tail
+  GHC.List.take
+  GHC.List.takeWhile
+  GHC.List.unzip
+  GHC.List.unzip3
+  GHC.List.zip
+  GHC.List.zip3
+  GHC.List.zipWith
+  GHC.List.zipWith3
+  GHC.Num.subtract
+  GHC.Read.lex
+  GHC.Read.readParen
+  GHC.Real.^
+  GHC.Real.^^
+  GHC.Real.even
+  GHC.Real.fromIntegral
+  GHC.Real.gcd
+  GHC.Real.lcm
+  GHC.Real.odd
+  GHC.Real.realToFrac
+  GHC.Show.showChar
+  GHC.Show.showParen
+  GHC.Show.showString
+  GHC.Show.shows
+  System.IO.appendFile
+  System.IO.getChar
+  System.IO.getContents
+  System.IO.getLine
+  System.IO.interact
+  System.IO.print
+  System.IO.putChar
+  System.IO.putStr
+  System.IO.putStrLn
+  System.IO.readFile
+  System.IO.readIO
+  System.IO.readLn
+  System.IO.writeFile
+  Text.Read.read
+  Text.Read.reads
+  GHC.Prim.seq
+  Data.Either.Either{Data.Either.Left Data.Either.Right}
+  Data.Foldable.Foldable{Data.Foldable.elem Data.Foldable.foldMap Data.Foldable.foldl Data.Foldable.foldl1 Data.Foldable.foldr Data.Foldable.foldr1 Data.Foldable.length Data.Foldable.maximum Data.Foldable.minimum Data.Foldable.null Data.Foldable.product Data.Foldable.sum}
+  Data.Traversable.Traversable{Data.Traversable.mapM Data.Traversable.sequence Data.Traversable.sequenceA Data.Traversable.traverse}
+  GHC.Base.Applicative{GHC.Base.*> GHC.Base.<* GHC.Base.pure}
+  GHC.Base.Functor{GHC.Base.<$ GHC.Base.fmap}
+  GHC.Base.Monad{GHC.Base.>> GHC.Base.>>= GHC.Base.fail GHC.Base.return}
+  GHC.Base.Monoid{GHC.Base.mappend GHC.Base.mconcat GHC.Base.mempty}
+  GHC.Base.Semigroup{GHC.Base.<>}
+  GHC.Base.String
+  GHC.Enum.Bounded{GHC.Enum.maxBound GHC.Enum.minBound}
+  GHC.Enum.Enum{GHC.Enum.enumFrom GHC.Enum.enumFromThen GHC.Enum.enumFromThenTo GHC.Enum.enumFromTo GHC.Enum.fromEnum GHC.Enum.pred GHC.Enum.succ GHC.Enum.toEnum}
+  GHC.Float.Floating{GHC.Float.** GHC.Float.acos GHC.Float.acosh GHC.Float.asin GHC.Float.asinh GHC.Float.atan GHC.Float.atanh GHC.Float.cos GHC.Float.cosh GHC.Float.exp GHC.Float.log GHC.Float.logBase GHC.Float.pi GHC.Float.sin GHC.Float.sinh GHC.Float.sqrt GHC.Float.tan GHC.Float.tanh}
+  GHC.Float.RealFloat{GHC.Float.atan2 GHC.Float.decodeFloat GHC.Float.encodeFloat GHC.Float.exponent GHC.Float.floatDigits GHC.Float.floatRadix GHC.Float.floatRange GHC.Float.isDenormalized GHC.Float.isIEEE GHC.Float.isInfinite GHC.Float.isNaN GHC.Float.isNegativeZero GHC.Float.scaleFloat GHC.Float.significand}
+  GHC.IO.FilePath
+  GHC.IO.Exception.IOError
+  GHC.Num.Num{GHC.Num.* GHC.Num.+ GHC.Num.- GHC.Num.abs GHC.Num.fromInteger GHC.Num.negate GHC.Num.signum}
+  GHC.Read.Read{GHC.Read.readList GHC.Read.readsPrec}
+  GHC.Real.Fractional{GHC.Real.fromRational GHC.Real.recip}
+  GHC.Real.Integral{GHC.Real.div GHC.Real.divMod GHC.Real.quot GHC.Real.quotRem GHC.Real.rem GHC.Real.toInteger}
+  GHC.Real.Rational
+  GHC.Real.Real{GHC.Real.toRational}
+  GHC.Real.RealFrac{GHC.Real.ceiling GHC.Real.floor GHC.Real.properFraction GHC.Real.round GHC.Real.truncate}
+  GHC.Show.Show{GHC.Show.show GHC.Show.showList GHC.Show.showsPrec}
+  GHC.Show.ShowS
+  Text.ParserCombinators.ReadP.ReadS
+  GHC.Classes.Eq{GHC.Classes./= GHC.Classes.==}
+  GHC.Classes.Ord{GHC.Classes.>= GHC.Classes.compare GHC.Classes.max GHC.Classes.min}
+  GHC.Types.IO
+  GHC.Types.Ordering{GHC.Types.EQ GHC.Types.GT GHC.Types.LT}
+  GHC.Integer.Type.Integer
+  GHC.Maybe.Maybe{GHC.Maybe.Just GHC.Maybe.Nothing}
+  GHC.Types.Bool{GHC.Types.False GHC.Types.True}
+  GHC.Types.Char
+  GHC.Types.Double
+  GHC.Types.Float
+  GHC.Types.Int
+  GHC.Types.Word
+module dependencies:
+package dependencies: base-4.12.0.0* ghc-prim-0.5.3
+                      integer-gmp-1.0.2.0
+orphans: base-4.12.0.0:GHC.Float base-4.12.0.0:GHC.Base
+family instance modules: base-4.12.0.0:Control.Applicative
+                         base-4.12.0.0:Data.Functor.Const
+                         base-4.12.0.0:Data.Functor.Identity base-4.12.0.0:Data.Monoid
+                         base-4.12.0.0:Data.Semigroup.Internal base-4.12.0.0:GHC.Generics
+                         base-4.12.0.0:GHC.IO.Exception
+import  -/  base-4.12.0.0:Data.Either 423bee738f25e5ee983d072216009be8
+import  -/  base-4.12.0.0:Data.Foldable efb37371da929e7bc88d896298d2d979
+import  -/  base-4.12.0.0:Data.Maybe 9b76a39e833465c3c5b3c078b431417f
+import  -/  base-4.12.0.0:Data.OldList e931cf456dc87f11ee6e6fb153bca23e
+import  -/  base-4.12.0.0:Data.Tuple c719fc29608fe81c10bee9a1bf1e05ff
+import  -/  base-4.12.0.0:GHC.Base c00b75f0b052d05c55ba6a4dd1c63b26
+import  -/  base-4.12.0.0:GHC.Enum 87204abed08db8735fc0be5ab48689aa
+import  -/  base-4.12.0.0:GHC.Err ea5e313ef4146b40b5d8b27aa168e736
+import  -/  base-4.12.0.0:GHC.Float ccb68fbeaab348f60d11c8132d51af5d
+import  -/  base-4.12.0.0:GHC.IO 898d4ddbf00eb4732e5f462760aa42ae
+import  -/  base-4.12.0.0:GHC.IO.Exception 77722984940ee6ccf9e2f7dab10b83a4
+import  -/  base-4.12.0.0:GHC.List 4014a3c8a3b7c31c8325f6bcf1feea4a
+import  -/  base-4.12.0.0:GHC.Num c2039f03637c68f47b0bbff4c18ec616
+import  -/  base-4.12.0.0:GHC.Read 0604f4258fedea7e033ea68c6d7b40f2
+import  -/  base-4.12.0.0:GHC.Real af2b985dd29515c375fb78b2c9298d42
+import  -/  base-4.12.0.0:GHC.Show 838a5d039379d82d9626aae53dfce276
+import  -/  base-4.12.0.0:Prelude 3c779dfd6448bdd8e234c336802c2acb
+import  -/  base-4.12.0.0:Text.ParserCombinators.ReadP dc25426797970ed7b2e4ed7ab98385d0
+import  -/  base-4.12.0.0:Text.Read 87f80fc2538a174aea915dd98f74fc0a
+import  -/  ghc-prim-0.5.3:GHC.Classes 0f6fd7d7db53fc48f6e1f01803cc6c9d
+import  -/  ghc-prim-0.5.3:GHC.Types 57064c9f957b09bc2e360061ad5cae0b
+import  -/  integer-gmp-1.0.2.0:GHC.Integer.Type 6d87087aea24143d2650f78480d954a3
+503a1e30160d04d8f573d5b754830172
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Syntax.HLPrelude.$trModule3
+                   Syntax.HLPrelude.$trModule1) -}
+ec9a752629a5e7924817c73ad6ccad96
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Syntax.HLPrelude.$trModule2) -}
+12558a64a4a9a510a7912d88954ae6ff
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Syntax.HLPrelude"#) -}
+c74d3927fb83380e8895c89d545e5aa4
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Syntax.HLPrelude.$trModule4) -}
+24815b5297bdd3aad06ffc62a918dcf7
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs,
+     Unfolding: ("HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ"#) -}
+trusted: safe
+require own pkg trusted: False
+module header:
+  Nothing
+declaration docs:
+arg docs:
+

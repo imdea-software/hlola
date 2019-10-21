@@ -1,0 +1,883 @@
+
+==================== FINAL INTERFACE ====================
+2019-10-21 10:04:12.889148 UTC
+
+interface HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:StaticAnalysis 8065
+  interface hash: a50251fc129f6ee6485c0708d8b628a4
+  ABI hash: f1332da07e201138a155bb13e241249a
+  export-list hash: 3e17719552d37bcfa24fd3a666e899ba
+  orphan hash: 2899c76721d8ed083ac004109d2faa85
+  flag hash: 71fb48ec6766a0eeebfce68fc85c2cad
+  opt_hash: 6faf2de08de32d19db9870899d88e59a
+  hpc_hash: 93b885adfe0da089cdf634904fd59f71
+  plugin_hash: ad164012d6b1e14942349d58b1132007
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  StaticAnalysis.addDecl
+  StaticAnalysis.checkGraph
+  StaticAnalysis.checkerr
+  StaticAnalysis.cycles
+  StaticAnalysis.dotFromGraph
+  StaticAnalysis.flattenedges
+  StaticAnalysis.getFGraph
+  StaticAnalysis.mixedWeights
+  StaticAnalysis.paths
+  StaticAnalysis.processExp
+  StaticAnalysis.vertices
+  StaticAnalysis.FGraph
+  StaticAnalysis.FState{StaticAnalysis.St indexes neighbours}
+  StaticAnalysis.Vert
+module dependencies: DecDyn Lola
+package dependencies: aeson-1.4.5.0 array-0.5.3.0
+                      attoparsec-0.13.2.3 base-4.12.0.0 base-compat-0.10.5
+                      base-orphans-0.8.1 binary-0.8.6.0 bytestring-0.10.8.2
+                      containers-0.6.0.1 deepseq-1.4.4.0 dlist-0.8.0.7 ghc-boot-th-8.6.5
+                      ghc-prim-0.5.3 hashable-1.2.7.0 integer-gmp-1.0.2.0
+                      integer-logarithms-1.0.3 primitive-0.6.4.0 random-1.1
+                      scientific-0.3.6.2 tagged-0.8.6 template-haskell-2.14.0.0
+                      text-1.2.3.1 time-1.8.0.2 time-compat-1.9.2.2 transformers-0.5.6.2
+                      unordered-containers-0.2.10.0 uuid-types-1.0.3 vector-0.12.0.3
+orphans: attoparsec-0.13.2.3:Data.Attoparsec.Text.Internal
+         attoparsec-0.13.2.3:Data.Attoparsec.ByteString.Char8
+         time-1.8.0.2:Data.Time.Clock.TAI
+         vector-0.12.0.3:Data.Vector.Unboxed
+         time-1.8.0.2:Data.Time.Format.Parse
+         time-1.8.0.2:Data.Time.LocalTime.Internal.ZonedTime
+         time-1.8.0.2:Data.Time.LocalTime.Internal.LocalTime
+         time-1.8.0.2:Data.Time.Calendar.Gregorian
+         hashable-1.2.7.0:Data.Hashable.Generic text-1.2.3.1:Data.Text.Lazy
+         text-1.2.3.1:Data.Text binary-0.8.6.0:Data.Binary.Generic
+         bytestring-0.10.8.2:Data.ByteString.Builder
+         text-1.2.3.1:Data.Text.Show
+         vector-0.12.0.3:Data.Vector.Fusion.Bundle
+         transformers-0.5.6.2:Control.Monad.Trans.Error
+         base-4.12.0.0:GHC.Float base-4.12.0.0:GHC.Base
+family instance modules: aeson-1.4.5.0:Data.Aeson.Types.Internal
+                         attoparsec-0.13.2.3:Data.Attoparsec.Internal.Types
+                         base-4.12.0.0:Control.Applicative base-4.12.0.0:Data.Complex
+                         base-4.12.0.0:Data.Functor.Compose base-4.12.0.0:Data.Functor.Const
+                         base-4.12.0.0:Data.Functor.Identity
+                         base-4.12.0.0:Data.Functor.Product base-4.12.0.0:Data.Functor.Sum
+                         base-4.12.0.0:Data.Monoid base-4.12.0.0:Data.Semigroup
+                         base-4.12.0.0:Data.Semigroup.Internal base-4.12.0.0:Data.Version
+                         base-4.12.0.0:Data.Void base-4.12.0.0:GHC.Exts
+                         base-4.12.0.0:GHC.Generics base-4.12.0.0:GHC.IO.Exception
+                         containers-0.6.0.1:Data.IntMap.Internal
+                         containers-0.6.0.1:Data.IntSet.Internal
+                         containers-0.6.0.1:Data.Map.Internal
+                         containers-0.6.0.1:Data.Sequence.Internal
+                         containers-0.6.0.1:Data.Set.Internal containers-0.6.0.1:Data.Tree
+                         dlist-0.8.0.7:Data.DList ghc-boot-th-8.6.5:GHC.ForeignSrcLang.Type
+                         ghc-boot-th-8.6.5:GHC.LanguageExtensions.Type
+                         primitive-0.6.4.0:Control.Monad.Primitive
+                         primitive-0.6.4.0:Data.Primitive.Array
+                         primitive-0.6.4.0:Data.Primitive.ByteArray
+                         primitive-0.6.4.0:Data.Primitive.PrimArray
+                         primitive-0.6.4.0:Data.Primitive.SmallArray
+                         primitive-0.6.4.0:Data.Primitive.UnliftedArray
+                         tagged-0.8.6:Data.Tagged
+                         template-haskell-2.14.0.0:Language.Haskell.TH.Syntax
+                         text-1.2.3.1:Data.Text text-1.2.3.1:Data.Text.Lazy
+                         unordered-containers-0.2.10.0:Data.HashMap.Base
+                         unordered-containers-0.2.10.0:Data.HashSet.Base
+                         uuid-types-1.0.3:Data.UUID.Types.Internal
+                         uuid-types-1.0.3:Data.UUID.Types.Internal.Builder
+                         vector-0.12.0.3:Data.Vector vector-0.12.0.3:Data.Vector.Primitive
+                         vector-0.12.0.3:Data.Vector.Storable
+                         vector-0.12.0.3:Data.Vector.Unboxed
+                         vector-0.12.0.3:Data.Vector.Unboxed.Base
+import  -/  DecDyn e44279c7ab4d42b81c75c5ed2ac16b6e
+  exports: 040c7148a7a3f91e612a4e6a8a65bbcb
+  DApp 509eae2b90a80f580031a56e4660a52f
+  DAt 2e05422235b735273e8103cfe48440f1
+  DInp 683ff51ddc6bb4b2d0996312e50cfd2c
+  DLeaf dc2b02c132cbe15beaae3576bfa6cb56
+  DNow fd3053ed7917c133f76c25ba317c9bac
+  DOut d9444b69e37e4252fdd69500bc7f868a
+  DeclarationDyn 1965aa6f1af02783601d880422aeb48a
+  ExprDyn 1965aa6f1af02783601d880422aeb48a
+  dgetId 75e4e37aa42d35b959226c4f1c2fcfb5
+import  -/  Lola f52d080a9c6c535055cc2d321870899c
+  exports: f0b2b11faceeef480fb3969a0b54aac2
+  Ident e64c21a7ccd45786c76649982d91fabe
+import  -/  base-4.12.0.0:Data.Either 423bee738f25e5ee983d072216009be8
+import  -/  base-4.12.0.0:Data.Foldable efb37371da929e7bc88d896298d2d979
+import  -/  base-4.12.0.0:Data.List 17d0c71c557e42abe196f130788fd997
+import  -/  base-4.12.0.0:Data.Maybe 9b76a39e833465c3c5b3c078b431417f
+import  -/  base-4.12.0.0:Data.OldList e931cf456dc87f11ee6e6fb153bca23e
+import  -/  base-4.12.0.0:Data.Tuple c719fc29608fe81c10bee9a1bf1e05ff
+import  -/  base-4.12.0.0:GHC.Base c00b75f0b052d05c55ba6a4dd1c63b26
+import  -/  base-4.12.0.0:GHC.Err ea5e313ef4146b40b5d8b27aa168e736
+import  -/  base-4.12.0.0:GHC.List 4014a3c8a3b7c31c8325f6bcf1feea4a
+import  -/  base-4.12.0.0:GHC.Num c2039f03637c68f47b0bbff4c18ec616
+import  -/  base-4.12.0.0:GHC.Show 838a5d039379d82d9626aae53dfce276
+import  -/  base-4.12.0.0:Prelude 3c779dfd6448bdd8e234c336802c2acb
+import  -/  containers-0.6.0.1:Data.Map.Internal 9e74e122af4fa0c1b8d4c844eeda9c98
+import  -/  containers-0.6.0.1:Data.Map.Strict cdbeca9dfcd61c917272d3c2b8a5e4c8
+import  -/  containers-0.6.0.1:Data.Map.Strict.Internal c59f919ec34c302d6b3008d3c43cbfe7
+import  -/  containers-0.6.0.1:Data.Set afd5ab7eac5658da18a4fffc2d1b683c
+import  -/  containers-0.6.0.1:Data.Set.Internal a9b0d2c3208f9a74ef7f480a7813af2a
+import  -/  ghc-prim-0.5.3:GHC.Classes 0f6fd7d7db53fc48f6e1f01803cc6c9d
+6a98c783278153c53e4452a0f736de38
+  $fShowFState :: GHC.Show.Show StaticAnalysis.FState
+  DFunId
+  {- Strictness: m, Inline: CONLIKE,
+     Unfolding: DFun:.
+                  @ StaticAnalysis.FState
+                  StaticAnalysis.$fShowFState_$cshowsPrec
+                  StaticAnalysis.$fShowFState_$cshow
+                  StaticAnalysis.$fShowFState_$cshowList -}
+6a98c783278153c53e4452a0f736de38
+  $fShowFState1 :: StaticAnalysis.FState -> GHC.Show.ShowS
+  {- Arity: 1, Strictness: <S,1*U(1*U,1*U)>,
+     Unfolding: (\ (w :: StaticAnalysis.FState) ->
+                 case w of ww { StaticAnalysis.St ww1 ww2 ->
+                 StaticAnalysis.$w$cshowsPrec 0# ww1 ww2 }) -}
+d4fa4888bffe71ef8bfafdea03be18a8
+  $fShowFState2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("}"#) -}
+96ff88f5df8441968f6d7402bb696637
+  $fShowFState3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("neighbours = "#) -}
+98f6df4be1442189d44d9f77e604f2f4
+  $fShowFState4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("indexes = "#) -}
+01a431f6d374e6682930aefc3fd0d103
+  $fShowFState5 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("St {"#) -}
+816305241d6dac100245a68697a723b2
+  $fShowFState6 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0#) -}
+6a98c783278153c53e4452a0f736de38
+  $fShowFState_$cshow :: StaticAnalysis.FState -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(1*U,1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (x :: StaticAnalysis.FState) ->
+                 StaticAnalysis.$fShowFState_$cshowsPrec
+                   StaticAnalysis.$fShowFState6
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+6a98c783278153c53e4452a0f736de38
+  $fShowFState_$cshowList ::
+    [StaticAnalysis.FState] -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (ls :: [StaticAnalysis.FState]) (s :: GHC.Base.String) ->
+                 GHC.Show.showList__
+                   @ StaticAnalysis.FState
+                   StaticAnalysis.$fShowFState1
+                   ls
+                   s) -}
+6a98c783278153c53e4452a0f736de38
+  $fShowFState_$cshowsPrec ::
+    GHC.Types.Int -> StaticAnalysis.FState -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S(S),1*U(U)><S,1*U(1*U,1*U)>,
+     Inline: [2],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: GHC.Types.Int) (w1 :: StaticAnalysis.FState) ->
+                 case w of ww { GHC.Types.I# ww1 ->
+                 case w1 of ww2 { StaticAnalysis.St ww3 ww4 ->
+                 StaticAnalysis.$w$cshowsPrec ww1 ww3 ww4 } }) -}
+1ace0fb953d0902cedf230e4c29f7c15
+  $fShowFState_$s$fShow[] ::
+    GHC.Show.Show [(StaticAnalysis.Vert, [GHC.Types.Int])]
+  {- Strictness: m, Inline: CONLIKE,
+     Unfolding: DFun:.
+                  @ [(StaticAnalysis.Vert, [GHC.Types.Int])]
+                  (\ (ds :: GHC.Types.Int)
+                     (ls :: [([GHC.Types.Char], [GHC.Types.Int])])
+                     (s :: GHC.Base.String) ->
+                   GHC.Show.showList__
+                     @ ([GHC.Types.Char], [GHC.Types.Int])
+                     (GHC.Show.$fShow(,)_$cshowsPrec
+                        @ [GHC.Types.Char]
+                        @ [GHC.Types.Int]
+                        GHC.Show.$fShow[]_$s$fShow[]1
+                        GHC.Show.$fShow[]_$s$fShow[]
+                        GHC.Show.$fShow(,)1)
+                     ls
+                     s)
+                  (\ (x :: [(StaticAnalysis.Vert, [GHC.Types.Int])]) ->
+                   GHC.Show.showList__
+                     @ ([GHC.Types.Char], [GHC.Types.Int])
+                     (GHC.Show.$fShow(,)_$cshowsPrec
+                        @ [GHC.Types.Char]
+                        @ [GHC.Types.Int]
+                        GHC.Show.$fShow[]_$s$fShow[]1
+                        GHC.Show.$fShow[]_$s$fShow[]
+                        GHC.Show.$fShow(,)1)
+                     x
+                     (GHC.Types.[] @ GHC.Types.Char))
+                  (\ (ls :: [[(StaticAnalysis.Vert, [GHC.Types.Int])]])
+                     (s :: GHC.Base.String) ->
+                   GHC.Show.showList__
+                     @ [(StaticAnalysis.Vert, [GHC.Types.Int])]
+                     (\ (ls1 :: [([GHC.Types.Char], [GHC.Types.Int])])
+                        (s1 :: GHC.Base.String)[OneShot] ->
+                      GHC.Show.showList__
+                        @ ([GHC.Types.Char], [GHC.Types.Int])
+                        (GHC.Show.$fShow(,)_$cshowsPrec
+                           @ [GHC.Types.Char]
+                           @ [GHC.Types.Int]
+                           GHC.Show.$fShow[]_$s$fShow[]1
+                           GHC.Show.$fShow[]_$s$fShow[]
+                           GHC.Show.$fShow(,)1)
+                        ls1
+                        s1)
+                     ls
+                     s) -}
+accfbd624c589387a132ab267912802f
+  $sfind1 ::
+    StaticAnalysis.Vert
+    -> Data.Map.Internal.Map StaticAnalysis.Vert a -> a
+  {- Arity: 2, Strictness: <S,U><S,1*U> -}
+422e0e19fd8e37499977874813caa99c
+  $sfromListWithKey ::
+    (StaticAnalysis.Vert -> a -> a -> a)
+    -> [(StaticAnalysis.Vert, a)]
+    -> Data.Map.Internal.Map StaticAnalysis.Vert a
+  {- Arity: 2, Strictness: <L,C(C1(C1(U)))><S,1*U>,
+     Unfolding: (\ @ a
+                   (f :: StaticAnalysis.Vert -> a -> a -> a)
+                   (xs :: [(StaticAnalysis.Vert, a)]) ->
+                 letrec {
+                   go :: [(StaticAnalysis.Vert, a)]
+                         -> Data.Map.Internal.Map StaticAnalysis.Vert a
+                         -> Data.Map.Internal.Map StaticAnalysis.Vert a
+                     <join 2> {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
+                   = \ (ds :: [(StaticAnalysis.Vert, a)])
+                       (eta :: Data.Map.Internal.Map StaticAnalysis.Vert a) ->
+                     case ds of wild {
+                       [] -> eta
+                       : y ys
+                       -> case y of wild1 { (,) k1 x ->
+                          go ys (StaticAnalysis.$sfromListWithKey_$sgo8 @ a f k1 x eta) } }
+                 } in
+                 go xs (Data.Map.Internal.Tip @ StaticAnalysis.Vert @ a)) -}
+f1ca5c8b6ea5a6dfaa316462f05a17e5
+  $sfromListWithKey_$sgo8 ::
+    (StaticAnalysis.Vert -> a1 -> a1 -> a1)
+    -> StaticAnalysis.Vert
+    -> a1
+    -> Data.Map.Internal.Map StaticAnalysis.Vert a1
+    -> Data.Map.Internal.Map StaticAnalysis.Vert a1
+  {- Arity: 4, Strictness: <L,1*C1(C1(C1(U)))><S,1*U><L,U><S,1*U> -}
+c5845b9a14bf4d7620ecf3f710bf54d0
+  $sinsert_$sgo3 ::
+    StaticAnalysis.Vert
+    -> StaticAnalysis.Vert
+    -> Data.Set.Internal.Set StaticAnalysis.Vert
+    -> Data.Set.Internal.Set StaticAnalysis.Vert
+  {- Arity: 3, Strictness: <L,U><S,1*U><S,1*U> -}
+3a1f308aa8d3ffac39375d6662ac8a1e
+  $sinsert_$sgo8 ::
+    Lola.Ident
+    -> a1
+    -> Data.Map.Internal.Map Lola.Ident a1
+    -> Data.Map.Internal.Map Lola.Ident a1
+  {- Arity: 3, Strictness: <S,1*U><S,1*U><S,1*U> -}
+652f50c8ce1211ae17e34ec42114a49b
+  $slookup1 ::
+    StaticAnalysis.Vert
+    -> Data.Map.Internal.Map StaticAnalysis.Vert a -> GHC.Maybe.Maybe a
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
+492ccb1f6660612fd5933a63fbe221e8
+  $smember_go3 ::
+    StaticAnalysis.Vert
+    -> Data.Set.Internal.Set StaticAnalysis.Vert -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U> -}
+8074d9fc95174cde52b63c10139b2d14
+  $tc'St :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   17297276717330941516##
+                   1794517242584139191##
+                   StaticAnalysis.$trModule
+                   StaticAnalysis.$tc'St2
+                   0#
+                   StaticAnalysis.$tc'St1) -}
+61827745a83d3ad362b7b4e615c1d339
+  $tc'St1 :: GHC.Types.KindRep
+  {- HasNoCafRefs, Strictness: m4, Inline: [~] -}
+08e693df98ae838d93404a80237cccff
+  $tc'St2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS StaticAnalysis.$tc'St3) -}
+d98f84d6673fe6084e02931d2de76cab
+  $tc'St3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("'St"#) -}
+0be15609d9dedf5c44a8c740443893bf
+  $tcFState :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   10093401221827159598##
+                   16059104840973426222##
+                   StaticAnalysis.$trModule
+                   StaticAnalysis.$tcFState1
+                   0#
+                   GHC.Types.krep$*) -}
+faa04fbd1cbda7ca82a197c38ad9c0fd
+  $tcFState1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS StaticAnalysis.$tcFState2) -}
+7895a02fca3fdedea32f4fe4f81baba7
+  $tcFState2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("FState"#) -}
+9e1615418c23d78790bfdb5f003b6a95
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   StaticAnalysis.$trModule3
+                   StaticAnalysis.$trModule1) -}
+90699ea829db61f5907da5beda1485f4
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS StaticAnalysis.$trModule2) -}
+efa42a2bae3a1809b2f69d73cf60a5ce
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("StaticAnalysis"#) -}
+06243349d9d0847623d5da700ee8d028
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS StaticAnalysis.$trModule4) -}
+b504de61df822ddbd7e55c4e6a8f254c
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs,
+     Unfolding: ("HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ"#) -}
+f276d862c5ceb89e41bd0e09db1c396d
+  $w$cshowsPrec ::
+    GHC.Prim.Int#
+    -> Data.Set.Internal.Set Lola.Ident
+    -> Data.Map.Internal.Map
+         StaticAnalysis.Vert [(StaticAnalysis.Vert, [GHC.Types.Int])]
+    -> GHC.Show.ShowS
+  {- Arity: 3, Strictness: <S,U><L,1*U><L,1*U>, Inline: [2],
+     Unfolding: (\ (ww :: GHC.Prim.Int#)
+                   (ww1 :: Data.Set.Internal.Set Lola.Ident)
+                   (ww2 :: Data.Map.Internal.Map
+                             StaticAnalysis.Vert [(StaticAnalysis.Vert, [GHC.Types.Int])]) ->
+                 let {
+                   f :: GHC.Base.String -> GHC.Base.String
+                   = Data.Set.Internal.$w$cshowsPrec
+                       @ [GHC.Types.Char]
+                       GHC.Show.$fShow[]_$s$fShow[]1
+                       0#
+                       ww1
+                 } in
+                 let {
+                   f1 :: GHC.Base.String -> GHC.Base.String
+                   = Data.Map.Internal.$w$cshowsPrec
+                       @ [GHC.Types.Char]
+                       @ [(StaticAnalysis.Vert, [GHC.Types.Int])]
+                       GHC.Show.$fShow[]_$s$fShow[]1
+                       StaticAnalysis.$fShowFState_$s$fShow[]
+                       0#
+                       ww2
+                 } in
+                 case GHC.Prim.>=# ww 11# of lwild {
+                   DEFAULT
+                   -> \ (x :: GHC.Base.String) ->
+                      GHC.CString.unpackAppendCString#
+                        StaticAnalysis.$fShowFState5
+                        (GHC.CString.unpackAppendCString#
+                           StaticAnalysis.$fShowFState4
+                           (f (GHC.Base.++
+                                 @ GHC.Types.Char
+                                 GHC.Show.showCommaSpace1
+                                 (GHC.CString.unpackAppendCString#
+                                    StaticAnalysis.$fShowFState3
+                                    (f1
+                                       (GHC.CString.unpackAppendCString#
+                                          StaticAnalysis.$fShowFState2
+                                          x))))))
+                   1#
+                   -> \ (x :: GHC.Base.String) ->
+                      GHC.Types.:
+                        @ GHC.Types.Char
+                        GHC.Show.$fShow(,)4
+                        (GHC.CString.unpackAppendCString#
+                           StaticAnalysis.$fShowFState5
+                           (GHC.CString.unpackAppendCString#
+                              StaticAnalysis.$fShowFState4
+                              (f (GHC.Base.++
+                                    @ GHC.Types.Char
+                                    GHC.Show.showCommaSpace1
+                                    (GHC.CString.unpackAppendCString#
+                                       StaticAnalysis.$fShowFState3
+                                       (f1
+                                          (GHC.CString.unpackAppendCString#
+                                             StaticAnalysis.$fShowFState2
+                                             (GHC.Types.:
+                                                @ GHC.Types.Char
+                                                GHC.Show.$fShow(,)2
+                                                x)))))))) }) -}
+8eae72d99920ce4cb97b35a3a88f1518
+  $wcheckGraph ::
+    StaticAnalysis.FGraph
+    -> (# (GHC.Types.Int, [StaticAnalysis.Vert]),
+          (StaticAnalysis.Vert, StaticAnalysis.Vert, GHC.Types.Int) #)
+  {- Arity: 1, Strictness: <S,U>, Inline: [2],
+     Unfolding: (\ (w :: StaticAnalysis.FGraph) ->
+                 let {
+                   verts :: [StaticAnalysis.Vert]
+                   = StaticAnalysis.checkGraph_go1
+                       (GHC.Types.[] @ StaticAnalysis.Vert)
+                       w
+                 } in
+                 let {
+                   exit :: (# (GHC.Types.Int, [StaticAnalysis.Vert]),
+                              (StaticAnalysis.Vert, StaticAnalysis.Vert, GHC.Types.Int) #)
+                     <join 0>
+                   = (# letrec {
+                          $wgo1 :: [StaticAnalysis.Vert]
+                                   -> GHC.Types.Int
+                                   -> [StaticAnalysis.Vert]
+                                   -> (GHC.Types.Int, [StaticAnalysis.Vert])
+                            <join 3> {- Arity: 3, Strictness: <S,1*U><L,U(U)><L,U>m,
+                                        Inline: [2] -}
+                          = \ (w1 :: [StaticAnalysis.Vert])
+                              (ww :: GHC.Types.Int)
+                              (ww1 :: [StaticAnalysis.Vert]) ->
+                            case w1 of wild {
+                              [] -> (ww, ww1)
+                              : y ys
+                              -> let {
+                                   exit1 :: GHC.Types.Int
+                                            -> [StaticAnalysis.Vert]
+                                            -> (GHC.Types.Int, [StaticAnalysis.Vert])
+                                     <join 2> {- Arity: 2, Strictness: <L,U(U)><L,U>m -}
+                                   = \ (ww2 :: GHC.Types.Int)[OneShot]
+                                       (ww3 :: [StaticAnalysis.Vert])[OneShot] ->
+                                     $wgo1 ys ww2 ww3
+                                 } in
+                                 letrec {
+                                   $wgo2 :: [StaticAnalysis.Vert]
+                                            -> GHC.Types.Int
+                                            -> [StaticAnalysis.Vert]
+                                            -> (GHC.Types.Int, [StaticAnalysis.Vert])
+                                     <join 3> {- Arity: 3, Strictness: <S,1*U><L,U(U)><L,U>m,
+                                                 Inline: [2] -}
+                                   = \ (w2 :: [StaticAnalysis.Vert])
+                                       (ww2 :: GHC.Types.Int)
+                                       (ww3 :: [StaticAnalysis.Vert]) ->
+                                     case w2 of wild1 {
+                                       [] -> exit1 ww2 ww3
+                                       : y1 ys1
+                                       -> let {
+                                            exit2 :: GHC.Types.Int
+                                                     -> [StaticAnalysis.Vert]
+                                                     -> (GHC.Types.Int, [StaticAnalysis.Vert])
+                                              <join 2> {- Arity: 2, Strictness: <L,U(U)><L,U>m -}
+                                            = \ (ww4 :: GHC.Types.Int)[OneShot]
+                                                (ww5 :: [StaticAnalysis.Vert])[OneShot] ->
+                                              $wgo2 ys1 ww4 ww5
+                                          } in
+                                          letrec {
+                                            $wgo3 :: [(GHC.Types.Int, [StaticAnalysis.Vert])]
+                                                     -> GHC.Types.Int
+                                                     -> [StaticAnalysis.Vert]
+                                                     -> (GHC.Types.Int, [StaticAnalysis.Vert])
+                                              <join 3> {- Arity: 3,
+                                                          Strictness: <S,1*U><L,U(U)><L,U>m,
+                                                          Inline: [2] -}
+                                            = \ (w3 :: [(GHC.Types.Int, [StaticAnalysis.Vert])])
+                                                (ww4 :: GHC.Types.Int)
+                                                (ww5 :: [StaticAnalysis.Vert]) ->
+                                              case w3 of wild2 {
+                                                [] -> exit2 ww4 ww5
+                                                : y2 ys2
+                                                -> case y2 of wild3 { (,) i' ls' ->
+                                                   case ww4 of wild4 { GHC.Types.I# x ->
+                                                   case i' of wild5 { GHC.Types.I# y3 ->
+                                                   case GHC.Prim.># x y3 of lwild {
+                                                     DEFAULT -> $wgo3 ys2 wild5 ls'
+                                                     1# -> $wgo3 ys2 wild4 ww5 } } } } }
+                                          } in
+                                          $wgo3
+                                            (StaticAnalysis.paths
+                                               w
+                                               (Data.Set.Internal.Tip @ StaticAnalysis.Vert)
+                                               y
+                                               y1)
+                                            ww2
+                                            ww3 }
+                                 } in
+                                 $wgo2 verts ww ww1 }
+                        } in
+                        $wgo1
+                          verts
+                          StaticAnalysis.$fShowFState6
+                          (GHC.Types.[] @ StaticAnalysis.Vert),
+                        StaticAnalysis.$wgo
+                          (StaticAnalysis.checkGraph_go13
+                             (GHC.Types.[]
+                                @ (StaticAnalysis.Vert, StaticAnalysis.Vert, GHC.Types.Int))
+                             (StaticAnalysis.checkGraph_go8 w))
+                          (GHC.Types.[] @ GHC.Types.Char)
+                          (GHC.Types.[] @ GHC.Types.Char)
+                          StaticAnalysis.$fShowFState6 #)
+                 } in
+                 letrec {
+                   go :: [[GHC.Types.Char]]
+                         -> (# (GHC.Types.Int, [StaticAnalysis.Vert]),
+                               (StaticAnalysis.Vert, StaticAnalysis.Vert, GHC.Types.Int) #)
+                     <join 1> {- Arity: 1, Strictness: <S,1*U> -}
+                   = \ (ds :: [[GHC.Types.Char]]) ->
+                     case ds of wild {
+                       [] -> exit
+                       : y ys
+                       -> let {
+                            exit1 :: Data.Either.Either
+                                       GHC.Base.String
+                                       (GHC.Maybe.Maybe (GHC.Types.Int, [StaticAnalysis.Vert]))
+                                     -> (# (GHC.Types.Int, [StaticAnalysis.Vert]),
+                                           (StaticAnalysis.Vert, StaticAnalysis.Vert,
+                                            GHC.Types.Int) #)
+                              <join 1> {- Arity: 1, Strictness: <S,1*U> -}
+                            = \ (eta :: Data.Either.Either
+                                          GHC.Base.String
+                                          (GHC.Maybe.Maybe
+                                             (GHC.Types.Int, [StaticAnalysis.Vert])))[OneShot] ->
+                              case eta of wild1 {
+                                Data.Either.Left l
+                                -> case StaticAnalysis.checkGraph2 l
+                                   ret_ty (# (GHC.Types.Int, [StaticAnalysis.Vert]),
+                                             (StaticAnalysis.Vert, StaticAnalysis.Vert,
+                                              GHC.Types.Int) #)
+                                   of {}
+                                Data.Either.Right r -> go ys }
+                          } in
+                          letrec {
+                            go1 :: [(GHC.Types.Int, [StaticAnalysis.Vert])]
+                                   -> Data.Either.Either
+                                        GHC.Base.String
+                                        (GHC.Maybe.Maybe (GHC.Types.Int, [StaticAnalysis.Vert]))
+                                   -> (# (GHC.Types.Int, [StaticAnalysis.Vert]),
+                                         (StaticAnalysis.Vert, StaticAnalysis.Vert,
+                                          GHC.Types.Int) #)
+                              <join 2> {- Arity: 2, Strictness: <S,1*U><S,1*U> -}
+                            = \ (ds1 :: [(GHC.Types.Int, [StaticAnalysis.Vert])])
+                                (eta :: Data.Either.Either
+                                          GHC.Base.String
+                                          (GHC.Maybe.Maybe
+                                             (GHC.Types.Int, [StaticAnalysis.Vert]))) ->
+                              case ds1 of wild1 {
+                                [] -> exit1 eta
+                                : y1 ys1 -> go1 ys1 (StaticAnalysis.checkerr eta y1) }
+                          } in
+                          go1
+                            (StaticAnalysis.paths
+                               w
+                               (Data.Set.Internal.Tip @ StaticAnalysis.Vert)
+                               y
+                               y)
+                            StaticAnalysis.checkGraph1 }
+                 } in
+                 go verts) -}
+93114e12d36cbf7ce4d411c2b217f3e3
+  $wgo ::
+    [([GHC.Types.Char], [GHC.Types.Char], GHC.Types.Int)]
+    -> [GHC.Types.Char]
+    -> [GHC.Types.Char]
+    -> GHC.Types.Int
+    -> (StaticAnalysis.Vert, StaticAnalysis.Vert, GHC.Types.Int)
+  {- Arity: 4, HasNoCafRefs, Strictness: <S,1*U><L,U><L,U><L,U(U)>m,
+     Inline: [2] -}
+487dc916414f4d0b1129a1750744f806
+  $wprocessExp ::
+    DecDyn.ExprDyn
+    -> StaticAnalysis.FState
+    -> (# [(StaticAnalysis.Vert, [GHC.Types.Int])],
+          StaticAnalysis.FState #)
+  {- Arity: 2, Strictness: <S,1*U><L,U(U,U)>, Inline: [2] -}
+2a9aa82594925c39cecfbe326f178f46
+  type FGraph =
+    Data.Map.Internal.Map
+      StaticAnalysis.Vert
+      (Data.Map.Internal.Map StaticAnalysis.Vert [GHC.Types.Int])
+6a98c783278153c53e4452a0f736de38
+  data FState
+    = St {indexes :: Data.Set.Internal.Set Lola.Ident,
+          neighbours :: Data.Map.Internal.Map
+                          StaticAnalysis.Vert [(StaticAnalysis.Vert, [GHC.Types.Int])]}
+40fc7b30d5b2be0b6c82919158c99acd
+  type Vert = Lola.Ident
+7c3c6486b686059804f022a609d8146f
+  addDecl ::
+    StaticAnalysis.FState
+    -> DecDyn.DeclarationDyn -> StaticAnalysis.FState
+  {- Arity: 2, Strictness: <L,U(U,U)><S,1*U>m,
+     Unfolding: (\ (fs :: StaticAnalysis.FState)
+                   (ds :: DecDyn.DeclarationDyn) ->
+                 case ds of wild {
+                   DecDyn.DInp id
+                   -> StaticAnalysis.St
+                        (case fs of wild1 { StaticAnalysis.St ds1 ds2 ->
+                         StaticAnalysis.$sinsert_$sgo3 id id ds1 })
+                        (case fs of wild1 { StaticAnalysis.St ds1 ds2 ->
+                         StaticAnalysis.$sinsert_$sgo8
+                           @ [(StaticAnalysis.Vert, [GHC.Types.Int])]
+                           id
+                           (GHC.Types.[] @ (StaticAnalysis.Vert, [GHC.Types.Int]))
+                           ds2 })
+                   DecDyn.DOut ds1
+                   -> case ds1 of wild1 { (,) id e ->
+                      case fs of wild2 { StaticAnalysis.St ds2 ds3 ->
+                      case StaticAnalysis.$smember_go3 id ds2 of wild3 {
+                        GHC.Types.False
+                        -> case StaticAnalysis.$wprocessExp
+                                  e
+                                  (StaticAnalysis.St
+                                     (StaticAnalysis.$sinsert_$sgo3 id id ds2)
+                                     ds3) of ww { (#,#) ww1 ww2 ->
+                           case ww2 of wild4 { StaticAnalysis.St ds4 ds5 ->
+                           StaticAnalysis.St
+                             ds4
+                             (StaticAnalysis.$sinsert_$sgo8
+                                @ [(StaticAnalysis.Vert, [GHC.Types.Int])]
+                                id
+                                ww1
+                                ds5) } }
+                        GHC.Types.True -> wild2 } } } }) -}
+8612eb3ed828532ecfd62b99f8c66674
+  checkGraph ::
+    StaticAnalysis.FGraph
+    -> ((GHC.Types.Int, [StaticAnalysis.Vert]),
+        (StaticAnalysis.Vert, StaticAnalysis.Vert, GHC.Types.Int))
+  {- Arity: 1, Strictness: <S,U>m, Inline: [2],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: StaticAnalysis.FGraph) ->
+                 case StaticAnalysis.$wcheckGraph w of ww { (#,#) ww1 ww2 ->
+                 (ww1, ww2) }) -}
+baa68fbfc349773270dfd2310f45601e
+  checkGraph1 ::
+    Data.Either.Either
+      GHC.Base.String
+      (GHC.Maybe.Maybe (GHC.Types.Int, [StaticAnalysis.Vert]))
+  {- HasNoCafRefs, Strictness: m2,
+     Unfolding: (Data.Either.Right
+                   @ GHC.Base.String
+                   @ (GHC.Maybe.Maybe (GHC.Types.Int, [StaticAnalysis.Vert]))
+                   (GHC.Maybe.Nothing @ (GHC.Types.Int, [StaticAnalysis.Vert]))) -}
+227e44bf847aee701fa3d122ac5aa557
+  checkGraph2 ::
+    GHC.Base.String
+    -> ((GHC.Types.Int, [StaticAnalysis.Vert]),
+        (StaticAnalysis.Vert, StaticAnalysis.Vert, GHC.Types.Int))
+  {- Arity: 1, Strictness: <B,U>x -}
+a281bd45e51e6b55f5668a78fddfb1a5
+  checkGraph_go1 ::
+    [StaticAnalysis.Vert]
+    -> Data.Map.Internal.Map
+         StaticAnalysis.Vert
+         (Data.Map.Internal.Map StaticAnalysis.Vert [GHC.Types.Int])
+    -> [StaticAnalysis.Vert]
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,1*U><S,1*U> -}
+87c079a062dd1a21c78dbb523fde38bc
+  checkGraph_go13 ::
+    [(StaticAnalysis.Vert, StaticAnalysis.Vert, GHC.Types.Int)]
+    -> Data.Map.Internal.Map
+         [GHC.Types.Char] [(StaticAnalysis.Vert, [GHC.Types.Int])]
+    -> [(StaticAnalysis.Vert, StaticAnalysis.Vert, GHC.Types.Int)]
+  {- Arity: 2, HasNoCafRefs, Strictness: <L,1*U><S,1*U> -}
+137aef77b90e23123d22cbd68f7565cc
+  checkGraph_go8 ::
+    Data.Map.Internal.Map
+      StaticAnalysis.Vert
+      (Data.Map.Internal.Map StaticAnalysis.Vert [GHC.Types.Int])
+    -> Data.Map.Internal.Map
+         StaticAnalysis.Vert [(StaticAnalysis.Vert, [GHC.Types.Int])]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U> -}
+267b5d6af474561e231cd3aa86f321fe
+  checkerr ::
+    Data.Either.Either
+      GHC.Base.String
+      (GHC.Maybe.Maybe (GHC.Types.Int, [StaticAnalysis.Vert]))
+    -> (GHC.Types.Int, [StaticAnalysis.Vert])
+    -> Data.Either.Either
+         GHC.Base.String
+         (GHC.Maybe.Maybe (GHC.Types.Int, [StaticAnalysis.Vert]))
+  {- Arity: 2, Strictness: <S,1*U><L,1*U(U(U),U)> -}
+a381412406e2d6d7a3c9831259667606
+  cycles ::
+    StaticAnalysis.FGraph
+    -> StaticAnalysis.Vert -> [(GHC.Types.Int, [StaticAnalysis.Vert])]
+  {- Arity: 2, Strictness: <S,U><S,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (g :: StaticAnalysis.FGraph) (v :: StaticAnalysis.Vert) ->
+                 StaticAnalysis.paths
+                   g
+                   (Data.Set.Internal.Tip @ StaticAnalysis.Vert)
+                   v
+                   v) -}
+7671d4400d3c6e50a31bbbddfaa70ff6
+  dotFromGraph :: StaticAnalysis.FGraph -> GHC.Base.String
+  {- Arity: 1, Strictness: <L,1*U>,
+     Unfolding: (\ (g :: StaticAnalysis.FGraph) ->
+                 GHC.CString.unpackAppendCString#
+                   StaticAnalysis.dotFromGraph1
+                   (StaticAnalysis.dotFromGraph_go
+                      (StaticAnalysis.checkGraph_go13
+                         (GHC.Types.[]
+                            @ (StaticAnalysis.Vert, StaticAnalysis.Vert, GHC.Types.Int))
+                         (StaticAnalysis.checkGraph_go8 g)))) -}
+ecb2916f9a7862814569540e1873e94e
+  dotFromGraph1 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("digraph {\n"#) -}
+7832951c64bfd015286e637c9745195d
+  dotFromGraph_go ::
+    [(StaticAnalysis.Vert, StaticAnalysis.Vert, GHC.Types.Int)]
+    -> [GHC.Types.Char]
+  {- Arity: 1, Strictness: <S,1*U> -}
+f4ab83768aef6773d9782a3d0c7f23cd
+  flattenedges ::
+    StaticAnalysis.FGraph
+    -> [(StaticAnalysis.Vert, StaticAnalysis.Vert, GHC.Types.Int)]
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U>,
+     Unfolding: (\ (g :: StaticAnalysis.FGraph) ->
+                 StaticAnalysis.checkGraph_go13
+                   (GHC.Types.[]
+                      @ (StaticAnalysis.Vert, StaticAnalysis.Vert, GHC.Types.Int))
+                   (StaticAnalysis.checkGraph_go8 g)) -}
+8e07c340fdc3da799a39da82922f1228
+  getFGraph :: [DecDyn.DeclarationDyn] -> StaticAnalysis.FGraph
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ (x :: [DecDyn.DeclarationDyn]) ->
+                 StaticAnalysis.getFGraph_go
+                   x
+                   StaticAnalysis.getFGraph_initstate) -}
+563c9a887d450e6f22b7602fc19f6b48
+  getFGraph_go ::
+    [DecDyn.DeclarationDyn]
+    -> StaticAnalysis.FState
+    -> Data.Map.Internal.Map
+         StaticAnalysis.Vert
+         (Data.Map.Internal.Map StaticAnalysis.Vert [GHC.Types.Int])
+  {- Arity: 2, Strictness: <S,1*U><L,U(U,U)> -}
+fcd216acbed69f35044e92c413ca5940
+  getFGraph_initstate :: StaticAnalysis.FState
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (StaticAnalysis.St
+                   (Data.Set.Internal.Tip @ Lola.Ident)
+                   (Data.Map.Internal.Tip
+                      @ StaticAnalysis.Vert
+                      @ [(StaticAnalysis.Vert, [GHC.Types.Int])])) -}
+6a98c783278153c53e4452a0f736de38
+  indexes ::
+    StaticAnalysis.FState -> Data.Set.Internal.Set Lola.Ident
+  RecSel Left StaticAnalysis.FState
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(SL),1*U(1*U,A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: StaticAnalysis.FState) ->
+                 case ds of wild { StaticAnalysis.St ds1 ds2 -> ds1 }) -}
+c60bd2a5b9a6dce9dbc92e59d4938a6b
+  mixedWeights ::
+    (GHC.Show.Show a1, GHC.Show.Show a2, GHC.Show.Show a3,
+     GHC.Show.Show a4) =>
+    a2 -> a1 -> a4 -> a3 -> [GHC.Types.Char]
+  {- Arity: 8, HasNoCafRefs,
+     Strictness: <L,1*U(A,1*C1(U),A)><L,1*U(A,1*C1(U),A)><L,1*U(A,1*C1(U),A)><L,1*U(A,1*C1(U),A)><L,U><L,U><L,U><L,U>,
+     Unfolding: (\ @ a
+                   @ a1
+                   @ a2
+                   @ a3
+                   ($dShow :: GHC.Show.Show a)
+                   ($dShow1 :: GHC.Show.Show a1)
+                   ($dShow2 :: GHC.Show.Show a2)
+                   ($dShow3 :: GHC.Show.Show a3)
+                   (w :: a1)
+                   (ls :: a)
+                   (wp :: a3)
+                   (lsp :: a2) ->
+                 GHC.CString.unpackAppendCString#
+                   StaticAnalysis.mixedWeights4
+                   (GHC.Base.++
+                      @ GHC.Types.Char
+                      (GHC.Show.show @ a $dShow ls)
+                      (GHC.CString.unpackAppendCString#
+                         StaticAnalysis.mixedWeights3
+                         (GHC.Base.++
+                            @ GHC.Types.Char
+                            (GHC.Show.show @ a1 $dShow1 w)
+                            (GHC.CString.unpackAppendCString#
+                               StaticAnalysis.mixedWeights2
+                               (GHC.Base.++
+                                  @ GHC.Types.Char
+                                  (GHC.Show.show @ a2 $dShow2 lsp)
+                                  (GHC.CString.unpackAppendCString#
+                                     StaticAnalysis.mixedWeights3
+                                     (GHC.Show.show @ a3 $dShow3 wp)))))))) -}
+0da327c7c55c3b154d1ecc3c319fff4b
+  mixedWeights1 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackAppendCString#
+                   GHC.Show.showList__4
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+72143af06ea9714f1d14f66d0d7f6ef0
+  mixedWeights2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: (" and "#) -}
+154aa0d05d2d0ad5e15d26f79deb4341
+  mixedWeights3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: (" of weight "#) -}
+e8e19992c323eb5e65bd3edd9f3ab8cf
+  mixedWeights4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Mixed weights: "#) -}
+daa0d30016f276404ff804a0a9fcae79
+  mixedWeights_showl :: [[GHC.Types.Char]] -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>m2 -}
+6a98c783278153c53e4452a0f736de38
+  neighbours ::
+    StaticAnalysis.FState
+    -> Data.Map.Internal.Map
+         StaticAnalysis.Vert [(StaticAnalysis.Vert, [GHC.Types.Int])]
+  RecSel Left StaticAnalysis.FState
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LS),1*U(A,1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: StaticAnalysis.FState) ->
+                 case ds of wild { StaticAnalysis.St ds1 ds2 -> ds2 }) -}
+c7f91abe78d1e38775138852df97b128
+  paths ::
+    StaticAnalysis.FGraph
+    -> Data.Set.Internal.Set StaticAnalysis.Vert
+    -> StaticAnalysis.Vert
+    -> StaticAnalysis.Vert
+    -> [(GHC.Types.Int, [StaticAnalysis.Vert])]
+  {- Arity: 4, Strictness: <S,U><L,U><S,U><L,U> -}
+fe4a83d89ac2fa17093f74aefcdc4c97
+  processExp ::
+    DecDyn.ExprDyn
+    -> StaticAnalysis.FState
+    -> ([(StaticAnalysis.Vert, [GHC.Types.Int])],
+        StaticAnalysis.FState)
+  {- Arity: 2, Strictness: <S,1*U><L,U(U,U)>m, Inline: [2],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: DecDyn.ExprDyn) (w1 :: StaticAnalysis.FState) ->
+                 case StaticAnalysis.$wprocessExp w w1 of ww { (#,#) ww1 ww2 ->
+                 (ww1, ww2) }) -}
+b61730fca2541eadaf4b855a901cd60d
+  vertices :: StaticAnalysis.FGraph -> [StaticAnalysis.Vert]
+  {- Arity: 1, HasNoCafRefs,
+     Unfolding: (StaticAnalysis.checkGraph_go1
+                   (GHC.Types.[] @ StaticAnalysis.Vert)) -}
+instance GHC.Show.Show [StaticAnalysis.FState]
+  = StaticAnalysis.$fShowFState
+"SPEC/StaticAnalysis $fShow[] @ (Vert, [Int])" [orphan] forall (v :: GHC.Show.Show
+                                                                       (StaticAnalysis.Vert,
+                                                                        [GHC.Types.Int]))
+  GHC.Show.$fShow[] @ (StaticAnalysis.Vert, [GHC.Types.Int]) v
+  = StaticAnalysis.$fShowFState_$s$fShow[]
+"SPEC/StaticAnalysis fromListWithKey @ Vert _" [orphan] forall @ a
+                                                               ($dOrd :: GHC.Classes.Ord
+                                                                           StaticAnalysis.Vert)
+  Data.Map.Strict.Internal.fromListWithKey @ [GHC.Types.Char]
+                                           @ a
+                                           $dOrd
+  = StaticAnalysis.$sfromListWithKey @ a
+trusted: none
+require own pkg trusted: False
+module header:
+  Nothing
+declaration docs:
+arg docs:
+

@@ -1,0 +1,1632 @@
+
+==================== FINAL INTERFACE ====================
+2019-10-21 10:04:20.973846 UTC
+
+interface HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Theories.Geometry [family instance module] 8065
+  interface hash: 384a5a9db6cf09179e9e612d9a73c31c
+  ABI hash: 016e406e2a052d178e0627899abad697
+  export-list hash: 6de724d642dc72c2ca756de790721fb7
+  orphan hash: b776d3d58b6839f0385a66cb0b92e396
+  flag hash: 6af98bc34208ac24d74f0744588bbf6c
+  opt_hash: 6faf2de08de32d19db9870899d88e59a
+  hpc_hash: 93b885adfe0da089cdf634904fd59f71
+  plugin_hash: ad164012d6b1e14942349d58b1132007
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Theories.Geometry.crossProduct
+  Theories.Geometry.emptyPolygon
+  Theories.Geometry.polyUnion
+  Theories.Geometry.projectToPlaneZ
+  Theories.Geometry.vecadd
+  Theories.Geometry.Point3{Theories.Geometry.P x y z}
+  Theories.Geometry.Polygon
+  Theories.Geometry.Vector3
+module dependencies: Syntax.HLPrelude
+package dependencies: aeson-1.4.5.0 array-0.5.3.0
+                      attoparsec-0.13.2.3 base-4.12.0.0 base-compat-0.10.5
+                      base-orphans-0.8.1 binary-0.8.6.0 bytestring-0.10.8.2
+                      containers-0.6.0.1 deepseq-1.4.4.0 dlist-0.8.0.7 ghc-boot-th-8.6.5
+                      ghc-prim-0.5.3 hashable-1.2.7.0 integer-gmp-1.0.2.0
+                      integer-logarithms-1.0.3 primitive-0.6.4.0 random-1.1
+                      scientific-0.3.6.2 tagged-0.8.6 template-haskell-2.14.0.0
+                      text-1.2.3.1 time-1.8.0.2 time-compat-1.9.2.2 transformers-0.5.6.2
+                      unordered-containers-0.2.10.0 uuid-types-1.0.3 vector-0.12.0.3
+orphans: attoparsec-0.13.2.3:Data.Attoparsec.Text.Internal
+         attoparsec-0.13.2.3:Data.Attoparsec.ByteString.Char8
+         time-1.8.0.2:Data.Time.Clock.TAI
+         vector-0.12.0.3:Data.Vector.Unboxed
+         time-1.8.0.2:Data.Time.Format.Parse
+         time-1.8.0.2:Data.Time.LocalTime.Internal.ZonedTime
+         time-1.8.0.2:Data.Time.LocalTime.Internal.LocalTime
+         time-1.8.0.2:Data.Time.Calendar.Gregorian
+         hashable-1.2.7.0:Data.Hashable.Generic text-1.2.3.1:Data.Text.Lazy
+         text-1.2.3.1:Data.Text binary-0.8.6.0:Data.Binary.Generic
+         bytestring-0.10.8.2:Data.ByteString.Builder
+         text-1.2.3.1:Data.Text.Show
+         vector-0.12.0.3:Data.Vector.Fusion.Bundle
+         transformers-0.5.6.2:Control.Monad.Trans.Error
+         base-4.12.0.0:GHC.Float base-4.12.0.0:GHC.Base
+family instance modules: aeson-1.4.5.0:Data.Aeson.Types.Internal
+                         attoparsec-0.13.2.3:Data.Attoparsec.Internal.Types
+                         base-4.12.0.0:Control.Applicative base-4.12.0.0:Data.Complex
+                         base-4.12.0.0:Data.Functor.Compose base-4.12.0.0:Data.Functor.Const
+                         base-4.12.0.0:Data.Functor.Identity
+                         base-4.12.0.0:Data.Functor.Product base-4.12.0.0:Data.Functor.Sum
+                         base-4.12.0.0:Data.Monoid base-4.12.0.0:Data.Semigroup
+                         base-4.12.0.0:Data.Semigroup.Internal base-4.12.0.0:Data.Version
+                         base-4.12.0.0:Data.Void base-4.12.0.0:GHC.Exts
+                         base-4.12.0.0:GHC.Generics base-4.12.0.0:GHC.IO.Exception
+                         containers-0.6.0.1:Data.IntMap.Internal
+                         containers-0.6.0.1:Data.IntSet.Internal
+                         containers-0.6.0.1:Data.Map.Internal
+                         containers-0.6.0.1:Data.Sequence.Internal
+                         containers-0.6.0.1:Data.Set.Internal containers-0.6.0.1:Data.Tree
+                         dlist-0.8.0.7:Data.DList ghc-boot-th-8.6.5:GHC.ForeignSrcLang.Type
+                         ghc-boot-th-8.6.5:GHC.LanguageExtensions.Type
+                         primitive-0.6.4.0:Control.Monad.Primitive
+                         primitive-0.6.4.0:Data.Primitive.Array
+                         primitive-0.6.4.0:Data.Primitive.ByteArray
+                         primitive-0.6.4.0:Data.Primitive.PrimArray
+                         primitive-0.6.4.0:Data.Primitive.SmallArray
+                         primitive-0.6.4.0:Data.Primitive.UnliftedArray
+                         tagged-0.8.6:Data.Tagged
+                         template-haskell-2.14.0.0:Language.Haskell.TH.Syntax
+                         text-1.2.3.1:Data.Text text-1.2.3.1:Data.Text.Lazy
+                         unordered-containers-0.2.10.0:Data.HashMap.Base
+                         unordered-containers-0.2.10.0:Data.HashSet.Base
+                         uuid-types-1.0.3:Data.UUID.Types.Internal
+                         uuid-types-1.0.3:Data.UUID.Types.Internal.Builder
+                         vector-0.12.0.3:Data.Vector vector-0.12.0.3:Data.Vector.Primitive
+                         vector-0.12.0.3:Data.Vector.Storable
+                         vector-0.12.0.3:Data.Vector.Unboxed
+                         vector-0.12.0.3:Data.Vector.Unboxed.Base
+import  -/  Syntax.HLPrelude f80a67bea1d500b91e76dd8341487f94
+  exports: 68fbd00b85e22e00f4229825fd729bf8
+import  -/  aeson-1.4.5.0:Data.Aeson cd1e38ad278b969589c5b1ad8a30af94
+import  -/  aeson-1.4.5.0:Data.Aeson.Types.FromJSON 7d456473c8ab4a622bbb715c080f1c51
+import  -/  aeson-1.4.5.0:Data.Aeson.Types.ToJSON 9a7d90dc49dd78eca820f5915fe6a168
+import  -/  base-4.12.0.0:GHC.Base c00b75f0b052d05c55ba6a4dd1c63b26
+import  -/  base-4.12.0.0:GHC.Generics 2b3b2e72be66983021f8ad0c2edcf290
+import  -/  base-4.12.0.0:GHC.Num c2039f03637c68f47b0bbff4c18ec616
+import  -/  base-4.12.0.0:GHC.Read 0604f4258fedea7e033ea68c6d7b40f2
+import  -/  base-4.12.0.0:GHC.Real af2b985dd29515c375fb78b2c9298d42
+import  -/  base-4.12.0.0:GHC.Show 838a5d039379d82d9626aae53dfce276
+import  -/  base-4.12.0.0:Prelude 3c779dfd6448bdd8e234c336802c2acb
+import  -/  base-4.12.0.0:Text.ParserCombinators.ReadPrec 9773f55573a0fca144b6966b06590c4e
+import  -/  base-4.12.0.0:Text.Read.Lex cc2610206b1ce0c49789637e16412aa1
+import  -/  ghc-prim-0.5.3:GHC.Classes 0f6fd7d7db53fc48f6e1f01803cc6c9d
+b59f62cd64e1c9497afccd601ba4687f
+  $fFromJSONPoint1 ::
+    Data.Aeson.Types.Internal.Array
+    -> Data.Aeson.Types.Internal.Parser [Theories.Geometry.Point3]
+  {- Arity: 1, Strictness: <S(SSS),1*U(U,U,U)>, Inline: [2],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: Data.Aeson.Types.Internal.Array) ->
+                 case w of ww3 { Data.Vector.Vector ww4 ww5 ww6 ->
+                 Theories.Geometry.$w$cparseJSONList ww4 ww5 ww6 }) -}
+75c9e70c2e615a20f9216c6fbf9e8ba9
+  $fFromJSONPoint2 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   Theories.Geometry.$fFromJSONPoint4) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fFromJSONPoint3 ::
+    Data.Aeson.Types.FromJSON.FromJSON Theories.Geometry.Point3
+  DFunId
+  {- Strictness: m, Inline: CONLIKE,
+     Unfolding: DFun:.
+                  @ Theories.Geometry.Point3
+                  Theories.Geometry.$fFromJSONPoint3_$cparseJSON
+                  Theories.Geometry.$fFromJSONPoint3_$cparseJSONList -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fFromJSONPoint3_$cparseJSON ::
+    Data.Aeson.Types.Internal.Value
+    -> Data.Aeson.Types.Internal.Parser Theories.Geometry.Point3
+  {- Arity: 1, Strictness: <L,1*U> -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fFromJSONPoint3_$cparseJSONList ::
+    Data.Aeson.Types.Internal.Value
+    -> Data.Aeson.Types.Internal.Parser [Theories.Geometry.Point3]
+  {- Arity: 1,
+     Unfolding: (Data.Aeson.Types.FromJSON.withArray
+                   @ [Theories.Geometry.Point3]
+                   Theories.Geometry.$fFromJSONPoint2
+                   Theories.Geometry.$fFromJSONPoint1) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fFromJSONPoint3_go ::
+    GHC.Prim.Int#
+    -> [Data.Aeson.Types.Internal.Value]
+    -> Data.Aeson.Types.Internal.Parser [Theories.Geometry.Point3]
+  {- Arity: 2, Strictness: <L,U><S,1*U> -}
+e713e2432fee52ab8956a1b8fc865893
+  $fFromJSONPoint4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("[]"#) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fGenericPoint1 ::
+    Theories.Geometry.Point3
+    -> GHC.Generics.M1
+         GHC.Generics.C
+         ('GHC.Generics.MetaCons "P" 'GHC.Generics.PrefixI 'GHC.Types.True)
+         (GHC.Generics.M1
+            GHC.Generics.S
+            ('GHC.Generics.MetaSel
+               ('GHC.Maybe.Just "x")
+               'GHC.Generics.NoSourceUnpackedness
+               'GHC.Generics.NoSourceStrictness
+               'GHC.Generics.DecidedLazy)
+            (GHC.Generics.K1 GHC.Generics.R GHC.Types.Double)
+          GHC.Generics.:*: (GHC.Generics.M1
+                              GHC.Generics.S
+                              ('GHC.Generics.MetaSel
+                                 ('GHC.Maybe.Just "y")
+                                 'GHC.Generics.NoSourceUnpackedness
+                                 'GHC.Generics.NoSourceStrictness
+                                 'GHC.Generics.DecidedLazy)
+                              (GHC.Generics.K1 GHC.Generics.R GHC.Types.Double)
+                            GHC.Generics.:*: GHC.Generics.M1
+                                               GHC.Generics.S
+                                               ('GHC.Generics.MetaSel
+                                                  ('GHC.Maybe.Just "z")
+                                                  'GHC.Generics.NoSourceUnpackedness
+                                                  'GHC.Generics.NoSourceStrictness
+                                                  'GHC.Generics.DecidedLazy)
+                                               (GHC.Generics.K1 GHC.Generics.R GHC.Types.Double)))
+         x
+  {- Arity: 1, HasNoCafRefs, Strictness: <S,1*U(U,U,U)>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ x1 (x2 :: Theories.Geometry.Point3) ->
+                 case x2 of wild { Theories.Geometry.P g1 g2 g3 ->
+                 (GHC.Generics.:*:
+                    @ *
+                    @ (GHC.Generics.M1
+                         GHC.Generics.S
+                         ('GHC.Generics.MetaSel
+                            ('GHC.Maybe.Just "x")
+                            'GHC.Generics.NoSourceUnpackedness
+                            'GHC.Generics.NoSourceStrictness
+                            'GHC.Generics.DecidedLazy)
+                         (GHC.Generics.K1 GHC.Generics.R GHC.Types.Double))
+                    @ (GHC.Generics.M1
+                         GHC.Generics.S
+                         ('GHC.Generics.MetaSel
+                            ('GHC.Maybe.Just "y")
+                            'GHC.Generics.NoSourceUnpackedness
+                            'GHC.Generics.NoSourceStrictness
+                            'GHC.Generics.DecidedLazy)
+                         (GHC.Generics.K1 GHC.Generics.R GHC.Types.Double)
+                       GHC.Generics.:*: GHC.Generics.M1
+                                          GHC.Generics.S
+                                          ('GHC.Generics.MetaSel
+                                             ('GHC.Maybe.Just "z")
+                                             'GHC.Generics.NoSourceUnpackedness
+                                             'GHC.Generics.NoSourceStrictness
+                                             'GHC.Generics.DecidedLazy)
+                                          (GHC.Generics.K1 GHC.Generics.R GHC.Types.Double))
+                    @ x1
+                    g1
+                      `cast`
+                    (Sym (GHC.Generics.N:K1[0]
+                              <*>_N
+                              <GHC.Generics.R>_P
+                              <GHC.Types.Double>_R
+                              <x1>_P) ; Sym (GHC.Generics.N:M1[0]
+                                                 <*>_N
+                                                 <GHC.Generics.S>_P
+                                                 <'GHC.Generics.MetaSel
+                                                    ('GHC.Maybe.Just "x")
+                                                    'GHC.Generics.NoSourceUnpackedness
+                                                    'GHC.Generics.NoSourceStrictness
+                                                    'GHC.Generics.DecidedLazy>_P
+                                                 <GHC.Generics.K1
+                                                    GHC.Generics.R GHC.Types.Double>_R) <x1>_N)
+                    (GHC.Generics.:*:
+                       @ *
+                       @ (GHC.Generics.M1
+                            GHC.Generics.S
+                            ('GHC.Generics.MetaSel
+                               ('GHC.Maybe.Just "y")
+                               'GHC.Generics.NoSourceUnpackedness
+                               'GHC.Generics.NoSourceStrictness
+                               'GHC.Generics.DecidedLazy)
+                            (GHC.Generics.K1 GHC.Generics.R GHC.Types.Double))
+                       @ (GHC.Generics.M1
+                            GHC.Generics.S
+                            ('GHC.Generics.MetaSel
+                               ('GHC.Maybe.Just "z")
+                               'GHC.Generics.NoSourceUnpackedness
+                               'GHC.Generics.NoSourceStrictness
+                               'GHC.Generics.DecidedLazy)
+                            (GHC.Generics.K1 GHC.Generics.R GHC.Types.Double))
+                       @ x1
+                       g2
+                         `cast`
+                       (Sym (GHC.Generics.N:K1[0]
+                                 <*>_N
+                                 <GHC.Generics.R>_P
+                                 <GHC.Types.Double>_R
+                                 <x1>_P) ; Sym (GHC.Generics.N:M1[0]
+                                                    <*>_N
+                                                    <GHC.Generics.S>_P
+                                                    <'GHC.Generics.MetaSel
+                                                       ('GHC.Maybe.Just "y")
+                                                       'GHC.Generics.NoSourceUnpackedness
+                                                       'GHC.Generics.NoSourceStrictness
+                                                       'GHC.Generics.DecidedLazy>_P
+                                                    <GHC.Generics.K1
+                                                       GHC.Generics.R GHC.Types.Double>_R) <x1>_N)
+                       g3
+                         `cast`
+                       (Sym (GHC.Generics.N:K1[0]
+                                 <*>_N
+                                 <GHC.Generics.R>_P
+                                 <GHC.Types.Double>_R
+                                 <x1>_P) ; Sym (GHC.Generics.N:M1[0]
+                                                    <*>_N
+                                                    <GHC.Generics.S>_P
+                                                    <'GHC.Generics.MetaSel
+                                                       ('GHC.Maybe.Just "z")
+                                                       'GHC.Generics.NoSourceUnpackedness
+                                                       'GHC.Generics.NoSourceStrictness
+                                                       'GHC.Generics.DecidedLazy>_P
+                                                    <GHC.Generics.K1
+                                                       GHC.Generics.R GHC.Types.Double>_R) <x1>_N)))
+                   `cast`
+                 (Sym (GHC.Generics.N:M1[0]
+                           <*>_N
+                           <GHC.Generics.C>_P
+                           <'GHC.Generics.MetaCons
+                              "P" 'GHC.Generics.PrefixI 'GHC.Types.True>_P
+                           <GHC.Generics.M1
+                              GHC.Generics.S
+                              ('GHC.Generics.MetaSel
+                                 ('GHC.Maybe.Just "x")
+                                 'GHC.Generics.NoSourceUnpackedness
+                                 'GHC.Generics.NoSourceStrictness
+                                 'GHC.Generics.DecidedLazy)
+                              (GHC.Generics.K1 GHC.Generics.R GHC.Types.Double)
+                            GHC.Generics.:*: (GHC.Generics.M1
+                                                GHC.Generics.S
+                                                ('GHC.Generics.MetaSel
+                                                   ('GHC.Maybe.Just "y")
+                                                   'GHC.Generics.NoSourceUnpackedness
+                                                   'GHC.Generics.NoSourceStrictness
+                                                   'GHC.Generics.DecidedLazy)
+                                                (GHC.Generics.K1 GHC.Generics.R GHC.Types.Double)
+                                              GHC.Generics.:*: GHC.Generics.M1
+                                                                 GHC.Generics.S
+                                                                 ('GHC.Generics.MetaSel
+                                                                    ('GHC.Maybe.Just "z")
+                                                                    'GHC.Generics.NoSourceUnpackedness
+                                                                    'GHC.Generics.NoSourceStrictness
+                                                                    'GHC.Generics.DecidedLazy)
+                                                                 (GHC.Generics.K1
+                                                                    GHC.Generics.R
+                                                                    GHC.Types.Double))>_R) <x1>_N) }) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fGenericPoint3 :: GHC.Generics.Generic Theories.Geometry.Point3
+  DFunId
+  {- HasNoCafRefs, Strictness: m, Inline: CONLIKE,
+     Unfolding: DFun:.
+                  @ Theories.Geometry.Point3
+                  Theories.Geometry.$fGenericPoint1
+                    `cast`
+                  (forall (x1 :: <*>_N).
+                   <Theories.Geometry.Point3>_R
+                   ->_R (Sym (GHC.Generics.N:M1[0]
+                                  <*>_N
+                                  <GHC.Generics.D>_P
+                                  <'GHC.Generics.MetaData
+                                     "Point3"
+                                     "Theories.Geometry"
+                                     "HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ"
+                                     'GHC.Types.False>_P
+                                  <GHC.Generics.M1
+                                     GHC.Generics.C
+                                     ('GHC.Generics.MetaCons
+                                        "P" 'GHC.Generics.PrefixI 'GHC.Types.True)
+                                     (GHC.Generics.M1
+                                        GHC.Generics.S
+                                        ('GHC.Generics.MetaSel
+                                           ('GHC.Maybe.Just "x")
+                                           'GHC.Generics.NoSourceUnpackedness
+                                           'GHC.Generics.NoSourceStrictness
+                                           'GHC.Generics.DecidedLazy)
+                                        (GHC.Generics.K1 GHC.Generics.R GHC.Types.Double)
+                                      GHC.Generics.:*: (GHC.Generics.M1
+                                                          GHC.Generics.S
+                                                          ('GHC.Generics.MetaSel
+                                                             ('GHC.Maybe.Just "y")
+                                                             'GHC.Generics.NoSourceUnpackedness
+                                                             'GHC.Generics.NoSourceStrictness
+                                                             'GHC.Generics.DecidedLazy)
+                                                          (GHC.Generics.K1
+                                                             GHC.Generics.R GHC.Types.Double)
+                                                        GHC.Generics.:*: GHC.Generics.M1
+                                                                           GHC.Generics.S
+                                                                           ('GHC.Generics.MetaSel
+                                                                              ('GHC.Maybe.Just "z")
+                                                                              'GHC.Generics.NoSourceUnpackedness
+                                                                              'GHC.Generics.NoSourceStrictness
+                                                                              'GHC.Generics.DecidedLazy)
+                                                                           (GHC.Generics.K1
+                                                                              GHC.Generics.R
+                                                                              GHC.Types.Double)))>_R) ; Sub (Sym (Theories.Geometry.Rep_Point3[0]))) <x1>_N)
+                  Theories.Geometry.$fGenericPoint3_$cto -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fGenericPoint3_$cto ::
+    GHC.Generics.Rep Theories.Geometry.Point3 x
+    -> Theories.Geometry.Point3
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LS),1*U(U,1*U(U,U))>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ @ x1 (ds :: GHC.Generics.Rep Theories.Geometry.Point3 x1) ->
+                 case ds
+                        `cast`
+                      ((Sub (Theories.Geometry.Rep_Point3[0]) ; (GHC.Generics.N:M1[0]
+                                                                     <*>_N
+                                                                     <GHC.Generics.D>_P
+                                                                     <'GHC.Generics.MetaData
+                                                                        "Point3"
+                                                                        "Theories.Geometry"
+                                                                        "HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ"
+                                                                        'GHC.Types.False>_P
+                                                                     <GHC.Generics.M1
+                                                                        GHC.Generics.C
+                                                                        ('GHC.Generics.MetaCons
+                                                                           "P"
+                                                                           'GHC.Generics.PrefixI
+                                                                           'GHC.Types.True)
+                                                                        (GHC.Generics.M1
+                                                                           GHC.Generics.S
+                                                                           ('GHC.Generics.MetaSel
+                                                                              ('GHC.Maybe.Just "x")
+                                                                              'GHC.Generics.NoSourceUnpackedness
+                                                                              'GHC.Generics.NoSourceStrictness
+                                                                              'GHC.Generics.DecidedLazy)
+                                                                           (GHC.Generics.K1
+                                                                              GHC.Generics.R
+                                                                              GHC.Types.Double)
+                                                                         GHC.Generics.:*: (GHC.Generics.M1
+                                                                                             GHC.Generics.S
+                                                                                             ('GHC.Generics.MetaSel
+                                                                                                ('GHC.Maybe.Just
+                                                                                                   "y")
+                                                                                                'GHC.Generics.NoSourceUnpackedness
+                                                                                                'GHC.Generics.NoSourceStrictness
+                                                                                                'GHC.Generics.DecidedLazy)
+                                                                                             (GHC.Generics.K1
+                                                                                                GHC.Generics.R
+                                                                                                GHC.Types.Double)
+                                                                                           GHC.Generics.:*: GHC.Generics.M1
+                                                                                                              GHC.Generics.S
+                                                                                                              ('GHC.Generics.MetaSel
+                                                                                                                 ('GHC.Maybe.Just
+                                                                                                                    "z")
+                                                                                                                 'GHC.Generics.NoSourceUnpackedness
+                                                                                                                 'GHC.Generics.NoSourceStrictness
+                                                                                                                 'GHC.Generics.DecidedLazy)
+                                                                                                              (GHC.Generics.K1
+                                                                                                                 GHC.Generics.R
+                                                                                                                 GHC.Types.Double)))>_R ; GHC.Generics.N:M1[0]
+                                                                                                                                              <*>_N
+                                                                                                                                              <GHC.Generics.C>_P
+                                                                                                                                              <'GHC.Generics.MetaCons
+                                                                                                                                                 "P"
+                                                                                                                                                 'GHC.Generics.PrefixI
+                                                                                                                                                 'GHC.Types.True>_P
+                                                                                                                                              <GHC.Generics.M1
+                                                                                                                                                 GHC.Generics.S
+                                                                                                                                                 ('GHC.Generics.MetaSel
+                                                                                                                                                    ('GHC.Maybe.Just
+                                                                                                                                                       "x")
+                                                                                                                                                    'GHC.Generics.NoSourceUnpackedness
+                                                                                                                                                    'GHC.Generics.NoSourceStrictness
+                                                                                                                                                    'GHC.Generics.DecidedLazy)
+                                                                                                                                                 (GHC.Generics.K1
+                                                                                                                                                    GHC.Generics.R
+                                                                                                                                                    GHC.Types.Double)
+                                                                                                                                               GHC.Generics.:*: (GHC.Generics.M1
+                                                                                                                                                                   GHC.Generics.S
+                                                                                                                                                                   ('GHC.Generics.MetaSel
+                                                                                                                                                                      ('GHC.Maybe.Just
+                                                                                                                                                                         "y")
+                                                                                                                                                                      'GHC.Generics.NoSourceUnpackedness
+                                                                                                                                                                      'GHC.Generics.NoSourceStrictness
+                                                                                                                                                                      'GHC.Generics.DecidedLazy)
+                                                                                                                                                                   (GHC.Generics.K1
+                                                                                                                                                                      GHC.Generics.R
+                                                                                                                                                                      GHC.Types.Double)
+                                                                                                                                                                 GHC.Generics.:*: GHC.Generics.M1
+                                                                                                                                                                                    GHC.Generics.S
+                                                                                                                                                                                    ('GHC.Generics.MetaSel
+                                                                                                                                                                                       ('GHC.Maybe.Just
+                                                                                                                                                                                          "z")
+                                                                                                                                                                                       'GHC.Generics.NoSourceUnpackedness
+                                                                                                                                                                                       'GHC.Generics.NoSourceStrictness
+                                                                                                                                                                                       'GHC.Generics.DecidedLazy)
+                                                                                                                                                                                    (GHC.Generics.K1
+                                                                                                                                                                                       GHC.Generics.R
+                                                                                                                                                                                       GHC.Types.Double))>_R)) <x1>_N) of wild { GHC.Generics.:*: ds1 ds2 ->
+                 case ds2 of wild1 { GHC.Generics.:*: ds3 ds4 ->
+                 Theories.Geometry.P
+                   ds1
+                     `cast`
+                   (GHC.Generics.N:M1[0]
+                        <*>_N
+                        <GHC.Generics.S>_P
+                        <'GHC.Generics.MetaSel
+                           ('GHC.Maybe.Just "x")
+                           'GHC.Generics.NoSourceUnpackedness
+                           'GHC.Generics.NoSourceStrictness
+                           'GHC.Generics.DecidedLazy>_P
+                        <GHC.Generics.K1
+                           GHC.Generics.R GHC.Types.Double>_R <x1>_N ; GHC.Generics.N:K1[0]
+                                                                           <*>_N
+                                                                           <GHC.Generics.R>_P
+                                                                           <GHC.Types.Double>_R
+                                                                           <x1>_P)
+                   ds3
+                     `cast`
+                   (GHC.Generics.N:M1[0]
+                        <*>_N
+                        <GHC.Generics.S>_P
+                        <'GHC.Generics.MetaSel
+                           ('GHC.Maybe.Just "y")
+                           'GHC.Generics.NoSourceUnpackedness
+                           'GHC.Generics.NoSourceStrictness
+                           'GHC.Generics.DecidedLazy>_P
+                        <GHC.Generics.K1
+                           GHC.Generics.R GHC.Types.Double>_R <x1>_N ; GHC.Generics.N:K1[0]
+                                                                           <*>_N
+                                                                           <GHC.Generics.R>_P
+                                                                           <GHC.Types.Double>_R
+                                                                           <x1>_P)
+                   ds4
+                     `cast`
+                   (GHC.Generics.N:M1[0]
+                        <*>_N
+                        <GHC.Generics.S>_P
+                        <'GHC.Generics.MetaSel
+                           ('GHC.Maybe.Just "z")
+                           'GHC.Generics.NoSourceUnpackedness
+                           'GHC.Generics.NoSourceStrictness
+                           'GHC.Generics.DecidedLazy>_P
+                        <GHC.Generics.K1
+                           GHC.Generics.R GHC.Types.Double>_R <x1>_N ; GHC.Generics.N:K1[0]
+                                                                           <*>_N
+                                                                           <GHC.Generics.R>_P
+                                                                           <GHC.Types.Double>_R
+                                                                           <x1>_P) } }) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fReadPoint1 ::
+    Text.ParserCombinators.ReadPrec.Prec
+    -> forall b.
+       (Theories.Geometry.Point3 -> Text.ParserCombinators.ReadP.P b)
+       -> Text.ParserCombinators.ReadP.P b
+  {- Arity: 2,
+     Unfolding: (GHC.Read.$fRead()6
+                   @ Theories.Geometry.Point3
+                   Theories.Geometry.$fReadPoint2
+                     `cast`
+                   ((<Text.ParserCombinators.ReadPrec.Prec>_R
+                     ->_R Sym (Text.ParserCombinators.ReadP.N:ReadP[0]
+                                   <Theories.Geometry.Point3>_R)) ; Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
+                                                                             <Theories.Geometry.Point3>_R))) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fReadPoint2 ::
+    Text.ParserCombinators.ReadPrec.Prec
+    -> forall b.
+       (Theories.Geometry.Point3 -> Text.ParserCombinators.ReadP.P b)
+       -> Text.ParserCombinators.ReadP.P b
+  {- Arity: 2, Strictness: <S(S),1*U(U)><L,C(U)>, Inline: [2],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: Text.ParserCombinators.ReadPrec.Prec)
+                   @ b
+                   (w1 :: Theories.Geometry.Point3
+                          -> Text.ParserCombinators.ReadP.P b) ->
+                 case w of ww3 { GHC.Types.I# ww4 ->
+                 Theories.Geometry.$w$creadPrec ww4 @ b w1 }) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fReadPoint3 :: GHC.Read.Read Theories.Geometry.Point3
+  DFunId
+  {- Strictness: m, Inline: CONLIKE,
+     Unfolding: DFun:.
+                  @ Theories.Geometry.Point3
+                  Theories.Geometry.$fReadPoint3_$creadsPrec
+                  Theories.Geometry.$fReadPoint3_$creadList
+                  Theories.Geometry.$fReadPoint1
+                    `cast`
+                  ((<Text.ParserCombinators.ReadPrec.Prec>_R
+                    ->_R Sym (Text.ParserCombinators.ReadP.N:ReadP[0]
+                                  <Theories.Geometry.Point3>_R)) ; Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
+                                                                            <Theories.Geometry.Point3>_R))
+                  Theories.Geometry.$fReadPoint3_$creadListPrec -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fReadPoint3_$creadList ::
+    Text.ParserCombinators.ReadP.ReadS [Theories.Geometry.Point3]
+  {- Arity: 1,
+     Unfolding: (Text.ParserCombinators.ReadP.run
+                   @ [Theories.Geometry.Point3]
+                   Theories.Geometry.$fReadPoint4) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fReadPoint3_$creadListPrec ::
+    Text.ParserCombinators.ReadPrec.ReadPrec [Theories.Geometry.Point3]
+  {- Unfolding: (GHC.Read.list
+                   @ Theories.Geometry.Point3
+                   Theories.Geometry.$fReadPoint1
+                     `cast`
+                   ((<Text.ParserCombinators.ReadPrec.Prec>_R
+                     ->_R Sym (Text.ParserCombinators.ReadP.N:ReadP[0]
+                                   <Theories.Geometry.Point3>_R)) ; Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
+                                                                             <Theories.Geometry.Point3>_R))) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fReadPoint3_$creadsPrec ::
+    GHC.Types.Int
+    -> Text.ParserCombinators.ReadP.ReadS Theories.Geometry.Point3
+  {- Arity: 1, Strictness: <L,U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (n1 :: GHC.Types.Int) ->
+                 Text.ParserCombinators.ReadP.run
+                   @ Theories.Geometry.Point3
+                   (GHC.Read.$fRead()6
+                      @ Theories.Geometry.Point3
+                      Theories.Geometry.$fReadPoint2
+                        `cast`
+                      ((<Text.ParserCombinators.ReadPrec.Prec>_R
+                        ->_R Sym (Text.ParserCombinators.ReadP.N:ReadP[0]
+                                      <Theories.Geometry.Point3>_R)) ; Sym (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
+                                                                                <Theories.Geometry.Point3>_R))
+                      n1
+                      @ Theories.Geometry.Point3
+                      (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
+                         @ Theories.Geometry.Point3))) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fReadPoint4 ::
+    Text.ParserCombinators.ReadP.P [Theories.Geometry.Point3]
+  {- Unfolding: ((Theories.Geometry.$fReadPoint3_$creadListPrec
+                    `cast`
+                  (Text.ParserCombinators.ReadPrec.N:ReadPrec[0]
+                       <[Theories.Geometry.Point3]>_R)
+                    GHC.Read.$fRead()8)
+                   `cast`
+                 (Text.ParserCombinators.ReadP.N:ReadP[0]
+                      <[Theories.Geometry.Point3]>_R)
+                   @ [Theories.Geometry.Point3]
+                   (Text.ParserCombinators.ReadP.$fApplicativeP_$cpure
+                      @ [Theories.Geometry.Point3])) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fShowPoint1 :: Theories.Geometry.Point3 -> GHC.Show.ShowS
+  {- Arity: 1, Strictness: <S,1*U(1*U(U),1*U(U),1*U(U))>,
+     Unfolding: (\ (w :: Theories.Geometry.Point3) ->
+                 case w of ww3 { Theories.Geometry.P ww4 ww5 ww6 ->
+                 Theories.Geometry.$w$cshowsPrec 0# ww4 ww5 ww6 }) -}
+baf641d6a6217dc2dc5533164ffcebcc
+  $fShowPoint2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("}"#) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fShowPoint3 :: GHC.Show.Show Theories.Geometry.Point3
+  DFunId
+  {- Strictness: m, Inline: CONLIKE,
+     Unfolding: DFun:.
+                  @ Theories.Geometry.Point3
+                  Theories.Geometry.$fShowPoint3_$cshowsPrec
+                  Theories.Geometry.$fShowPoint3_$cshow
+                  Theories.Geometry.$fShowPoint3_$cshowList -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fShowPoint3_$cshow :: Theories.Geometry.Point3 -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(1*U(U),1*U(U),1*U(U))>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (x1 :: Theories.Geometry.Point3) ->
+                 Theories.Geometry.$fShowPoint3_$cshowsPrec
+                   Theories.Geometry.$fShowPoint8
+                   x1
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fShowPoint3_$cshowList ::
+    [Theories.Geometry.Point3] -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (ls :: [Theories.Geometry.Point3]) (s :: GHC.Base.String) ->
+                 GHC.Show.showList__
+                   @ Theories.Geometry.Point3
+                   Theories.Geometry.$fShowPoint1
+                   ls
+                   s) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fShowPoint3_$cshowsPrec ::
+    GHC.Types.Int -> Theories.Geometry.Point3 -> GHC.Show.ShowS
+  {- Arity: 2,
+     Strictness: <S(S),1*U(U)><S,1*U(1*U(U),1*U(U),1*U(U))>,
+     Inline: [2],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: GHC.Types.Int) (w1 :: Theories.Geometry.Point3) ->
+                 case w of ww3 { GHC.Types.I# ww4 ->
+                 case w1 of ww5 { Theories.Geometry.P ww6 ww7 ww8 ->
+                 Theories.Geometry.$w$cshowsPrec ww4 ww6 ww7 ww8 } }) -}
+a3335934d96598923d2d00dfc54fa420
+  $fShowPoint4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("z = "#) -}
+2d38ebd44e3c5bf8693bcdaa8d87a3b8
+  $fShowPoint5 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("y = "#) -}
+25d5ab8db26e0b20c8c1b725f05c8877
+  $fShowPoint6 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("x = "#) -}
+d2011230b385f091134b5172be605ce0
+  $fShowPoint7 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("P {"#) -}
+45657b2fb77e2d87170dffcba0b94f43
+  $fShowPoint8 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0#) -}
+bb8af7e4dab341592fd0298aa3e3eb8e
+  $fToJSONPoint1 :: Data.Text.Internal.Text
+  {- Unfolding: (case GHC.Magic.runRW#
+                        @ ('GHC.Types.TupleRep
+                             '[ 'GHC.Types.TupleRep '[], 'GHC.Types.LiftedRep])
+                        @ (# GHC.Prim.State# GHC.Prim.RealWorld, Data.Text.Internal.Text #)
+                        Theories.Geometry.$fToJSONPoint2 of ds1 { (#,#) ipv1 ipv2 ->
+                 ipv2 }) -}
+f53286861cebbc3224d15bfc0d349469
+  $fToJSONPoint10 :: Data.Text.Internal.Text
+  {- Unfolding: (case GHC.Magic.runRW#
+                        @ ('GHC.Types.TupleRep
+                             '[ 'GHC.Types.TupleRep '[], 'GHC.Types.LiftedRep])
+                        @ (# GHC.Prim.State# GHC.Prim.RealWorld, Data.Text.Internal.Text #)
+                        Theories.Geometry.$fToJSONPoint11 of ds1 { (#,#) ipv1 ipv2 ->
+                 ipv2 }) -}
+ccc2d416552bb6f6b8adfcd5a325ebdc
+  $fToJSONPoint11 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          Data.Text.Internal.Text #)
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: (\ (s1 :: GHC.Prim.State#
+                            GHC.Prim.RealWorld)[OneShot] ->
+                 case GHC.Prim.newByteArray#
+                        @ GHC.Prim.RealWorld
+                        10#
+                        s1 of ds1 { (#,#) ipv1 ipv2 ->
+                 Data.Aeson.Types.ToJSON.$wouter1
+                   ipv2
+                   4#
+                   Theories.Geometry.$fToJSONPoint12
+                   0#
+                   ipv1 }) -}
+9c11d86a42c3ee3edddff613dee15261
+  $fToJSONPoint12 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   Theories.Geometry.$fToJSONPoint13) -}
+39a7153af57d2287794ce94181ded076
+  $fToJSONPoint13 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("x"#) -}
+65ca7c0fd1767250036f049ec0a9e764
+  $fToJSONPoint2 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          Data.Text.Internal.Text #)
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: (\ (s1 :: GHC.Prim.State#
+                            GHC.Prim.RealWorld)[OneShot] ->
+                 case GHC.Prim.newByteArray#
+                        @ GHC.Prim.RealWorld
+                        10#
+                        s1 of ds1 { (#,#) ipv1 ipv2 ->
+                 Data.Aeson.Types.ToJSON.$wouter1
+                   ipv2
+                   4#
+                   Theories.Geometry.$fToJSONPoint4
+                   0#
+                   ipv1 }) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fToJSONPoint3 ::
+    Data.Aeson.Types.ToJSON.ToJSON Theories.Geometry.Point3
+  DFunId
+  {- Strictness: m, Inline: CONLIKE,
+     Unfolding: DFun:.
+                  @ Theories.Geometry.Point3
+                  Theories.Geometry.$fToJSONPoint3_$ctoJSON
+                  Theories.Geometry.$fToJSONPoint3_$ctoEncoding
+                  Theories.Geometry.$fToJSONPoint3_$ctoJSONList
+                  Theories.Geometry.$fToJSONPoint3_$ctoEncodingList -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fToJSONPoint3_$ctoEncoding ::
+    Theories.Geometry.Point3 -> Data.Aeson.Encoding.Internal.Encoding
+  {- Arity: 1, Strictness: <S,1*U(1*U(U),1*U(U),1*U(U))>,
+     Inline: (sat-args=0),
+     Unfolding: InlineRule (0, False, False)
+                (\ (x1 :: Theories.Geometry.Point3) ->
+                 Data.Aeson.Encoding.Builder.encodeToBuilder
+                   (Theories.Geometry.$fToJSONPoint3_$ctoJSON x1))
+                  `cast`
+                (<Theories.Geometry.Point3>_R
+                 ->_R Sym (Data.Aeson.Encoding.Internal.N:Encoding'[0]
+                               <Data.Aeson.Types.Internal.Value>_P)) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fToJSONPoint3_$ctoEncodingList ::
+    [Theories.Geometry.Point3] -> Data.Aeson.Encoding.Internal.Encoding
+  {- Arity: 1, Inline: (sat-args=0),
+     Unfolding: InlineRule (0, False, False)
+                (Data.Aeson.Encoding.Internal.list
+                   @ Theories.Geometry.Point3
+                   Theories.Geometry.$fToJSONPoint3_$ctoEncoding) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fToJSONPoint3_$ctoJSON ::
+    Theories.Geometry.Point3 -> Data.Aeson.Types.Internal.Value
+  {- Arity: 1, Strictness: <S,1*U(1*U(U),1*U(U),1*U(U))>m1,
+     Inline: [2],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: Theories.Geometry.Point3) ->
+                 case w of ww3 { Theories.Geometry.P ww4 ww5 ww6 ->
+                 case Theories.Geometry.$w$ctoJSON ww4 ww5 ww6 of ww7 { Unit# ww8 ->
+                 Data.Aeson.Types.Internal.Object ww8 } }) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $fToJSONPoint3_$ctoJSONList ::
+    [Theories.Geometry.Point3] -> Data.Aeson.Types.Internal.Value
+  {- Arity: 1, Strictness: <S,1*U>m2, Inline: (sat-args=0),
+     Unfolding: InlineRule (0, False, False)
+                (\ (x1 :: [Theories.Geometry.Point3]) ->
+                 Data.Aeson.Types.Internal.$WArray
+                   (Data.Vector.Generic.new
+                      @ Data.Vector.Vector
+                      @ Data.Aeson.Types.Internal.Value
+                      (Data.Vector.$fVectorVectora @ Data.Aeson.Types.Internal.Value)
+                      (Data.Vector.Generic.New.unstream
+                         @ Data.Vector.Vector
+                         @ Data.Aeson.Types.Internal.Value
+                         (Data.Vector.$fVectorVectora @ Data.Aeson.Types.Internal.Value)
+                         (Data.Vector.Fusion.Bundle.Monadic.unsafeFromList
+                            @ Data.Vector.Fusion.Util.Id
+                            @ Data.Aeson.Types.Internal.Value
+                            @ Data.Vector.Vector
+                            Data.Vector.Fusion.Util.$fMonadId
+                            Data.Vector.Fusion.Bundle.Size.Unknown
+                            (GHC.Base.build
+                               @ Data.Aeson.Types.Internal.Value
+                               (\ @ b1
+                                  (c :: Data.Aeson.Types.Internal.Value -> b1 -> b1)[OneShot]
+                                  (n1 :: b1)[OneShot] ->
+                                GHC.Base.foldr
+                                  @ Theories.Geometry.Point3
+                                  @ b1
+                                  (GHC.Base.mapFB
+                                     @ Data.Aeson.Types.Internal.Value
+                                     @ b1
+                                     @ Theories.Geometry.Point3
+                                     c
+                                     Theories.Geometry.$fToJSONPoint3_$ctoJSON)
+                                  n1
+                                  x1)))))) -}
+e4ac2bc2626c36734a19631b63de1e63
+  $fToJSONPoint4 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   Theories.Geometry.$fToJSONPoint5) -}
+436971a255e1be8f27c276307e1862e3
+  $fToJSONPoint5 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("z"#) -}
+2e00d8b251df481d765f0fc3a16c38ec
+  $fToJSONPoint6 :: Data.Text.Internal.Text
+  {- Unfolding: (case GHC.Magic.runRW#
+                        @ ('GHC.Types.TupleRep
+                             '[ 'GHC.Types.TupleRep '[], 'GHC.Types.LiftedRep])
+                        @ (# GHC.Prim.State# GHC.Prim.RealWorld, Data.Text.Internal.Text #)
+                        Theories.Geometry.$fToJSONPoint7 of ds1 { (#,#) ipv1 ipv2 ->
+                 ipv2 }) -}
+b094df3b9002af245b609c4d013ad183
+  $fToJSONPoint7 ::
+    GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          Data.Text.Internal.Text #)
+  {- Arity: 1, Strictness: <S,U>,
+     Unfolding: (\ (s1 :: GHC.Prim.State#
+                            GHC.Prim.RealWorld)[OneShot] ->
+                 case GHC.Prim.newByteArray#
+                        @ GHC.Prim.RealWorld
+                        10#
+                        s1 of ds1 { (#,#) ipv1 ipv2 ->
+                 Data.Aeson.Types.ToJSON.$wouter1
+                   ipv2
+                   4#
+                   Theories.Geometry.$fToJSONPoint8
+                   0#
+                   ipv1 }) -}
+9696c3102b1ff4ed754eb73f7eb72942
+  $fToJSONPoint8 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString#
+                   Theories.Geometry.$fToJSONPoint9) -}
+2015409803c50c5c1483e46b5863323a
+  $fToJSONPoint9 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("y"#) -}
+6234e9a99f548e45f2ad64288825fd46
+  $s$fConsFromJSON'TYPEarityfTrue_$cconsParseJSON'2 ::
+    Data.Aeson.Types.Internal.Options
+    -> Data.Aeson.Types.FromJSON.FromArgs
+         Data.Aeson.Types.Generic.Zero a1
+    -> Data.Aeson.Types.Internal.Value
+    -> Data.Aeson.Types.Internal.Parser
+         (GHC.Generics.K1 GHC.Generics.R GHC.Types.Double a1)
+  {- Arity: 3, Strictness: <L,A><L,A><L,U>,
+     Unfolding: InlineRule (3, True, True)
+                (\ @ a2
+                   (w1 :: Data.Aeson.Types.Internal.Options)
+                   (w2 :: Data.Aeson.Types.FromJSON.FromArgs
+                            Data.Aeson.Types.Generic.Zero a2)
+                   (w3 :: Data.Aeson.Types.Internal.Value) ->
+                 Data.Aeson.Types.FromJSON.$w$cgParseJSON2
+                   @ GHC.Types.Double
+                   @ Data.Aeson.Types.Generic.Zero
+                   @ GHC.Generics.R
+                   Data.Aeson.Types.FromJSON.$fFromJSONDouble
+                   @ a2
+                   w3) -}
+45843f01329ad4d019ef597f2eccab3b
+  $s$fConsFromJSON'TYPEarityfTrue_$cconsParseJSON'_$s$fSelectorMetaMetaSel ::
+    GHC.Generics.Selector
+      ('GHC.Generics.MetaSel
+         ('GHC.Maybe.Just "z")
+         'GHC.Generics.NoSourceUnpackedness
+         'GHC.Generics.NoSourceStrictness
+         'GHC.Generics.DecidedLazy)
+  {- Strictness: m, Inline: CONLIKE,
+     Unfolding: DFun:.
+                  @ GHC.Generics.Meta
+                  @ ('GHC.Generics.MetaSel
+                       ('GHC.Maybe.Just "z")
+                       'GHC.Generics.NoSourceUnpackedness
+                       'GHC.Generics.NoSourceStrictness
+                       'GHC.Generics.DecidedLazy)
+                  (\ @ k
+                     @ t :: GHC.Generics.Meta -> (k -> *) -> k -> *
+                     @ f :: k -> *
+                     @ a :: k
+                     (eta :: t ('GHC.Generics.MetaSel
+                                  ('GHC.Maybe.Just "z")
+                                  'GHC.Generics.NoSourceUnpackedness
+                                  'GHC.Generics.NoSourceStrictness
+                                  'GHC.Generics.DecidedLazy) f a) ->
+                   Theories.Geometry.$fToJSONPoint4)
+                  (\ @ k
+                     @ t :: GHC.Generics.Meta -> (k -> *) -> k -> *
+                     @ f :: k -> *
+                     @ a :: k
+                     (ds1 :: t ('GHC.Generics.MetaSel
+                                  ('GHC.Maybe.Just "z")
+                                  'GHC.Generics.NoSourceUnpackedness
+                                  'GHC.Generics.NoSourceStrictness
+                                  'GHC.Generics.DecidedLazy) f a) ->
+                   case GHC.Generics.$WSNoSourceUnpackedness
+                          `cast`
+                        (GHC.Generics.D:R:SingSourceUnpackednessa0[0] <'GHC.Generics.NoSourceUnpackedness>_N) of wild { GHC.Generics.SNoSourceUnpackedness co ->
+                   GHC.Generics.NoSourceUnpackedness
+                     `cast`
+                   (Sub (Sym (GHC.Generics.D:R:DemoteRepSourceUnpackedness[0]))) })
+                    `cast`
+                  (forall (k :: <*>_N) (t :: <GHC.Generics.Meta
+                                              -> (k -> *) -> k -> *>_N) (f :: <k
+                                                                               -> *>_N) (a :: <k>_N).
+                   <t ('GHC.Generics.MetaSel
+                         ('GHC.Maybe.Just "z")
+                         'GHC.Generics.NoSourceUnpackedness
+                         'GHC.Generics.NoSourceStrictness
+                         'GHC.Generics.DecidedLazy) f a>_R
+                   ->_R Sub (GHC.Generics.D:R:DemoteRepSourceUnpackedness[0]))
+                  (\ @ k
+                     @ t :: GHC.Generics.Meta -> (k -> *) -> k -> *
+                     @ f :: k -> *
+                     @ a :: k
+                     (ds1 :: t ('GHC.Generics.MetaSel
+                                  ('GHC.Maybe.Just "z")
+                                  'GHC.Generics.NoSourceUnpackedness
+                                  'GHC.Generics.NoSourceStrictness
+                                  'GHC.Generics.DecidedLazy) f a) ->
+                   case GHC.Generics.$WSNoSourceStrictness
+                          `cast`
+                        (GHC.Generics.D:R:SingSourceStrictnessa0[0] <'GHC.Generics.NoSourceStrictness>_N) of wild { GHC.Generics.SNoSourceStrictness co ->
+                   GHC.Generics.NoSourceStrictness
+                     `cast`
+                   (Sub (Sym (GHC.Generics.D:R:DemoteRepSourceStrictness[0]))) })
+                    `cast`
+                  (forall (k :: <*>_N) (t :: <GHC.Generics.Meta
+                                              -> (k -> *) -> k -> *>_N) (f :: <k
+                                                                               -> *>_N) (a :: <k>_N).
+                   <t ('GHC.Generics.MetaSel
+                         ('GHC.Maybe.Just "z")
+                         'GHC.Generics.NoSourceUnpackedness
+                         'GHC.Generics.NoSourceStrictness
+                         'GHC.Generics.DecidedLazy) f a>_R
+                   ->_R Sub (GHC.Generics.D:R:DemoteRepSourceStrictness[0]))
+                  (\ @ k
+                     @ t :: GHC.Generics.Meta -> (k -> *) -> k -> *
+                     @ f :: k -> *
+                     @ a :: k
+                     (ds1 :: t ('GHC.Generics.MetaSel
+                                  ('GHC.Maybe.Just "z")
+                                  'GHC.Generics.NoSourceUnpackedness
+                                  'GHC.Generics.NoSourceStrictness
+                                  'GHC.Generics.DecidedLazy) f a) ->
+                   case GHC.Generics.$WSDecidedLazy
+                          `cast`
+                        (GHC.Generics.D:R:SingDecidedStrictnessa0[0] <'GHC.Generics.DecidedLazy>_N) of wild { GHC.Generics.SDecidedLazy co ->
+                   GHC.Generics.DecidedLazy
+                     `cast`
+                   (Sub (Sym (GHC.Generics.D:R:DemoteRepDecidedStrictness[0]))) })
+                    `cast`
+                  (forall (k :: <*>_N) (t :: <GHC.Generics.Meta
+                                              -> (k -> *) -> k -> *>_N) (f :: <k
+                                                                               -> *>_N) (a :: <k>_N).
+                   <t ('GHC.Generics.MetaSel
+                         ('GHC.Maybe.Just "z")
+                         'GHC.Generics.NoSourceUnpackedness
+                         'GHC.Generics.NoSourceStrictness
+                         'GHC.Generics.DecidedLazy) f a>_R
+                   ->_R Sub (GHC.Generics.D:R:DemoteRepDecidedStrictness[0])) -}
+992a94cae5db338a49c5848dcd4004b7
+  $s$fConsFromJSON'TYPEarityfTrue_$cconsParseJSON'_$s$fSelectorMetaMetaSel1 ::
+    GHC.Generics.Selector
+      ('GHC.Generics.MetaSel
+         ('GHC.Maybe.Just "y")
+         'GHC.Generics.NoSourceUnpackedness
+         'GHC.Generics.NoSourceStrictness
+         'GHC.Generics.DecidedLazy)
+  {- Strictness: m, Inline: CONLIKE,
+     Unfolding: DFun:.
+                  @ GHC.Generics.Meta
+                  @ ('GHC.Generics.MetaSel
+                       ('GHC.Maybe.Just "y")
+                       'GHC.Generics.NoSourceUnpackedness
+                       'GHC.Generics.NoSourceStrictness
+                       'GHC.Generics.DecidedLazy)
+                  (\ @ k
+                     @ t :: GHC.Generics.Meta -> (k -> *) -> k -> *
+                     @ f :: k -> *
+                     @ a :: k
+                     (eta :: t ('GHC.Generics.MetaSel
+                                  ('GHC.Maybe.Just "y")
+                                  'GHC.Generics.NoSourceUnpackedness
+                                  'GHC.Generics.NoSourceStrictness
+                                  'GHC.Generics.DecidedLazy) f a) ->
+                   Theories.Geometry.$fToJSONPoint8)
+                  (\ @ k
+                     @ t :: GHC.Generics.Meta -> (k -> *) -> k -> *
+                     @ f :: k -> *
+                     @ a :: k
+                     (ds1 :: t ('GHC.Generics.MetaSel
+                                  ('GHC.Maybe.Just "y")
+                                  'GHC.Generics.NoSourceUnpackedness
+                                  'GHC.Generics.NoSourceStrictness
+                                  'GHC.Generics.DecidedLazy) f a) ->
+                   case GHC.Generics.$WSNoSourceUnpackedness
+                          `cast`
+                        (GHC.Generics.D:R:SingSourceUnpackednessa0[0] <'GHC.Generics.NoSourceUnpackedness>_N) of wild { GHC.Generics.SNoSourceUnpackedness co ->
+                   GHC.Generics.NoSourceUnpackedness
+                     `cast`
+                   (Sub (Sym (GHC.Generics.D:R:DemoteRepSourceUnpackedness[0]))) })
+                    `cast`
+                  (forall (k :: <*>_N) (t :: <GHC.Generics.Meta
+                                              -> (k -> *) -> k -> *>_N) (f :: <k
+                                                                               -> *>_N) (a :: <k>_N).
+                   <t ('GHC.Generics.MetaSel
+                         ('GHC.Maybe.Just "y")
+                         'GHC.Generics.NoSourceUnpackedness
+                         'GHC.Generics.NoSourceStrictness
+                         'GHC.Generics.DecidedLazy) f a>_R
+                   ->_R Sub (GHC.Generics.D:R:DemoteRepSourceUnpackedness[0]))
+                  (\ @ k
+                     @ t :: GHC.Generics.Meta -> (k -> *) -> k -> *
+                     @ f :: k -> *
+                     @ a :: k
+                     (ds1 :: t ('GHC.Generics.MetaSel
+                                  ('GHC.Maybe.Just "y")
+                                  'GHC.Generics.NoSourceUnpackedness
+                                  'GHC.Generics.NoSourceStrictness
+                                  'GHC.Generics.DecidedLazy) f a) ->
+                   case GHC.Generics.$WSNoSourceStrictness
+                          `cast`
+                        (GHC.Generics.D:R:SingSourceStrictnessa0[0] <'GHC.Generics.NoSourceStrictness>_N) of wild { GHC.Generics.SNoSourceStrictness co ->
+                   GHC.Generics.NoSourceStrictness
+                     `cast`
+                   (Sub (Sym (GHC.Generics.D:R:DemoteRepSourceStrictness[0]))) })
+                    `cast`
+                  (forall (k :: <*>_N) (t :: <GHC.Generics.Meta
+                                              -> (k -> *) -> k -> *>_N) (f :: <k
+                                                                               -> *>_N) (a :: <k>_N).
+                   <t ('GHC.Generics.MetaSel
+                         ('GHC.Maybe.Just "y")
+                         'GHC.Generics.NoSourceUnpackedness
+                         'GHC.Generics.NoSourceStrictness
+                         'GHC.Generics.DecidedLazy) f a>_R
+                   ->_R Sub (GHC.Generics.D:R:DemoteRepSourceStrictness[0]))
+                  (\ @ k
+                     @ t :: GHC.Generics.Meta -> (k -> *) -> k -> *
+                     @ f :: k -> *
+                     @ a :: k
+                     (ds1 :: t ('GHC.Generics.MetaSel
+                                  ('GHC.Maybe.Just "y")
+                                  'GHC.Generics.NoSourceUnpackedness
+                                  'GHC.Generics.NoSourceStrictness
+                                  'GHC.Generics.DecidedLazy) f a) ->
+                   case GHC.Generics.$WSDecidedLazy
+                          `cast`
+                        (GHC.Generics.D:R:SingDecidedStrictnessa0[0] <'GHC.Generics.DecidedLazy>_N) of wild { GHC.Generics.SDecidedLazy co ->
+                   GHC.Generics.DecidedLazy
+                     `cast`
+                   (Sub (Sym (GHC.Generics.D:R:DemoteRepDecidedStrictness[0]))) })
+                    `cast`
+                  (forall (k :: <*>_N) (t :: <GHC.Generics.Meta
+                                              -> (k -> *) -> k -> *>_N) (f :: <k
+                                                                               -> *>_N) (a :: <k>_N).
+                   <t ('GHC.Generics.MetaSel
+                         ('GHC.Maybe.Just "y")
+                         'GHC.Generics.NoSourceUnpackedness
+                         'GHC.Generics.NoSourceStrictness
+                         'GHC.Generics.DecidedLazy) f a>_R
+                   ->_R Sub (GHC.Generics.D:R:DemoteRepDecidedStrictness[0])) -}
+4e7be4450c68ec365d603dff13c310e5
+  $s$fConsFromJSON'TYPEarityfTrue_$cconsParseJSON'_$s$fSelectorMetaMetaSel2 ::
+    GHC.Generics.Selector
+      ('GHC.Generics.MetaSel
+         ('GHC.Maybe.Just "x")
+         'GHC.Generics.NoSourceUnpackedness
+         'GHC.Generics.NoSourceStrictness
+         'GHC.Generics.DecidedLazy)
+  {- Strictness: m, Inline: CONLIKE,
+     Unfolding: DFun:.
+                  @ GHC.Generics.Meta
+                  @ ('GHC.Generics.MetaSel
+                       ('GHC.Maybe.Just "x")
+                       'GHC.Generics.NoSourceUnpackedness
+                       'GHC.Generics.NoSourceStrictness
+                       'GHC.Generics.DecidedLazy)
+                  (\ @ k
+                     @ t :: GHC.Generics.Meta -> (k -> *) -> k -> *
+                     @ f :: k -> *
+                     @ a :: k
+                     (eta :: t ('GHC.Generics.MetaSel
+                                  ('GHC.Maybe.Just "x")
+                                  'GHC.Generics.NoSourceUnpackedness
+                                  'GHC.Generics.NoSourceStrictness
+                                  'GHC.Generics.DecidedLazy) f a) ->
+                   Theories.Geometry.$fToJSONPoint12)
+                  (\ @ k
+                     @ t :: GHC.Generics.Meta -> (k -> *) -> k -> *
+                     @ f :: k -> *
+                     @ a :: k
+                     (ds1 :: t ('GHC.Generics.MetaSel
+                                  ('GHC.Maybe.Just "x")
+                                  'GHC.Generics.NoSourceUnpackedness
+                                  'GHC.Generics.NoSourceStrictness
+                                  'GHC.Generics.DecidedLazy) f a) ->
+                   case GHC.Generics.$WSNoSourceUnpackedness
+                          `cast`
+                        (GHC.Generics.D:R:SingSourceUnpackednessa0[0] <'GHC.Generics.NoSourceUnpackedness>_N) of wild { GHC.Generics.SNoSourceUnpackedness co ->
+                   GHC.Generics.NoSourceUnpackedness
+                     `cast`
+                   (Sub (Sym (GHC.Generics.D:R:DemoteRepSourceUnpackedness[0]))) })
+                    `cast`
+                  (forall (k :: <*>_N) (t :: <GHC.Generics.Meta
+                                              -> (k -> *) -> k -> *>_N) (f :: <k
+                                                                               -> *>_N) (a :: <k>_N).
+                   <t ('GHC.Generics.MetaSel
+                         ('GHC.Maybe.Just "x")
+                         'GHC.Generics.NoSourceUnpackedness
+                         'GHC.Generics.NoSourceStrictness
+                         'GHC.Generics.DecidedLazy) f a>_R
+                   ->_R Sub (GHC.Generics.D:R:DemoteRepSourceUnpackedness[0]))
+                  (\ @ k
+                     @ t :: GHC.Generics.Meta -> (k -> *) -> k -> *
+                     @ f :: k -> *
+                     @ a :: k
+                     (ds1 :: t ('GHC.Generics.MetaSel
+                                  ('GHC.Maybe.Just "x")
+                                  'GHC.Generics.NoSourceUnpackedness
+                                  'GHC.Generics.NoSourceStrictness
+                                  'GHC.Generics.DecidedLazy) f a) ->
+                   case GHC.Generics.$WSNoSourceStrictness
+                          `cast`
+                        (GHC.Generics.D:R:SingSourceStrictnessa0[0] <'GHC.Generics.NoSourceStrictness>_N) of wild { GHC.Generics.SNoSourceStrictness co ->
+                   GHC.Generics.NoSourceStrictness
+                     `cast`
+                   (Sub (Sym (GHC.Generics.D:R:DemoteRepSourceStrictness[0]))) })
+                    `cast`
+                  (forall (k :: <*>_N) (t :: <GHC.Generics.Meta
+                                              -> (k -> *) -> k -> *>_N) (f :: <k
+                                                                               -> *>_N) (a :: <k>_N).
+                   <t ('GHC.Generics.MetaSel
+                         ('GHC.Maybe.Just "x")
+                         'GHC.Generics.NoSourceUnpackedness
+                         'GHC.Generics.NoSourceStrictness
+                         'GHC.Generics.DecidedLazy) f a>_R
+                   ->_R Sub (GHC.Generics.D:R:DemoteRepSourceStrictness[0]))
+                  (\ @ k
+                     @ t :: GHC.Generics.Meta -> (k -> *) -> k -> *
+                     @ f :: k -> *
+                     @ a :: k
+                     (ds1 :: t ('GHC.Generics.MetaSel
+                                  ('GHC.Maybe.Just "x")
+                                  'GHC.Generics.NoSourceUnpackedness
+                                  'GHC.Generics.NoSourceStrictness
+                                  'GHC.Generics.DecidedLazy) f a) ->
+                   case GHC.Generics.$WSDecidedLazy
+                          `cast`
+                        (GHC.Generics.D:R:SingDecidedStrictnessa0[0] <'GHC.Generics.DecidedLazy>_N) of wild { GHC.Generics.SDecidedLazy co ->
+                   GHC.Generics.DecidedLazy
+                     `cast`
+                   (Sub (Sym (GHC.Generics.D:R:DemoteRepDecidedStrictness[0]))) })
+                    `cast`
+                  (forall (k :: <*>_N) (t :: <GHC.Generics.Meta
+                                              -> (k -> *) -> k -> *>_N) (f :: <k
+                                                                               -> *>_N) (a :: <k>_N).
+                   <t ('GHC.Generics.MetaSel
+                         ('GHC.Maybe.Just "x")
+                         'GHC.Generics.NoSourceUnpackedness
+                         'GHC.Generics.NoSourceStrictness
+                         'GHC.Generics.DecidedLazy) f a>_R
+                   ->_R Sub (GHC.Generics.D:R:DemoteRepDecidedStrictness[0])) -}
+13f8530048993d2850b36243f584949b
+  $tc'P :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   5032765092392602835##
+                   14689835745515423351##
+                   Theories.Geometry.$trModule
+                   Theories.Geometry.$tc'P2
+                   0#
+                   Theories.Geometry.$tc'P1) -}
+e2851c9d70f18731e7cd1f545dbbc6cf
+  $tc'P1 :: GHC.Types.KindRep
+  {- HasNoCafRefs, Strictness: m4, Inline: [~] -}
+2430d6172d41132cbd0420a4153372a4
+  $tc'P2 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Theories.Geometry.$tc'P3) -}
+ae294a23879bc851cf6ecaf64128225f
+  $tc'P3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("'P"#) -}
+45229643883cdf316cde2babd2edd0f1
+  $tcPoint1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Theories.Geometry.$tcPoint2) -}
+4b4d28e83cd30d578519acac65af66b6
+  $tcPoint2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Point3"#) -}
+23f55bf06dc1bfbdfebdec36b9d26f12
+  $tcPoint3 :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   3359438377960536085##
+                   2914939799786236109##
+                   Theories.Geometry.$trModule
+                   Theories.Geometry.$tcPoint1
+                   0#
+                   GHC.Types.krep$*) -}
+0eec67f2dc4a247843abaa172ee8d01f
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Theories.Geometry.$trModule3
+                   Theories.Geometry.$trModule1) -}
+193e208e661ca7da1e8461c119f16e4b
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Theories.Geometry.$trModule2) -}
+41f8157202f798966952f2e32893c2de
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Theories.Geometry"#) -}
+3deb70f4ab25f30ea4c1becddc72e93d
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Theories.Geometry.$trModule4) -}
+3082c41ef0a1cfa3ad253d1ac8d1c32a
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs,
+     Unfolding: ("HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ"#) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $w$cparseJSONList ::
+    GHC.Prim.Int#
+    -> GHC.Prim.Int#
+    -> GHC.Prim.Array# Data.Aeson.Types.Internal.Value
+    -> Data.Aeson.Types.Internal.Parser [Theories.Geometry.Point3]
+  {- Arity: 3, Strictness: <L,U><S,U><L,U>, Inline: [2],
+     Unfolding: (\ (ww3 :: GHC.Prim.Int#)
+                   (ww4 :: GHC.Prim.Int#)
+                   (ww5 :: GHC.Prim.Array# Data.Aeson.Types.Internal.Value) ->
+                 letrec {
+                   $wgo :: GHC.Prim.Int# -> [Data.Aeson.Types.Internal.Value]
+                     {- Arity: 1, Strictness: <S,U>, Inline: [2] -}
+                   = \ (ww6 :: GHC.Prim.Int#) ->
+                     case GHC.Prim.>=# ww6 ww4 of lwild {
+                       DEFAULT
+                       -> case GHC.Prim.indexArray#
+                                 @ Data.Aeson.Types.Internal.Value
+                                 ww5
+                                 (GHC.Prim.+# ww3 ww6) of ds2 { Unit# ipv ->
+                          GHC.Types.:
+                            @ Data.Aeson.Types.Internal.Value
+                            ipv
+                            ($wgo (GHC.Prim.+# ww6 1#)) }
+                       1# -> GHC.Types.[] @ Data.Aeson.Types.Internal.Value }
+                 } in
+                 Theories.Geometry.$fFromJSONPoint3_go 0# ($wgo 0#)) -}
+b59f62cd64e1c9497afccd601ba4687f
+  $w$creadPrec ::
+    GHC.Prim.Int#
+    -> forall b.
+       (Theories.Geometry.Point3 -> Text.ParserCombinators.ReadP.P b)
+       -> Text.ParserCombinators.ReadP.P b
+  {- Arity: 2, Strictness: <S,U><L,C(U)>, Inline: [2] -}
+a554f327e8c1e4716f5d1db113f814a6
+  $w$cshowsPrec ::
+    GHC.Prim.Int#
+    -> GHC.Types.Double
+    -> GHC.Types.Double
+    -> GHC.Types.Double
+    -> GHC.Show.ShowS
+  {- Arity: 4, Strictness: <S,U><L,1*U(U)><L,1*U(U)><L,1*U(U)>,
+     Inline: [2],
+     Unfolding: (\ (ww3 :: GHC.Prim.Int#)
+                   (ww4 :: GHC.Types.Double)
+                   (ww5 :: GHC.Types.Double)
+                   (ww6 :: GHC.Types.Double) ->
+                 let {
+                   f :: GHC.Base.String -> GHC.Base.String
+                   = case ww4 of ww7 { GHC.Types.D# ww8 ->
+                     GHC.Float.$w$sshowSignedFloat
+                       GHC.Float.$fShowDouble2
+                       Theories.Geometry.$fShowPoint8
+                       ww8 }
+                 } in
+                 let {
+                   f1 :: GHC.Base.String -> GHC.Base.String
+                   = case ww5 of ww7 { GHC.Types.D# ww8 ->
+                     GHC.Float.$w$sshowSignedFloat
+                       GHC.Float.$fShowDouble2
+                       Theories.Geometry.$fShowPoint8
+                       ww8 }
+                 } in
+                 let {
+                   f2 :: GHC.Base.String -> GHC.Base.String
+                   = case ww6 of ww7 { GHC.Types.D# ww8 ->
+                     GHC.Float.$w$sshowSignedFloat
+                       GHC.Float.$fShowDouble2
+                       Theories.Geometry.$fShowPoint8
+                       ww8 }
+                 } in
+                 case GHC.Prim.>=# ww3 11# of lwild {
+                   DEFAULT
+                   -> \ (x1 :: GHC.Base.String) ->
+                      GHC.CString.unpackAppendCString#
+                        Theories.Geometry.$fShowPoint7
+                        (GHC.CString.unpackAppendCString#
+                           Theories.Geometry.$fShowPoint6
+                           (f (GHC.Base.++
+                                 @ GHC.Types.Char
+                                 GHC.Show.showCommaSpace1
+                                 (GHC.CString.unpackAppendCString#
+                                    Theories.Geometry.$fShowPoint5
+                                    (f1
+                                       (GHC.Base.++
+                                          @ GHC.Types.Char
+                                          GHC.Show.showCommaSpace1
+                                          (GHC.CString.unpackAppendCString#
+                                             Theories.Geometry.$fShowPoint4
+                                             (f2
+                                                (GHC.CString.unpackAppendCString#
+                                                   Theories.Geometry.$fShowPoint2
+                                                   x1)))))))))
+                   1#
+                   -> \ (x1 :: GHC.Base.String) ->
+                      GHC.Types.:
+                        @ GHC.Types.Char
+                        GHC.Show.$fShow(,)4
+                        (GHC.CString.unpackAppendCString#
+                           Theories.Geometry.$fShowPoint7
+                           (GHC.CString.unpackAppendCString#
+                              Theories.Geometry.$fShowPoint6
+                              (f (GHC.Base.++
+                                    @ GHC.Types.Char
+                                    GHC.Show.showCommaSpace1
+                                    (GHC.CString.unpackAppendCString#
+                                       Theories.Geometry.$fShowPoint5
+                                       (f1
+                                          (GHC.Base.++
+                                             @ GHC.Types.Char
+                                             GHC.Show.showCommaSpace1
+                                             (GHC.CString.unpackAppendCString#
+                                                Theories.Geometry.$fShowPoint4
+                                                (f2
+                                                   (GHC.CString.unpackAppendCString#
+                                                      Theories.Geometry.$fShowPoint2
+                                                      (GHC.Types.:
+                                                         @ GHC.Types.Char
+                                                         GHC.Show.$fShow(,)2
+                                                         x1))))))))))) }) -}
+93c8c017b7bf608ba7067f355f500a06
+  $w$ctoJSON ::
+    GHC.Types.Double
+    -> GHC.Types.Double
+    -> GHC.Types.Double
+    -> (# Data.Aeson.Types.Internal.Object #)
+  {- Arity: 3, Strictness: <L,1*U(U)><L,1*U(U)><L,1*U(U)>,
+     Inline: [2],
+     Unfolding: (\ (ww3 :: GHC.Types.Double)
+                   (ww4 :: GHC.Types.Double)
+                   (ww5 :: GHC.Types.Double) ->
+                 case Data.Aeson.Types.ToJSON.$fFromPairsValueDList_go
+                        (GHC.Types.:
+                           @ Data.Aeson.Types.Internal.Pair
+                           (Theories.Geometry.$fToJSONPoint10,
+                            Data.Aeson.Types.ToJSON.$fToJSONDouble_$srealFloatToJSON ww3)
+                           (GHC.Types.:
+                              @ Data.Aeson.Types.Internal.Pair
+                              (Theories.Geometry.$fToJSONPoint6,
+                               Data.Aeson.Types.ToJSON.$fToJSONDouble_$srealFloatToJSON ww4)
+                              (GHC.Types.:
+                                 @ Data.Aeson.Types.Internal.Pair
+                                 (Theories.Geometry.$fToJSONPoint1,
+                                  Data.Aeson.Types.ToJSON.$fToJSONDouble_$srealFloatToJSON ww5)
+                                 (GHC.Types.[] @ Data.Aeson.Types.Internal.Pair))))
+                        (Data.HashMap.Base.Empty
+                           @ Data.Text.Internal.Text
+                           @ Data.Aeson.Types.Internal.Value) of ww6 { Data.Aeson.Types.Internal.Object ww7 ->
+                 (# ww7 #) }) -}
+20b870fdacec3e014ff31125830f11dc
+  $wprojectToPlaneZ ::
+    GHC.Types.Double
+    -> GHC.Types.Double
+    -> GHC.Types.Double
+    -> GHC.Types.Double
+    -> GHC.Prim.Double#
+    -> GHC.Types.Double
+    -> GHC.Maybe.Maybe Theories.Geometry.Point3
+  {- Arity: 6, HasNoCafRefs,
+     Strictness: <L,1*U(U)><L,1*U(U)><L,1*U(U)><L,1*U(U)><S,U><L,1*U(U)>,
+     Inline: [2],
+     Unfolding: (\ (ww3 :: GHC.Types.Double)
+                   (ww4 :: GHC.Types.Double)
+                   (ww5 :: GHC.Types.Double)
+                   (ww6 :: GHC.Types.Double)
+                   (ww7 :: GHC.Prim.Double#)
+                   (ww8 :: GHC.Types.Double) ->
+                 case GHC.Prim.==## ww7 0.0## of lwild {
+                   DEFAULT
+                   -> let {
+                        coef :: GHC.Types.Double
+                        = case ww4 of wild { GHC.Types.D# x1 ->
+                          case GHC.Prim./## x1 ww7 of wild2 { DEFAULT ->
+                          GHC.Types.D# (GHC.Prim.negateDouble# wild2) } }
+                      } in
+                      GHC.Maybe.Just
+                        @ Theories.Geometry.Point3
+                        (Theories.Geometry.P
+                           (case ww3 of wild { GHC.Types.D# x1 ->
+                            case coef of wild1 { GHC.Types.D# x2 ->
+                            case ww6 of wild2 { GHC.Types.D# y1 ->
+                            GHC.Types.D# (GHC.Prim.+## x1 (GHC.Prim.*## x2 y1)) } } })
+                           Theories.Geometry.projectToPlaneZ1
+                           (case ww5 of wild { GHC.Types.D# x1 ->
+                            case coef of wild1 { GHC.Types.D# x2 ->
+                            case ww8 of wild2 { GHC.Types.D# y1 ->
+                            GHC.Types.D# (GHC.Prim.+## x1 (GHC.Prim.*## x2 y1)) } } }))
+                   1# -> GHC.Maybe.Nothing @ Theories.Geometry.Point3 }) -}
+b59f62cd64e1c9497afccd601ba4687f
+  data Point3
+    = P {x :: GHC.Types.Double,
+         y :: GHC.Types.Double,
+         z :: GHC.Types.Double}
+8ed4eab162e655d73485078737f28cd6
+  type Polygon = [Theories.Geometry.Point3]
+b59f62cd64e1c9497afccd601ba4687f
+  axiom Theories.Geometry.Rep_Point3::
+      GHC.Generics.Rep Theories.Geometry.Point3
+        = GHC.Generics.D1
+            ('GHC.Generics.MetaData
+               "Point3"
+               "Theories.Geometry"
+               "HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ"
+               'GHC.Types.False)
+            (GHC.Generics.C1
+               ('GHC.Generics.MetaCons "P" 'GHC.Generics.PrefixI 'GHC.Types.True)
+               (GHC.Generics.S1
+                  ('GHC.Generics.MetaSel
+                     ('GHC.Maybe.Just "x")
+                     'GHC.Generics.NoSourceUnpackedness
+                     'GHC.Generics.NoSourceStrictness
+                     'GHC.Generics.DecidedLazy)
+                  (GHC.Generics.Rec0 GHC.Types.Double)
+                GHC.Generics.:*: (GHC.Generics.S1
+                                    ('GHC.Generics.MetaSel
+                                       ('GHC.Maybe.Just "y")
+                                       'GHC.Generics.NoSourceUnpackedness
+                                       'GHC.Generics.NoSourceStrictness
+                                       'GHC.Generics.DecidedLazy)
+                                    (GHC.Generics.Rec0 GHC.Types.Double)
+                                  GHC.Generics.:*: GHC.Generics.S1
+                                                     ('GHC.Generics.MetaSel
+                                                        ('GHC.Maybe.Just "z")
+                                                        'GHC.Generics.NoSourceUnpackedness
+                                                        'GHC.Generics.NoSourceStrictness
+                                                        'GHC.Generics.DecidedLazy)
+                                                     (GHC.Generics.Rec0 GHC.Types.Double))))
+e573475306a853bdd1270f2bbf790680
+  type Vector3 = Theories.Geometry.Point3
+70f12808d4acafa4c2d3f6e60d65e718
+  crossProduct ::
+    Theories.Geometry.Vector3
+    -> Theories.Geometry.Vector3 -> Theories.Geometry.Vector3
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S,1*U(U(U),U(U),U(U))><S,1*U(U(U),U(U),U(U))>m,
+     Inline: [2],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: Theories.Geometry.Vector3)
+                   (w1 :: Theories.Geometry.Vector3) ->
+                 case w of ww3 { Theories.Geometry.P ww4 ww5 ww6 ->
+                 case w1 of ww7 { Theories.Geometry.P ww8 ww9 ww10 ->
+                 Theories.Geometry.P
+                   (case ww5 of wild { GHC.Types.D# x1 ->
+                    case ww10 of wild1 { GHC.Types.D# y1 ->
+                    case ww6 of wild2 { GHC.Types.D# x2 ->
+                    case ww9 of wild3 { GHC.Types.D# y2 ->
+                    GHC.Types.D#
+                      (GHC.Prim.-## (GHC.Prim.*## x1 y1) (GHC.Prim.*## x2 y2)) } } } })
+                   (case ww6 of wild { GHC.Types.D# x1 ->
+                    case ww8 of wild1 { GHC.Types.D# y1 ->
+                    case ww4 of wild2 { GHC.Types.D# x2 ->
+                    case ww10 of wild3 { GHC.Types.D# y2 ->
+                    GHC.Types.D#
+                      (GHC.Prim.-## (GHC.Prim.*## x1 y1) (GHC.Prim.*## x2 y2)) } } } })
+                   (case ww4 of wild { GHC.Types.D# x1 ->
+                    case ww9 of wild1 { GHC.Types.D# y1 ->
+                    case ww5 of wild2 { GHC.Types.D# x2 ->
+                    case ww8 of wild3 { GHC.Types.D# y2 ->
+                    GHC.Types.D#
+                      (GHC.Prim.-##
+                         (GHC.Prim.*## x1 y1)
+                         (GHC.Prim.*## x2 y2)) } } } }) } }) -}
+fa7c2dddfe0140e1ec2c9213e1337763
+  emptyPolygon :: Theories.Geometry.Polygon
+  {- HasNoCafRefs,
+     Unfolding: InlineRule (0, True, True)
+                (GHC.Types.[] @ Theories.Geometry.Point3) -}
+30717c4c402fc4b3e52c438dd3eb6eec
+  polyUnion ::
+    Theories.Geometry.Polygon
+    -> Theories.Geometry.Polygon -> Theories.Geometry.Polygon
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><L,1*U>,
+     Unfolding: InlineRule (0, True, True)
+                (GHC.Base.++ @ Theories.Geometry.Point3) -}
+b328c90b346d5d766bc9ca5e0e273e34
+  projectToPlaneZ ::
+    Theories.Geometry.Vector3
+    -> Theories.Geometry.Point3
+    -> GHC.Maybe.Maybe Theories.Geometry.Point3
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S,1*U(1*U(U),1*U(U),1*U(U))><S(LS(S)L),1*U(1*U(U),1*U(U),1*U(U))>,
+     Inline: [2],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: Theories.Geometry.Vector3)
+                   (w1 :: Theories.Geometry.Point3) ->
+                 case w of ww3 { Theories.Geometry.P ww4 ww5 ww6 ->
+                 case w1 of ww7 { Theories.Geometry.P ww8 ww9 ww10 ->
+                 case ww9 of ww11 { GHC.Types.D# ww12 ->
+                 Theories.Geometry.$wprojectToPlaneZ
+                   ww4
+                   ww5
+                   ww6
+                   ww8
+                   ww12
+                   ww10 } } }) -}
+74221fa142407fc36e91cbfe1e239f03
+  projectToPlaneZ1 :: GHC.Types.Double
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.D# 0.0##) -}
+a4d317d3d1d50f3879456dff267b4d09
+  vecadd ::
+    Theories.Geometry.Vector3
+    -> Theories.Geometry.Vector3 -> Theories.Geometry.Vector3
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S,1*U(1*U(U),1*U(U),1*U(U))><S,1*U(1*U(U),1*U(U),1*U(U))>m,
+     Inline: [2],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: Theories.Geometry.Vector3)
+                   (w1 :: Theories.Geometry.Vector3) ->
+                 case w of ww3 { Theories.Geometry.P ww4 ww5 ww6 ->
+                 case w1 of ww7 { Theories.Geometry.P ww8 ww9 ww10 ->
+                 Theories.Geometry.P
+                   (GHC.Float.plusDouble ww4 ww8)
+                   (GHC.Float.plusDouble ww5 ww9)
+                   (GHC.Float.plusDouble ww6 ww10) } }) -}
+b59f62cd64e1c9497afccd601ba4687f
+  x :: Theories.Geometry.Point3 -> GHC.Types.Double
+  RecSel Left Theories.Geometry.Point3
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(SLL),1*U(1*U(U),A,A)>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Theories.Geometry.Point3) ->
+                 case ds of wild { Theories.Geometry.P ds1 ds2 ds3 -> ds1 }) -}
+b59f62cd64e1c9497afccd601ba4687f
+  y :: Theories.Geometry.Point3 -> GHC.Types.Double
+  RecSel Left Theories.Geometry.Point3
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LSL),1*U(A,1*U(U),A)>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Theories.Geometry.Point3) ->
+                 case ds of wild { Theories.Geometry.P ds1 ds2 ds3 -> ds2 }) -}
+b59f62cd64e1c9497afccd601ba4687f
+  z :: Theories.Geometry.Point3 -> GHC.Types.Double
+  RecSel Left Theories.Geometry.Point3
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LLS),1*U(A,A,1*U(U))>m,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Theories.Geometry.Point3) ->
+                 case ds of wild { Theories.Geometry.P ds1 ds2 ds3 -> ds3 }) -}
+instance Data.Aeson.Types.FromJSON.FromJSON [Theories.Geometry.Point3]
+  = Theories.Geometry.$fFromJSONPoint3
+instance GHC.Generics.Generic [Theories.Geometry.Point3]
+  = Theories.Geometry.$fGenericPoint3
+instance GHC.Read.Read [Theories.Geometry.Point3]
+  = Theories.Geometry.$fReadPoint3
+instance GHC.Show.Show [Theories.Geometry.Point3]
+  = Theories.Geometry.$fShowPoint3
+instance Data.Aeson.Types.ToJSON.ToJSON [Theories.Geometry.Point3]
+  = Theories.Geometry.$fToJSONPoint3
+family instance GHC.Generics.Rep [Theories.Geometry.Point3]
+  = Theories.Geometry.Rep_Point3
+"SPEC/Theories.Geometry $fSelectorMetaMetaSel @ ('Just
+                                                  "x") @ 'NoSourceUnpackedness @ 'NoSourceStrictness @ 'DecidedLazy" [orphan] forall (v3 :: GHC.Generics.SingI
+                                                                                                                                                                                                     'GHC.Generics.DecidedLazy)
+                                                                                                                                                                                            (v2 :: GHC.Generics.SingI
+                                                                                                                                                                                                     'GHC.Generics.NoSourceStrictness)
+                                                                                                                                                                                            (v1 :: GHC.Generics.SingI
+                                                                                                                                                                                                     'GHC.Generics.NoSourceUnpackedness)
+                                                                                                                                                                                            (v :: GHC.Generics.SingI
+                                                                                                                                                                                                    ('GHC.Maybe.Just
+                                                                                                                                                                                                       "x"))
+  GHC.Generics.$fSelectorMetaMetaSel @ ('GHC.Maybe.Just "x")
+                                     @ 'GHC.Generics.NoSourceUnpackedness
+                                     @ 'GHC.Generics.NoSourceStrictness
+                                     @ 'GHC.Generics.DecidedLazy
+                                     v
+                                     v1
+                                     v2
+                                     v3
+  = Theories.Geometry.$s$fConsFromJSON'TYPEarityfTrue_$cconsParseJSON'_$s$fSelectorMetaMetaSel2
+"SPEC/Theories.Geometry $fSelectorMetaMetaSel @ ('Just
+                                                  "y") @ 'NoSourceUnpackedness @ 'NoSourceStrictness @ 'DecidedLazy" [orphan] forall (v3 :: GHC.Generics.SingI
+                                                                                                                                                                                                     'GHC.Generics.DecidedLazy)
+                                                                                                                                                                                            (v2 :: GHC.Generics.SingI
+                                                                                                                                                                                                     'GHC.Generics.NoSourceStrictness)
+                                                                                                                                                                                            (v1 :: GHC.Generics.SingI
+                                                                                                                                                                                                     'GHC.Generics.NoSourceUnpackedness)
+                                                                                                                                                                                            (v :: GHC.Generics.SingI
+                                                                                                                                                                                                    ('GHC.Maybe.Just
+                                                                                                                                                                                                       "y"))
+  GHC.Generics.$fSelectorMetaMetaSel @ ('GHC.Maybe.Just "y")
+                                     @ 'GHC.Generics.NoSourceUnpackedness
+                                     @ 'GHC.Generics.NoSourceStrictness
+                                     @ 'GHC.Generics.DecidedLazy
+                                     v
+                                     v1
+                                     v2
+                                     v3
+  = Theories.Geometry.$s$fConsFromJSON'TYPEarityfTrue_$cconsParseJSON'_$s$fSelectorMetaMetaSel1
+"SPEC/Theories.Geometry $fSelectorMetaMetaSel @ ('Just
+                                                  "z") @ 'NoSourceUnpackedness @ 'NoSourceStrictness @ 'DecidedLazy" [orphan] forall (v3 :: GHC.Generics.SingI
+                                                                                                                                                                                                     'GHC.Generics.DecidedLazy)
+                                                                                                                                                                                            (v2 :: GHC.Generics.SingI
+                                                                                                                                                                                                     'GHC.Generics.NoSourceStrictness)
+                                                                                                                                                                                            (v1 :: GHC.Generics.SingI
+                                                                                                                                                                                                     'GHC.Generics.NoSourceUnpackedness)
+                                                                                                                                                                                            (v :: GHC.Generics.SingI
+                                                                                                                                                                                                    ('GHC.Maybe.Just
+                                                                                                                                                                                                       "z"))
+  GHC.Generics.$fSelectorMetaMetaSel @ ('GHC.Maybe.Just "z")
+                                     @ 'GHC.Generics.NoSourceUnpackedness
+                                     @ 'GHC.Generics.NoSourceStrictness
+                                     @ 'GHC.Generics.DecidedLazy
+                                     v
+                                     v1
+                                     v2
+                                     v3
+  = Theories.Geometry.$s$fConsFromJSON'TYPEarityfTrue_$cconsParseJSON'_$s$fSelectorMetaMetaSel
+trusted: none
+require own pkg trusted: False
+module header:
+  Nothing
+declaration docs:
+arg docs:
+

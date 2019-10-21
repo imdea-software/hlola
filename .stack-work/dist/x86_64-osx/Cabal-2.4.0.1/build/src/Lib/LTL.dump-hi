@@ -1,0 +1,485 @@
+
+==================== FINAL INTERFACE ====================
+2019-10-21 10:04:15.691848 UTC
+
+interface HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Lib.LTL 8065
+  interface hash: b68b4335a1f17f9791e1bf77c44802e2
+  ABI hash: 1aeef460f9869d05f1dc3ad16d7a16dc
+  export-list hash: 5e7c1704caae20e2d335cc05b7046b4c
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 0f7343278d2a04300ce016d814cb4055
+  opt_hash: 6faf2de08de32d19db9870899d88e59a
+  hpc_hash: 93b885adfe0da089cdf634904fd59f71
+  plugin_hash: ad164012d6b1e14942349d58b1132007
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Lib.LTL.historically
+  Lib.LTL.nViolations
+  Lib.LTL.once
+  Lib.LTL.percentViolations
+  Lib.LTL.since
+  Lib.LTL.yesterday
+  Lib.LTL.zesterday
+module dependencies: Lib.Utils Lola Syntax.Booleans
+                     Syntax.HLPrelude Syntax.Num
+package dependencies: aeson-1.4.5.0 array-0.5.3.0
+                      attoparsec-0.13.2.3 base-4.12.0.0 base-compat-0.10.5
+                      base-orphans-0.8.1 binary-0.8.6.0 bytestring-0.10.8.2
+                      containers-0.6.0.1 deepseq-1.4.4.0 dlist-0.8.0.7 ghc-boot-th-8.6.5
+                      ghc-prim-0.5.3 hashable-1.2.7.0 integer-gmp-1.0.2.0
+                      integer-logarithms-1.0.3 primitive-0.6.4.0 random-1.1
+                      scientific-0.3.6.2 tagged-0.8.6 template-haskell-2.14.0.0
+                      text-1.2.3.1 time-1.8.0.2 time-compat-1.9.2.2 transformers-0.5.6.2
+                      unordered-containers-0.2.10.0 uuid-types-1.0.3 vector-0.12.0.3
+orphans: HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Syntax.Num
+         attoparsec-0.13.2.3:Data.Attoparsec.Text.Internal
+         attoparsec-0.13.2.3:Data.Attoparsec.ByteString.Char8
+         time-1.8.0.2:Data.Time.Clock.TAI
+         vector-0.12.0.3:Data.Vector.Unboxed
+         time-1.8.0.2:Data.Time.Format.Parse
+         time-1.8.0.2:Data.Time.LocalTime.Internal.ZonedTime
+         time-1.8.0.2:Data.Time.LocalTime.Internal.LocalTime
+         time-1.8.0.2:Data.Time.Calendar.Gregorian
+         hashable-1.2.7.0:Data.Hashable.Generic text-1.2.3.1:Data.Text.Lazy
+         text-1.2.3.1:Data.Text binary-0.8.6.0:Data.Binary.Generic
+         bytestring-0.10.8.2:Data.ByteString.Builder
+         text-1.2.3.1:Data.Text.Show
+         vector-0.12.0.3:Data.Vector.Fusion.Bundle
+         transformers-0.5.6.2:Control.Monad.Trans.Error
+         base-4.12.0.0:GHC.Float base-4.12.0.0:GHC.Base
+family instance modules: aeson-1.4.5.0:Data.Aeson.Types.Internal
+                         attoparsec-0.13.2.3:Data.Attoparsec.Internal.Types
+                         base-4.12.0.0:Control.Applicative base-4.12.0.0:Data.Complex
+                         base-4.12.0.0:Data.Functor.Compose base-4.12.0.0:Data.Functor.Const
+                         base-4.12.0.0:Data.Functor.Identity
+                         base-4.12.0.0:Data.Functor.Product base-4.12.0.0:Data.Functor.Sum
+                         base-4.12.0.0:Data.Monoid base-4.12.0.0:Data.Semigroup
+                         base-4.12.0.0:Data.Semigroup.Internal base-4.12.0.0:Data.Version
+                         base-4.12.0.0:Data.Void base-4.12.0.0:GHC.Exts
+                         base-4.12.0.0:GHC.Generics base-4.12.0.0:GHC.IO.Exception
+                         containers-0.6.0.1:Data.IntMap.Internal
+                         containers-0.6.0.1:Data.IntSet.Internal
+                         containers-0.6.0.1:Data.Map.Internal
+                         containers-0.6.0.1:Data.Sequence.Internal
+                         containers-0.6.0.1:Data.Set.Internal containers-0.6.0.1:Data.Tree
+                         dlist-0.8.0.7:Data.DList ghc-boot-th-8.6.5:GHC.ForeignSrcLang.Type
+                         ghc-boot-th-8.6.5:GHC.LanguageExtensions.Type
+                         primitive-0.6.4.0:Control.Monad.Primitive
+                         primitive-0.6.4.0:Data.Primitive.Array
+                         primitive-0.6.4.0:Data.Primitive.ByteArray
+                         primitive-0.6.4.0:Data.Primitive.PrimArray
+                         primitive-0.6.4.0:Data.Primitive.SmallArray
+                         primitive-0.6.4.0:Data.Primitive.UnliftedArray
+                         tagged-0.8.6:Data.Tagged
+                         template-haskell-2.14.0.0:Language.Haskell.TH.Syntax
+                         text-1.2.3.1:Data.Text text-1.2.3.1:Data.Text.Lazy
+                         unordered-containers-0.2.10.0:Data.HashMap.Base
+                         unordered-containers-0.2.10.0:Data.HashSet.Base
+                         uuid-types-1.0.3:Data.UUID.Types.Internal
+                         uuid-types-1.0.3:Data.UUID.Types.Internal.Builder
+                         vector-0.12.0.3:Data.Vector vector-0.12.0.3:Data.Vector.Primitive
+                         vector-0.12.0.3:Data.Vector.Storable
+                         vector-0.12.0.3:Data.Vector.Unboxed
+                         vector-0.12.0.3:Data.Vector.Unboxed.Base
+import  -/  Lib.Utils a741977eb01fbbecda6505024611855e
+  exports: 179ea7b1e0fab088922dc6fd18e202be
+  hFoldl 8dd7f79b170be332b5a451865930696c
+  instantN 329515ec52a13b096692d80ddb99d6e2
+import  -/  Lola f52d080a9c6c535055cc2d321870899c
+  exports: f0b2b11faceeef480fb3969a0b54aac2
+  :@ 0e91454cfe22ab22364b2d071c8db005
+  <: ede31a85d24f5fc58211abc6c1cf47eb
+  =: 8a68e19014f2cf73a7f77ec6fc12c12c
+  Now 19aae6044cf44591930683cbda472505
+  Stream 842b407b0b18370d0d7d6fdd47ddc27b
+import  -/  Syntax.Booleans 2f5b0f6265d2d6e23f9e27da32119b5f
+  exports: 71728b3a0c694557a14ef0fe375df96d
+  && 7e6b9d4df7b120968a890a88a341cfce
+  || d931c5612ab8b65bb21c53366fc02f9d
+import  -/  Syntax.HLPrelude f80a67bea1d500b91e76dd8341487f94
+  exports: 68fbd00b85e22e00f4229825fd729bf8
+import  -/  Syntax.Num 42d53dc12ffc226b88f55b096d15fb83
+  exports: 883071c53baa629578d78c5289d88073
+  intdivide 46780cf9207766607a9b582b146ea555
+import  -/  base-4.12.0.0:GHC.Num c2039f03637c68f47b0bbff4c18ec616
+import  -/  base-4.12.0.0:Prelude 3c779dfd6448bdd8e234c336802c2acb
+import  -/  ghc-prim-0.5.3:GHC.Classes 0f6fd7d7db53fc48f6e1f01803cc6c9d
+e6a5b3c7d578bd5bcc604fc6e8f39c61
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Lib.LTL.$trModule3
+                   Lib.LTL.$trModule1) -}
+54168483d91fd2b03a8e183365787857
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Lib.LTL.$trModule2) -}
+83a8a7cb1a79f8693182344dd58bb69f
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Lib.LTL"#) -}
+1a4536a323fae48efe103e60e58f7298
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Lib.LTL.$trModule4) -}
+73b77e72f127a44734e889dca3aeea7a
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs,
+     Unfolding: ("HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ"#) -}
+d6e061fd991b2620d2be2b7d58d31d9c
+  $wpercentViolations ::
+    Lola.Stream GHC.Types.Bool
+    -> (# Lola.Streamable GHC.Types.Double,
+          (Lola.Ident, Lola.Expr GHC.Types.Double) #)
+  {- Arity: 1, Strictness: <L,U>, Inline: [2],
+     Unfolding: (\ (w :: Lola.Stream GHC.Types.Bool) ->
+                 (# Lib.LTL.percentViolations4
+                      `cast`
+                    (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N),
+                    (GHC.CString.unpackAppendCString#
+                       Lib.LTL.percentViolations3
+                       (GHC.Types.:
+                          @ GHC.Types.Char
+                          Lola.<:3
+                          (case w of wild {
+                             Lola.Input $dFromJSON $dRead $dTypeable ident
+                             -> GHC.Base.++ @ GHC.Types.Char ident Lola.<:1
+                             Lola.Output $dTypeable ds1
+                             -> case ds1 of wild1 { (,) ident ds2 ->
+                                GHC.Base.++ @ GHC.Types.Char ident Lola.<:1 } })),
+                     Lola.App
+                       @ GHC.Types.Double
+                       @ GHC.Types.Double
+                       Syntax.Num./3
+                         `cast`
+                       (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                       Syntax.Num./2
+                         `cast`
+                       (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double
+                                                                          -> GHC.Types.Double>_N)
+                       Syntax.Num./3
+                         `cast`
+                       (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                       (Lola.App
+                          @ (GHC.Types.Double -> GHC.Types.Double)
+                          @ GHC.Types.Double
+                          Syntax.Num./2
+                            `cast`
+                          (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double
+                                                                             -> GHC.Types.Double>_N)
+                          Syntax.Num./_$dTypeable2
+                            `cast`
+                          (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double
+                                                                             -> GHC.Types.Double
+                                                                             -> GHC.Types.Double>_N)
+                          Syntax.Num./3
+                            `cast`
+                          (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                          Syntax.Num./1
+                          (Lola.App
+                             @ GHC.Types.Double
+                             @ GHC.Types.Int
+                             Syntax.Num./3
+                               `cast`
+                             (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                             Syntax.Num.intdivide_$dTypeable2
+                               `cast`
+                             (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int
+                                                                                -> GHC.Types.Double>_N)
+                             Syntax.Num.intdivide2
+                               `cast`
+                             (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int>_N)
+                             Syntax.Num.intdivide1
+                             (Lola.Now @ GHC.Types.Int (Lib.LTL.nViolations w))))
+                       Lib.LTL.percentViolations1) #)) -}
+386ddbc09b46502f23f6e2886ee86ca2
+  $wsince ::
+    Lola.Stream GHC.Types.Bool
+    -> Lola.Stream GHC.Types.Bool
+    -> (# Lola.Streamable GHC.Types.Bool,
+          (Lola.Ident, Lola.Expr GHC.Types.Bool) #)
+  {- Arity: 2, Strictness: <L,U><L,U>, Inline: [2] -}
+22e8b26c41d89f8340938ef02801d666
+  $wyesterday ::
+    Lola.Stream GHC.Types.Bool
+    -> (# Lola.Streamable GHC.Types.Bool,
+          (Lola.Ident, Lola.Expr GHC.Types.Bool) #)
+  {- Arity: 1, Strictness: <L,U>, Inline: [2],
+     Unfolding: (\ (w :: Lola.Stream GHC.Types.Bool) ->
+                 (# Lib.LTL.historically4
+                      `cast`
+                    (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N),
+                    (GHC.CString.unpackAppendCString#
+                       Lib.LTL.yesterday3
+                       (GHC.Types.:
+                          @ GHC.Types.Char
+                          Lola.<:3
+                          (case w of wild {
+                             Lola.Input $dFromJSON $dRead $dTypeable ident
+                             -> GHC.Base.++ @ GHC.Types.Char ident Lola.<:1
+                             Lola.Output $dTypeable ds1
+                             -> case ds1 of wild1 { (,) ident ds2 ->
+                                GHC.Base.++ @ GHC.Types.Char ident Lola.<:1 } })),
+                     Lola.:@
+                       @ GHC.Types.Bool
+                       Lib.LTL.historically4
+                         `cast`
+                       (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                       w
+                       Lib.LTL.yesterday1) #)) -}
+2dbc929cff6a3fadaf03fd26765cc430
+  $wzesterday ::
+    Lola.Stream GHC.Types.Bool
+    -> (# Lola.Streamable GHC.Types.Bool,
+          (Lola.Ident, Lola.Expr GHC.Types.Bool) #)
+  {- Arity: 1, Strictness: <L,U>, Inline: [2],
+     Unfolding: (\ (w :: Lola.Stream GHC.Types.Bool) ->
+                 (# Lib.LTL.historically4
+                      `cast`
+                    (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N),
+                    (GHC.CString.unpackAppendCString#
+                       Lib.LTL.zesterday2
+                       (GHC.Types.:
+                          @ GHC.Types.Char
+                          Lola.<:3
+                          (case w of wild {
+                             Lola.Input $dFromJSON $dRead $dTypeable ident
+                             -> GHC.Base.++ @ GHC.Types.Char ident Lola.<:1
+                             Lola.Output $dTypeable ds1
+                             -> case ds1 of wild1 { (,) ident ds2 ->
+                                GHC.Base.++ @ GHC.Types.Char ident Lola.<:1 } })),
+                     Lola.:@
+                       @ GHC.Types.Bool
+                       Lib.LTL.historically4
+                         `cast`
+                       (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                       w
+                       Lib.LTL.zesterday1) #)) -}
+0950e09b49ed32e98409482ba40ebeb5
+  historically ::
+    Lola.Stream GHC.Types.Bool -> Lola.Stream GHC.Types.Bool
+  {- Unfolding: (Lib.LTL.historically3
+                   Lib.LTL.historically1
+                   GHC.Classes.&&
+                   GHC.Types.True) -}
+07f5015eedf3400b70673c86aabf2f9a
+  historically1 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# Lib.LTL.historically2) -}
+98068b22d9ea0c82df77e2d9023fb507
+  historically2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("historically"#) -}
+996b8c4cc9bb376031f69970a47f95fe
+  historically3 ::
+    Lola.Ident
+    -> (GHC.Types.Bool -> GHC.Types.Bool -> GHC.Types.Bool)
+    -> GHC.Types.Bool
+    -> Lola.Stream GHC.Types.Bool
+    -> Lola.Stream GHC.Types.Bool
+  {- Unfolding: (Lib.Utils.hFoldl
+                   @ GHC.Types.Bool
+                   @ GHC.Types.Bool
+                   Lib.LTL.historically4
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Lib.LTL.historically4
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)) -}
+4da9abbcc6f75b4c41fb42432e7d0946
+  historically4 :: Data.Typeable.Internal.TypeRep GHC.Types.Bool
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ GHC.Types.Bool
+                        14182099612280475667##
+                        2734577064602454082##
+                        GHC.Types.$trModule
+                        GHC.Types.$tcBool1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 Data.Typeable.Internal.TrTyCon
+                   @ *
+                   @ GHC.Types.Bool
+                   ww8
+                   ww9
+                   ww10
+                   ww11
+                   ww12 }) -}
+83efbe6d42225f8ed12fb9cc599b0b8d
+  nViolations ::
+    Lola.Stream GHC.Types.Bool -> Lola.Stream GHC.Types.Int
+  {- Unfolding: (Lib.LTL.nViolations5
+                   Lib.LTL.nViolations3
+                   Lib.LTL.nViolations2
+                   Lib.LTL.nViolations1) -}
+333df827d8f511768793c3cdbcd6fa9a
+  nViolations1 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# 0#) -}
+80794c378b9c5da682239cd730475dcb
+  nViolations2 :: GHC.Types.Int -> GHC.Types.Bool -> GHC.Types.Int
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U(U)><S,1*U>m,
+     Unfolding: (\ (n :: GHC.Types.Int) (b :: GHC.Types.Bool) ->
+                 case n of wild { GHC.Types.I# x ->
+                 case b of wild1 {
+                   GHC.Types.False -> GHC.Types.I# (GHC.Prim.+# x 1#)
+                   GHC.Types.True -> wild } }) -}
+486e48dbe3307403df7a4a4043dc17bd
+  nViolations3 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# Lib.LTL.nViolations4) -}
+484f5ad9059f966b5ac0c6550778a128
+  nViolations4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("nViolations"#) -}
+b134cdab5c96358cde8503a0db56b987
+  nViolations5 ::
+    Lola.Ident
+    -> (GHC.Types.Int -> GHC.Types.Bool -> GHC.Types.Int)
+    -> GHC.Types.Int
+    -> Lola.Stream GHC.Types.Bool
+    -> Lola.Stream GHC.Types.Int
+  {- Unfolding: (Lib.Utils.hFoldl
+                   @ GHC.Types.Bool
+                   @ GHC.Types.Int
+                   Lib.LTL.historically4
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Bool>_N)
+                   Lib.LTL.nViolations6) -}
+4818c6ac04377bd1411245f19087281a
+  nViolations6 :: Lola.Streamable GHC.Types.Int
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ GHC.Types.Int
+                        5193196903533114208##
+                        8143820745237564347##
+                        GHC.Types.$trModule
+                        GHC.Types.$tcInt1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 (Data.Typeable.Internal.TrTyCon
+                    @ *
+                    @ GHC.Types.Int
+                    ww8
+                    ww9
+                    ww10
+                    ww11
+                    ww12)
+                   `cast`
+                 (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int>_N) }) -}
+683ba9e0bcba63413fdb45c37ca9d906
+  once :: Lola.Stream GHC.Types.Bool -> Lola.Stream GHC.Types.Bool
+  {- Unfolding: (Lib.LTL.historically3
+                   Lib.LTL.once1
+                   GHC.Classes.||
+                   GHC.Types.False) -}
+71c4a62474272ee0105723aee2fe4693
+  once1 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# Lib.LTL.once2) -}
+9be8b003d01b6c2c2e10ad94175ac50c
+  once2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("once"#) -}
+5f361b73e38af6816143c13ee8924ac3
+  percentViolations ::
+    Lola.Stream GHC.Types.Bool -> Lola.Stream GHC.Types.Double
+  {- Arity: 1, Strictness: <L,U>m2, Inline: [2],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: Lola.Stream GHC.Types.Bool) ->
+                 case Lib.LTL.$wpercentViolations w of ww { (#,#) ww1 ww2 ->
+                 Lola.Output @ GHC.Types.Double ww1 ww2 }) -}
+c3292c055f3ef35a5e7b8f2fcf37c003
+  percentViolations1 :: Lola.Expr GHC.Types.Double
+  {- Unfolding: (Lola.App
+                   @ GHC.Types.Double
+                   @ GHC.Types.Int
+                   Syntax.Num./3
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                   Syntax.Num.intdivide_$dTypeable2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int
+                                                                      -> GHC.Types.Double>_N)
+                   Syntax.Num.intdivide2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int>_N)
+                   Syntax.Num.intdivide1
+                   Lib.LTL.percentViolations2) -}
+057d780d3fa60e0a157ac9621c4fdb8b
+  percentViolations2 :: Lola.Expr GHC.Types.Int
+  {- Strictness: m3,
+     Unfolding: (Lola.Now @ GHC.Types.Int Lib.Utils.instantN) -}
+f59edf325ffee37075e3ee249f110f93
+  percentViolations3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("percViolations"#) -}
+7dc71efa4e4b0b876168b6524a7cb0de
+  percentViolations4 ::
+    Data.Typeable.Internal.TypeRep GHC.Types.Double
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ GHC.Types.Double
+                        1001516997883380745##
+                        15743804272740824943##
+                        GHC.Types.$trModule
+                        GHC.Types.$tcDouble1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 Data.Typeable.Internal.TrTyCon
+                   @ *
+                   @ GHC.Types.Double
+                   ww8
+                   ww9
+                   ww10
+                   ww11
+                   ww12 }) -}
+db04a9c6cb81fb44bf9d65e0d4942e01
+  since ::
+    Lola.Stream GHC.Types.Bool
+    -> Lola.Stream GHC.Types.Bool -> Lola.Stream GHC.Types.Bool
+  {- Arity: 2, Strictness: <L,U><L,U>m2, Inline: [2],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: Lola.Stream GHC.Types.Bool)
+                   (w1 :: Lola.Stream GHC.Types.Bool) ->
+                 case Lib.LTL.$wsince w w1 of ww { (#,#) ww1 ww2 ->
+                 Lola.Output @ GHC.Types.Bool ww1 ww2 }) -}
+c7a2f8936f115acd1afc4b3e137c09cc
+  yesterday ::
+    Lola.Stream GHC.Types.Bool -> Lola.Stream GHC.Types.Bool
+  {- Arity: 1, Strictness: <L,U>m2, Inline: [2],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: Lola.Stream GHC.Types.Bool) ->
+                 case Lib.LTL.$wyesterday w of ww { (#,#) ww1 ww2 ->
+                 Lola.Output @ GHC.Types.Bool ww1 ww2 }) -}
+e23f2a0cb525f11c3277ea51482d42fe
+  yesterday1 :: (GHC.Types.Int, GHC.Types.Bool)
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: ((Lib.LTL.yesterday2, GHC.Types.False)) -}
+b27fb54514a72d0a4907a054009cc0db
+  yesterday2 :: GHC.Types.Int
+  {- HasNoCafRefs, Strictness: m, Unfolding: (GHC.Types.I# -1#) -}
+511769d38a28827d7b8f7034a5674317
+  yesterday3 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("yesterday"#) -}
+be90f50a5d747ffde676e65f4d143cd9
+  zesterday ::
+    Lola.Stream GHC.Types.Bool -> Lola.Stream GHC.Types.Bool
+  {- Arity: 1, Strictness: <L,U>m2, Inline: [2],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: Lola.Stream GHC.Types.Bool) ->
+                 case Lib.LTL.$wzesterday w of ww { (#,#) ww1 ww2 ->
+                 Lola.Output @ GHC.Types.Bool ww1 ww2 }) -}
+2403d7bff85a15ca617f528845f31869
+  zesterday1 :: (GHC.Types.Int, GHC.Types.Bool)
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: ((Lib.LTL.yesterday2, GHC.Types.True)) -}
+ebb9e8877f8c3d56aa08bbe6ee8db4a2
+  zesterday2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("zesterday"#) -}
+trusted: none
+require own pkg trusted: False
+module header:
+  Nothing
+declaration docs:
+arg docs:
+

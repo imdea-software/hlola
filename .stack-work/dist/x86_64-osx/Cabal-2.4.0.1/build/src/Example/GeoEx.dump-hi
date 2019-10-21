@@ -1,0 +1,929 @@
+
+==================== FINAL INTERFACE ====================
+2019-10-21 10:04:21.691647 UTC
+
+interface HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Example.GeoEx 8065
+  interface hash: 3f3b5f9c539e5567e98d76c9c0d49b47
+  ABI hash: 6afb2e5526cb85b4e7aaac2ff3bae996
+  export-list hash: cdd3c9a516d2a7af70dd8d2d0300093a
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: d5bd55554af082500bdbbcdfa34dcc60
+  opt_hash: 6faf2de08de32d19db9870899d88e59a
+  hpc_hash: 93b885adfe0da089cdf634904fd59f71
+  plugin_hash: ad164012d6b1e14942349d58b1132007
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Example.GeoEx.geoEx
+  Example.GeoEx.projectToFloor
+module dependencies: DecDyn Lola Syntax.HLPrelude Theories.Geometry
+package dependencies: aeson-1.4.5.0 array-0.5.3.0
+                      attoparsec-0.13.2.3 base-4.12.0.0 base-compat-0.10.5
+                      base-orphans-0.8.1 binary-0.8.6.0 bytestring-0.10.8.2
+                      containers-0.6.0.1 deepseq-1.4.4.0 dlist-0.8.0.7 ghc-boot-th-8.6.5
+                      ghc-prim-0.5.3 hashable-1.2.7.0 integer-gmp-1.0.2.0
+                      integer-logarithms-1.0.3 primitive-0.6.4.0 random-1.1
+                      scientific-0.3.6.2 tagged-0.8.6 template-haskell-2.14.0.0
+                      text-1.2.3.1 time-1.8.0.2 time-compat-1.9.2.2 transformers-0.5.6.2
+                      unordered-containers-0.2.10.0 uuid-types-1.0.3 vector-0.12.0.3
+orphans: attoparsec-0.13.2.3:Data.Attoparsec.Text.Internal
+         attoparsec-0.13.2.3:Data.Attoparsec.ByteString.Char8
+         time-1.8.0.2:Data.Time.Clock.TAI
+         vector-0.12.0.3:Data.Vector.Unboxed
+         time-1.8.0.2:Data.Time.Format.Parse
+         time-1.8.0.2:Data.Time.LocalTime.Internal.ZonedTime
+         time-1.8.0.2:Data.Time.LocalTime.Internal.LocalTime
+         time-1.8.0.2:Data.Time.Calendar.Gregorian
+         hashable-1.2.7.0:Data.Hashable.Generic text-1.2.3.1:Data.Text.Lazy
+         text-1.2.3.1:Data.Text binary-0.8.6.0:Data.Binary.Generic
+         bytestring-0.10.8.2:Data.ByteString.Builder
+         text-1.2.3.1:Data.Text.Show
+         vector-0.12.0.3:Data.Vector.Fusion.Bundle
+         transformers-0.5.6.2:Control.Monad.Trans.Error
+         base-4.12.0.0:GHC.Float base-4.12.0.0:GHC.Base
+family instance modules: HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Theories.Geometry
+                         aeson-1.4.5.0:Data.Aeson.Types.Internal
+                         attoparsec-0.13.2.3:Data.Attoparsec.Internal.Types
+                         base-4.12.0.0:Control.Applicative base-4.12.0.0:Data.Complex
+                         base-4.12.0.0:Data.Functor.Compose base-4.12.0.0:Data.Functor.Const
+                         base-4.12.0.0:Data.Functor.Identity
+                         base-4.12.0.0:Data.Functor.Product base-4.12.0.0:Data.Functor.Sum
+                         base-4.12.0.0:Data.Monoid base-4.12.0.0:Data.Semigroup
+                         base-4.12.0.0:Data.Semigroup.Internal base-4.12.0.0:Data.Version
+                         base-4.12.0.0:Data.Void base-4.12.0.0:GHC.Exts
+                         base-4.12.0.0:GHC.Generics base-4.12.0.0:GHC.IO.Exception
+                         containers-0.6.0.1:Data.IntMap.Internal
+                         containers-0.6.0.1:Data.IntSet.Internal
+                         containers-0.6.0.1:Data.Map.Internal
+                         containers-0.6.0.1:Data.Sequence.Internal
+                         containers-0.6.0.1:Data.Set.Internal containers-0.6.0.1:Data.Tree
+                         dlist-0.8.0.7:Data.DList ghc-boot-th-8.6.5:GHC.ForeignSrcLang.Type
+                         ghc-boot-th-8.6.5:GHC.LanguageExtensions.Type
+                         primitive-0.6.4.0:Control.Monad.Primitive
+                         primitive-0.6.4.0:Data.Primitive.Array
+                         primitive-0.6.4.0:Data.Primitive.ByteArray
+                         primitive-0.6.4.0:Data.Primitive.PrimArray
+                         primitive-0.6.4.0:Data.Primitive.SmallArray
+                         primitive-0.6.4.0:Data.Primitive.UnliftedArray
+                         tagged-0.8.6:Data.Tagged
+                         template-haskell-2.14.0.0:Language.Haskell.TH.Syntax
+                         text-1.2.3.1:Data.Text text-1.2.3.1:Data.Text.Lazy
+                         unordered-containers-0.2.10.0:Data.HashMap.Base
+                         unordered-containers-0.2.10.0:Data.HashSet.Base
+                         uuid-types-1.0.3:Data.UUID.Types.Internal
+                         uuid-types-1.0.3:Data.UUID.Types.Internal.Builder
+                         vector-0.12.0.3:Data.Vector vector-0.12.0.3:Data.Vector.Primitive
+                         vector-0.12.0.3:Data.Vector.Storable
+                         vector-0.12.0.3:Data.Vector.Unboxed
+                         vector-0.12.0.3:Data.Vector.Unboxed.Base
+import  -/  DecDyn e44279c7ab4d42b81c75c5ed2ac16b6e
+  exports: 040c7148a7a3f91e612a4e6a8a65bbcb
+  Specification 8ccdcd2b29287a77dbf01dead617648f
+  out fce5654af84855f268138b5525329c31
+import  -/  Lola f52d080a9c6c535055cc2d321870899c
+  exports: f0b2b11faceeef480fb3969a0b54aac2
+  :@ 0e91454cfe22ab22364b2d071c8db005
+  <$> 5dbf6fc938f9b138f5c32cf20fb73d22
+  <*> 8031fcbaf5917c21a272faf5dc82b09a
+  =: 8a68e19014f2cf73a7f77ec6fc12c12c
+  Input 84bbb625cf5c7ec015044d911c3c39d7
+  Now 19aae6044cf44591930683cbda472505
+  Stream 842b407b0b18370d0d7d6fdd47ddc27b
+import  -/  Syntax.HLPrelude f80a67bea1d500b91e76dd8341487f94
+  exports: 68fbd00b85e22e00f4229825fd729bf8
+import  -/  Theories.Geometry 016e406e2a052d178e0627899abad697
+  exports: 6de724d642dc72c2ca756de790721fb7
+  Point3 b59f62cd64e1c9497afccd601ba4687f
+  Polygon 8ed4eab162e655d73485078737f28cd6
+  Vector3 e573475306a853bdd1270f2bbf790680
+  crossProduct 70f12808d4acafa4c2d3f6e60d65e718
+  emptyPolygon fa7c2dddfe0140e1ec2c9213e1337763
+  polyUnion 30717c4c402fc4b3e52c438dd3eb6eec
+  projectToPlaneZ b328c90b346d5d766bc9ca5e0e273e34
+  vecadd a4d317d3d1d50f3879456dff267b4d09
+import  -/  base-4.12.0.0:Data.Maybe 9b76a39e833465c3c5b3c078b431417f
+import  -/  base-4.12.0.0:GHC.Num c2039f03637c68f47b0bbff4c18ec616
+9963b34d551c22e5f6bc5b906a37aa0b
+  $sdec2Dyn_w :: Lola.Streamable Theories.Geometry.Polygon
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ (* -> *)
+                        @ []
+                        15300440589168157478##
+                        15016221815972113379##
+                        GHC.Types.$trModule
+                        GHC.Types.$tc[]1
+                        0#
+                        GHC.Types.krep$*Arr*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ Theories.Geometry.Point3
+                        3359438377960536085##
+                        2914939799786236109##
+                        Theories.Geometry.$trModule
+                        Theories.Geometry.$tcPoint1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww1 { (#,,,,#) ww2 ww3 ww4 ww5 ww6 ->
+                 (Data.Typeable.Internal.mkTrApp
+                    @ *
+                    @ *
+                    @ []
+                    @ Theories.Geometry.Point3
+                    (Data.Typeable.Internal.TrTyCon
+                       @ (* -> *)
+                       @ []
+                       ww8
+                       ww9
+                       ww10
+                       ww11
+                       ww12)
+                    (Data.Typeable.Internal.TrTyCon
+                       @ *
+                       @ Theories.Geometry.Point3
+                       ww2
+                       ww3
+                       ww4
+                       ww5
+                       ww6))
+                   `cast`
+                 (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Polygon>_N) } }) -}
+8b54f5184b0d4eadd41aa790cacc8cb2
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Example.GeoEx.$trModule3
+                   Example.GeoEx.$trModule1) -}
+7c36d6f8b1f1c5521694c7549cbd1623
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Example.GeoEx.$trModule2) -}
+3776fb877d144503aec6c1b97baa04fd
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Example.GeoEx"#) -}
+5c19a052341b839897b068444a3fa3c8
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Example.GeoEx.$trModule4) -}
+6365218ef2d495c4dd12c0d79d96fe88
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs,
+     Unfolding: ("HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ"#) -}
+b56c8d696b74a1492c29e436cc7b217a
+  $wfoldlM_loop ::
+    GHC.Types.SPEC
+    -> GHC.Prim.Int#
+    -> GHC.Prim.Int#
+    -> GHC.Prim.MutableArray#
+         GHC.Prim.RealWorld Data.Aeson.Types.Internal.Value
+    -> GHC.Prim.Int#
+    -> [Data.Aeson.Types.Internal.Value]
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          Data.Vector.Vector Data.Aeson.Types.Internal.Value #)
+  {- Arity: 7, Strictness: <S,1*U><L,U><L,U><S,U><L,U><S,1*U><S,U>,
+     Inline: [2] -}
+f094fa8db1366754332b1bbfdeed1102
+  $wgeoEx ::
+    Data.Dynamic.Dynamic -> (# Data.Aeson.Types.Internal.Array #)
+  {- Arity: 1, Strictness: <S,1*U>, Inline: [2],
+     Unfolding: (\ (w :: Data.Dynamic.Dynamic) ->
+                 case GHC.Magic.runRW#
+                        @ ('GHC.Types.TupleRep
+                             '[ 'GHC.Types.TupleRep '[], 'GHC.Types.LiftedRep])
+                        @ (# GHC.Prim.State# GHC.Prim.RealWorld,
+                             Data.Vector.Vector Data.Aeson.Types.Internal.Value #)
+                        (\ (s1 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                         case GHC.Prim.newArray#
+                                @ Data.Aeson.Types.Internal.Value
+                                @ (Control.Monad.Primitive.PrimState
+                                     (GHC.ST.ST GHC.Prim.RealWorld))
+                                0#
+                                (Data.Vector.Mutable.uninitialised
+                                   @ Data.Aeson.Types.Internal.Value)
+                                s1
+                                  `cast`
+                                (GHC.Prim.State#
+                                   (Sym (Control.Monad.Primitive.D:R:PrimStateST[0]
+                                             (Nth:0
+                                                  (Nth:2
+                                                       (<GHC.Prim.State# GHC.Prim.RealWorld>_R
+                                                        ->_R ((#,#)
+                                                                <'GHC.Types.TupleRep '[]>_R
+                                                                <'GHC.Types.LiftedRep>_R
+                                                                <GHC.Prim.State#
+                                                                   GHC.Prim.RealWorld>_R
+                                                                (Data.Vector.Generic.Base.Mutable
+                                                                   <Data.Vector.Vector>_N
+                                                                   (Control.Monad.Primitive.D:R:PrimStateST[0]
+                                                                        <GHC.Prim.RealWorld>_N)
+                                                                   <Data.Aeson.Types.Internal.Value>_N)_R)_R))))))_R of ds1 { (#,#) ipv ipv1 ->
+                         case w of wild { Data.Dynamic.Dynamic a1 t v ->
+                         case Data.Typeable.Internal.sameTypeRep
+                                @ *
+                                @ *
+                                @ a1
+                                @ Theories.Geometry.Polygon
+                                t
+                                Example.GeoEx.$sdec2Dyn_w
+                                  `cast`
+                                (Data.Typeable.Internal.N:Typeable[0] <*>_N <Theories.Geometry.Polygon>_N) of wild1 {
+                           GHC.Types.False
+                           -> case Data.Maybe.fromJust1
+                              ret_ty (# GHC.Prim.State# GHC.Prim.RealWorld,
+                                        Data.Vector.Vector Data.Aeson.Types.Internal.Value #)
+                              of {}
+                           GHC.Types.True
+                           -> Example.GeoEx.$wfoldlM_loop
+                                GHC.Types.SPEC
+                                0#
+                                0#
+                                ipv1
+                                  `cast`
+                                (GHC.Prim.MutableArray#
+                                   (Nth:0
+                                        (Nth:3
+                                             (Nth:3
+                                                  (<GHC.Prim.State# GHC.Prim.RealWorld>_R
+                                                   ->_R ((#,#)
+                                                           <'GHC.Types.TupleRep '[]>_R
+                                                           <'GHC.Types.LiftedRep>_R
+                                                           <GHC.Prim.State# GHC.Prim.RealWorld>_R
+                                                           (Sub (Sym (Data.Vector.D:R:MutableVector[0])) <Control.Monad.Primitive.PrimState
+                                                                                                            (GHC.ST.ST
+                                                                                                               GHC.Prim.RealWorld)>_N <Data.Aeson.Types.Internal.Value>_N))_R)) ; Sub (Data.Vector.D:R:MutableVector[0]) (Control.Monad.Primitive.D:R:PrimStateST[0]
+                                                                                                                                                                                                                              <GHC.Prim.RealWorld>_N) <Data.Aeson.Types.Internal.Value>_N))
+                                   (Nth:1
+                                        (Nth:3
+                                             (Nth:3
+                                                  (<GHC.Prim.State# GHC.Prim.RealWorld>_R
+                                                   ->_R ((#,#)
+                                                           <'GHC.Types.TupleRep '[]>_R
+                                                           <'GHC.Types.LiftedRep>_R
+                                                           <GHC.Prim.State# GHC.Prim.RealWorld>_R
+                                                           (Sub (Sym (Data.Vector.D:R:MutableVector[0])) <Control.Monad.Primitive.PrimState
+                                                                                                            (GHC.ST.ST
+                                                                                                               GHC.Prim.RealWorld)>_N <Data.Aeson.Types.Internal.Value>_N))_R)) ; Sub (Data.Vector.D:R:MutableVector[0]) (Control.Monad.Primitive.D:R:PrimStateST[0]
+                                                                                                                                                                                                                              <GHC.Prim.RealWorld>_N) <Data.Aeson.Types.Internal.Value>_N)))_R
+                                0#
+                                (GHC.Base.map
+                                   @ Theories.Geometry.Point3
+                                   @ Data.Aeson.Types.Internal.Value
+                                   Theories.Geometry.$fToJSONPoint3_$ctoJSON
+                                   v `cast`
+                                   (UnsafeCo representational a1 Theories.Geometry.Polygon))
+                                ipv
+                                  `cast`
+                                (GHC.Prim.State#
+                                   (Control.Monad.Primitive.D:R:PrimStateST[0]
+                                        (Nth:0
+                                             (Nth:2
+                                                  (Nth:3
+                                                       (<GHC.Prim.State# GHC.Prim.RealWorld>_R
+                                                        ->_R ((#,#)
+                                                                <'GHC.Types.TupleRep '[]>_R
+                                                                <'GHC.Types.LiftedRep>_R
+                                                                <GHC.Prim.State#
+                                                                   GHC.Prim.RealWorld>_R
+                                                                (Sub (Sym (Data.Vector.D:R:MutableVector[0])) <Control.Monad.Primitive.PrimState
+                                                                                                                 (GHC.ST.ST
+                                                                                                                    GHC.Prim.RealWorld)>_N <Data.Aeson.Types.Internal.Value>_N))_R))))))_R } } }) of ds1 { (#,#) ipv1 ipv2 ->
+                 case ipv2 of dt { Data.Vector.Vector ipv ipv4 ipv5 ->
+                 (# dt #) } }) -}
+3da572fe2d5856cebc5f446b485e6b34
+  $wprojectToFloor ::
+    GHC.Types.Double
+    -> GHC.Prim.Double#
+    -> GHC.Types.Double
+    -> GHC.Types.Double
+    -> GHC.Types.Double
+    -> GHC.Types.Double
+    -> GHC.Types.Double
+    -> GHC.Types.Double
+    -> GHC.Types.Double
+    -> [Theories.Geometry.Point3]
+  {- Arity: 9, HasNoCafRefs,
+     Strictness: <L,U(U)><S,U><L,U(U)><L,U(U)><L,U(U)><L,U(U)><L,U(U)><L,U(U)><L,U(U)>,
+     Inline: [2] -}
+e226eec052d531a9dd4df0fb15823ad1
+  geoEx :: DecDyn.Specification
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ DecDyn.DecDyn
+                   Example.GeoEx.geoEx1
+                   (GHC.Types.[] @ DecDyn.DecDyn)) -}
+87b20d337904852e7e64a9c41616647f
+  geoEx1 ::
+    (DecDyn.DeclarationDyn,
+     (Data.Dynamic.Dynamic -> GHC.Base.String,
+      Data.Dynamic.Dynamic -> Data.Aeson.Types.Internal.Value),
+     DecDyn.Readers, DecDyn.FromJSONers)
+  {- Strictness: m,
+     Unfolding: ((Example.GeoEx.geoEx51, Example.GeoEx.geoEx48,
+                  Example.GeoEx.geoEx47, Example.GeoEx.geoEx2)) -}
+052f0bfb808f7cb8bbc8c628c3c1aa96
+  geoEx10 :: Lola.Declaration Theories.Geometry.Vector3
+  {- Strictness: m1,
+     Unfolding: (Lola.Input
+                   @ Theories.Geometry.Vector3
+                   Theories.Geometry.$fFromJSONPoint3
+                   Theories.Geometry.$fReadPoint3
+                   Example.GeoEx.geoEx13
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Vector3>_N)
+                   Example.GeoEx.geoEx11) -}
+f7dfd173b102579c8739458910eced6a
+  geoEx11 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# Example.GeoEx.geoEx12) -}
+a22f38fab2874b1a47ac74a70a99b588
+  geoEx12 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("right"#) -}
+3259129fe7fe2a9cc05e97dbbf2f88a7
+  geoEx13 :: Data.Typeable.Internal.TypeRep Theories.Geometry.Point3
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ Theories.Geometry.Point3
+                        3359438377960536085##
+                        2914939799786236109##
+                        Theories.Geometry.$trModule
+                        Theories.Geometry.$tcPoint1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 Data.Typeable.Internal.TrTyCon
+                   @ *
+                   @ Theories.Geometry.Point3
+                   ww8
+                   ww9
+                   ww10
+                   ww11
+                   ww12 }) -}
+f81965efc1c8bda8558b0b7a159a770f
+  geoEx14 ::
+    Lola.Expr (Theories.Geometry.Vector3 -> Theories.Geometry.Polygon)
+  {- Unfolding: (Lola.App
+                   @ (Theories.Geometry.Vector3 -> Theories.Geometry.Polygon)
+                   @ Theories.Geometry.Vector3
+                   Example.GeoEx.geoEx26
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Vector3
+                                                                      -> Theories.Geometry.Polygon>_N)
+                   Example.GeoEx.geoEx25
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Vector3
+                                                                      -> Theories.Geometry.Vector3
+                                                                      -> Theories.Geometry.Polygon>_N)
+                   Example.GeoEx.geoEx13
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Point3>_N)
+                   Example.GeoEx.geoEx19
+                   Example.GeoEx.geoEx15) -}
+38172071d32da0fb7c6b1012b0d457af
+  geoEx15 :: Lola.Expr Theories.Geometry.Vector3
+  {- Strictness: m3,
+     Unfolding: (Lola.Now
+                   @ Theories.Geometry.Vector3
+                   Example.GeoEx.geoEx16) -}
+18a57a4bf543e936c245d1c1eb1db034
+  geoEx16 :: Lola.Declaration Theories.Geometry.Vector3
+  {- Strictness: m1,
+     Unfolding: (Lola.Input
+                   @ Theories.Geometry.Vector3
+                   Theories.Geometry.$fFromJSONPoint3
+                   Theories.Geometry.$fReadPoint3
+                   Example.GeoEx.geoEx13
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Vector3>_N)
+                   Example.GeoEx.geoEx17) -}
+310d0fa4f9cc315fcd389e5059a3d8fb
+  geoEx17 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# Example.GeoEx.geoEx18) -}
+51270a39b5abe091b83c33b0b9787296
+  geoEx18 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("up"#) -}
+107c1e13001e362ab40053629a1086d9
+  geoEx19 ::
+    Lola.Expr
+      (Theories.Geometry.Vector3
+       -> Theories.Geometry.Vector3 -> Theories.Geometry.Polygon)
+  {- Unfolding: (Lola.App
+                   @ (Theories.Geometry.Vector3
+                      -> Theories.Geometry.Vector3 -> Theories.Geometry.Polygon)
+                   @ Theories.Geometry.Point3
+                   Example.GeoEx.geoEx25
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Vector3
+                                                                      -> Theories.Geometry.Vector3
+                                                                      -> Theories.Geometry.Polygon>_N)
+                   Example.GeoEx.geoEx_$dTypeable2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Point3
+                                                                      -> Theories.Geometry.Vector3
+                                                                      -> Theories.Geometry.Vector3
+                                                                      -> Theories.Geometry.Polygon>_N)
+                   Example.GeoEx.geoEx13
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Point3>_N)
+                   Example.GeoEx.geoEx24
+                   Example.GeoEx.geoEx20) -}
+199a7783372b24e3324d41a4613b7b49
+  geoEx2 :: DecDyn.FromJSONers
+  {- Unfolding: (case Example.GeoEx.geoEx_ds of wild { (,,) ed thereaders thejsoners ->
+                 thejsoners }) -}
+fa406fb8f1046c048ebcb7035d303de7
+  geoEx20 :: Lola.Expr Theories.Geometry.Point3
+  {- Strictness: m3,
+     Unfolding: (Lola.Now
+                   @ Theories.Geometry.Point3
+                   Example.GeoEx.geoEx21) -}
+4f12293964d584e6dfe4dc68ff1dccc8
+  geoEx21 :: Lola.Declaration Theories.Geometry.Point3
+  {- Strictness: m1,
+     Unfolding: (Lola.Input
+                   @ Theories.Geometry.Point3
+                   Theories.Geometry.$fFromJSONPoint3
+                   Theories.Geometry.$fReadPoint3
+                   Example.GeoEx.geoEx13
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Point3>_N)
+                   Example.GeoEx.geoEx22) -}
+e13b5db9c93fd2a696bcee3de75042ae
+  geoEx22 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# Example.GeoEx.geoEx23) -}
+782b7073acfd07c6f91d5fe41f28f27a
+  geoEx23 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("position"#) -}
+11be749c6117e5714db2f8756dadabed
+  geoEx24 ::
+    Lola.Expr
+      (Theories.Geometry.Point3
+       -> Theories.Geometry.Vector3
+       -> Theories.Geometry.Vector3
+       -> Theories.Geometry.Polygon)
+  {- Strictness: m1,
+     Unfolding: (Lola.Leaf
+                   @ (Theories.Geometry.Point3
+                      -> Theories.Geometry.Vector3
+                      -> Theories.Geometry.Vector3
+                      -> Theories.Geometry.Polygon)
+                   Example.GeoEx.geoEx_$dTypeable2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Point3
+                                                                      -> Theories.Geometry.Vector3
+                                                                      -> Theories.Geometry.Vector3
+                                                                      -> Theories.Geometry.Polygon>_N)
+                   Example.GeoEx.projectToFloor) -}
+6c7e7c1f68b9276823fcc86bd50be9d6
+  geoEx25 ::
+    Data.Typeable.Internal.TypeRep
+      (Theories.Geometry.Vector3
+       -> Theories.Geometry.Vector3 -> Theories.Geometry.Polygon)
+  {- Unfolding: (case GHC.Magic.noinline
+                        @ ([GHC.Fingerprint.Type.Fingerprint]
+                           -> GHC.Fingerprint.Type.Fingerprint)
+                        GHC.Fingerprint.fingerprintFingerprints
+                        Example.GeoEx.geoEx32 of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                 case Example.GeoEx.geoEx13 of dt3 { Data.Typeable.Internal.TrTyCon ipv ipv1 ipv2 ipv3 ipv4 ->
+                 case Example.GeoEx.geoEx26 of dt4 { DEFAULT ->
+                 Data.Typeable.Internal.TrFun
+                   @ *
+                   @ (Theories.Geometry.Vector3
+                      -> Theories.Geometry.Vector3 -> Theories.Geometry.Polygon)
+                   @ 'GHC.Types.LiftedRep
+                   @ 'GHC.Types.LiftedRep
+                   @ Theories.Geometry.Vector3
+                   @ (Theories.Geometry.Vector3 -> Theories.Geometry.Polygon)
+                   @~ <*>_N
+                   @~ <Theories.Geometry.Vector3
+                       -> Theories.Geometry.Vector3 -> Theories.Geometry.Polygon>_N
+                   dt1
+                   dt2
+                   dt3
+                   dt4 } } }) -}
+17b4c6ea15c4343adbdf9061c8ca0c11
+  geoEx26 ::
+    Data.Typeable.Internal.TypeRep
+      (Theories.Geometry.Vector3 -> Theories.Geometry.Polygon)
+  {- Unfolding: (case GHC.Magic.noinline
+                        @ ([GHC.Fingerprint.Type.Fingerprint]
+                           -> GHC.Fingerprint.Type.Fingerprint)
+                        GHC.Fingerprint.fingerprintFingerprints
+                        Example.GeoEx.geoEx28 of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                 case Example.GeoEx.geoEx13 of dt3 { Data.Typeable.Internal.TrTyCon ipv ipv1 ipv2 ipv3 ipv4 ->
+                 case Example.GeoEx.geoEx27 of dt4 { DEFAULT ->
+                 Data.Typeable.Internal.TrFun
+                   @ *
+                   @ (Theories.Geometry.Vector3 -> Theories.Geometry.Polygon)
+                   @ 'GHC.Types.LiftedRep
+                   @ 'GHC.Types.LiftedRep
+                   @ Theories.Geometry.Vector3
+                   @ Theories.Geometry.Polygon
+                   @~ <*>_N
+                   @~ <Theories.Geometry.Vector3 -> Theories.Geometry.Polygon>_N
+                   dt1
+                   dt2
+                   dt3
+                   dt4 } } }) -}
+251cfc4d9c2119689fca2ed96075d34d
+  geoEx27 ::
+    Data.Typeable.Internal.TypeRep [Theories.Geometry.Point3]
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ (* -> *)
+                        @ []
+                        15300440589168157478##
+                        15016221815972113379##
+                        GHC.Types.$trModule
+                        GHC.Types.$tc[]1
+                        0#
+                        GHC.Types.krep$*Arr*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 Data.Typeable.Internal.mkTrApp
+                   @ *
+                   @ *
+                   @ []
+                   @ Theories.Geometry.Point3
+                   (Data.Typeable.Internal.TrTyCon
+                      @ (* -> *)
+                      @ []
+                      ww8
+                      ww9
+                      ww10
+                      ww11
+                      ww12)
+                   Example.GeoEx.geoEx13 }) -}
+92ea0d95343fd01ebedc8f49fba8a8e5
+  geoEx28 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Example.GeoEx.geoEx31
+                   Example.GeoEx.geoEx29) -}
+4784baec7feb28d99a5537f43a43a443
+  geoEx29 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Example.GeoEx.geoEx30
+                   (GHC.Types.[] @ GHC.Fingerprint.Type.Fingerprint)) -}
+f4788239ad43c9f4cff796b7a9a30a8f
+  geoEx3 :: (Lola.Ident, Lola.Expr Theories.Geometry.Polygon)
+  {- Strictness: m,
+     Unfolding: ((Example.GeoEx.geoEx45, Example.GeoEx.geoEx4)) -}
+2b75e565a810ed35a235ab7dd53ccc2f
+  geoEx30 :: GHC.Fingerprint.Type.Fingerprint
+  {- Unfolding: (case Example.GeoEx.geoEx27 of wild {
+                   Data.Typeable.Internal.TrTyCon dt dt1 ds1 ds2 ds3
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1
+                   Data.Typeable.Internal.TrApp k1 a1 b co dt dt1 ds1 ds2 ds3
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1 }) -}
+fc9174be6ef68f078e1e117b135f4672
+  geoEx31 :: GHC.Fingerprint.Type.Fingerprint
+  {- Unfolding: (case Example.GeoEx.geoEx13 of wild { Data.Typeable.Internal.TrTyCon dt dt1 ds1 ds2 ds3 ->
+                 GHC.Fingerprint.Type.Fingerprint dt dt1 }) -}
+1276f1c23862d725c66f85096a442a0a
+  geoEx32 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Example.GeoEx.geoEx31
+                   Example.GeoEx.geoEx33) -}
+73c137707044a56dbea02608c3ae5b8b
+  geoEx33 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Example.GeoEx.geoEx34
+                   (GHC.Types.[] @ GHC.Fingerprint.Type.Fingerprint)) -}
+5ea79058a1f752ba5c788332e0c67c02
+  geoEx34 :: GHC.Fingerprint.Type.Fingerprint
+  {- Unfolding: (case Example.GeoEx.geoEx26 of wild {
+                   Data.Typeable.Internal.TrTyCon dt dt1 ds1 ds2 ds3
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1
+                   Data.Typeable.Internal.TrApp k1 a1 b co dt dt1 ds1 ds2 ds3
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1
+                   Data.Typeable.Internal.TrFun r1 r2 a1 b co co1 dt dt1 ds1 ds2
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1 }) -}
+a2201ecc8627f12435f912d9b7971ea4
+  geoEx35 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Example.GeoEx.geoEx31
+                   Example.GeoEx.geoEx36) -}
+6f82dd65b2fbf3b6316b962daf9a737c
+  geoEx36 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Example.GeoEx.geoEx37
+                   (GHC.Types.[] @ GHC.Fingerprint.Type.Fingerprint)) -}
+695a5a6d565490f70445d9f34a7d4cc3
+  geoEx37 :: GHC.Fingerprint.Type.Fingerprint
+  {- Unfolding: (case Example.GeoEx.geoEx25 of wild {
+                   Data.Typeable.Internal.TrTyCon dt dt1 ds1 ds2 ds3
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1
+                   Data.Typeable.Internal.TrApp k1 a1 b co dt dt1 ds1 ds2 ds3
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1
+                   Data.Typeable.Internal.TrFun r1 r2 a1 b co co1 dt dt1 ds1 ds2
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1 }) -}
+d877e8a46b15895edfef1f0083bc651d
+  geoEx38 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# Example.GeoEx.geoEx39) -}
+73eefe4da727c81a004f405e6cffa88e
+  geoEx39 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("coveredPoly"#) -}
+feb6db25e5e9d9a7bd6a70619a4d1c16
+  geoEx4 :: Lola.Expr Theories.Geometry.Polygon
+  {- Unfolding: (Lola.App
+                   @ Theories.Geometry.Polygon
+                   @ Theories.Geometry.Polygon
+                   Example.GeoEx.geoEx41
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Polygon>_N)
+                   Example.GeoEx.geoEx_$dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Polygon
+                                                                      -> Theories.Geometry.Polygon>_N)
+                   Example.GeoEx.geoEx41
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Polygon>_N)
+                   Example.GeoEx.geoEx40
+                   Example.GeoEx.geoEx5) -}
+0d6439883a3b11a87995effde7b622ca
+  geoEx40 ::
+    Lola.Expr (Theories.Geometry.Polygon -> Theories.Geometry.Polygon)
+59dc2fcbe40d7b6ac8be95058167c7ac
+  geoEx41 ::
+    Data.Typeable.Internal.TypeRep [Theories.Geometry.Point3]
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ (* -> *)
+                        @ []
+                        15300440589168157478##
+                        15016221815972113379##
+                        GHC.Types.$trModule
+                        GHC.Types.$tc[]1
+                        0#
+                        GHC.Types.krep$*Arr*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ Theories.Geometry.Point3
+                        3359438377960536085##
+                        2914939799786236109##
+                        Theories.Geometry.$trModule
+                        Theories.Geometry.$tcPoint1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww1 { (#,,,,#) ww2 ww3 ww4 ww5 ww6 ->
+                 Data.Typeable.Internal.mkTrApp
+                   @ *
+                   @ *
+                   @ []
+                   @ Theories.Geometry.Point3
+                   (Data.Typeable.Internal.TrTyCon
+                      @ (* -> *)
+                      @ []
+                      ww8
+                      ww9
+                      ww10
+                      ww11
+                      ww12)
+                   (Data.Typeable.Internal.TrTyCon
+                      @ *
+                      @ Theories.Geometry.Point3
+                      ww2
+                      ww3
+                      ww4
+                      ww5
+                      ww6) } }) -}
+e17342a80c2e8db8f97559c3fa3a10d2
+  geoEx42 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Example.GeoEx.geoEx44
+                   Example.GeoEx.geoEx43) -}
+80b4b251af8544e144851f8f71560c3f
+  geoEx43 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Example.GeoEx.geoEx44
+                   (GHC.Types.[] @ GHC.Fingerprint.Type.Fingerprint)) -}
+67d6322f89adfee1f73a1c5950cb69b8
+  geoEx44 :: GHC.Fingerprint.Type.Fingerprint
+  {- Unfolding: (case Example.GeoEx.geoEx41 of wild {
+                   Data.Typeable.Internal.TrTyCon dt dt1 ds1 ds2 ds3
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1
+                   Data.Typeable.Internal.TrApp k1 a1 b co dt dt1 ds1 ds2 ds3
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1 }) -}
+3c8da5689d54902781a233a36cce1236
+  geoEx45 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# Example.GeoEx.geoEx46) -}
+429b50b2f9808dcd03c9d0f2d4f121f8
+  geoEx46 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("coveredSurface"#) -}
+62a77a1c6aa2adacad838df8919ebe2c
+  geoEx47 :: DecDyn.Readers
+  {- Unfolding: (case Example.GeoEx.geoEx_ds of wild { (,,) ed thereaders thejsoners ->
+                 thereaders }) -}
+521d8bc745da3701a67399a4c292bafe
+  geoEx48 ::
+    (Data.Dynamic.Dynamic -> GHC.Base.String,
+     Data.Dynamic.Dynamic -> Data.Aeson.Types.Internal.Value)
+  {- Strictness: m,
+     Unfolding: ((Example.GeoEx.geoEx50, Example.GeoEx.geoEx49)) -}
+3707dbac359a37141bf6c4bd9e562dc1
+  geoEx49 :: Data.Dynamic.Dynamic -> Data.Aeson.Types.Internal.Value
+  {- Arity: 1, Strictness: <S,1*U>m2, Inline: [2],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: Data.Dynamic.Dynamic) ->
+                 case Example.GeoEx.$wgeoEx w of ww { Unit# ww1 ->
+                 Data.Aeson.Types.Internal.Array ww1 }) -}
+30cc14a1b1b7f16f834c6a63a2342c71
+  geoEx5 :: Lola.Expr Theories.Geometry.Polygon
+  {- Strictness: m3,
+     Unfolding: (Lola.Now
+                   @ Theories.Geometry.Polygon
+                   Example.GeoEx.geoEx6) -}
+1c975da6b307bebadad7811cbf1e21a2
+  geoEx50 :: Data.Dynamic.Dynamic -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ (x :: Data.Dynamic.Dynamic) ->
+                 case x of wild { Data.Dynamic.Dynamic a1 t v ->
+                 case Data.Typeable.Internal.sameTypeRep
+                        @ *
+                        @ *
+                        @ a1
+                        @ Theories.Geometry.Polygon
+                        t
+                        Example.GeoEx.$sdec2Dyn_w
+                          `cast`
+                        (Data.Typeable.Internal.N:Typeable[0] <*>_N <Theories.Geometry.Polygon>_N) of wild1 {
+                   GHC.Types.False
+                   -> case Data.Maybe.fromJust1 ret_ty GHC.Base.String of {}
+                   GHC.Types.True
+                   -> GHC.Show.showList__
+                        @ Theories.Geometry.Point3
+                        Theories.Geometry.$fShowPoint1
+                        v `cast` (UnsafeCo representational a1 Theories.Geometry.Polygon)
+                        (GHC.Types.[] @ GHC.Types.Char) } }) -}
+c01af187ed592f26dcea23218e55c0f3
+  geoEx51 :: DecDyn.DeclarationDyn
+  {- Unfolding: (case Example.GeoEx.geoEx_ds of wild { (,,) ed thereaders thejsoners ->
+                 ed }) -}
+eecfc3a9505b88440b14456be9fef5cd
+  geoEx6 :: Lola.Declaration Theories.Geometry.Polygon
+  {- Strictness: m2,
+     Unfolding: (Lola.Output
+                   @ Theories.Geometry.Polygon
+                   Example.GeoEx.geoEx27
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Polygon>_N)
+                   Example.GeoEx.geoEx7) -}
+b043f2368571ec90fa4a746911ad4e64
+  geoEx7 :: (Lola.Ident, Lola.Expr Theories.Geometry.Polygon)
+  {- Strictness: m,
+     Unfolding: ((Example.GeoEx.geoEx38, Example.GeoEx.geoEx8)) -}
+5e48e76bd1aeaf07ce469f07dd5b7cd7
+  geoEx8 :: Lola.Expr Theories.Geometry.Polygon
+  {- Unfolding: (Lola.App
+                   @ Theories.Geometry.Polygon
+                   @ Theories.Geometry.Vector3
+                   Example.GeoEx.geoEx27
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Polygon>_N)
+                   Example.GeoEx.geoEx26
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Vector3
+                                                                      -> Theories.Geometry.Polygon>_N)
+                   Example.GeoEx.geoEx13
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Point3>_N)
+                   Example.GeoEx.geoEx14
+                   Example.GeoEx.geoEx9) -}
+2ce23023d5160ea26c325ed7c1d6ddcc
+  geoEx9 :: Lola.Expr Theories.Geometry.Vector3
+  {- Strictness: m3,
+     Unfolding: (Lola.Now
+                   @ Theories.Geometry.Vector3
+                   Example.GeoEx.geoEx10) -}
+dbca26d8e2084984d5f71d8ea78a0eed
+  geoEx_$dTypeable1 ::
+    Data.Typeable.Internal.TypeRep
+      (Theories.Geometry.Polygon -> Theories.Geometry.Polygon)
+  {- Unfolding: (case GHC.Magic.noinline
+                        @ ([GHC.Fingerprint.Type.Fingerprint]
+                           -> GHC.Fingerprint.Type.Fingerprint)
+                        GHC.Fingerprint.fingerprintFingerprints
+                        Example.GeoEx.geoEx42 of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                 case Example.GeoEx.geoEx41 of dt3 { DEFAULT ->
+                 Data.Typeable.Internal.TrFun
+                   @ *
+                   @ (Theories.Geometry.Polygon -> Theories.Geometry.Polygon)
+                   @ 'GHC.Types.LiftedRep
+                   @ 'GHC.Types.LiftedRep
+                   @ Theories.Geometry.Polygon
+                   @ Theories.Geometry.Polygon
+                   @~ <*>_N
+                   @~ <Theories.Geometry.Polygon -> Theories.Geometry.Polygon>_N
+                   dt1
+                   dt2
+                   dt3
+                   dt3 } }) -}
+5cf5d8dd7fa7b341861354881ca00be8
+  geoEx_$dTypeable2 ::
+    Data.Typeable.Internal.TypeRep
+      (Theories.Geometry.Point3
+       -> Theories.Geometry.Vector3
+       -> Theories.Geometry.Vector3
+       -> Theories.Geometry.Polygon)
+  {- Unfolding: (case GHC.Magic.noinline
+                        @ ([GHC.Fingerprint.Type.Fingerprint]
+                           -> GHC.Fingerprint.Type.Fingerprint)
+                        GHC.Fingerprint.fingerprintFingerprints
+                        Example.GeoEx.geoEx35 of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                 case Example.GeoEx.geoEx13 of dt3 { Data.Typeable.Internal.TrTyCon ipv ipv1 ipv2 ipv3 ipv4 ->
+                 case Example.GeoEx.geoEx25 of dt4 { DEFAULT ->
+                 Data.Typeable.Internal.TrFun
+                   @ *
+                   @ (Theories.Geometry.Point3
+                      -> Theories.Geometry.Vector3
+                      -> Theories.Geometry.Vector3
+                      -> Theories.Geometry.Polygon)
+                   @ 'GHC.Types.LiftedRep
+                   @ 'GHC.Types.LiftedRep
+                   @ Theories.Geometry.Point3
+                   @ (Theories.Geometry.Vector3
+                      -> Theories.Geometry.Vector3 -> Theories.Geometry.Polygon)
+                   @~ <*>_N
+                   @~ <Theories.Geometry.Point3
+                       -> Theories.Geometry.Vector3
+                       -> Theories.Geometry.Vector3
+                       -> Theories.Geometry.Polygon>_N
+                   dt1
+                   dt2
+                   dt3
+                   dt4 } } }) -}
+ac39c9f496a25f9eff032e0831ddf77c
+  geoEx_coveredSurface :: Lola.Declaration Theories.Geometry.Polygon
+  {- Strictness: m2,
+     Unfolding: (Lola.Output
+                   @ Theories.Geometry.Polygon
+                   Example.GeoEx.geoEx41
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <Theories.Geometry.Polygon>_N)
+                   Example.GeoEx.geoEx3) -}
+e709439bed1af889bd86ed04ec289414
+  geoEx_ds ::
+    (DecDyn.DeclarationDyn, DecDyn.Readers, DecDyn.FromJSONers)
+  {- Unfolding: (DecDyn.$sfind1
+                   @ (DecDyn.DeclarationDyn, DecDyn.Readers, DecDyn.FromJSONers)
+                   Example.GeoEx.geoEx45
+                   (DecDyn.dec2Dyn'
+                      @ Theories.Geometry.Polygon
+                      (Data.Map.Internal.Tip
+                         @ Lola.Ident
+                         @ (DecDyn.DeclarationDyn, DecDyn.Readers, DecDyn.FromJSONers))
+                      Example.GeoEx.geoEx_coveredSurface)) -}
+8c08f0278423e6e091f32db74c434372
+  projectToFloor ::
+    Theories.Geometry.Point3
+    -> Theories.Geometry.Vector3
+    -> Theories.Geometry.Vector3
+    -> Theories.Geometry.Polygon
+  {- Arity: 3, HasNoCafRefs,
+     Strictness: <S(LS(S)L),1*U(U(U),1*U(U),U(U))><S,1*U(U(U),U(U),U(U))><S,1*U(U(U),U(U),U(U))>,
+     Inline: [2],
+     Unfolding: InlineRule (3, True, False)
+                (\ (w :: Theories.Geometry.Point3)
+                   (w1 :: Theories.Geometry.Vector3)
+                   (w2 :: Theories.Geometry.Vector3) ->
+                 case w of ww { Theories.Geometry.P ww1 ww2 ww3 ->
+                 case ww2 of ww4 { GHC.Types.D# ww5 ->
+                 case w1 of ww6 { Theories.Geometry.P ww7 ww8 ww9 ->
+                 case w2 of ww10 { Theories.Geometry.P ww11 ww12 ww13 ->
+                 Example.GeoEx.$wprojectToFloor
+                   ww1
+                   ww5
+                   ww3
+                   ww7
+                   ww8
+                   ww9
+                   ww11
+                   ww12
+                   ww13 } } } }) -}
+trusted: none
+require own pkg trusted: False
+module header:
+  Nothing
+declaration docs:
+arg docs:
+

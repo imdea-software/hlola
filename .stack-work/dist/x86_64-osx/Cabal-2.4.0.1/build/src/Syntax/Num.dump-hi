@@ -1,0 +1,1090 @@
+
+==================== FINAL INTERFACE ====================
+2019-10-21 10:04:15.440844 UTC
+
+interface HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ:Syntax.Num [orphan module] 8065
+  interface hash: f14efdd3016f69286f29169ab78a9ade
+  ABI hash: 42d53dc12ffc226b88f55b096d15fb83
+  export-list hash: 883071c53baa629578d78c5289d88073
+  orphan hash: 9e94f2774199159d29f35750d2d9c643
+  flag hash: 3647df3ab7c5fd7960364a59d6d86979
+  opt_hash: 6faf2de08de32d19db9870899d88e59a
+  hpc_hash: 93b885adfe0da089cdf634904fd59f71
+  plugin_hash: ad164012d6b1e14942349d58b1132007
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Syntax.Num./
+  Syntax.Num.intdivide
+  Syntax.Num.mod
+module dependencies: Lola Syntax.HLPrelude
+package dependencies: aeson-1.4.5.0 array-0.5.3.0
+                      attoparsec-0.13.2.3 base-4.12.0.0 base-compat-0.10.5
+                      base-orphans-0.8.1 binary-0.8.6.0 bytestring-0.10.8.2
+                      containers-0.6.0.1 deepseq-1.4.4.0 dlist-0.8.0.7 ghc-boot-th-8.6.5
+                      ghc-prim-0.5.3 hashable-1.2.7.0 integer-gmp-1.0.2.0
+                      integer-logarithms-1.0.3 primitive-0.6.4.0 random-1.1
+                      scientific-0.3.6.2 tagged-0.8.6 template-haskell-2.14.0.0
+                      text-1.2.3.1 time-1.8.0.2 time-compat-1.9.2.2 transformers-0.5.6.2
+                      unordered-containers-0.2.10.0 uuid-types-1.0.3 vector-0.12.0.3
+orphans: attoparsec-0.13.2.3:Data.Attoparsec.Text.Internal
+         attoparsec-0.13.2.3:Data.Attoparsec.ByteString.Char8
+         time-1.8.0.2:Data.Time.Clock.TAI
+         vector-0.12.0.3:Data.Vector.Unboxed
+         time-1.8.0.2:Data.Time.Format.Parse
+         time-1.8.0.2:Data.Time.LocalTime.Internal.ZonedTime
+         time-1.8.0.2:Data.Time.LocalTime.Internal.LocalTime
+         time-1.8.0.2:Data.Time.Calendar.Gregorian
+         hashable-1.2.7.0:Data.Hashable.Generic text-1.2.3.1:Data.Text.Lazy
+         text-1.2.3.1:Data.Text binary-0.8.6.0:Data.Binary.Generic
+         bytestring-0.10.8.2:Data.ByteString.Builder
+         text-1.2.3.1:Data.Text.Show
+         vector-0.12.0.3:Data.Vector.Fusion.Bundle
+         transformers-0.5.6.2:Control.Monad.Trans.Error
+         base-4.12.0.0:GHC.Float base-4.12.0.0:GHC.Base
+family instance modules: aeson-1.4.5.0:Data.Aeson.Types.Internal
+                         attoparsec-0.13.2.3:Data.Attoparsec.Internal.Types
+                         base-4.12.0.0:Control.Applicative base-4.12.0.0:Data.Complex
+                         base-4.12.0.0:Data.Functor.Compose base-4.12.0.0:Data.Functor.Const
+                         base-4.12.0.0:Data.Functor.Identity
+                         base-4.12.0.0:Data.Functor.Product base-4.12.0.0:Data.Functor.Sum
+                         base-4.12.0.0:Data.Monoid base-4.12.0.0:Data.Semigroup
+                         base-4.12.0.0:Data.Semigroup.Internal base-4.12.0.0:Data.Version
+                         base-4.12.0.0:Data.Void base-4.12.0.0:GHC.Exts
+                         base-4.12.0.0:GHC.Generics base-4.12.0.0:GHC.IO.Exception
+                         containers-0.6.0.1:Data.IntMap.Internal
+                         containers-0.6.0.1:Data.IntSet.Internal
+                         containers-0.6.0.1:Data.Map.Internal
+                         containers-0.6.0.1:Data.Sequence.Internal
+                         containers-0.6.0.1:Data.Set.Internal containers-0.6.0.1:Data.Tree
+                         dlist-0.8.0.7:Data.DList ghc-boot-th-8.6.5:GHC.ForeignSrcLang.Type
+                         ghc-boot-th-8.6.5:GHC.LanguageExtensions.Type
+                         primitive-0.6.4.0:Control.Monad.Primitive
+                         primitive-0.6.4.0:Data.Primitive.Array
+                         primitive-0.6.4.0:Data.Primitive.ByteArray
+                         primitive-0.6.4.0:Data.Primitive.PrimArray
+                         primitive-0.6.4.0:Data.Primitive.SmallArray
+                         primitive-0.6.4.0:Data.Primitive.UnliftedArray
+                         tagged-0.8.6:Data.Tagged
+                         template-haskell-2.14.0.0:Language.Haskell.TH.Syntax
+                         text-1.2.3.1:Data.Text text-1.2.3.1:Data.Text.Lazy
+                         unordered-containers-0.2.10.0:Data.HashMap.Base
+                         unordered-containers-0.2.10.0:Data.HashSet.Base
+                         uuid-types-1.0.3:Data.UUID.Types.Internal
+                         uuid-types-1.0.3:Data.UUID.Types.Internal.Builder
+                         vector-0.12.0.3:Data.Vector vector-0.12.0.3:Data.Vector.Primitive
+                         vector-0.12.0.3:Data.Vector.Storable
+                         vector-0.12.0.3:Data.Vector.Unboxed
+                         vector-0.12.0.3:Data.Vector.Unboxed.Base
+import  -/  Lola f52d080a9c6c535055cc2d321870899c
+  exports: f0b2b11faceeef480fb3969a0b54aac2
+  <$> 5dbf6fc938f9b138f5c32cf20fb73d22
+  <*> 8031fcbaf5917c21a272faf5dc82b09a
+  App 6313dab744ba77caf1d1e856525754b2
+  Expr b276a145c92628a19f5bf124ea374e0b
+  Leaf beb804f20541fc627fd77821a11a3d02
+  Streamable 47494beae3139bbfdc210ceee05782ca
+import  -/  Syntax.HLPrelude f80a67bea1d500b91e76dd8341487f94
+  exports: 68fbd00b85e22e00f4229825fd729bf8
+import  -/  base-4.12.0.0:GHC.Base c00b75f0b052d05c55ba6a4dd1c63b26
+import  -/  base-4.12.0.0:GHC.Num c2039f03637c68f47b0bbff4c18ec616
+import  -/  base-4.12.0.0:GHC.Real af2b985dd29515c375fb78b2c9298d42
+import  -/  base-4.12.0.0:Prelude 3c779dfd6448bdd8e234c336802c2acb
+fixities infix 7 /
+bc4943b89b9f247215952fc57b35a892
+  $fNumExpr ::
+    (Lola.Streamable a, GHC.Num.Num a) => GHC.Num.Num (Lola.Expr a)
+  DFunId
+  {- Arity: 2, Strictness: <L,U><L,U(U,A,1*U,U,1*U,1*U,C(U))>m,
+     Inline: CONLIKE,
+     Unfolding: DFun: @ a
+                      (v :: Lola.Streamable a)
+                      (v1 :: GHC.Num.Num a).
+                  @ (Lola.Expr a)
+                  (Syntax.Num.$fNumExpr_$c+ @ a v v1)
+                  (Syntax.Num.$fNumExpr_$c- @ a v v1)
+                  (Syntax.Num.$fNumExpr_$c* @ a v v1)
+                  (Syntax.Num.$fNumExpr_$cnegate @ a v v1)
+                  (Syntax.Num.$fNumExpr_$cabs @ a v v1)
+                  (Syntax.Num.$fNumExpr_$csignum @ a v v1)
+                  (\ (eta :: GHC.Integer.Type.Integer) ->
+                   Lola.Leaf @ a v (GHC.Num.fromInteger @ a v1 eta)) -}
+da06c2e42085417a52dfc396d7439ac2
+  $fNumExpr_$c* ::
+    (Lola.Streamable a, GHC.Num.Num a) =>
+    Lola.Expr a -> Lola.Expr a -> Lola.Expr a
+  {- Arity: 2, Strictness: <L,U><L,1*U(A,A,1*U,A,A,A,A)>,
+     Unfolding: (\ @ a
+                   ($dTypeable :: Lola.Streamable a)
+                   ($dNum :: GHC.Num.Num a) ->
+                 let {
+                   $dTypeable1 :: Data.Typeable.Internal.TypeRep (a -> a)
+                   = case GHC.Magic.noinline
+                            @ ([GHC.Fingerprint.Type.Fingerprint]
+                               -> GHC.Fingerprint.Type.Fingerprint)
+                            GHC.Fingerprint.fingerprintFingerprints
+                            (GHC.Types.:
+                               @ GHC.Fingerprint.Type.Fingerprint
+                               (Data.Typeable.Internal.typeRepFingerprint
+                                  @ *
+                                  @ a
+                                  $dTypeable
+                                    `cast`
+                                  (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                               (GHC.Types.:
+                                  @ GHC.Fingerprint.Type.Fingerprint
+                                  (Data.Typeable.Internal.typeRepFingerprint
+                                     @ *
+                                     @ a
+                                     $dTypeable
+                                       `cast`
+                                     (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                                  (GHC.Types.[]
+                                     @ GHC.Fingerprint.Type.Fingerprint))) of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                     case $dTypeable
+                            `cast`
+                          (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N) of dt3 { DEFAULT ->
+                     Data.Typeable.Internal.TrFun
+                       @ *
+                       @ (a -> a)
+                       @ 'GHC.Types.LiftedRep
+                       @ 'GHC.Types.LiftedRep
+                       @ a
+                       @ a
+                       @~ <*>_N
+                       @~ <a -> a>_N
+                       dt1
+                       dt2
+                       dt3
+                       dt3 } }
+                 } in
+                 let {
+                   $dTypeable2 :: Data.Typeable.Internal.TypeRep (a -> a -> a)
+                   = case GHC.Magic.noinline
+                            @ ([GHC.Fingerprint.Type.Fingerprint]
+                               -> GHC.Fingerprint.Type.Fingerprint)
+                            GHC.Fingerprint.fingerprintFingerprints
+                            (GHC.Types.:
+                               @ GHC.Fingerprint.Type.Fingerprint
+                               (Data.Typeable.Internal.typeRepFingerprint
+                                  @ *
+                                  @ a
+                                  $dTypeable
+                                    `cast`
+                                  (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                               (GHC.Types.:
+                                  @ GHC.Fingerprint.Type.Fingerprint
+                                  (Data.Typeable.Internal.typeRepFingerprint
+                                     @ *
+                                     @ (a -> a)
+                                     $dTypeable1)
+                                  (GHC.Types.[]
+                                     @ GHC.Fingerprint.Type.Fingerprint))) of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                     case $dTypeable
+                            `cast`
+                          (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N) of dt3 { DEFAULT ->
+                     case $dTypeable1 of dt4 { DEFAULT ->
+                     Data.Typeable.Internal.TrFun
+                       @ *
+                       @ (a -> a -> a)
+                       @ 'GHC.Types.LiftedRep
+                       @ 'GHC.Types.LiftedRep
+                       @ a
+                       @ (a -> a)
+                       @~ <*>_N
+                       @~ <a -> a -> a>_N
+                       dt1
+                       dt2
+                       dt3
+                       dt4 } } }
+                 } in
+                 let {
+                   lvl :: a -> a -> a = GHC.Num.* @ a $dNum
+                 } in
+                 let {
+                   lvl1 :: Lola.Expr (a -> a -> a)
+                   = Lola.Leaf
+                       @ (a -> a -> a)
+                       $dTypeable2
+                         `cast`
+                       (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a -> a>_N)
+                       lvl
+                 } in
+                 \ (x :: Lola.Expr a) (y :: Lola.Expr a) ->
+                 Lola.App
+                   @ a
+                   @ a
+                   $dTypeable
+                   $dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a>_N)
+                   $dTypeable
+                   (Lola.App
+                      @ (a -> a)
+                      @ a
+                      $dTypeable1
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a>_N)
+                      $dTypeable2
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a -> a>_N)
+                      $dTypeable
+                      lvl1
+                      x)
+                   y) -}
+85a542f6eafe880ffce85aa00c84ee12
+  $fNumExpr_$c+ ::
+    (Lola.Streamable a, GHC.Num.Num a) =>
+    Lola.Expr a -> Lola.Expr a -> Lola.Expr a
+  {- Arity: 2, Strictness: <L,U><L,1*U(1*U,A,A,A,A,A,A)>,
+     Unfolding: (\ @ a
+                   ($dTypeable :: Lola.Streamable a)
+                   ($dNum :: GHC.Num.Num a) ->
+                 let {
+                   $dTypeable1 :: Data.Typeable.Internal.TypeRep (a -> a)
+                   = case GHC.Magic.noinline
+                            @ ([GHC.Fingerprint.Type.Fingerprint]
+                               -> GHC.Fingerprint.Type.Fingerprint)
+                            GHC.Fingerprint.fingerprintFingerprints
+                            (GHC.Types.:
+                               @ GHC.Fingerprint.Type.Fingerprint
+                               (Data.Typeable.Internal.typeRepFingerprint
+                                  @ *
+                                  @ a
+                                  $dTypeable
+                                    `cast`
+                                  (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                               (GHC.Types.:
+                                  @ GHC.Fingerprint.Type.Fingerprint
+                                  (Data.Typeable.Internal.typeRepFingerprint
+                                     @ *
+                                     @ a
+                                     $dTypeable
+                                       `cast`
+                                     (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                                  (GHC.Types.[]
+                                     @ GHC.Fingerprint.Type.Fingerprint))) of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                     case $dTypeable
+                            `cast`
+                          (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N) of dt3 { DEFAULT ->
+                     Data.Typeable.Internal.TrFun
+                       @ *
+                       @ (a -> a)
+                       @ 'GHC.Types.LiftedRep
+                       @ 'GHC.Types.LiftedRep
+                       @ a
+                       @ a
+                       @~ <*>_N
+                       @~ <a -> a>_N
+                       dt1
+                       dt2
+                       dt3
+                       dt3 } }
+                 } in
+                 let {
+                   $dTypeable2 :: Data.Typeable.Internal.TypeRep (a -> a -> a)
+                   = case GHC.Magic.noinline
+                            @ ([GHC.Fingerprint.Type.Fingerprint]
+                               -> GHC.Fingerprint.Type.Fingerprint)
+                            GHC.Fingerprint.fingerprintFingerprints
+                            (GHC.Types.:
+                               @ GHC.Fingerprint.Type.Fingerprint
+                               (Data.Typeable.Internal.typeRepFingerprint
+                                  @ *
+                                  @ a
+                                  $dTypeable
+                                    `cast`
+                                  (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                               (GHC.Types.:
+                                  @ GHC.Fingerprint.Type.Fingerprint
+                                  (Data.Typeable.Internal.typeRepFingerprint
+                                     @ *
+                                     @ (a -> a)
+                                     $dTypeable1)
+                                  (GHC.Types.[]
+                                     @ GHC.Fingerprint.Type.Fingerprint))) of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                     case $dTypeable
+                            `cast`
+                          (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N) of dt3 { DEFAULT ->
+                     case $dTypeable1 of dt4 { DEFAULT ->
+                     Data.Typeable.Internal.TrFun
+                       @ *
+                       @ (a -> a -> a)
+                       @ 'GHC.Types.LiftedRep
+                       @ 'GHC.Types.LiftedRep
+                       @ a
+                       @ (a -> a)
+                       @~ <*>_N
+                       @~ <a -> a -> a>_N
+                       dt1
+                       dt2
+                       dt3
+                       dt4 } } }
+                 } in
+                 let {
+                   lvl :: a -> a -> a = GHC.Num.+ @ a $dNum
+                 } in
+                 let {
+                   lvl1 :: Lola.Expr (a -> a -> a)
+                   = Lola.Leaf
+                       @ (a -> a -> a)
+                       $dTypeable2
+                         `cast`
+                       (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a -> a>_N)
+                       lvl
+                 } in
+                 \ (x :: Lola.Expr a) (y :: Lola.Expr a) ->
+                 Lola.App
+                   @ a
+                   @ a
+                   $dTypeable
+                   $dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a>_N)
+                   $dTypeable
+                   (Lola.App
+                      @ (a -> a)
+                      @ a
+                      $dTypeable1
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a>_N)
+                      $dTypeable2
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a -> a>_N)
+                      $dTypeable
+                      lvl1
+                      x)
+                   y) -}
+deb9b39eb9b307bfcc353d6064f31ceb
+  $fNumExpr_$c- ::
+    (Lola.Streamable a, GHC.Num.Num a) =>
+    Lola.Expr a -> Lola.Expr a -> Lola.Expr a
+  {- Arity: 4, Strictness: <L,U><L,U(1*U,A,A,1*U,A,A,A)><L,U><L,U>,
+     Inline: (sat-args=2),
+     Unfolding: InlineRule (4, False, False)
+                (\ @ a
+                   ($dTypeable :: Lola.Streamable a)
+                   ($dNum :: GHC.Num.Num a)
+                   (x :: Lola.Expr a)
+                   (y :: Lola.Expr a) ->
+                 Syntax.Num.$fNumExpr_$c+
+                   @ a
+                   $dTypeable
+                   $dNum
+                   x
+                   (Syntax.Num.$fNumExpr_$cnegate @ a $dTypeable $dNum y)) -}
+256ace9f4b0a8c6c934992ea8f36dac8
+  $fNumExpr_$cabs ::
+    (Lola.Streamable a, GHC.Num.Num a) => Lola.Expr a -> Lola.Expr a
+  {- Arity: 2, Strictness: <L,U><L,1*U(A,A,A,A,1*U,A,A)>,
+     Unfolding: (\ @ a
+                   ($dTypeable :: Lola.Streamable a)
+                   ($dNum :: GHC.Num.Num a) ->
+                 let {
+                   $dTypeable1 :: Data.Typeable.Internal.TypeRep (a -> a)
+                   = case GHC.Magic.noinline
+                            @ ([GHC.Fingerprint.Type.Fingerprint]
+                               -> GHC.Fingerprint.Type.Fingerprint)
+                            GHC.Fingerprint.fingerprintFingerprints
+                            (GHC.Types.:
+                               @ GHC.Fingerprint.Type.Fingerprint
+                               (Data.Typeable.Internal.typeRepFingerprint
+                                  @ *
+                                  @ a
+                                  $dTypeable
+                                    `cast`
+                                  (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                               (GHC.Types.:
+                                  @ GHC.Fingerprint.Type.Fingerprint
+                                  (Data.Typeable.Internal.typeRepFingerprint
+                                     @ *
+                                     @ a
+                                     $dTypeable
+                                       `cast`
+                                     (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                                  (GHC.Types.[]
+                                     @ GHC.Fingerprint.Type.Fingerprint))) of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                     case $dTypeable
+                            `cast`
+                          (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N) of dt3 { DEFAULT ->
+                     Data.Typeable.Internal.TrFun
+                       @ *
+                       @ (a -> a)
+                       @ 'GHC.Types.LiftedRep
+                       @ 'GHC.Types.LiftedRep
+                       @ a
+                       @ a
+                       @~ <*>_N
+                       @~ <a -> a>_N
+                       dt1
+                       dt2
+                       dt3
+                       dt3 } }
+                 } in
+                 Lola.App
+                   @ a
+                   @ a
+                   $dTypeable
+                   $dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a>_N)
+                   $dTypeable
+                   (Lola.Leaf
+                      @ (a -> a)
+                      $dTypeable1
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a>_N)
+                      (GHC.Num.abs @ a $dNum))) -}
+d35388a7593e75b0fab2d10bd00f6992
+  $fNumExpr_$cnegate ::
+    (Lola.Streamable a, GHC.Num.Num a) => Lola.Expr a -> Lola.Expr a
+  {- Arity: 2, Strictness: <L,U><L,1*U(A,A,A,1*U,A,A,A)>,
+     Unfolding: (\ @ a
+                   ($dTypeable :: Lola.Streamable a)
+                   ($dNum :: GHC.Num.Num a) ->
+                 let {
+                   $dTypeable1 :: Data.Typeable.Internal.TypeRep (a -> a)
+                   = case GHC.Magic.noinline
+                            @ ([GHC.Fingerprint.Type.Fingerprint]
+                               -> GHC.Fingerprint.Type.Fingerprint)
+                            GHC.Fingerprint.fingerprintFingerprints
+                            (GHC.Types.:
+                               @ GHC.Fingerprint.Type.Fingerprint
+                               (Data.Typeable.Internal.typeRepFingerprint
+                                  @ *
+                                  @ a
+                                  $dTypeable
+                                    `cast`
+                                  (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                               (GHC.Types.:
+                                  @ GHC.Fingerprint.Type.Fingerprint
+                                  (Data.Typeable.Internal.typeRepFingerprint
+                                     @ *
+                                     @ a
+                                     $dTypeable
+                                       `cast`
+                                     (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                                  (GHC.Types.[]
+                                     @ GHC.Fingerprint.Type.Fingerprint))) of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                     case $dTypeable
+                            `cast`
+                          (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N) of dt3 { DEFAULT ->
+                     Data.Typeable.Internal.TrFun
+                       @ *
+                       @ (a -> a)
+                       @ 'GHC.Types.LiftedRep
+                       @ 'GHC.Types.LiftedRep
+                       @ a
+                       @ a
+                       @~ <*>_N
+                       @~ <a -> a>_N
+                       dt1
+                       dt2
+                       dt3
+                       dt3 } }
+                 } in
+                 Lola.App
+                   @ a
+                   @ a
+                   $dTypeable
+                   $dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a>_N)
+                   $dTypeable
+                   (Lola.Leaf
+                      @ (a -> a)
+                      $dTypeable1
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a>_N)
+                      (GHC.Num.negate @ a $dNum))) -}
+9e740db244728826002f9ca192b5c678
+  $fNumExpr_$csignum ::
+    (Lola.Streamable a, GHC.Num.Num a) => Lola.Expr a -> Lola.Expr a
+  {- Arity: 2, Strictness: <L,U><L,1*U(A,A,A,A,A,1*U,A)>,
+     Unfolding: (\ @ a
+                   ($dTypeable :: Lola.Streamable a)
+                   ($dNum :: GHC.Num.Num a) ->
+                 let {
+                   $dTypeable1 :: Data.Typeable.Internal.TypeRep (a -> a)
+                   = case GHC.Magic.noinline
+                            @ ([GHC.Fingerprint.Type.Fingerprint]
+                               -> GHC.Fingerprint.Type.Fingerprint)
+                            GHC.Fingerprint.fingerprintFingerprints
+                            (GHC.Types.:
+                               @ GHC.Fingerprint.Type.Fingerprint
+                               (Data.Typeable.Internal.typeRepFingerprint
+                                  @ *
+                                  @ a
+                                  $dTypeable
+                                    `cast`
+                                  (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                               (GHC.Types.:
+                                  @ GHC.Fingerprint.Type.Fingerprint
+                                  (Data.Typeable.Internal.typeRepFingerprint
+                                     @ *
+                                     @ a
+                                     $dTypeable
+                                       `cast`
+                                     (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                                  (GHC.Types.[]
+                                     @ GHC.Fingerprint.Type.Fingerprint))) of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                     case $dTypeable
+                            `cast`
+                          (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N) of dt3 { DEFAULT ->
+                     Data.Typeable.Internal.TrFun
+                       @ *
+                       @ (a -> a)
+                       @ 'GHC.Types.LiftedRep
+                       @ 'GHC.Types.LiftedRep
+                       @ a
+                       @ a
+                       @~ <*>_N
+                       @~ <a -> a>_N
+                       dt1
+                       dt2
+                       dt3
+                       dt3 } }
+                 } in
+                 Lola.App
+                   @ a
+                   @ a
+                   $dTypeable
+                   $dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a>_N)
+                   $dTypeable
+                   (Lola.Leaf
+                      @ (a -> a)
+                      $dTypeable1
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a>_N)
+                      (GHC.Num.signum @ a $dNum))) -}
+5ec00764f0584d0bc5cfe42749fa8523
+  $trModule :: GHC.Types.Module
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.Module
+                   Syntax.Num.$trModule3
+                   Syntax.Num.$trModule1) -}
+84e00f88687fda0111f220678422c970
+  $trModule1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Syntax.Num.$trModule2) -}
+11f81ea8bf9506930e033d093685aa46
+  $trModule2 :: GHC.Prim.Addr#
+  {- HasNoCafRefs, Unfolding: ("Syntax.Num"#) -}
+a2e49bb142d317efc76d53a06067c017
+  $trModule3 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS Syntax.Num.$trModule4) -}
+9b34dc16420bb374a15b1c9891a1b677
+  $trModule4 :: GHC.Prim.Addr#
+  {- HasNoCafRefs,
+     Unfolding: ("HLola-0.1.0.0-81UMLq1MGfHEYLEYD1xjiJ"#) -}
+0d43b325d8b0b4c7e9e44d02afb69d82
+  (/) ::
+    (Lola.Streamable a, GHC.Real.Fractional a) =>
+    Lola.Expr a -> Lola.Expr a -> Lola.Expr a
+  {- Arity: 2, Strictness: <L,U><L,1*U(A,1*U,A,A)>,
+     Unfolding: (\ @ a
+                   ($dTypeable :: Lola.Streamable a)
+                   ($dFractional :: GHC.Real.Fractional a) ->
+                 let {
+                   $dTypeable1 :: Data.Typeable.Internal.TypeRep (a -> a)
+                   = case GHC.Magic.noinline
+                            @ ([GHC.Fingerprint.Type.Fingerprint]
+                               -> GHC.Fingerprint.Type.Fingerprint)
+                            GHC.Fingerprint.fingerprintFingerprints
+                            (GHC.Types.:
+                               @ GHC.Fingerprint.Type.Fingerprint
+                               (Data.Typeable.Internal.typeRepFingerprint
+                                  @ *
+                                  @ a
+                                  $dTypeable
+                                    `cast`
+                                  (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                               (GHC.Types.:
+                                  @ GHC.Fingerprint.Type.Fingerprint
+                                  (Data.Typeable.Internal.typeRepFingerprint
+                                     @ *
+                                     @ a
+                                     $dTypeable
+                                       `cast`
+                                     (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                                  (GHC.Types.[]
+                                     @ GHC.Fingerprint.Type.Fingerprint))) of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                     case $dTypeable
+                            `cast`
+                          (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N) of dt3 { DEFAULT ->
+                     Data.Typeable.Internal.TrFun
+                       @ *
+                       @ (a -> a)
+                       @ 'GHC.Types.LiftedRep
+                       @ 'GHC.Types.LiftedRep
+                       @ a
+                       @ a
+                       @~ <*>_N
+                       @~ <a -> a>_N
+                       dt1
+                       dt2
+                       dt3
+                       dt3 } }
+                 } in
+                 let {
+                   $dTypeable2 :: Data.Typeable.Internal.TypeRep (a -> a -> a)
+                   = case GHC.Magic.noinline
+                            @ ([GHC.Fingerprint.Type.Fingerprint]
+                               -> GHC.Fingerprint.Type.Fingerprint)
+                            GHC.Fingerprint.fingerprintFingerprints
+                            (GHC.Types.:
+                               @ GHC.Fingerprint.Type.Fingerprint
+                               (Data.Typeable.Internal.typeRepFingerprint
+                                  @ *
+                                  @ a
+                                  $dTypeable
+                                    `cast`
+                                  (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                               (GHC.Types.:
+                                  @ GHC.Fingerprint.Type.Fingerprint
+                                  (Data.Typeable.Internal.typeRepFingerprint
+                                     @ *
+                                     @ (a -> a)
+                                     $dTypeable1)
+                                  (GHC.Types.[]
+                                     @ GHC.Fingerprint.Type.Fingerprint))) of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                     case $dTypeable
+                            `cast`
+                          (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N) of dt3 { DEFAULT ->
+                     case $dTypeable1 of dt4 { DEFAULT ->
+                     Data.Typeable.Internal.TrFun
+                       @ *
+                       @ (a -> a -> a)
+                       @ 'GHC.Types.LiftedRep
+                       @ 'GHC.Types.LiftedRep
+                       @ a
+                       @ (a -> a)
+                       @~ <*>_N
+                       @~ <a -> a -> a>_N
+                       dt1
+                       dt2
+                       dt3
+                       dt4 } } }
+                 } in
+                 let {
+                   lvl :: a -> a -> a = GHC.Real./ @ a $dFractional
+                 } in
+                 let {
+                   lvl1 :: Lola.Expr (a -> a -> a)
+                   = Lola.Leaf
+                       @ (a -> a -> a)
+                       $dTypeable2
+                         `cast`
+                       (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a -> a>_N)
+                       lvl
+                 } in
+                 \ (a1 :: Lola.Expr a) (b :: Lola.Expr a) ->
+                 Lola.App
+                   @ a
+                   @ a
+                   $dTypeable
+                   $dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a>_N)
+                   $dTypeable
+                   (Lola.App
+                      @ (a -> a)
+                      @ a
+                      $dTypeable1
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a>_N)
+                      $dTypeable2
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a -> a>_N)
+                      $dTypeable
+                      lvl1
+                      a1)
+                   b) -}
+5621c61b2de87b6ec790c39625930b79
+  /1 ::
+    Lola.Expr
+      (GHC.Types.Double -> GHC.Types.Double -> GHC.Types.Double)
+  {- Strictness: m1,
+     Unfolding: (Lola.Leaf
+                   @ (GHC.Types.Double -> GHC.Types.Double -> GHC.Types.Double)
+                   Syntax.Num./_$dTypeable2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double
+                                                                      -> GHC.Types.Double
+                                                                      -> GHC.Types.Double>_N)
+                   GHC.Float.divideDouble) -}
+d58b361efcce282eee9e2cab12c24f1f
+  /2 ::
+    Data.Typeable.Internal.TypeRep
+      (GHC.Types.Double -> GHC.Types.Double)
+  {- Unfolding: (case GHC.Magic.noinline
+                        @ ([GHC.Fingerprint.Type.Fingerprint]
+                           -> GHC.Fingerprint.Type.Fingerprint)
+                        GHC.Fingerprint.fingerprintFingerprints
+                        Syntax.Num./4 of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                 case Syntax.Num./3 of dt3 { Data.Typeable.Internal.TrTyCon ipv ipv1 ipv2 ipv3 ipv4 ->
+                 Data.Typeable.Internal.TrFun
+                   @ *
+                   @ (GHC.Types.Double -> GHC.Types.Double)
+                   @ 'GHC.Types.LiftedRep
+                   @ 'GHC.Types.LiftedRep
+                   @ GHC.Types.Double
+                   @ GHC.Types.Double
+                   @~ <*>_N
+                   @~ <GHC.Types.Double -> GHC.Types.Double>_N
+                   dt1
+                   dt2
+                   dt3
+                   dt3 } }) -}
+88a588ae50e5e11ea5a7997ec0005693
+  /3 :: Data.Typeable.Internal.TypeRep GHC.Types.Double
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ GHC.Types.Double
+                        1001516997883380745##
+                        15743804272740824943##
+                        GHC.Types.$trModule
+                        GHC.Types.$tcDouble1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 Data.Typeable.Internal.TrTyCon
+                   @ *
+                   @ GHC.Types.Double
+                   ww8
+                   ww9
+                   ww10
+                   ww11
+                   ww12 }) -}
+086453ece335e9770f2339a4f9df8b52
+  /4 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Syntax.Num./6
+                   Syntax.Num./5) -}
+3d9270f57c71306f62d5bc4c2353de0b
+  /5 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Syntax.Num./6
+                   (GHC.Types.[] @ GHC.Fingerprint.Type.Fingerprint)) -}
+d6388eb0e7ae630a20142e6b9cd16f20
+  /6 :: GHC.Fingerprint.Type.Fingerprint
+  {- Unfolding: (case Syntax.Num./3 of wild { Data.Typeable.Internal.TrTyCon dt dt1 ds1 ds2 ds3 ->
+                 GHC.Fingerprint.Type.Fingerprint dt dt1 }) -}
+7f1e94693f4a2e53f4aa455b1b9f2afa
+  /7 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Syntax.Num./6
+                   Syntax.Num./8) -}
+a03c8a73834b963cabc5e3054aadf38f
+  /8 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Syntax.Num./9
+                   (GHC.Types.[] @ GHC.Fingerprint.Type.Fingerprint)) -}
+56c2aa84fa6cae36428e0234637080b9
+  /9 :: GHC.Fingerprint.Type.Fingerprint
+  {- Unfolding: (case Syntax.Num./2 of wild {
+                   Data.Typeable.Internal.TrTyCon dt dt1 ds1 ds2 ds3
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1
+                   Data.Typeable.Internal.TrApp k1 a1 b co dt dt1 ds1 ds2 ds3
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1
+                   Data.Typeable.Internal.TrFun r1 r2 a1 b co co1 dt dt1 ds1 ds2
+                   -> GHC.Fingerprint.Type.Fingerprint dt dt1 }) -}
+8bf6db90a1eeb038ce90c52f028e34f6
+  /_$dTypeable2 ::
+    Data.Typeable.Internal.TypeRep
+      (GHC.Types.Double -> GHC.Types.Double -> GHC.Types.Double)
+  {- Unfolding: (case GHC.Magic.noinline
+                        @ ([GHC.Fingerprint.Type.Fingerprint]
+                           -> GHC.Fingerprint.Type.Fingerprint)
+                        GHC.Fingerprint.fingerprintFingerprints
+                        Syntax.Num./7 of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                 case Syntax.Num./3 of dt3 { Data.Typeable.Internal.TrTyCon ipv ipv1 ipv2 ipv3 ipv4 ->
+                 case Syntax.Num./2 of dt4 { DEFAULT ->
+                 Data.Typeable.Internal.TrFun
+                   @ *
+                   @ (GHC.Types.Double -> GHC.Types.Double -> GHC.Types.Double)
+                   @ 'GHC.Types.LiftedRep
+                   @ 'GHC.Types.LiftedRep
+                   @ GHC.Types.Double
+                   @ (GHC.Types.Double -> GHC.Types.Double)
+                   @~ <*>_N
+                   @~ <GHC.Types.Double -> GHC.Types.Double -> GHC.Types.Double>_N
+                   dt1
+                   dt2
+                   dt3
+                   dt4 } } }) -}
+46780cf9207766607a9b582b146ea555
+  intdivide ::
+    Lola.Expr GHC.Types.Int
+    -> Lola.Expr GHC.Types.Int -> Lola.Expr GHC.Types.Double
+  {- Arity: 2, Strictness: <L,U><L,U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ (n :: Lola.Expr GHC.Types.Int) (m :: Lola.Expr GHC.Types.Int) ->
+                 Lola.App
+                   @ GHC.Types.Double
+                   @ GHC.Types.Double
+                   Syntax.Num./3
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                   Syntax.Num./2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double
+                                                                      -> GHC.Types.Double>_N)
+                   Syntax.Num./3
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                   (Lola.App
+                      @ (GHC.Types.Double -> GHC.Types.Double)
+                      @ GHC.Types.Double
+                      Syntax.Num./2
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double
+                                                                         -> GHC.Types.Double>_N)
+                      Syntax.Num./_$dTypeable2
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double
+                                                                         -> GHC.Types.Double
+                                                                         -> GHC.Types.Double>_N)
+                      Syntax.Num./3
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                      Syntax.Num./1
+                      (Lola.App
+                         @ GHC.Types.Double
+                         @ GHC.Types.Int
+                         Syntax.Num./3
+                           `cast`
+                         (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                         Syntax.Num.intdivide_$dTypeable2
+                           `cast`
+                         (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int
+                                                                            -> GHC.Types.Double>_N)
+                         Syntax.Num.intdivide2
+                           `cast`
+                         (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int>_N)
+                         Syntax.Num.intdivide1
+                         n))
+                   (Lola.App
+                      @ GHC.Types.Double
+                      @ GHC.Types.Int
+                      Syntax.Num./3
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Double>_N)
+                      Syntax.Num.intdivide_$dTypeable2
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int
+                                                                         -> GHC.Types.Double>_N)
+                      Syntax.Num.intdivide2
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int>_N)
+                      Syntax.Num.intdivide1
+                      m)) -}
+69bf770b4aff21d6e2c21378fed30857
+  intdivide1 :: Lola.Expr (GHC.Types.Int -> GHC.Types.Double)
+  {- Strictness: m1,
+     Unfolding: (Lola.Leaf
+                   @ (GHC.Types.Int -> GHC.Types.Double)
+                   Syntax.Num.intdivide_$dTypeable2
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <GHC.Types.Int
+                                                                      -> GHC.Types.Double>_N)
+                   GHC.Float.RealFracMethods.int2Double) -}
+bdc254c580443d15fb1ad173b7ecdf99
+  intdivide2 :: Data.Typeable.Internal.TypeRep GHC.Types.Int
+  {- Unfolding: (case Data.Typeable.Internal.$wmkTrCon
+                        @ *
+                        @ GHC.Types.Int
+                        5193196903533114208##
+                        8143820745237564347##
+                        GHC.Types.$trModule
+                        GHC.Types.$tcInt1
+                        0#
+                        GHC.Types.krep$*
+                        (GHC.Types.[]
+                           @ Data.Typeable.Internal.SomeTypeRep) of ww7 { (#,,,,#) ww8 ww9 ww10 ww11 ww12 ->
+                 Data.Typeable.Internal.TrTyCon
+                   @ *
+                   @ GHC.Types.Int
+                   ww8
+                   ww9
+                   ww10
+                   ww11
+                   ww12 }) -}
+ae39b24a06c7f7904cdafad4b6ab7f4b
+  intdivide3 :: [GHC.Fingerprint.Type.Fingerprint]
+  {- Strictness: m2,
+     Unfolding: (GHC.Types.:
+                   @ GHC.Fingerprint.Type.Fingerprint
+                   Syntax.Num.intdivide4
+                   Syntax.Num./5) -}
+45787d443e96fe67f46ded01e2eb4dcd
+  intdivide4 :: GHC.Fingerprint.Type.Fingerprint
+  {- Unfolding: (case Syntax.Num.intdivide2 of wild { Data.Typeable.Internal.TrTyCon dt dt1 ds1 ds2 ds3 ->
+                 GHC.Fingerprint.Type.Fingerprint dt dt1 }) -}
+3181f5d69e06315c3239aa151a20c03e
+  intdivide_$dTypeable2 ::
+    Data.Typeable.Internal.TypeRep (GHC.Types.Int -> GHC.Types.Double)
+  {- Unfolding: (case GHC.Magic.noinline
+                        @ ([GHC.Fingerprint.Type.Fingerprint]
+                           -> GHC.Fingerprint.Type.Fingerprint)
+                        GHC.Fingerprint.fingerprintFingerprints
+                        Syntax.Num.intdivide3 of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                 case Syntax.Num.intdivide2 of dt3 { Data.Typeable.Internal.TrTyCon ipv ipv1 ipv2 ipv3 ipv4 ->
+                 case Syntax.Num./3 of dt4 { Data.Typeable.Internal.TrTyCon ipv5 ipv6 ipv7 ipv8 ipv9 ->
+                 Data.Typeable.Internal.TrFun
+                   @ *
+                   @ (GHC.Types.Int -> GHC.Types.Double)
+                   @ 'GHC.Types.LiftedRep
+                   @ 'GHC.Types.LiftedRep
+                   @ GHC.Types.Int
+                   @ GHC.Types.Double
+                   @~ <*>_N
+                   @~ <GHC.Types.Int -> GHC.Types.Double>_N
+                   dt1
+                   dt2
+                   dt3
+                   dt4 } } }) -}
+0574d996bf1797d7fa71766d1e41f4c6
+  mod ::
+    (Lola.Streamable a, GHC.Real.Integral a) =>
+    Lola.Expr a -> Lola.Expr a -> Lola.Expr a
+  {- Arity: 2, Strictness: <L,U><L,1*U(A,A,A,A,A,1*U,A,A,A)>,
+     Unfolding: (\ @ a
+                   ($dTypeable :: Lola.Streamable a)
+                   ($dIntegral :: GHC.Real.Integral a) ->
+                 let {
+                   $dTypeable1 :: Data.Typeable.Internal.TypeRep (a -> a)
+                   = case GHC.Magic.noinline
+                            @ ([GHC.Fingerprint.Type.Fingerprint]
+                               -> GHC.Fingerprint.Type.Fingerprint)
+                            GHC.Fingerprint.fingerprintFingerprints
+                            (GHC.Types.:
+                               @ GHC.Fingerprint.Type.Fingerprint
+                               (Data.Typeable.Internal.typeRepFingerprint
+                                  @ *
+                                  @ a
+                                  $dTypeable
+                                    `cast`
+                                  (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                               (GHC.Types.:
+                                  @ GHC.Fingerprint.Type.Fingerprint
+                                  (Data.Typeable.Internal.typeRepFingerprint
+                                     @ *
+                                     @ a
+                                     $dTypeable
+                                       `cast`
+                                     (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                                  (GHC.Types.[]
+                                     @ GHC.Fingerprint.Type.Fingerprint))) of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                     case $dTypeable
+                            `cast`
+                          (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N) of dt3 { DEFAULT ->
+                     Data.Typeable.Internal.TrFun
+                       @ *
+                       @ (a -> a)
+                       @ 'GHC.Types.LiftedRep
+                       @ 'GHC.Types.LiftedRep
+                       @ a
+                       @ a
+                       @~ <*>_N
+                       @~ <a -> a>_N
+                       dt1
+                       dt2
+                       dt3
+                       dt3 } }
+                 } in
+                 let {
+                   $dTypeable2 :: Data.Typeable.Internal.TypeRep (a -> a -> a)
+                   = case GHC.Magic.noinline
+                            @ ([GHC.Fingerprint.Type.Fingerprint]
+                               -> GHC.Fingerprint.Type.Fingerprint)
+                            GHC.Fingerprint.fingerprintFingerprints
+                            (GHC.Types.:
+                               @ GHC.Fingerprint.Type.Fingerprint
+                               (Data.Typeable.Internal.typeRepFingerprint
+                                  @ *
+                                  @ a
+                                  $dTypeable
+                                    `cast`
+                                  (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N))
+                               (GHC.Types.:
+                                  @ GHC.Fingerprint.Type.Fingerprint
+                                  (Data.Typeable.Internal.typeRepFingerprint
+                                     @ *
+                                     @ (a -> a)
+                                     $dTypeable1)
+                                  (GHC.Types.[]
+                                     @ GHC.Fingerprint.Type.Fingerprint))) of dt { GHC.Fingerprint.Type.Fingerprint dt1 dt2 ->
+                     case $dTypeable
+                            `cast`
+                          (Data.Typeable.Internal.N:Typeable[0] <*>_N <a>_N) of dt3 { DEFAULT ->
+                     case $dTypeable1 of dt4 { DEFAULT ->
+                     Data.Typeable.Internal.TrFun
+                       @ *
+                       @ (a -> a -> a)
+                       @ 'GHC.Types.LiftedRep
+                       @ 'GHC.Types.LiftedRep
+                       @ a
+                       @ (a -> a)
+                       @~ <*>_N
+                       @~ <a -> a -> a>_N
+                       dt1
+                       dt2
+                       dt3
+                       dt4 } } }
+                 } in
+                 let {
+                   lvl :: a -> a -> a = GHC.Real.mod @ a $dIntegral
+                 } in
+                 let {
+                   lvl1 :: Lola.Expr (a -> a -> a)
+                   = Lola.Leaf
+                       @ (a -> a -> a)
+                       $dTypeable2
+                         `cast`
+                       (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a -> a>_N)
+                       lvl
+                 } in
+                 \ (a1 :: Lola.Expr a) (b :: Lola.Expr a) ->
+                 Lola.App
+                   @ a
+                   @ a
+                   $dTypeable
+                   $dTypeable1
+                     `cast`
+                   (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a>_N)
+                   $dTypeable
+                   (Lola.App
+                      @ (a -> a)
+                      @ a
+                      $dTypeable1
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a>_N)
+                      $dTypeable2
+                        `cast`
+                      (Sym (Data.Typeable.Internal.N:Typeable[0]) <*>_N <a -> a -> a>_N)
+                      $dTypeable
+                      lvl1
+                      a1)
+                   b) -}
+instance [orphan] GHC.Num.Num [Lola.Expr] = Syntax.Num.$fNumExpr
+trusted: none
+require own pkg trusted: False
+module header:
+  Nothing
+declaration docs:
+arg docs:
+
