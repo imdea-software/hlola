@@ -1,14 +1,14 @@
 {-# LANGUAGE RebindableSyntax  #-}
 {-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DeriveGeneric #-}
-module Example.MITLEx where
+module Example.MTLEx where
 
 import Data.Aeson
 import GHC.Generics
 import Lola
 import Syntax.HLPrelude
 import DecDyn
-import Lib.MITL
+import Lib.MTL
 import Syntax.Booleans
 
 data Event
@@ -28,7 +28,7 @@ property = let
     now x = Now event === Leaf x
     allClear = "allClear" =: now AllClear
     shutdown = "shutdown" =: now Shutdown
-    body = now Alarm `implies` (Now (eventuallyMITL (0,10) allClear) || Now (eventuallyMITL (10,10) shutdown))
+    body = now Alarm `implies` (Now (eventuallyMTL (0,10) allClear) || Now (eventuallyMTL (10,10) shutdown))
   in
     "property" =: body
 
@@ -39,4 +39,4 @@ untilEx = [out p, out q, out theuntil]
   p = Input "p"
   q = Input "q"
   -- Outputs variables
-  theuntil = untilMITL (-1,1) p q
+  theuntil = untilMTL (-1,1) p q
