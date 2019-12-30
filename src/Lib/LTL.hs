@@ -19,7 +19,7 @@ once :: Stream Bool -> Stream Bool
 once = hFoldl "once" (P.||) False
 
 since :: Stream Bool -> Stream Bool -> Stream Bool
-since p q = "since" <: p <: q =: Now q || ( Now p && since p q :@(-1, False))
+since p q = "since" <: p <: q =: Now q || ( Now p && p `since` q :@(-1, False))
 
 yesterday :: Stream Bool -> Stream Bool
 yesterday p = "yesterday" <: p =: p:@(-1, False)
