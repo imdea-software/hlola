@@ -16,3 +16,7 @@ a > b = (P.>) <$> a <*> b
 infix 4 <=
 (<=) :: (Ord a, Streamable a) => Expr a -> Expr a -> Expr Bool
 a <= b = (P.<=) <$> a <*> b
+
+infix 4 >=
+(>=) :: (Ord a, Streamable a) => Expr a -> Expr a -> Expr Bool
+a >= b = (P.>=) <$> a <*> b

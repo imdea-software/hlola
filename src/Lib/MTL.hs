@@ -5,6 +5,7 @@ import Lola
 import Syntax.HLPrelude
 import Syntax.Booleans
 import Syntax.Ord
+import Syntax.Num
 import Lib.Utils
 
 -- Reference: https://www.cs.ox.ac.uk/people/james.worrell/mtlsurvey08.pdf
@@ -37,4 +38,4 @@ historicallyMTL k dec = "historicallyMTL" <: k <: dec =:
 
 consecutiveTrueMTL :: Stream Bool -> Stream Int
 consecutiveTrueMTL dec = "consecutiveTrueMTL" <: dec =:
-  if not $ Now dec then 0 else consecutiveTrueMTL dec @: (-1, 0) + 1
+  if not $ Now dec then 0 else consecutiveTrueMTL dec :@ (-1, 0) + 1
