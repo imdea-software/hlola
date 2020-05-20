@@ -49,7 +49,10 @@ getSystem decs ins = let
   -- dot is the dotfile to plot the dependency graph
   dot = dotFromGraph g
   -- We check the graph and calculate the fan and the latency
-  ((maxlen,maxpath),(minv0,minv1,minedge)) = checkGraph g
+  ((maxlen,maxpath),(minv0,minv1,minedge)) =
+    case checkGraph g of
+        Right x -> x
+        Left err -> error err
   -- We combine these values to get the array size
   arrsize = maxlen - minedge
   -- and create the empty past
@@ -70,6 +73,18 @@ getSystem decs ins = let
   in
   ((dot, maxlen, maxpath, minv0, minv1, minedge), focus)
 
+getHintedSystem :: Int -> [DeclarationDyn] -> [Map.Map Ident Dynamic] -> Sys
+getHintedSystem hint decs ins = let
+  arrsize = hint
+  past = emptyPast arrsize
+  outexprs = getOutExprs decs
+  inexprs = map (Map.map DLeaf) ins
+  errDupKeys = MM.zipWithMatched (\k _ _ -> error $ "Duplicate key: " ++ show k)
+  fut = map (MM.merge MM.preserveMissing MM.preserveMissing errDupKeys outexprs) inexprs
+  focus = Focus past fut
+  in
+  focus
+
 getOutExprs :: [DeclarationDyn] -> Map.Map Ident ExprDyn
 -- We export every declaration to Dynamic and add it to a map associated to
 -- their ids
@@ -87,10 +102,10 @@ addDec m (DOut (id,exp))
       in addExp newmap exp
 
 addExp :: Map.Map Ident ExprDyn -> ExprDyn -> Map.Map Ident ExprDyn
-addExp m (DApp e1 e2) = let m' = addExp m $ e1 in addExp m' $ e2
+addExp m (DApp _ e1 e2) = let m' = addExp m e1 in addExp m' $ e2
 addExp m (DLeaf _) = m
 addExp m (DNow dec) = addDec m dec
-addExp m (DAt dec _) = addDec m dec
+addExp m (DAt dec (_,de)) = let m' = addExp m de in addDec m' dec
 
 -- Execution
 
@@ -119,19 +134,57 @@ solveTop sys@(Focus _ (m:_)) id = let
   -- and we replace the entry in the focused instant
   Focus p ((Map.adjust (const newexp) id h):r)
 
+peek :: Int ->  Sys -> ExprDyn -> Maybe Dynamic
+peek _ sys (DLeaf d) = Just d
+peek offset sys (DApp tools@(dtolfun, juster, nothing, unlifter) e1 e2) = do
+  f <- peek offset sys e1
+  peekApply offset sys tools f e2
+peek offset sys@(Focus _ (m:_)) (DNow dec) = let
+  id = dgetId dec
+  exp = m Map.! id
+  in
+  peek offset sys exp
+peek offset sys (DAt dec (i, de))
+  | offset + i > 0 = Nothing
+  | otherwise = case shiftN i sys of
+    Nothing -> peek offset sys de
+    Just sys'@(Focus _ (m:_)) -> let
+      id = dgetId dec
+      exp = m Map.! id
+      in
+      peek (offset+i) sys' exp
+
+peekApply :: Int -> Sys -> (Dynamic, Dynamic, Dynamic, Dynamic -> Maybe Dynamic) -> Dynamic -> ExprDyn -> Maybe Dynamic
+peekApply offset sys (dtolfun, juster, nothing, unlifter) f e2 = let
+  -- we peek its argument,
+  maybeDynarg = peek offset sys e2 -- Maybe Dynamic <a>
+  argDynMaybe = maybe nothing (dynApp juster) maybeDynarg
+  -- (DLeaf y, sys'') = solve sys' e2
+  mayber = dynApp dtolfun f -- mayber :: Dynamic<Maybe a -> Maybe b>
+  dynMaybe = dynApp mayber argDynMaybe -- dynMaybe :: Dynamic <Maybe b>
+  maybeDyn = unlifter dynMaybe
+  in maybeDyn
+
 -- This function returns the ground value of an expression regarding the focused
 -- instant. It may solve and replace other points in doing so.
 solve :: Sys -> ExprDyn -> (ExprDyn, Sys)
 -- A DLeaf is already a ground value
 solve sys x@(DLeaf _) = (x,sys)
 -- To solve an application,
-solve sys (DApp e1 e2) = let
+solve sys (DApp tools@(dtolfun, juster, nothing, unlifter) e1 e2) = let
   -- we solve the function to apply,
-  (DLeaf x, sys') = solve sys e1
-  -- we solve its argument,
-  (DLeaf y, sys'') = solve sys' e2
-  -- and we apply the function to the argument
-  in (DLeaf (dynApp x y), sys'')
+  (DLeaf f, sys') = solve sys e1
+  maybeDyn = peekApply 0 sys' tools f e2
+  in
+  case maybeDyn of
+    Just res -> (DLeaf res, sys')
+    Nothing -> let
+        (DLeaf e2', sys'') = solve sys' e2
+        argDynMaybe = dynApp juster e2'
+        mayber = dynApp dtolfun f -- mayber :: Dynamic<Maybe a -> Maybe b>
+        dynMaybe = dynApp mayber argDynMaybe -- dynMaybe :: Dynamic <Maybe b>
+        Just r = unlifter dynMaybe
+        in (DLeaf r, sys'')
 -- To solve a Now expression,
 solve sys (DNow dec) = let
   -- we get its id,
@@ -141,17 +194,19 @@ solve sys (DNow dec) = let
   -- and we look up the result in the map
   (m Map.! id, Focus p (m:f))
 -- Finally, to solve the access to a stream in an offset,
-solve sys (DAt dec (i, d)) = 
+solve sys (DAt dec (i, de)) = let
+  (solvedexpr, sys') = solve sys de
+  in
 -- we shift the system as far as the offset mandates,
   case shiftN i sys of
     -- if we fall off the trace, then we use the default value
-    Nothing -> (DLeaf d, sys)
+    Nothing -> (solvedexpr, sys')
     -- otherwise, we behave as we would for the Now expression
     Just shiftedSys -> let
       id = dgetId dec
       Focus p (m:f) = solveTop shiftedSys id in
       -- except that we have to shift back to the present instant
-      (m Map.! id, fromJust $ shiftN (-i) (Focus p (m:f)))
+      (m Map.! id, fromMaybe (error "Failed access to past") $ shiftN (-i) (Focus p (m:f)))
 
 -- Output
 showCSVRow :: [String] -> String
@@ -203,3 +258,26 @@ run f debug decs ins = let
   header = if f==CSV then showCSVRow (map (dgetId.fst4) decs) ++ "\n" else ""
   outsys = concat $ procAndPrint f decs sys in
   if debug then showDebug deb ++ header ++ outsys else outsys
+
+runLib :: Specification -> [Map.Map Ident Dynamic] -> [Map.Map Ident Dynamic]
+runLib decs ins = let
+  (_, sys) = getSystem (map fst4 decs) ins in
+  justProc decs sys
+
+runHintedLib :: Int -> Specification -> [Map.Map Ident Dynamic] -> [Map.Map Ident Dynamic]
+runHintedLib hint decs ins = let
+  sys = getHintedSystem hint (map fst4 decs) ins in
+  justProc decs sys
+
+justProc :: Specification -> Sys -> [Map.Map Ident Dynamic]
+justProc decs sys@(Focus _ []) = []
+justProc decs sys@(Focus _ [_]) = let (Focus _ [(m)]) = solveFocus sys in [Map.map undleaf m]
+justProc decs sys@(Focus _ (_:_)) = let (newfocus@(Focus _ ((m):_))) = solveFocus sys in (Map.map undleaf m):(justProc decs (rshift' newfocus))
+
+undleaf (DLeaf x) = x
+
+streamval :: Typeable w => Map.Map String Dynamic -> String -> w
+streamval m ix = fromMaybe (error "wrong fromdyn").fromDynamic.fromMaybe (error $ "ix not found: "++ ix) $ Map.lookup ix m
+
+valstream :: Typeable w => String -> Map.Map String Dynamic -> w
+valstream = flip streamval

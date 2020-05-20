@@ -34,11 +34,11 @@ paperEx = [s11]
   s4 = "s4" =: (Now t3^2+7) `mod` 15
   s5 = "s5" =: if Now s3 then Now s4 else Now s4 + 1
   s6 = "s6" =: if Now t1 then Now t3 <= Now s4 else not (Now s3)
-  s8 = "s8" =: t1 :@ (-1, True)
+  s8 = "s8" =: t1 :@ (-1, Leaf True)
   {-s7 = "s7" =: t1 :@ (1, False)
   s9 = "s9" =: s9:@(1,0)+(Now t3 `mod` 2)
   s10 = "s10" =: Now t2 || (Now t1 && (s10:@(1,True)))-}
-  s11 = "s11" =: (s11:@(1,True))
+  s11 = "s11" =: (s11:@(1,Leaf True))
   -- s12 = "s12" =: Now t1 + Now t2 -- T1 and T2 are boolean inputs, right?
   -- Outputs variables
 
@@ -69,7 +69,7 @@ amazonspec = [percentViolations thebool]
   -- stars_by_prod p = "stars_by_prod" =: if App (Leaf (==p)) (Now pid) then Now stars else stars_by_prod p :@(-1,0)
   stars_by_prod p = "stars_by_prod" <: p =: if App (Leaf (==p)) (Now pid) then Now stars else stars_by_prod p :@(-1,0)
   trigger = "trigger" =:= False
-  once p = "once" <: p =: Now p || once p:@(-1,False)
+  once p = "once" <: p =: Now p || once p:@(-1,Leaf False)
   alwbool = "alwbool" =: Now (historically thebool)
 
 dynpar :: [Stream Int]

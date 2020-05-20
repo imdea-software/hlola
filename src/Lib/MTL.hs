@@ -5,8 +5,7 @@ import Lola
 import Syntax.HLPrelude
 import Syntax.Booleans
 import Syntax.Ord
-import Syntax.Num
-import Lib.Utils
+import Syntax.Num()
 
 -- Reference: https://www.cs.ox.ac.uk/people/james.worrell/mtlsurvey08.pdf
 
@@ -15,10 +14,10 @@ untilMTL :: (Int, Int) -> Stream Bool -> Stream Bool -> Stream Bool
 untilMTL (a, b) phi psi = let
     name = "until_(" ++ show a ++ "," ++ show b ++ ")" <: phi <: psi
   in name =: until' a b phi psi
-
-until' a b phi psi
-  | a == b = psi:@(b,False)
-  | otherwise = psi:@(a,False) || (phi:@(a, True) && until' (a+1) b phi psi)
+  where
+  until' a b phi psi
+    | a == b = psi:@(b,Leaf False)
+    | otherwise = psi:@(a,Leaf False) || (phi:@(a, Leaf True) && until' (a+1) b phi psi)
 
 notMTL :: Stream Bool -> Stream Bool
 notMTL dec = "not" <: dec =: not (Now dec)
@@ -30,7 +29,7 @@ andMTL d0 d1 = "and" <: d0 <: d1 =: Now d0 && Now d1
 eventuallyMTL :: (Int, Int) -> Stream Bool -> Stream Bool
 eventuallyMTL (a,b) phi = let
     name = "eventually_(" ++ show a ++ "," ++ show b ++ ")" <: phi
-  in name =: foldl (||) (Leaf False) [phi :@ (i, False) | i <- [a..b]]
+  in name =: foldl (||) (Leaf False) [phi :@ (i,Leaf False) | i <- [a..b]]
 
 historicallyMTL :: Int -> Stream Bool -> Stream Bool
 historicallyMTL k dec = "historicallyMTL" <: k <: dec =:

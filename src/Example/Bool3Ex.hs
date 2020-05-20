@@ -16,4 +16,4 @@ bool3Ex = [out outstr, out p]
    p = Input "p" :: Stream Bool3
    q = Input "q" :: Stream Bool3
    r = Input "r" :: Stream Bool3
-   outstr = "outstr" =: (not (Now p) || q:@(-1,DK3)) && Now r
+   outstr = "outstr" =: (not (Now p) || q:@(-1,Leaf DK3)) && Now r

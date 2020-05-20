@@ -24,4 +24,4 @@ geoEx = [out coveredSurface]
    up = Input "up" :: Stream Vector3
    right = Input "right" :: Stream Vector3
    coveredPoly = "coveredPoly" =: projectToFloor <$> Now position <*> Now up <*> Now right
-   coveredSurface = "coveredSurface" =: polyUnion <$> coveredSurface :@ (-1, emptyPolygon) <*> Now coveredPoly
+   coveredSurface = "coveredSurface" =: polyUnion <$> coveredSurface :@ (-1, Leaf emptyPolygon) <*> Now coveredPoly

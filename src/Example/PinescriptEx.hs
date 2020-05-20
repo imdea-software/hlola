@@ -21,7 +21,7 @@ pinescriptEx = [positionsize]
    macd_sell_sig = crossover (macd_signal close) (macd close)
    macd_buy_sig = crossover (macd close) (macd_signal close)
    buy = "buy" =: Now ema18 < Now high && Now macd_buy_sig
-   sell = "sell" =: not (macd_buy_sig :@ (-1,False)) && Now macd_sell_sig && (positionsize:@(-1,0) > Leaf 0)
+   sell = "sell" =: not (macd_buy_sig :@ (-1,Leaf False)) && Now macd_sell_sig && (positionsize:@(-1,0) > Leaf 0)
    positionsize = "positionsize" =: positionsize :@ (-1,0) +
     if Now buy then buy_size else Leaf 0 +
     if Now sell then sell_size else Leaf 0
@@ -45,7 +45,7 @@ macd_sell_sig = crossover signalLine macdLine
 macd_buy_sig = crossover macdLine signalLine
 
 buy = "buy" =: Now ema18 < Now high && Now macd_buy_sig
-sell = "sell" =: not (macd_buy_sig :@ (-1,False)) && Now macd_sell_sig && positionsize :@ (-1,0) > 0
+sell = "sell" =: not (macd_buy_sig :@ (-1,Leaf False)) && Now macd_sell_sig && positionsize :@ (-1,0) > 0
 
 positionsize :: Stream Double
 positionsize = "positionsize" =:

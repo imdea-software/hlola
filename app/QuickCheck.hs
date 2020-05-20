@@ -4,31 +4,24 @@ import Lola
 import DecDyn
 import Data.Map.Strict ((!), singleton)
 import Data.Dynamic
-import InFromFile
 import Lib.LTL
-import Data.Aeson
-import Data.ByteString.Lazy.Char8 (pack, unpack)
 import Data.Maybe
 import Data.List (findIndex)
+import Engine.Engine
 
-main = quickCheck historically_is_correct
+main :: IO ()
+main = quickCheck historicallyIsCorrect
 
-historically_is_correct :: [Bool] -> Bool
-historically_is_correct bs = let
-    thetrace = map (unpack . encode . singleton "p") bs
-    thejsons = lines $ runSpecJSON False myspec $ unlines thetrace
-    themaps = map (fromJust.decode.pack) thejsons
-    mMinNotP = findIndex not $ map (\m -> m ! "p") themaps
-    mMaxHistP = findLastIndex id $ map (\m -> m ! "historically<p>") themaps
-    minNotP = fromMaybe (length themaps) mMinNotP
+historicallyIsCorrect :: [Bool] -> Bool
+historicallyIsCorrect bs = let
+    p = Input "p"
+    spec = [out $ historically p, out p]
+    trace = runLib spec (map (singleton "p".toDyn) bs)
+    mMinNotP = findIndex not $ map (retrieve "p") trace
+    retrieve strid m = fromJust.fromDynamic $ m ! strid
+    mMaxHistP = findLastIndex id $ map (retrieve "historically<p>") trace
+    minNotP = fromMaybe (length trace) mMinNotP
     maxHistP = fromMaybe (-1) mMaxHistP
-  in
-    minNotP - 1 == maxHistP
+  in minNotP - 1 == maxHistP
   where
     findLastIndex f l = findIndex f (reverse l) >>= \a -> Just (length l - a-1)
-
-myspec :: Specification
-myspec = [out $ historically p, out p]
-
-p :: Stream Bool
-p = Input "p"

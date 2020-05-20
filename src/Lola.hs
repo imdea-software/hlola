@@ -10,6 +10,34 @@ import           Data.Aeson
 type Ident = String
 type Streamable = Typeable
 
+-- Data types for simplifiers
+data LFunction a b = Pure (a->b) | Simplifier (Maybe a -> Maybe b)
+
+class ILFunction x where
+  toLFunction :: x a b -> LFunction a b
+
+instance ILFunction (->) where
+  toLFunction = Pure
+
+instance ILFunction LFunction where
+  toLFunction = id
+
+getMayber :: LFunction a b -> Maybe a -> Maybe b
+getMayber (Simplifier f) x = f x
+getMayber (Pure _) Nothing = Nothing
+getMayber (Pure g) (Just x) = Just (g x)
+
+-- Public for simplifiers
+getsmp1 :: (Maybe a -> Maybe b) -> LFunction a b
+getsmp1 = Simplifier
+
+getsmp2 :: (Maybe a-> Maybe b -> Maybe c) -> LFunction a (LFunction b c)
+getsmp2 f = Simplifier $ Just .getsmp1.f
+
+getsmp3 :: (Maybe a-> Maybe b -> Maybe c -> Maybe d) -> LFunction a (LFunction b (LFunction c d))
+getsmp3 f = Simplifier $ Just .getsmp2.f
+--
+
 -- | @Expr@ represents our most basic /AST/. Which is basically a [Free
 -- Applicative Functor](https://arxiv.org/abs/1403.0749)
 -- plus some kind of projection @(:@)@
@@ -17,22 +45,22 @@ data Expr a where
   -- | An element of type @a@
   Leaf :: Streamable a => a -> Expr a
   -- | Function application, sadly this constructor hides @b :: *@
-  App  :: (Streamable a, Streamable (b->a), Streamable b) => Expr (b->a) -> Expr b -> Expr a
+  App  :: (Streamable a, Streamable b, ILFunction f, Streamable (f b a)) => Expr (f b a) -> Expr b -> Expr a
   ----------------------------------------
   -- | Now s = s :@ (0,_)
   -- @Now@ gets (projects) the value of a stream /now/
   Now :: Declaration a -> Expr a
   -- | Projection Constructor:
-  (:@) :: Streamable a => Declaration a -- ^ For a given @e :: Expr a@
-       -> (Int, a) -- ^ an offset @i@ and default @c@
+  (:@) :: Declaration a -- ^ For a given @e :: Expr a@
+       -> (Int, Expr a) -- ^ an offset @i@ and default @c@
        -> Expr a -- ^ gives us back @id[i | c]@
 
 infixl 4 <$>
-(<$>) :: (Streamable a, Streamable b) => (a -> b) -> Expr a -> Expr b
+(<$>) :: (Streamable a, Streamable b, ILFunction f, Streamable (f a b)) => f a b -> Expr a -> Expr b
 f <$> e = App (Leaf f) e
 
 infixl 4 <*>
-(<*>) :: (Streamable a, Streamable b) => Expr (a -> b) -> Expr a -> Expr b
+(<*>) :: (Streamable a, Streamable b, ILFunction f, Streamable (f a b)) => Expr (f a b) -> Expr a -> Expr b
 e0 <*> e1 = App e0 e1
 
 instance Show (Expr a) where
@@ -80,6 +108,6 @@ s =:= e = Output (s , Leaf e)
 
 infixl 2 <:
 (<:) :: Show a => Ident -> a -> Ident
-ident <: decName = ident ++ ('<':(show decName) ++ ">")
+ident <: decName = ident ++ ('<':show decName ++ ">")
 
 type Stream = Declaration

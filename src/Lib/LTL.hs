@@ -19,13 +19,13 @@ once :: Stream Bool -> Stream Bool
 once = hFoldl "once" (P.||) False
 
 since :: Stream Bool -> Stream Bool -> Stream Bool
-since p q = "since" <: p <: q =: Now q || ( Now p && p `since` q :@(-1, False))
+since p q = "since" <: p <: q =: Now q || ( Now p && p `since` q :@(-1, Leaf False))
 
 yesterday :: Stream Bool -> Stream Bool
-yesterday p = "yesterday" <: p =: p:@(-1, False)
+yesterday p = "yesterday" <: p =: p:@(-1, Leaf False)
 
 zesterday :: Stream Bool -> Stream Bool
-zesterday p = "zesterday" <: p =: p:@(-1, True)
+zesterday p = "zesterday" <: p =: p:@(-1, Leaf True)
 
 -- Quantitative:
 nViolations :: Stream Bool -> Stream Int

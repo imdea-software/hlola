@@ -1,32 +1,47 @@
 module Main where
--- import           Example.GeoEx
--- import           Example.Bool3Ex
--- import           Example.MITLEx
-import           Example.Empirical
--- import           Example.NuSMVEx
--- import           Example.PinescriptEx
-import           Engine.Engine
+import Example.Empirical
+import Engine.Engine
 import System.Environment
 import qualified Data.Map.Strict as Map
 import DecDyn
 import Data.Dynamic
--- import qualified QuickCheck as QC
+import System.IO
+import InFromFile
+import qualified QuickCheck as QC (main)
+
+data RunMode = Empirical (TestType, Int, Int) | QuickCheck | ExecImportedSpec | AnalyseImportedSpec | ShowHelp
+
+importedSpec :: Specification
+importedSpec = [out$smoothPeriodHeight 3]
 
 main :: IO ()
--- main = QC.main
-main = do
-  args <- getArgs
-  cont <- getContents
-  (tt,n,m) <- return $ parseArgs args
-  spec <- return $ getSpec (tt,n)
-  putStrLn $ run CSV False spec (getIn m)
-  -- putStrLn $ runSpecCSV True (getSpec $ parseArgs args) cont
+main = parseArgs <$> getArgs >>= runInMode
 
-parseArgs :: [String] -> (TestType, Int, Int)
-parseArgs [tt,n,m] = (read tt, read n,read m)
-parseArgs _ = error "Wrong number of arguments ($ HLola TestType n)"
+parseArgs :: [String] -> RunMode
+parseArgs [tt,n,m] = Empirical (read tt, read n,read m)
+parseArgs ["QuickCheck"] = QuickCheck
+parseArgs ["--analyse"] = AnalyseImportedSpec
+parseArgs ["--execute"] = ExecImportedSpec
+parseArgs _ = ShowHelp
 
-getIn n = let
-  damap = Map.fromList [("p", toDyn True), ("q", toDyn True)]
-  in
-  map (const damap) [0..n]
+runInMode :: RunMode -> IO ()
+runInMode (Empirical (tt,n,m)) = putStrLn $ run CSV False (getSpec (tt,n)) getIn
+  where
+  getIn = let
+    damap = Map.fromList [("p", toDyn False)]
+    in
+    map (const damap) [0..m]
+runInMode QuickCheck = QC.main
+runInMode ExecImportedSpec = do
+  hSetBuffering stdin LineBuffering
+  hSetBuffering stdout LineBuffering
+  runSpecJSON False importedSpec
+runInMode AnalyseImportedSpec = analyse importedSpec
+runInMode ShowHelp = putStr$unlines [
+    "Wrong arguments. Usage:"
+  , "  HLola --analyse"
+  , "  HLola --execute"
+  , "  HLola QuickCheck"
+  , "  HLola TestType backref tracelen"
+  , "Modify Main.hs to specify the imported the spec to --analyse or --execute."
+  , "TestType must be one of (PeriodWidth | PeriodHeight | SmoothPeriodWidth | SmoothPeriodHeight | WindowTrueWidth | WindowTrueHeight), while backref and tracelen must be positive natural numbers."]
