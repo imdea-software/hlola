@@ -1,6 +1,7 @@
 # HLola
 
-INTRO
+**HLola** is an implementation of the Stream Runtime Verification language [Lola](http://software.imdea.org/~cesar/papers/2005/time05/time05.pdf) as en embedded Domain Specific Language over Haskell.
+In this repository, you will find the source code of **HLola**, along with the steps to use the engine and define new specifications, shown in the following sections.
 
 ## Docker image
 
@@ -53,7 +54,7 @@ $>
 Analyse or execute the specification imported in Main.hs using `HLola --analyse` or `HLola --execute`.
 Alternatively, **HLola** ships with some predefined specifications for testing the tool.
 To see the use of QuickCheck over a spec in action, execute **HLola** using `HLola QuickCheck`.
-You can execute a specification `spec` from the specifications shown in the paper [CITATION NEEDED] to stress the monitor by choosing a trace length `tracelen` and a back reference `backref`, and then executing `HLola TestType backref tracelen`.
+You can execute a specification `spec` from the specifications shown in the paper under submission to [PPDP 2020](http://www.cse.chalmers.se/~abela/ppdp20/) to stress the monitor by choosing a trace length `tracelen` and a back reference `backref`, and then executing `HLola TestType backref tracelen`.
 
-In the folder `empirical`, you will find the binaries to replicate the three experiments shown in [PAPER].
+In the folder `empirical`, you will find the binaries to replicate the three experiments shown in the paper.
 If you are working on the Docker image, the binaries are ready to execute, but if you have downloaded the sources to your machine, make sure to `stack install` **HLola** before running the experiments.
