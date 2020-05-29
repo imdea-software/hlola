@@ -1,6 +1,6 @@
 # HLola
 
-**HLola** is an implementation of the Stream Runtime Verification language [Lola](http://software.imdea.org/~cesar/papers/2005/time05/time05.pdf) as en embedded Domain Specific Language over Haskell.
+**HLola** is a Haskell implementation of the Stream Runtime Verification language [Lola](http://software.imdea.org/~cesar/papers/2005/time05/time05.pdf) as en embedded Domain Specific Language.
 In this repository, you will find the source code of **HLola**, along with the steps to use the engine and define new specifications, shown in the following sections.
 
 ## Docker image
