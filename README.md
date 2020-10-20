@@ -1,60 +1,77 @@
+![HLola logo](hlola.png "HLola")
 # HLola
 
-**HLola** is a Haskell implementation of the Stream Runtime Verification language [Lola](http://software.imdea.org/~cesar/papers/2005/time05/time05.pdf) as en embedded Domain Specific Language.
-In this repository, you will find the source code of **HLola**, along with the steps to use the engine and define new specifications, shown in the following sections.
+**HLola** is a Haskell implementation of the Stream Runtime Verification language [Lola](http://software.imdea.org/~cesar/papers/2005/time05/time05.pdf).
+In this repository, you will find the source code of **HLola**, example specifications, and the steps to use the engine and define new specifications.
+For more information, visit the [HLola official website](https://software.imdea.org/hlola).
 
 ## Docker image
 
 We provide a [Docker image](https://hub.docker.com/r/imdeasoftware/hlola) ready to build and execute **HLola** specifications out of the box.
 
-You can run the image and provide arguments `arg0`, `arg1`, `arg2` for the binary `HLola` in the docker image by running `docker run imdeasoftware/hlola arg0 arg1 arg2`.
-If you choose to use the Docker image to try **HLola**, you can skip the following section.
-
-## Building Process
-
-To build the project, you will need to install the Haskell [Stack](https://docs.haskellstack.org/en/stable/README/) tool.
-
-Then, you should run the following commands to build the entire project:
-
+You can run the image with no arguments to execute a batch of specifications:
 ```bash
-$> stack setup # which will set up all the environment needed to build HLola
-$> stack install # which will build and install HLola
+$> docker run imdeasoftware/hlola:tacas
 ```
-
-The resulting binary will be placed in the directory output by the following command:
+or you can run a set of specifications passing [their ids](#list-of-example-specifications) as arguments. You can also pass the argument `--live` to see the monitors work online. For example:
 ```bash
-$> stack path --local-bin
+$> docker run imdeasoftware/hlola:tacas --live PLTLCSV # or
+$> docker run imdeasoftware/hlola:tacas MTLJSON # or
+$> docker run imdeasoftware/hlola:tacas --live UAV2
 ```
+See the following section to find out the specification ids.
 
-Make sure that the previous path is included in your PATH, so you can execute **HLola** by typing `$> HLola` in a shell.
+## List of example specifications
+- [PLTLCSV](https://software.imdea.org/hlola/specs.html#PLTLCSV): PLTL example in CSV format
+- [PLTLJSON](https://software.imdea.org/hlola/specs.html#PLTLJSON): PLTL example in JSON format
+- [MTLCSV](https://software.imdea.org/hlola/specs.html#MTLCSV): MTL example in CSV format
+- [MTLJSON](https://software.imdea.org/hlola/specs.html#MTLJSON): MTL example in JSON format
+- [PinescriptCSV](https://software.imdea.org/hlola/specs.html#PinescriptCSV): Pinescript example in CSV format
+- [PinescriptJSON](https://software.imdea.org/hlola/specs.html#PinescriptJSON): Pinescript example in JSON format
+- [UAV1](https://software.imdea.org/hlola/specs.html#UAV1): UAV monitor example 1
+- [UAV2](https://software.imdea.org/hlola/specs.html#UAV2): UAV monitor example 2
+- [Libraries](https://software.imdea.org/hlola/specs.html#Libraries)
 
-## Definition of a new specification
+## Description of example specifications
+- [PLTL example](https://software.imdea.org/hlola/specs.html#PLTLCSV): a Past-Linear Temporal Logic (PLTL) property for a sender/receiver model taken from [[1]](#references):
+  ```
+    G (sender.state = waitForAck => Y (H sender.state != waitForAck))
+  ```
+  which states that, it **G**lobally holds that if the _sender_ is *wait*ing*ForAck*, then **Y**esterday (i.e. at the previous instant), **H**istorically it held that the _sender state_ was not *wait*ing*ForAck*.
+  In other words, the sender waits for acknowledgement at most once during the execution.
+  The only input stream is the state of the sender at each instant.
+  The only output stream is the value of the property at each instant. (TOFIX)
 
-To define a new specification, we need to create a Haskell file in the folder `src/Specs`. For example, we can name our specification `MySpec` and thus the path f the specification will be `src/Specs/MySpec.hs`.
-See the example specifications in `src/Examples` to get insight on the general shape of an **HLola** specification.
-This specification must declare a varible of type `Specification`, for example, let's say we define a `spec :: Specification`.
-Then, we modify the main file at `app/Main.hs` to import our new specification using `import qualified Specs.MySpec as MySpec(spec)`.
-Finally, we bind the variable `importedSpec` in `Main` to the imported specification: `importedSpec = MySpec.spec`.
+- [MTL example](https://software.imdea.org/hlola/specs.html#MTLCSV): a Metric Temporal Logic (MTL) property to establish deadlines between environment events and the corresponding system responses taken from [[2]](#references):
+  ```
+  G (alarm => (F[0,10] allclear || F[10,10] shutdown))
+  ```
+  The property assesses that an _alarm_ is followed by a _shutdown_ event in exactly 10 time units unless _all clear_ is sounded first.
+  The only input stream is the event happening at each instant.
+  The only output stream is the value of the property at each instant.
 
-## HLola execution
+- [Pinescript example](https://software.imdea.org/hlola/specs.html#PinescriptCSV): [TradingView](https://www.tradingview.com/) is an online charting platform for stock exchange, which offers a series-oriented language to create customized studies and signals (called Pinescript) and run them in the company servers.
+  We have implemented the indicators of Pinescript in **HLola** as a [library](https://software.imdea.org/hlola/specs.html#Libraries), and we show the implementation of [a trading strategy](https://www.tradingview.com/script/DushajXt-MACD-Strategy/) using the **HLola** Pinescript library.
+  The input streams are the _close_ and _high_ values of a stock at each day.
+  The output streams indicate how much stock to _buy_ or _sell_ every day.
 
-If you execute `HLola` without arguments, you will be prompted with a help screen:
-```bash
-$> HLola
-Wrong arguments. Usage:
-  HLola --analyse
-  HLola --execute
-  HLola QuickCheck
-  HLola TestType backref tracelen
-Modify Main.hs to specify the imported the spec to --analyse or --execute.
-TestType must be one of (PeriodWidth | PeriodHeight | SmoothPeriodWidth | SmoothPeriodHeight | WindowTrueWidth | WindowTrueHeight), while backref and tracelen must be positive natural numbers.
-$>
-```
+- [UAV specification 1](https://software.imdea.org/hlola/specs.html#UAV1): This specification is an online monitor to assess two properties over the flight of an UAV in real time:
+  1. That the UAV does not fly over forbidden regions, and
+  2. That the UAV is in good position when it takes a picture.
 
-Analyse or execute the specification imported in Main.hs using `HLola --analyse` or `HLola --execute`.
-Alternatively, **HLola** ships with some predefined specifications for testing the tool.
-To see the use of QuickCheck over a spec in action, execute **HLola** using `HLola QuickCheck`.
-You can execute a specification `spec` from the specifications shown in the paper under submission to [PPDP 2020](http://www.cse.chalmers.se/~abela/ppdp20/) to stress the monitor by choosing a trace length `tracelen` and a back reference `backref`, and then executing `HLola TestType backref tracelen`.
+  The input streams of this specification consist of the state of the UAV at every instant and the onboard camera events to detect when a picture is being captured.
+  The output streams are the values of properties 1. and 2.
 
-In the folder `empirical`, you will find the binaries to replicate the three experiments shown in the paper.
-If you are working on the Docker image, the binaries are ready to execute, but if you have downloaded the sources to your machine, make sure to `stack install` **HLola** before running the experiments.
+- [UAV specification 2](https://software.imdea.org/hlola/specs.html#UAV2): This specification estimates the trajectory of a flying UAV to assess if it will reach its target destination.
+  ![Fly gif](fly.gif "Fly gif")
+
+  The input streams are data on the state of the vehicle at every instant and its target destination.
+  The output stream shows how close to the target destination will the vehicle fly.
+
+- [Libraries](https://software.imdea.org/hlola/specs.html#Libraries): These files encompass the implementations of the libraries PLTL, MTL, Quantitative Metric Temporal Logic (QMTL) and Pinescript.
+
+## References
+[1]: Alessandro Cimatti, Marco Roveri and Daniel Sheridan "[Bounded Verification of Past LTL](https://link.springer.com/chapter/10.1007/978-3-540-30494-4_18)".  In Proc. of the 5th Int'l  Conf on Formal Methods in Computer-Aided Design
+(FMCAD'04)', pp 245-259, vol 3312 of LNCS, Springer, 2004.
+
+[2]: [Some Recent Results in Metric Temporal Logic](https://link.springer.com/chapter/10.1007/978-3-540-85778-5_1)

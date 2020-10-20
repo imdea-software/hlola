@@ -1,0 +1,16 @@
+format CSV
+use library LTL
+
+#HASKELL
+data SenderState = Get | Send | WaitForAck deriving (Generic,Read,FromJSON,Eq)
+#ENDOFHASKELL
+
+input SenderState senderState
+
+define Bool senderNotWaiting = senderState[now] /== 'WaitForAck
+
+output Bool property = let
+  senderWaitingAck   = senderState[now] === 'WaitForAck
+  startedWaiting     = yesterday (historically senderNotWaiting)
+  in senderWaitingAck `implies` startedWaiting[now]
+

@@ -1,0 +1,20 @@
+format JSON
+use library MTL
+
+#HASKELL
+data Event
+    = Alarm
+    | AllClear
+    | Shutdown
+  deriving (Generic,Read,FromJSON,Eq)
+#ENDOFHASKELL
+
+input Event event
+
+define Bool allClear = event [now] === 'AllClear
+define Bool shutdown = event [now] === 'Shutdown
+define Bool alarm    = event [now] === 'Alarm
+
+output Bool property = alarm [now] `implies` (willClear [now] || willShutdown [now])
+  where willClear    = eventually (0,10) allClear
+        willShutdown = eventually (10,10) shutdown

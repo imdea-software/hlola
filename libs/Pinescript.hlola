@@ -1,0 +1,24 @@
+library Pinescript
+use library Utils
+
+output (Num a, Eq a, Streamable a) => a sumLast <Stream a str> <Int n> = sumLast str n [-1|0] + str[now] - str[-n|0]
+
+output (Fractional a, Eq a, Streamable a) => a sma <Stream a str> <Int n> = let
+  denominator = '(fromIntegral.min n) (instantN[now])
+  in sumLast str n [now] / denominator
+
+output (Fractional a, Eq a, Streamable a) => a wma <Stream a str> <Int n> = let
+  slots = '(min n) (instantN[now])
+  sumFirstN = 'fromIntegral (2'div (slots * (slots + 1)) 2)
+  in foldl (+) 0 [str [-i|0] * '(fromIntegral (n-i)) | i<-[0..n-1]] / sumFirstN
+
+output (Fractional a, Eq a, Streamable a) => a ema <Stream a str> <Int n> = let
+  emaprev = ema str n [-1|0]
+  multiplier = '((2 P./).fromIntegral.min n) (instantN[now])
+  in (str[now] - emaprev) * multiplier + emaprev
+
+output (Fractional a, Eq a, Streamable a) => a macd <Stream a str> = ema str 12[now] - ema str 26 [now]
+
+output (Fractional a, Eq a, Streamable a) => a macd_signal <Stream a str> = ema (macd str) 9 [now]
+
+output (Num a, Ord a, Eq a, Streamable a) => Bool crossover <Stream a str0> <Stream a str1> = str1[now] <= str0[now] && str0[-1|0] <= str1 [-1|0]

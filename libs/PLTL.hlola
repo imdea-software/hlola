@@ -1,0 +1,9 @@
+library LTL
+use library Utils
+output Bool historically <Stream Bool p> = p[now] && historically p [-1|'True]
+output Bool once <Stream Bool p> = p[now] || once p[-1|'False]
+output Bool since <Stream Bool p> <Stream Bool q> = q[now] ||
+                                              (p[now] && p `since` q [-1|'False])
+output Int nFalses <Stream Bool p> = nFalses p[-1|0] + if p[now] then 1 else 0
+output Double percFalses <Stream Bool p> = nFalses p[now] `intdiv` (instantN[now])
+output Bool yesterday <Stream Bool p> = p[-1|'False]

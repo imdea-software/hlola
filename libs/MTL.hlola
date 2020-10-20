@@ -1,0 +1,11 @@
+library MTL
+
+output Bool until <(Int, Int) (a,b)> <Stream Bool phi> <Stream Bool psi> = until' a
+  where until' a | a == b = psi[b|'False]
+                 | otherwise = psi[a|'False] || (phi[a|'True] && until' (a+1))
+
+output Bool eventually <(Int, Int) (a,b)> <Stream Bool phi> = foldl (||) 'False [phi[i|'False] | i <- [a..b]]
+
+output Bool historically <Int k> <Stream Bool p> = consecutiveTrue p [now] > 'k
+
+output Int consecutiveTrue <Stream Bool p> = if not (p[now]) then 0 else consecutiveTrue p[-1|0] + 1
