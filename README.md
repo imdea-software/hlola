@@ -74,4 +74,4 @@ See the following section to find out the specification ids.
 [1]: Alessandro Cimatti, Marco Roveri and Daniel Sheridan "[Bounded Verification of Past LTL](https://link.springer.com/chapter/10.1007/978-3-540-30494-4_18)".  In Proc. of the 5th Int'l  Conf on Formal Methods in Computer-Aided Design
 (FMCAD'04)', pp 245-259, vol 3312 of LNCS, Springer, 2004.
 
-[2]: [Some Recent Results in Metric Temporal Logic](https://link.springer.com/chapter/10.1007/978-3-540-85778-5_1)
+[2]: Ouaknine J., Worrell J. (2008) [Some Recent Results in Metric Temporal Logic](https://link.springer.com/chapter/10.1007/978-3-540-85778-5_1). In: Cassez F., Jard C. (eds) Formal Modeling and Analysis of Timed Systems. FORMATS 2008. Lecture Notes in Computer Science, vol 5215. Springer, Berlin, Heidelberg.
