@@ -1,4 +1,4 @@
-![HLola logo](hlola.png "HLola")
+[![HLola logo](hlola.png)](https://software.imdea.org/hlola/)
 # HLola
 
 **HLola** is a Haskell implementation of the Stream Runtime Verification language [Lola](http://software.imdea.org/~cesar/papers/2005/time05/time05.pdf).
