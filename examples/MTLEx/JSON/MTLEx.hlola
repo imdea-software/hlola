@@ -1,13 +1,11 @@
 format JSON
 use library MTL
 
-#HASKELL
 data Event
     = Alarm
     | AllClear
     | Shutdown
   deriving (Generic,Read,FromJSON,Eq)
-#ENDOFHASKELL
 
 input Event event
 

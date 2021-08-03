@@ -3,7 +3,6 @@ spread 3
 use theory GuidanceTheory hiding (time)
 use theory Geometry2D hiding (distance)
 
-#HASKELL
 data ReachStateType = RST {
   reached_maxtime_field :: Bool,
   reach_time_field :: Double,
@@ -11,11 +10,10 @@ data ReachStateType = RST {
   reach_yaw_field :: Double,
   reach_roll_field :: Double,
   reach_pos_field :: Point2} deriving (Generic, Show, ToJSON)
-dt = 0.05
-g = 9.8
-lim_roll_cd = 65 P.* pi P./ 180
-limit = sin lim_roll_cd
-#ENDOFHASKELL
+const dt = 0.05
+const g = 9.8
+const lim_roll_cd = 65 P.* pi P./ 180
+const limit = sin lim_roll_cd
 
 const (NLD navl1_d _ navl1_p _ _ _ _ gamma vel_a vel_w _) = nld
 const (P dposx dposy) = dpos

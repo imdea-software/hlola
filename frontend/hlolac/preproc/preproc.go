@@ -50,6 +50,7 @@ var outfname string = "/Main.hs"
 
 var typedInputs map[string]string = make(map[string]string)
 var typedOutputs map[string]TypeAndDef = make(map[string]TypeAndDef)
+var datas map[string]string = make(map[string]string)
 var lastid string = ""
 var order []IOid = make([]IOid, 0)
 var headerinfo = new(HeaderInfo)
@@ -106,6 +107,8 @@ main =do
   hSetBuffering stdout LineBuffering
   runSpec%s False specification
 
+-- Custom datas
+%s
 
 -- Custom Haskell
 %s
@@ -144,6 +147,9 @@ import Syntax.Num
 import qualified Prelude as P
 %s
 
+-- Custom datas
+%s
+
 -- Custom Haskell
 %s
 
@@ -165,6 +171,9 @@ import Syntax.Booleans
 import Syntax.Ord
 import Syntax.Num
 import qualified Prelude as P
+%s
+
+-- Custom datas
 %s
 
 -- Custom Haskell
@@ -226,7 +235,7 @@ func reverse(s string) string {
 }
 
 func splitnextnoname(line string) (string, string) {
-	re := regexp.MustCompile(`[^a-zA-z0-9'_]`)
+	re := regexp.MustCompile(`[^a-zA-z0-9'_.]`)
 	locs := re.FindStringIndex(line)
 	if locs == nil {
 		return line, ""
@@ -277,6 +286,17 @@ func processConstDeclaration(s string) {
 		return
 	}
 	headerinfo.constants += getIndentation() + s[6:] + "\n"
+}
+
+func processDataDeclaration(s string) {
+	re := regexp.MustCompile(`^(?P<kind>data|type) (?P<name>[^ ]*)(.*)$`)
+	themap := FindStringSubmatchMap(re, s)
+	if len(themap) < 2 {
+		return
+	}
+	name := themap["name"]
+	lastid = name
+	datas[name] = s
 }
 
 func processOutputDeclaration(s string) {
@@ -444,7 +464,7 @@ func processReturn(s string) {
 }
 
 func processUsage(s string) {
-	useRE := regexp.MustCompile(`^use (?P<kind>(innerspec|library|theory|haskell)) (?P<name>.*)$`)
+	useRE := regexp.MustCompile(`^use (?P<qualified>(qualified )?)(?P<kind>(innerspec|library|theory|haskell)) (?P<name>.*)$`)
 	themap := FindStringSubmatchMap(useRE, s)
 	if len(themap) < 2 {
 		if strings.HasPrefix(s, "use ") {
@@ -452,18 +472,29 @@ func processUsage(s string) {
 		}
 		return
 	}
+	newimport := "import "
+	qualified := themap["qualified"] == "qualified "
 	var usekind string
+	thename := themap["name"]
 	switch themap["kind"] {
 	case "library":
-		usekind = "Lib." + themap["name"]
+		usekind = "Lib." + thename
 	case "theory":
-		usekind = "Theories." + themap["name"]
+		usekind = "Theories." + thename
 	case "innerspec":
-		usekind = "INNERSPECSDIR.INNERSPEC_" + themap["name"]
+		usekind = "INNERSPECSDIR.INNERSPEC_" + thename
+	case "haskell":
+		usekind = "" + thename
 	default:
-		usekind = "" + themap["name"]
+		panic("Unrecognized usage " + thename)
 	}
-	newimport := "import " + usekind
+	if qualified {
+		newimport = newimport + "qualified "
+	}
+	newimport = newimport + usekind
+	if qualified {
+		newimport = newimport + " as " + thename
+	}
 	headerinfo.imports += newimport + "\n"
 }
 
@@ -575,26 +606,31 @@ func printOut(id string) {
 func process(s string) {
 	if strings.HasPrefix(s, " ") {
 		if lastid == "" {
-			panic("No last output")
+			panic("No last output or data")
 		}
-		thedef := typedOutputs[lastid]
-		isWhere, err := regexp.MatchString("^ *where( |$).*", s)
-		if err != nil {
-			panic(err)
-		}
-		if isWhere {
-			thedef.def += ")"
-			thedef.template = closedOutputTemplate
-			if headerinfo.innerspecname != "" {
-				thedef.template = closedOutputIndentedTemplate
-			}
-		}
-		thedef.def += "\n" + getIndentation() + s
-		typedOutputs[lastid] = thedef
-		return
+		thedef, ok := typedOutputs[lastid]
+    if ok {
+      isWhere, err := regexp.MatchString("^ *where( |$).*", s)
+      if err != nil {
+        panic(err)
+      }
+      if isWhere {
+        thedef.def += ")"
+        thedef.template = closedOutputTemplate
+        if headerinfo.innerspecname != "" {
+          thedef.template = closedOutputIndentedTemplate
+        }
+      }
+      thedef.def += "\n" + getIndentation() + s
+      typedOutputs[lastid] = thedef
+      return
+    }
+    datas[lastid] = datas[lastid] + "\n" + s
+    return
 	}
 	processInputDeclaration(s)
 	processOutputDeclaration(s)
+	processDataDeclaration(s)
 	processFormatDeclaration(s)
 	processFileTypeDeclaration(s)
 	processSpreadDeclaration(s)
@@ -636,8 +672,12 @@ specification = [`)
 }
 
 func printHeader() {
+	datastext := ""
+	for _, txt := range datas {
+		datastext = datastext + "\n" + txt
+	}
 	if headerinfo.libname != "" {
-		printToFile(headerLib, headerinfo.libname, headerinfo.imports, headerinfo.verbatim, headerinfo.constants)
+		printToFile(headerLib, headerinfo.libname, headerinfo.imports, datastext, headerinfo.verbatim, headerinfo.constants)
 	} else if headerinfo.innerspecname != "" {
 		var inputstreamtypes []string = make([]string, 0)
 		var inputstreamargnames []string = make([]string, 0)
@@ -662,7 +702,7 @@ func printHeader() {
 		}
 
 		innername := headerinfo.innerspecname
-		printToFile(headerInner, innername, headerinfo.imports, headerinfo.verbatim,
+		printToFile(headerInner, innername, headerinfo.imports, datastext, headerinfo.verbatim,
 			innername,
 			headerinfo.innerspecconstraints,
 			strings.Join(argtypes, " "),
@@ -677,7 +717,7 @@ func printHeader() {
 			headerinfo.spread,
 			headerinfo.constants)
 	} else {
-		printToFile(headerMain, headerinfo.imports, headerinfo.format, headerinfo.verbatim, headerinfo.constants)
+		printToFile(headerMain, headerinfo.imports, headerinfo.format, datastext, headerinfo.verbatim, headerinfo.constants)
 	}
 }
 

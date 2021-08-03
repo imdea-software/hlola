@@ -1,9 +1,7 @@
 format CSV
 use library LTL
 
-#HASKELL
 data SenderState = Get | Send | WaitForAck deriving (Generic,Read,FromJSON,Eq)
-#ENDOFHASKELL
 
 input SenderState senderState
 

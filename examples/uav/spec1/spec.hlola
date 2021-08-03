@@ -4,12 +4,10 @@ use library Utils
 use haskell Data.Maybe
 use haskell Data.List
 
-#HASKELL
 data Attitude = Attitude {yaw :: Double, roll :: Double, pitch :: Double}
                          deriving (Show,Generic,Read,FromJSON,ToJSON)
 data Target   = Target {x :: Double, y :: Double, num_wp :: Double} deriving (Show,Generic,Read,FromJSON,ToJSON)
 data Position = Position {x :: Double, y :: Double, alt :: Double} deriving (Show,Generic,Read,FromJSON,ToJSON)
-#ENDOFHASKELL
 
 input Attitude     attitude
 input Vector2      velocity

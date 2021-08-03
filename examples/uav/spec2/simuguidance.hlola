@@ -7,9 +7,7 @@ use library Lola
 use innerspec simuinner
 use haskell Data.List.Extra
 
-#HASKELL
 type Route = (Point2, Double, Maybe Point2)
-#ENDOFHASKELL
 
 input Route route
 
