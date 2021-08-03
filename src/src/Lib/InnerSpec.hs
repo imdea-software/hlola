@@ -17,9 +17,19 @@ import Lib.Utils
 import Theories.Geometry2D
 import Theories.GuidanceTheory
 import qualified Prelude as P
+import qualified Data.Map.Strict as Map
 
-innerspec :: NonLinearData -> Double -> Double -> Point2 -> Double -> Double -> Double -> Double -> (Point2, Double, Maybe Point2) -> Specification
-innerspec (NLD navl1_d _ navl1_p _ _ _ _ gamma vel_a vel_w _) tau maxtime (P dposx dposy) dyaw droll dtime ddistance (next_wp, wp_radius, mprev_wp) = [out yaw, out pos, out roll, out reached_maxtime, out stop_simulation, out time, out distance]
+data ReachStateType = RST {
+  reached_maxtime_field :: Bool,
+  reach_time_field :: Double,
+  reach_distance_field :: Double,
+  reach_yaw_field :: Double,
+  reach_roll_field :: Double,
+  reach_pos_field :: Point2} deriving (Generic, Show, ToJSON)
+
+innerspec :: NonLinearData -> Double -> Double -> Point2 -> Double -> Double -> Double -> Double -> (Point2, Double, Maybe Point2) -> InnerSpecification ReachStateType
+innerspec (NLD navl1_d _ navl1_p _ _ _ _ gamma vel_a vel_w _) tau maxtime (P dposx dposy) dyaw droll dtime ddistance (next_wp, wp_radius, mprev_wp) =
+  IS [] ret stop_simulation 3
   where
   -- Constants
   dt = 0.05
@@ -40,6 +50,7 @@ innerspec (NLD navl1_d _ navl1_p _ _ _ _ gamma vel_a vel_w _) tau maxtime (P dpo
   step_roll = "step_roll" =: (dt * demanded_roll + Leaf tau*Now roll) / (Leaf tau + dt)
   distance = "distance" =: step_distance :@ (-1,Leaf ddistance)
   step_distance = "step_distance" =: Now distance + (norm <$> (minus <$> step_pos <*> Now pos))
+  ret = "ret" =: RST <$> Now reached_maxtime <*> Now time <*> Now distance <*> Now yaw <*> Now roll <*> Now pos
   -- Auxiliary expressions
   posx = step_posx :@ (-1,Leaf dposx)
   posy = step_posy :@ (-1,Leaf dposy)

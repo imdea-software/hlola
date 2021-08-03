@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 from pathlib import Path
 import shutil
 import sys
@@ -9,7 +9,9 @@ import stat
 outpath = "/tmp/toolc/"
 shutil.rmtree(outpath,ignore_errors=True)
 outpathlibs = outpath+"Lib/"
+outpathinnerspecs = outpath+"INNERSPECSDIR/"
 os.makedirs(outpathlibs)
+os.makedirs(outpathinnerspecs)
 outbin = "./a.out"
 forcebuild = False
 
@@ -48,6 +50,10 @@ for file in hlolafiles:
 libfiles = list(Path(outpathlibs).rglob("*.hs"))
 for file in libfiles:
     shutil.copy(str(file), hlolabasedir+'/Lib/')
+
+innerspecfiles = list(Path(outpathinnerspecs).rglob("*.hs"))
+for file in innerspecfiles:
+    shutil.copy(str(file), hlolabasedir+'/INNERSPECSDIR/')
 
 mainfile = outpath+"Main.hs"
 if os.path.isfile(mainfile):

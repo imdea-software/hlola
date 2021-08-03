@@ -22,21 +22,21 @@ input [String]     events_within
 output Bool all_ok_capturing = capturing [now] `implies` 
   (height_ok [now] && near [now] && roll_ok [now] && pitch_ok [now])
 
-output Bool flying_in_safe_zones = 'isNothing (flying_in_poly [now])
+output Bool flying_in_safe_zones = 'isNothing flying_in_poly[now]
 
 output (Maybe Double) depth_into_poly = let
-  mSides = '(fmap polygonSides) (flying_in_poly [now])
-  distance_from_pos = 'shortestDist (filtered_pos [now])
+  mSides = '(fmap polygonSides) flying_in_poly[now]
+  distance_from_pos = 'shortestDist filtered_pos[now]
   in    2'fmap distance_from_pos mSides
   where shortestDist x = minimum.map (distancePointSegment x)
 
 define Bool capturing = let
-  has_capture = '(elem "capture") (events_within [now])
+  has_capture = '(elem "capture") events_within[now]
   in has_capture || open_capture [-1|'False]
 
 define Bool open_capture = let
-  relevant_events = '(filter isrelevant) (events_within [now])
-  in 2'lastIsCapture (open_capture [-1|'False]) relevant_events
+  relevant_events = '(filter isrelevant) events_within [now]
+  in 2'lastIsCapture open_capture[-1|'False] relevant_events
   where
   lastIsCapture dflt [] = dflt
   lastIsCapture _ xs = last xs == "capture"
@@ -46,31 +46,31 @@ define Double filtered_pos_component <(Position->Double) field> <String nm> = le
   dt      = 0.1
   tau     = 6*dt
   _this   = filtered_pos_component field nm
-  nowcomp = 'field (position [now])
+  nowcomp = 'field position[now]
   in if instantN [now] < 3 then nowcomp else (nowcomp + tau * (2 * _this [-1|0] - _this [-2|0] / 2)) / (1.5 * tau + 1)
 
-define Double filtered_pos_x   = filtered_pos_component x "x" [now]
+define Double filtered_pos_x   = (filtered_pos_component x "x") [now]
 
-define Double filtered_pos_y   = filtered_pos_component y "y" [now]
+define Double filtered_pos_y   = (filtered_pos_component y "y") [now]
 
-define Double filtered_pos_alt = filtered_pos_component alt "alt" [now]
+define Double filtered_pos_alt = (filtered_pos_component alt "alt") [now]
 
-define Point2 filtered_pos = 'P (filtered_pos_x [now]) (filtered_pos_y [now])
+define Point2 filtered_pos = 'P filtered_pos_x [now] filtered_pos_y [now]
 
-define Bool near = let target_pos = 'targetToPoint (target [now])
-  in    2'distance (filtered_pos [now]) target_pos < 1
+define Bool near = let target_pos = 'targetToPoint target [now]
+  in    2'distance filtered_pos [now] target_pos < 1
   where targetToPoint (Target x y _) = P x y
 
 define Bool height_ok = filtered_pos_alt [now] > 0
 
-define Bool roll_ok   = '(abs.roll) (attitude [now]) < 0.0523
+define Bool roll_ok   = '(abs.roll) attitude [now] < 0.0523
 
-define Bool pitch_ok  = '(abs.pitch) (attitude [now]) < 0.0523
+define Bool pitch_ok  = '(abs.pitch) attitude [now] < 0.0523
 
-define [Polygon] no_fly_polys = no_fly_polys [-1|'(map.map$createPoint) (nofly [now])]
+define [Polygon] no_fly_polys = no_fly_polys [-1|'(map.map$createPoint) nofly [now]]
   where
   createPoint [x,y] = P x y
 
 define (Maybe Polygon) flying_in_poly = let
-  position_in_poly = 'pointInPoly (filtered_pos [now])
-  in 2'find position_in_poly (no_fly_polys [now])
+  position_in_poly = 'pointInPoly filtered_pos [now]
+  in 2'find position_in_poly no_fly_polys [now]

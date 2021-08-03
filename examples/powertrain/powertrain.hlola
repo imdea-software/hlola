@@ -1,0 +1,99 @@
+format CSV
+use library DynMTL
+
+input Double verification
+input Double mode
+input Double pedal
+
+
+-- min: 1.8039999999386325e-7
+-- max: 4.214652000000152e-3
+-- 
+-- 3384 of e-3
+-- 3464 of e-4
+-- 
+-- We choose 1e-4 as a step
+
+const step = 0.0004 :: Double
+const simTime = round $ 50 P./ step
+const eta = round $ 1 P./ step
+const taus = round (10 P./ step) + eta
+const zeta_min = round $ 5 P./ step
+const h = round $ 0.02 P./ step
+
+-- preds(i).str = 'low'; % for the pedal input signal (<0.5)
+-- preds(i).str = 'high'; % for the pedal input signal (>0.5)
+-- preds(i).str = 'utr'; % u<=Ut
+-- preds(i).str = 'utl'; % u>=-Ut
+-- preds(i).str = 'pwr'; % mode >0.5 (power mode = 1)
+-- preds(i).str = 'norm'; % mode < 0.5 (normal mode = 0)
+
+define Bool low = pedal[now] < 0.5
+define Bool high = pedal[now] > 0.5
+define Bool utr <Double x> = verification[now] <= Leaf x
+define Bool utl <Double x> = verification[now] >= Leaf (-x)
+define Bool pwr = mode[now] > 0.5
+define Bool norm = mode[now] < 0.5
+
+define Bool strImplies <Stream Bool x> <Stream Bool y> = x[now] `implies` y[now]
+define Bool strConj <Stream Bool x> <Stream Bool y> = x[now] && y[now]
+define Bool strDisj <Stream Bool x> <Stream Bool y> = x[now] || y[now]
+
+-- Opt1:
+-- Ut = 0.05;
+-- phi = ['[]_(' num2str(taus) ', ' num2str(simTime) ') utl /\ utr'];
+
+const ut1 = 0.05
+output Bool opt1 = (always (taus, simTime) (utl ut1 `strConj` utr ut1))[now]
+
+-- Opt2:
+-- Ut = 0.02;
+-- phi = ['[]_(' num2str(taus) ', ' num2str(simTime) ')(((low/\<>_(0,' ...
+--   num2str(h) ')high) \/ (high/\<>_(0,' num2str(h) ')low))' ...
+--   '-> []_[' num2str(eta) ', ' num2str(zeta_min) '](utr /\ utl))'];
+const ut2 = 0.02
+output Bool opt2 = (always (taus, simTime) (((low `strConj` eventually (0,h) high) `strDisj`
+                                    (high `strConj` eventually (0,h) low)) `strImplies`
+                                   always (eta, zeta_min) (utl ut2 `strConj` utr ut2)))[now]
+
+-- Opt3 :
+-- C = 0.05;
+-- Ut = C;
+-- phi = ['<>_['  num2str(simTime)  ','  num2str(simTime) '] utr' ];
+const ut3 = 0.05
+output Bool opt3 = (eventually (simTime, simTime) (utr ut3)) [now]
+
+-- Opt 4:
+-- Cr = 0.1;
+-- Ut = Cr;
+-- phi = ['[]_(' num2str(taus) ', ' num2str(simTime) ')utr'];
+const ut4 = 0.1
+output Bool opt4 = (always (taus, simTime) (utr ut4))[now]
+
+-- Opt 5:
+-- Cr = 0.1;
+-- Ut = Cl;
+-- phi = ['[]_(' num2str(taus) ', ' num2str(simTime) ')utl'];
+const ut5 = 0.1
+output Bool opt5 = (always (taus, simTime) (utl ut5)) [now]
+
+-- Opt 6:
+-- Ut = 0.02;
+-- phi = ['[] ((pwr /\ <>_(0,' num2str(h), ')norm) -> (<>_('num2str(eta)', ' num2str(zeta_min) ') utl /\ utr))'];
+
+const ut6 = 0.02
+output Bool opt6 = ((pwr `strConj` eventually (0, h) norm) `strImplies` eventually (eta, zeta_min) (utl ut6 `strConj` utr ut6))[now]
+
+-- Opt 7:
+-- Ut = 0.2;
+-- phi = '[] (pwr -> (utl /\ utr))';
+const ut7 = 0.2
+output Bool opt7 = (pwr `strImplies` (utl ut7 `strConj` utr ut7))[now]
+
+-- Opt 8:
+-- Ut = 0.1;
+-- phi = ['[] (((low/\<>_(0,' num2str(h) ...
+--     ')high) \/ (high/\<>_(0,' num2str(h) ')low)) -> [] (utr /\ utl))'];
+const ut8 = 0.1
+output Bool opt8 = (((low `strConj` eventually (0,h) high) `strDisj`
+        (high `strConj` eventually (0,h) low)) `strImplies` always (0,simTime) (utl ut8 `strConj` utr ut8))[now]

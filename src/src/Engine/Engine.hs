@@ -13,6 +13,7 @@ import qualified Data.HashMap.Strict as HM
 import qualified Data.ByteString.Lazy.Char8 as BS
 import qualified Data.Text as T
 import Data.Dynamic
+import Debug.Trace
 
 -- An instant represents the value of all the streams at one point.
 -- It is a map that associates the identifier of the stream to its expression.
@@ -106,6 +107,7 @@ addExp m (DApp _ e1 e2) = let m' = addExp m e1 in addExp m' $ e2
 addExp m (DLeaf _) = m
 addExp m (DNow dec) = addDec m dec
 addExp m (DAt dec (_,de)) = let m' = addExp m de in addDec m' dec
+addExp m (DSlice _ dec de) = let m' = addExp m de in addDec m' dec
 
 -- Execution
 
@@ -134,37 +136,56 @@ solveTop sys@(Focus _ (m:_) _) id = let
   -- and we replace the entry in the focused instant
   Focus p ((Map.adjust (const newexp) id h):r) ni
 
-peek :: Sys -> ExprDyn -> Maybe Dynamic
-peek sys (DLeaf d) = Just d
-peek sys (DApp tools@(dtolfun, juster, nothing, unlifter) e1 e2) = do
-  f <- peek sys e1
-  peekApply sys tools f e2
-peek sys@(Focus _ (m:_) offset) (DNow dec) = let
+peek :: Sys -> ExprDyn -> (Maybe Dynamic, Sys)
+peek sys (DLeaf d) = (Just d, sys)
+peek sys (DApp tools@(dtolfun, juster, nothing, unlifter) e1 e2) = let
+  (mf, sys') = peek sys e1
+  in if isNothing mf then (Nothing, sys') else peekApply sys' tools (fromJust mf) e2
+peek sys@(Focus _ (m:_) _) (DNow dec) = let
   id = dgetId dec
   exp = m Map.! id
+  (ret, sys'@(Focus sa (sm:sb) sc)) = peek sys exp
   in
-  peek sys exp
+  (ret, maybe sys' (\d -> Focus sa (Map.insert id (DLeaf d) sm:sb) sc) ret)
 peek sys (DAt dec (i, de))
-  | i > offset = Nothing
+  | i > offset = (Nothing, sys)
   | otherwise = case shiftN i sys of
     Nothing -> peek sys de
     Just sys'@(Focus _ (m:_) _) -> let
       id = dgetId dec
       exp = m Map.! id
+      (ret, sys'') = peek sys' exp
       in
-      peek sys' exp
+      (ret, fromMaybe (error "wrong shift back") $ shiftN (-i) sys'')
     where offset = intoTheFut sys
+peek sys slice@(DSlice tools _ dlen)
+  | isNothing mlen = (Nothing, sys)
+  | otherwise = let
+    (d,sys'') = solve sys' slice
+    in (Just (undleaf d), sys'')
+    where
+      offset = intoTheFut sys
+      (mlen, sys') = peek sys dlen
+      Just lend = mlen
+      len = fromDyn lend (error "error len") :: Int
 
-peekApply :: Sys -> (Dynamic, Dynamic, Dynamic, Dynamic -> Maybe Dynamic) -> Dynamic -> ExprDyn -> Maybe Dynamic
+listofmaybe2maybelist :: (Dynamic, Dynamic -> Dynamic -> Dynamic) -> [Maybe Dynamic] -> Maybe Dynamic
+listofmaybe2maybelist (dnil, _) [] = Just dnil
+listofmaybe2maybelist _ (Nothing:_) = Nothing
+listofmaybe2maybelist tools@(_, dcons) (Just v:rest) = case listofmaybe2maybelist tools rest of
+  Nothing -> Nothing
+  Just l -> Just (dcons v l)
+
+peekApply :: Sys -> (Dynamic, Dynamic, Dynamic, Dynamic -> Maybe Dynamic) -> Dynamic -> ExprDyn -> (Maybe Dynamic, Sys)
 peekApply sys (dtolfun, juster, nothing, unlifter) f e2 = let
   -- we peek its argument,
-  maybeDynarg = peek sys e2 -- Maybe Dynamic <a>
+  (maybeDynarg, sys') = peek sys e2 -- Maybe Dynamic <a>
   argDynMaybe = maybe nothing (dynApp juster) maybeDynarg
   -- (DLeaf y, sys'') = solve sys' e2
   mayber = dynApp dtolfun f -- mayber :: Dynamic<Maybe a -> Maybe b>
   dynMaybe = dynApp mayber argDynMaybe -- dynMaybe :: Dynamic <Maybe b>
   maybeDyn = unlifter dynMaybe
-  in maybeDyn
+  in (maybeDyn, sys')
 
 -- This function returns the ground value of an expression regarding the focused
 -- instant. It may solve and replace other points in doing so.
@@ -174,8 +195,8 @@ solve sys x@(DLeaf _) = (x,sys)
 -- To solve an application,
 solve sys expr@(DApp tools@(dtolfun, juster, nothing, unlifter) e1 e2) = let
   -- we solve the function to apply,
-  (DLeaf f, sys') = solve sys e1
-  maybeDyn = peekApply sys' tools f e2
+  (DLeaf f, sys'') = solve sys e1
+  (maybeDyn, sys') = peekApply sys'' tools f e2
   in
   case maybeDyn of
     Just res -> (DLeaf res, sys')
@@ -203,7 +224,28 @@ solve sys (DAt dec (i, de)) = let
       nsys = solveTop shiftedSys id
       Focus _ (m:f) _ = nsys in
       -- except that we have to shift back to the present instant
-      (m Map.! id, fromMaybe (error "Failed access to past") $ shiftN (-i) nsys)
+      (m Map.! id, fromMaybe (error "Failed access to pastito") $ shiftN (-i) nsys)
+solve sys (DSlice (nilList, dcons,tolistdyn) dec dlen) = let
+  (solvedexpr, sys') = solve sys dlen
+  len = fromDyn (undleaf solvedexpr) (error "not int in slice") :: Int
+  (sliceres, sysres) = getSlice len sys'
+  in
+  (DLeaf $ tolistdyn $ sliceres, sysres)
+  where
+  sid = dgetId dec
+  getSlice n sys
+    | n <= 0 = ([], sys)
+    | n == 1 = ([undleaf nowval], nsys)
+    | otherwise = let
+      (innerlist, innersys) = case shiftNZero 1 sys of
+        Nothing -> ([], sys) 
+        Just shiftedsys -> let (il, is) = getSlice (n-1) shiftedsys in (il, fromMaybe (error "Failed access to past") $ shiftN (-1) is)
+      in
+      ((undleaf nowval):innerlist, nsys)
+    where
+    nsys = solveTop sys sid
+    Focus _ (m:_) _ = nsys
+    nowval = m Map.! sid
 
 -- Output
 showCSVRow :: [String] -> String
@@ -228,13 +270,15 @@ printFocus f (Focus _ (m:_) _) decs = let
 procAndPrint :: Format -> Specification -> Sys -> [String]
 procAndPrint f decs sys@(Focus _ [] _) = []
 -- If this is the last instant, that is all we do
-procAndPrint f decs sys@(Focus _ [_] _) = [printFocus f (solveFocus sys) decs]
+-- procAndPrint f decs sys@(Focus _ [_] _) = [printFocus f (solveFocus sys) decs]
+-- REMOVED LINE, it made the engine wait to decide which pattern to match even though
+-- they start with the same element.
 -- Otherwise, we prepend this string with the result of solving and printing the
 -- remaining of the instants in the future, by shifting the system and
 -- recomputing
-procAndPrint f decs sys = let
+procAndPrint f decs sys@(Focus _ (_:ls) _) = let
   newsys = solveFocus sys
-  in (printFocus f newsys decs) : (procAndPrint f decs $ rshift' newsys)
+  in (printFocus f newsys decs) : if null ls then [] else (procAndPrint f decs $ rshift' newsys)
 
 rshift' sys = case shiftN 1 sys of
   Just s -> s
@@ -268,10 +312,33 @@ runHintedLib hint decs ins = let
 
 justProc :: Specification -> Sys -> [Map.Map Ident Dynamic]
 justProc decs sys@(Focus _ [] _) = []
-justProc decs sys@(Focus _ [_] _) = let (Focus _ [(m)] _) = solveFocus sys in [Map.map undleaf m]
-justProc decs sys@(Focus _ (_:_) _) = let (newfocus@(Focus _ ((m):_) _)) = solveFocus sys in (Map.map undleaf m):(justProc decs (rshift' newfocus))
+justProc decs sys@(Focus _ [_] _) = let (Focus _ [m] _) = solveFocus sys in [Map.map undleaf m]
+justProc decs sys@(Focus _ (_:_) _) = let (newfocus@(Focus _ (m:_) _)) = solveFocus sys in (Map.map undleaf m):(justProc decs (rshift' newfocus))
 
 undleaf (DLeaf x) = x
+
+runSpec :: Typeable a => InnerSpecification a -> a
+runSpec innerspec = let
+  decs = getDecs innerspec
+  ins = getIns innerspec
+  sys = getHintedSystem (hint innerspec) (map fst4 decs) ins in
+  procWithRet innerspec sys
+
+procWithRet :: Typeable a => InnerSpecification a -> Sys -> a
+procWithRet innerspec sys@(Focus _ [] _) = error "Innerspec executed with empty input"
+-- procWithRet innerspec sys@(Focus _ [_] _) = let (_, _, ret) = solveFocusWithRet innerspec sys in ret
+procWithRet innerspec sys@(Focus _ (_:fut) _) = let (newfocus, stop, ret) = solveFocusWithRet innerspec sys in if stop || null fut then ret else procWithRet innerspec (rshift' newfocus)
+
+solveFocusWithRet :: Typeable a => InnerSpecification a -> Sys -> (Sys, Bool, a)
+solveFocusWithRet innerspec sys = let
+  newsys@(Focus _ (m:_) _) = solveFocus sys
+  retStreamId = getId $ retStream innerspec
+  stopStreamId = getId $ stopStream innerspec
+  DLeaf dret = m Map.! retStreamId
+  DLeaf dstop = m Map.! stopStreamId
+  ret = getFromDynner innerspec dret
+  stop = fromDyn dstop undefined :: Bool
+  in (newsys, stop, ret)
 
 streamval :: Typeable w => Map.Map String Dynamic -> String -> w
 streamval m ix = fromMaybe (error "wrong fromdyn").fromDynamic.fromMaybe (error $ "ix not found: "++ ix) $ Map.lookup ix m

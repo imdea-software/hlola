@@ -1,3 +1,4 @@
+{-# LANGUAGE BangPatterns #-}
 module Engine.Focus (Focus (..), shiftN, emptyPast, shiftNZero) where
 import Prelude
 import Data.Array
@@ -45,7 +46,11 @@ shiftNZero x y = fmap stepon (shiftN x y)
 
 rshift :: Int -> Focus a -> Maybe (Focus a)
 rshift _ (Focus _ [_] _) = Nothing
-rshift x (Focus p (f:fut) i) = shiftN (x-1) (Focus (pastCons f p) fut  (i-1))
+rshift x (Focus p (f:fut) i) = let
+  !pc = pastCons f p
+  !newi = (i-1)
+  !newx = (x-1)
+  in shiftN newx (Focus pc fut  newi)
 
 lshift :: Int -> Focus a -> Maybe (Focus a)
 lshift x (Focus p@(P arr ind) f i) =
@@ -58,8 +63,8 @@ lshift x (Focus p@(P arr ind) f i) =
 
 pastCons :: a -> Past a -> Past a
 pastCons elem p@(P arr ind) = let
-  newind = mod (ind+1) $ (maxInd p+1)
-  newarr = arr // [(newind,JustPos elem)] in
+  newind = mod (ind+1) (maxInd p+1)
+  !newarr = arr // [(newind,JustPos elem)] in
   P newarr newind
 
 -- Constructor method to get a Past capable of storing the amount of elements

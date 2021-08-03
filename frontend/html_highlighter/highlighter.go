@@ -181,14 +181,15 @@ func processOutputDeclaration(s string) string {
 }
 
 func processInputDeclaration(s string) string {
-	inputRE := regexp.MustCompile(`^input (?P<type>[^ ]*)(?P<spaces> +)(?P<id>[^ ]*)$`)
+	inputRE := regexp.MustCompile(`^input (?P<type>.*) (?P<id>[^ ]*)$`)
 	themap := FindStringSubmatchMap(inputRE, s)
 	if len(themap) == 0 {
 		return s
 	}
 	id := themap["id"]
 	typ := themap["type"]
-	return (INPUT + themap["spaces"] + formatType(typ) + " " + formatId(id))
+	fid := formatId(id)
+	return (INPUT + " " + formatType(typ) + " " + fid)
 }
 
 func processFormatDeclaration(s string) string {

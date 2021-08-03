@@ -1,0 +1,31 @@
+library QMTL
+
+use library Utils
+use innerspec foldspec
+use innerspec foldaccumspec
+use haskell Data.Dynamic
+use haskell Data.Maybe
+use library Lola
+use theory Lattice
+use haskell Data.Aeson
+
+-- One slice
+output (Lattice a, Typeable a, Show a, ToJSON a, FromJSON a, Eq a, Read a) => a previously <(Int, Int) (a,b)> <Stream a phi> = let
+  win = slidingwin (a,b) phi in
+  if 'null win then '(fromJust mabscap) else 1'runSpec (1'(foldspec sq_cup mabscup) win)
+
+output (Lattice a, Typeable a, Show a, ToJSON a, FromJSON a, Eq a, Read a) => a historically <(Int, Int) (a,b)> <Stream a phi> = let
+  win = slidingwin (a,b) phi in
+  if 'null win then '(fromJust mabscup) else 1'runSpec (1'(foldspec sq_cap mabscap) win)
+
+-- Slice within slice
+-- TODO Remove constaints
+output (ToJSON a, FromJSON a, Read a, Show a, Eq a, Typeable a, Lattice a) => a since <(Int, Int) (a,b)> <Stream a phi> <Stream a psi> = let
+  phis = slidingwin (a,b) phi
+  psis = slidingwin (a,b) psi
+  in 1'runSpec (2'(foldaccumspec sq_cup sq_cap mabscup) phis psis)
+
+output (ToJSON a, FromJSON a, Read a, Show a, Eq a, Typeable a, Lattice a) => a since_overline <(Int, Int) (a,b)> <Stream a phi> <Stream a psi> = let
+  phis = slidingwin (a,b) phi
+  psis = slidingwin (a,b) psi
+  in 1'runSpec (2'(foldaccumspec sq_cap sq_cup mabscap) phis psis)

@@ -1,41 +1,45 @@
 {-# LANGUAGE RebindableSyntax  #-}
+{-# LANGUAGE DuplicateRecordFields #-}
 module Lib.QMTL where
-
 import Lola
 import Syntax.HLPrelude
-import Lib.Utils
 import Syntax.Booleans
 import Syntax.Ord
 import Syntax.Num
 import qualified Prelude as P
+import Lib.Utils
+import INNERSPECSDIR.INNERSPEC_foldspec
+import INNERSPECSDIR.INNERSPEC_foldaccumspec
+import Data.Dynamic
 import Data.Maybe
+import Lib.Lola
+import Theories.Lattice
+import Data.Aeson
 
-medianLast :: (Eq a,Fractional a, Streamable a) => Int -> Stream a -> Stream a
-medianLast k dec = "medianLast" <: k <: getId dec =: let
-  denom = strMap ("min" <: k) (min k) instantN
-  numerator = foldl (+) (Leaf 0) [dec :@ (i, 0) | i <- [(1-k)..0]]
-  in numerator / (fromIntegral <$> Now denom)
 
--- Reference: https://www.cs.ox.ac.uk/people/james.worrell/mtlsurvey08.pdf
+-- Custom Haskell
 
--- -- phi U_{a,b} psi
--- untilMTL :: (Int, Int) -> Stream Bool -> Stream Bool -> Stream Bool
--- untilMTL (a, b) phi psi = "until_(" `T.append` (fromString$show a ++ [','] ++ show b ++ [')']) <: getId phi <: getId psi =:
---   let
---     minPsi = foldl (\acci (b,i) -> if b then i else acci) (Leaf (b+1)) [(psi@:(a+b-i,False),Leaf (a+b-i)) | i <- [a..b]]
---     minNotPhi = foldl (\acci (b,i) -> if not b then i else acci) (Leaf (b+1)) [(phi@:(a+b-i,True),Leaf (a+b-i)) | i <- [a..b]]
---   in minPsi <= minNotPhi && minPsi <= Leaf b
+-- Constants
 
--- notMTL :: Stream Bool -> Stream Bool
--- notMTL dec = "not" <: getId dec =: not (Now dec)
 
--- andMTL :: Stream Bool -> Stream Bool -> Stream Bool
--- andMTL d0 d1 = "and" <: getId d0 <: getId d1 =: Now d0 && Now d1
+previously :: (Lattice a, Typeable a, Show a, ToJSON a, FromJSON a, Eq a, Read a) => (Int, Int) -> Stream a -> Stream a
+previously (a,b) phi = "previously" <: (a,b) <: phi =: (let
+  win = slidingwin (a,b) phi in
+  if (toolLift null) win then (toolLift (fromJust mabscap))  else (magic1 runSpec) ((magic1 (foldspec sq_cup mabscup))  win))
 
--- historicallyMTL :: Int -> Stream Bool -> Stream Bool
--- historicallyMTL k dec = "historicallyMTL" <: (fromString.show) k <: getId dec =:
---   Now (consecutiveTrueMTL dec) >= Leaf k
+historically :: (Lattice a, Typeable a, Show a, ToJSON a, FromJSON a, Eq a, Read a) => (Int, Int) -> Stream a -> Stream a
+historically (a,b) phi = "historically" <: (a,b) <: phi =: (let
+  win = slidingwin (a,b) phi in
+  if (toolLift null) win then (toolLift (fromJust mabscup))  else (magic1 runSpec) ((magic1 (foldspec sq_cap mabscap))  win))
 
--- consecutiveTrueMTL :: Stream Bool -> Stream Int
--- consecutiveTrueMTL dec = "consecutiveTrueMTL" <: getId dec =:
---   if not $ Now dec then 0 else consecutiveTrueMTL dec @: (-1, 0) + 1
+since :: (ToJSON a, FromJSON a, Read a, Show a, Eq a, Typeable a, Lattice a) => (Int, Int) -> Stream a -> Stream a -> Stream a
+since (a,b) phi psi = "since" <: (a,b) <: phi <: psi =: (let
+  phis = slidingwin (a,b) phi
+  psis = slidingwin (a,b) psi
+  in (magic1 runSpec) ((magic2 (foldaccumspec sq_cup sq_cap mabscup))  phis psis))
+
+since_overline :: (ToJSON a, FromJSON a, Read a, Show a, Eq a, Typeable a, Lattice a) => (Int, Int) -> Stream a -> Stream a -> Stream a
+since_overline (a,b) phi psi = "since_overline" <: (a,b) <: phi <: psi =: (let
+  phis = slidingwin (a,b) phi
+  psis = slidingwin (a,b) psi
+  in (magic1 runSpec) ((magic2 (foldaccumspec sq_cap sq_cup mabscap))  phis psis))

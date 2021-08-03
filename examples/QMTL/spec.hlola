@@ -1,0 +1,10 @@
+format CSV
+use library QMTL
+
+input Int qphi
+input Bool phi
+input Bool psi
+
+output Int qprevex = (previously (-1,1) qphi) [now]
+
+define Bool sinceex = (since (-1,1) phi psi) [now]

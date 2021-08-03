@@ -1,0 +1,36 @@
+innerspec ([Point2], Double, Bool, Double, Double) simuguidance <NonLinearData nld> <Double tau> <Double maxtime>
+spread 5
+
+use theory GuidanceTheory
+use theory Geometry2D
+use library Lola
+use innerspec simuinner
+use haskell Data.List.Extra
+
+#HASKELL
+type Route = (Point2, Double, Maybe Point2)
+#ENDOFHASKELL
+
+input Route route
+
+output ReachStateType reaching_state = let
+  roll = reach_roll [-1|'(initial_roll nld)]
+  yaw = reach_yaw [-1|'(initial_yaw nld)]
+  distance = reach_distance [-1|0]
+  time = reach_time [-1|0]
+  pos = reach_pos [-1|'(initial_pos nld)]
+  in
+  'runSpec (6'(simuinner nld tau maxtime) pos yaw roll time distance route[now])
+
+output Bool reached_maxtime = 'reached_maxtime_field reaching_state[now]
+output Double reach_time = 'reach_time_field reaching_state[now]
+output Double reach_distance = 'reach_distance_field reaching_state[now]
+output Double reach_yaw = 'reach_yaw_field reaching_state[now]
+output Double reach_roll = 'reach_roll_field reaching_state[now]
+output Point2 reach_pos = 'reach_pos_field reaching_state[now]
+output [Point2] wps = let init_wps = [] in 'snoc wps [-1| 'init_wps] reach_pos[now]
+
+output Bool has_reached = reached_maxtime [-1| 'False]
+output ([Point2], Double, Bool, Double, Double) ret = 5'(,,,,) wps[now] reach_roll[now] reached_maxtime[now] reach_time[now] reach_distance[now]
+
+return ret when has_reached

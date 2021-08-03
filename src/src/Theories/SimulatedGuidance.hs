@@ -17,16 +17,8 @@ simulate_guidance_logic :: NonLinearData -> Double -> Double -> ([Point2], Doubl
 simulate_guidance_logic nld@(NLD _ wp_list _ _ num_wp radius_list _ _ _ _ _) tau maxtime = let
   pwp = Nothing : (map Just wp_list)
   wp_radius_pwp = filter farEnoughWP $ drop num_wp $ zip3 wp_list radius_list pwp
-  simures = runHintedLib 10 (simuspec nld tau maxtime) [Map.singleton "route" (toDyn x) | x<- wp_radius_pwp]
-  wpstates = takeUntilP1 (valstream "reached_maxtime") simures
-  last_roll = last wpstates `streamval` "reach_roll"
-  total_dist = last wpstates `streamval` "reach_distance"
-  total_time = last wpstates `streamval` "reach_time"
-  reached_max = last wpstates `streamval` "reached_maxtime"
-  wps = map (valstream "reach_pos") wpstates
-  in (wps, last_roll, reached_max, total_time, total_dist)
+  in runSpec (simuspec nld tau maxtime wp_radius_pwp)
   where
-  takeUntilP1 p xs = map snd $ takeWhile (not.fst) (zip (False:map p xs) xs)
   farEnoughWP (next_wp, _, Nothing) = True
   farEnoughWP (next_wp, _, Just prev_wp) = norm (next_wp `minus` prev_wp) > 0.01
 

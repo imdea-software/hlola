@@ -31,6 +31,12 @@ eventually (a,b) phi = let
     name = "eventually_(" ++ show a ++ "," ++ show b ++ ")" <: phi
   in name =: foldl (||) (Leaf False) [phi :@ (i,Leaf False) | i <- [a..b]]
 
+-- Phi holds at some point between a and b
+always :: (Int, Int) -> Stream Bool -> Stream Bool
+always (a,b) phi = let
+    name = "always" <: a <: b <: phi
+  in name =: foldl (&&) (Leaf True) [phi :@ (i,Leaf True) | i <- [a..b]]
+
 historically :: Int -> Stream Bool -> Stream Bool
 historically k dec = "historically" <: k <: dec =:
   Now (consecutiveTrue dec) >= Leaf k

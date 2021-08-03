@@ -1,0 +1,13 @@
+innerspec forall a.(Typeable a, Show a, ToJSON a, FromJSON a, Eq a, Read a) => a foldspec <(a->a->a) op> <Maybe a mabs>
+spread 2
+
+use library Utils
+use haskell Data.Dynamic
+
+input a vals
+
+output a ret = if instantN[now] === 1 then vals[now] else 2'op ret [-1|'undefined] vals[now]
+
+output Bool stop = maybe ('False) (\abs -> ret[now] === 'abs) mabs
+
+return ret when stop

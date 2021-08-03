@@ -25,10 +25,18 @@ type TypeAndDef struct {
 }
 
 type HeaderInfo struct {
-	libname  string
-	format   string
-	imports  string
-	verbatim string
+	constants            string
+	libname              string
+	innerspecname        string
+	innerspectyp         string
+	innerspecconstraints string
+	innerspecparams      []TypeId
+	retstream            string
+	stopstream           string
+	format               string
+	imports              string
+	verbatim             string
+	spread               string
 }
 
 type IOid struct {
@@ -49,19 +57,31 @@ var headerinfo = new(HeaderInfo)
 var inputTemplate string = `%s :: Stream %s
 %s = Input "%s"
 `
+var inputIndentedTemplate string = `  %s :: Stream %s
+  %s = Input "%s"
+`
 var outputTemplate string = `
 %s :: %s%sStream %s
 %s %s= "%s" %s=: (%s)
 `
+var outputIndentedTemplate string = `
+  %s :: %s%sStream %s
+  %s %s= "%s" %s=: (%s)
+`
 var closedOutputTemplate string = `
 %s :: %s%sStream %s
 %s %s= "%s" %s=: (%s
+`
+var closedOutputIndentedTemplate string = `
+  %s :: %s%sStream %s
+  %s %s= "%s" %s=: (%s
 `
 
 /*
 First argument: custom imports
 Second argument: JSON/CSV
 Third argument: custom haskell
+Fourth argument: constants
 */
 var headerMain = `{-# LANGUAGE RebindableSyntax  #-}
 {-# LANGUAGE DeriveAnyClass #-}
@@ -89,10 +109,52 @@ main =do
 
 -- Custom Haskell
 %s
+-- Constants
+%s
 `
 
 /*
-args: Libname, custom imports, custom haskell
+args: Innername, custom imports, custom haskell
+innerspec name
+innerspec argtypes
+innerspec inputstream types
+innerspec retstream type
+innerspec name
+innerspec argnames
+innerspec inputstream argnames
+innerspec bindings
+innerspec retstream name
+innerspec stopstream name
+constants
+*/
+var headerInner = `{-# LANGUAGE RebindableSyntax  #-}
+{-# LANGUAGE DeriveAnyClass #-}
+{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DuplicateRecordFields #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+module INNERSPECSDIR.INNERSPEC_%s where
+import Lola
+import GHC.Generics
+import Data.Aeson
+import Syntax.HLPrelude
+import DecDyn (InnerSpecification(IS), bind)
+import Syntax.Booleans
+import Syntax.Ord
+import Syntax.Num
+import qualified Prelude as P
+%s
+
+-- Custom Haskell
+%s
+
+%s :: %s %s %s InnerSpecification %s
+%s %s %s = IS [%s] %s %s (%s)
+  where
+%s
+`
+
+/*
+args: Libname, custom imports, custom haskell, constants
 */
 var headerLib = `{-# LANGUAGE RebindableSyntax  #-}
 {-# LANGUAGE DuplicateRecordFields #-}
@@ -106,6 +168,8 @@ import qualified Prelude as P
 %s
 
 -- Custom Haskell
+%s
+-- Constants
 %s
 `
 
@@ -153,17 +217,44 @@ func findBalanced(s string, adder rune, remover rune) (string, string) {
 	return typ.String(), rest.String()
 }
 
-func munchType(s string) (string, string) {
-	s = strings.TrimSpace(s)
-	switch s[0] {
-	case '(':
-		return findBalanced(s, '(', ')')
-	case '[':
-		return findBalanced(s, '[', ']')
-	default:
-		strs := strings.SplitN(s, " ", 2)
-		return strs[0], strs[1]
+func reverse(s string) string {
+	rs := []rune(s)
+	for i, j := 0, len(rs)-1; i < j; i, j = i+1, j-1 {
+		rs[i], rs[j] = rs[j], rs[i]
 	}
+	return string(rs)
+}
+
+func splitnextnoname(line string) (string, string) {
+	re := regexp.MustCompile(`[^a-zA-z0-9'_]`)
+	locs := re.FindStringIndex(line)
+	if locs == nil {
+		return line, ""
+	}
+	ix := locs[0]
+	return line[:ix], line[ix:]
+}
+
+func replaceall(line string, re *regexp.Regexp, replacement string) string {
+	for loc := re.FindStringIndex(line); loc != nil; loc = re.FindStringIndex(line) {
+		startix := loc[0]
+		endix := loc[1]
+		lefthand := line[:startix]
+		midhand := line[startix:endix]
+		righthand := line[endix:]
+		rlefthand := reverse(lefthand)
+		rlefthand = strings.TrimLeft(rlefthand, " ")
+		funame := ""
+		rest := ""
+		if rlefthand[0] == ')' {
+			funame, rest = findBalanced(rlefthand, ')', '(')
+		} else {
+			funame, rest = splitnextnoname(rlefthand)
+		}
+		replaced := re.ReplaceAllString(midhand, replacement)
+		line = reverse(rest) + " (" + reverse(funame) + replaced + ") " + righthand
+	}
+	return line
 }
 
 func parseError(s string) {
@@ -175,10 +266,17 @@ func getLastWord(s string) (string, string) {
 	lastwordRE := regexp.MustCompile(`^(?P<rest>.*)? (?P<lastword>[^ ]+)$`)
 	themap := FindStringSubmatchMap(lastwordRE, s)
 	if len(themap) < 2 {
-		parseError("No stream name")
+		parseError("No stream name: " + s)
 	}
 	// typ := themap["type"]
 	return themap["lastword"], strings.Trim(themap["rest"], " ")
+}
+
+func processConstDeclaration(s string) {
+	if !strings.HasPrefix(s, "const ") {
+		return
+	}
+	headerinfo.constants += getIndentation() + s[6:] + "\n"
 }
 
 func processOutputDeclaration(s string) {
@@ -190,23 +288,37 @@ func processOutputDeclaration(s string) {
 		return
 	}
 	// We can use type constraints
-	re := regexp.MustCompile(`^(?P<kind>output|define) (?P<lhs>([^=]|=>)*)=(?P<rhs>[^>].*)$`)
+	re := regexp.MustCompile(`^(?P<kind>output|define) (?P<lhs>([^=]|=>)*)=(?P<rhs>[^>].*$|$)`)
 	themap := FindStringSubmatchMap(re, s)
 	hidden := themap["kind"] == "define"
 	body := themap["rhs"]
 	s = themap["lhs"]
+	f := bufio.NewWriter(os.Stdout)
+	f.Flush()
+	id, typ, params, constr := getIdTypParamsConstraints(s)
+	template := outputTemplate
+	if headerinfo.innerspecname != "" {
+		template = outputIndentedTemplate
+	}
+	typedOutputs[id] = TypeAndDef{id, typ, body, template, params,
+		constr, hidden}
+	lastid = id
+	order = append(order, IOid{id, true})
+}
+
+func getIdTypParamsConstraints(s string) (id string, typ string, params []TypeId, constr string) {
 	strs := strings.SplitN(s, "<", 2)
 	s = strs[0]
 	id, typConstr := getLastWord(s)
-	typ := typConstr
-	constr := ""
+	typ = typConstr
+	constr = ""
 	if strings.Contains(typConstr, "=>") {
 		strs := strings.SplitN(typConstr, "=>", 2)
 		typ = strings.TrimSpace(strs[1])
 		constr = strs[0] + "=> "
 	}
 	// rest = strs[1]
-	params := []TypeId{}
+	params = []TypeId{}
 	if len(strs) > 1 {
 		rawParams := strings.Trim(strs[1], " ")
 		rawParams = rawParams[:len(rawParams)-1]
@@ -218,10 +330,7 @@ func processOutputDeclaration(s string) {
 			params = append(params, TypeId{parid, typ})
 		}
 	}
-	typedOutputs[id] = TypeAndDef{id, typ, body, outputTemplate, params,
-		constr, hidden}
-	lastid = id
-	order = append(order, IOid{id, true})
+	return
 }
 
 func getParamTypes(params []TypeId) string {
@@ -288,10 +397,54 @@ func processFileTypeDeclaration(s string) {
 		headerinfo.libname = themap["libname"]
 		outfname = "/Lib/" + headerinfo.libname + ".hs"
 	}
+	innerspecRE := regexp.MustCompile(`^innerspec *(?P<rest>.*$)`)
+	themap = FindStringSubmatchMap(innerspecRE, s)
+	if len(themap) > 0 {
+		if outwriter != nil && outpath != "" {
+			panic("Innerspec declared too late")
+		}
+		s = themap["rest"]
+		id, typ, params, constraints := getIdTypParamsConstraints(s)
+		headerinfo.innerspecconstraints = constraints
+		headerinfo.innerspecparams = params
+		headerinfo.innerspecname = id
+		headerinfo.innerspectyp = typ
+		outfname = "/INNERSPECSDIR/INNERSPEC_" + headerinfo.innerspecname + ".hs"
+	}
+}
+
+func processSpreadDeclaration(s string) {
+	spreadRE := regexp.MustCompile(`^spread (?P<spread>.*)$`)
+	themap := FindStringSubmatchMap(spreadRE, s)
+	if len(themap) == 0 {
+		if strings.HasPrefix(s, "spread ") {
+			panic("Unknown spread: " + s)
+		}
+		return
+	}
+	headerinfo.spread = themap["spread"]
+}
+
+func processReturn(s string) {
+	returnRE := regexp.MustCompile(`^return *(?P<retstream>.*)( *when *(?P<stopstream>.*)$)`)
+	// TODO handle case with no when
+	themap := FindStringSubmatchMap(returnRE, s)
+	if len(themap) < 2 {
+		if strings.HasPrefix(s, "return ") {
+			panic("Ill return: " + s)
+		}
+		return
+	}
+	headerinfo.retstream = strings.Trim(themap["retstream"], " ")
+	if val, ok := themap["stopstream"]; ok && val != "" {
+		headerinfo.stopstream = strings.Trim(val, " ")
+	} else {
+		headerinfo.stopstream = "false__stream"
+	}
 }
 
 func processUsage(s string) {
-	useRE := regexp.MustCompile(`^use (?P<kind>(library|theory|haskell)) (?P<name>.*)$`)
+	useRE := regexp.MustCompile(`^use (?P<kind>(innerspec|library|theory|haskell)) (?P<name>.*)$`)
 	themap := FindStringSubmatchMap(useRE, s)
 	if len(themap) < 2 {
 		if strings.HasPrefix(s, "use ") {
@@ -302,13 +455,15 @@ func processUsage(s string) {
 	var usekind string
 	switch themap["kind"] {
 	case "library":
-		usekind = "Lib."
+		usekind = "Lib." + themap["name"]
 	case "theory":
-		usekind = "Theories."
+		usekind = "Theories." + themap["name"]
+	case "innerspec":
+		usekind = "INNERSPECSDIR.INNERSPEC_" + themap["name"]
 	default:
-		usekind = ""
+		usekind = "" + themap["name"]
 	}
-	newimport := "import " + usekind + themap["name"]
+	newimport := "import " + usekind
 	headerinfo.imports += newimport + "\n"
 }
 
@@ -391,19 +546,26 @@ func printToFile(format string, args ...interface{}) {
 }
 
 func printIn(id string) {
-	printToFile(inputTemplate, id, typedInputs[id], id, id)
+	template := inputTemplate
+	if headerinfo.innerspecname != "" {
+		template = inputIndentedTemplate
+	}
+	printToFile(template, id, typedInputs[id], id, id)
 }
 
 func printOut(id string) {
 	tad := typedOutputs[id]
 	def := tad.def
-	streamAccessRE := regexp.MustCompile(`\[(?P<offset>-?[^[]]*)\|(?P<default>[^\]]+)\]`)
+	streamAccessRE := regexp.MustCompile(`\[(?P<offset>-?[^\[\]]*)\|(?P<default>[^\]]+)\]`)
 	streamNowRE := regexp.MustCompile(`\[0\|\]`)
 	streamNowREnow := regexp.MustCompile(`\[now\]`)
+	streamSliceRE := regexp.MustCompile(`\[:(?P<sliceexpr>[^\]]+)\]`)
 	// Replacements:
-	def = streamNowRE.ReplaceAllString(def, `:@(0, Leaf undefined)`)
-	def = streamNowREnow.ReplaceAllString(def, `:@(0, Leaf undefined)`)
-	def = streamAccessRE.ReplaceAllString(def, `:@($offset,$default)`)
+	// def = streamNowREnow.ReplaceAllString(def, `:@(0, Leaf undefined)`)
+	def = replaceall(def, streamNowRE, `:@(0, Leaf undefined)`)
+	def = replaceall(def, streamNowREnow, `:@(0, Leaf undefined)`)
+	def = replaceall(def, streamSliceRE, `:@@($sliceexpr)`)
+	def = replaceall(def, streamAccessRE, `:@($offset,$default)`)
 	// Trim:
 	def = strings.Trim(def, " \t")
 	def = liftFuns(def)
@@ -416,15 +578,18 @@ func process(s string) {
 			panic("No last output")
 		}
 		thedef := typedOutputs[lastid]
-		isWhere, err := regexp.MatchString("^ *where( |$)", s)
+		isWhere, err := regexp.MatchString("^ *where( |$).*", s)
 		if err != nil {
 			panic(err)
 		}
 		if isWhere {
 			thedef.def += ")"
 			thedef.template = closedOutputTemplate
+			if headerinfo.innerspecname != "" {
+				thedef.template = closedOutputIndentedTemplate
+			}
 		}
-		thedef.def += "\n" + s
+		thedef.def += "\n" + getIndentation() + s
 		typedOutputs[lastid] = thedef
 		return
 	}
@@ -432,12 +597,26 @@ func process(s string) {
 	processOutputDeclaration(s)
 	processFormatDeclaration(s)
 	processFileTypeDeclaration(s)
+	processSpreadDeclaration(s)
 	processUsage(s)
+	processReturn(s)
+	processConstDeclaration(s)
 	//fmt.Println(s)
 }
 
+func getIndentation() string {
+	if headerinfo.innerspecname != "" {
+		return "  "
+	}
+	return ""
+}
+
+func isMainSpec() bool {
+	return headerinfo.libname == "" && headerinfo.innerspecname == ""
+}
+
 func printSystem() {
-	if headerinfo.libname != "" {
+	if !isMainSpec() {
 		return
 	}
 	printToFile(`specification :: Specification
@@ -457,10 +636,48 @@ specification = [`)
 }
 
 func printHeader() {
-	if headerinfo.libname == "" {
-		printToFile(headerMain, headerinfo.imports, headerinfo.format, headerinfo.verbatim)
+	if headerinfo.libname != "" {
+		printToFile(headerLib, headerinfo.libname, headerinfo.imports, headerinfo.verbatim, headerinfo.constants)
+	} else if headerinfo.innerspecname != "" {
+		var inputstreamtypes []string = make([]string, 0)
+		var inputstreamargnames []string = make([]string, 0)
+		var bindings []string = make([]string, 0)
+		// TODO Do not read the type here
+		for _, idout := range order {
+			if !idout.isOut {
+				id := idout.id
+				typ := typedInputs[id]
+				inputstreamtypes = append(inputstreamtypes, "["+typ+"] ->")
+				argname := id + "__arg"
+				inputstreamargnames = append(inputstreamargnames, argname)
+				bindings = append(bindings, "bind "+id+" "+argname)
+			}
+		}
+
+		var argtypes []string = make([]string, 0)
+		var argnames []string = make([]string, 0)
+		for _, tid := range headerinfo.innerspecparams {
+			argtypes = append(argtypes, tid.typ+" ->")
+			argnames = append(argnames, tid.id)
+		}
+
+		innername := headerinfo.innerspecname
+		printToFile(headerInner, innername, headerinfo.imports, headerinfo.verbatim,
+			innername,
+			headerinfo.innerspecconstraints,
+			strings.Join(argtypes, " "),
+			strings.Join(inputstreamtypes, " "),
+			headerinfo.innerspectyp,
+			innername,
+			strings.Join(argnames, " "),
+			strings.Join(inputstreamargnames, " "),
+			strings.Join(bindings, ", "),
+			headerinfo.retstream,
+			headerinfo.stopstream,
+			headerinfo.spread,
+			headerinfo.constants)
 	} else {
-		printToFile(headerLib, headerinfo.libname, headerinfo.imports, headerinfo.verbatim)
+		printToFile(headerMain, headerinfo.imports, headerinfo.format, headerinfo.verbatim, headerinfo.constants)
 	}
 }
 
@@ -492,7 +709,7 @@ func main() {
 		}
 		process(scanner.Text())
 	}
-	if headerinfo.format == "" && headerinfo.libname == "" {
+	if headerinfo.format == "" && isMainSpec() {
 		panic("No format specified")
 	}
 	printHeader()

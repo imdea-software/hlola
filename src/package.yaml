@@ -33,7 +33,9 @@ dependencies:
 - mtl
 - regex
   # - template-haskell
-  # - QuickCheck
+- QuickCheck
+- extra
+- dsp >= 0.2.5
   # - constraints
 
 # Array and Vector are very similar... But Vector should be more efficient

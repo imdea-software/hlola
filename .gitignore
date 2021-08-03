@@ -3,6 +3,7 @@ test/
 HLola.cabal
 *~
 dsl/dsl
+dsl/testfiles/*
 **/**/main.aux
 **/**/main.log
 **/**/main.out
@@ -17,3 +18,7 @@ dsl/dsl
 **/**/main.run.xml
 **/**/main.tex
 **/auto
+**/**/__pycache__
+frontend/hlolac/preproc/preproc
+frontend/html_highlighter/html_highlighter
+frontend/latex_highlighter/latex_highlighter

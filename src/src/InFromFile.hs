@@ -5,15 +5,17 @@ import Lola
 import Engine.Engine
 import StaticAnalysis
 import Data.Dynamic
-import Data.Map.Strict ((!),Map,fromList)
+import Data.Map.Strict ((!),Map,fromList,(!?), notMember)
 import qualified Data.ByteString.Lazy as B (getContents,split,null)
 import qualified Data.ByteString.Internal as BS (c2w)
 import Data.CSV
 import Text.ParserCombinators.Parsec
 import Data.Either
+import Data.Maybe
 import DecDyn
 import qualified Data.Map.Merge.Strict as MM
 import System.Exit
+import System.IO (hPutStr, stderr)
 import Data.List
 
 checkAndConvert :: Map Ident (Value -> Dynamic) -> Map Ident Value -> Map Ident Dynamic
@@ -24,14 +26,21 @@ checkAndConvert fromjsoners vals = let
   mymerge = MM.merge MM.dropMissing MM.dropMissing applyWhenMatched in
   mymerge fromjsoners vals
 
-(!!!) :: Ord x => Map x y -> x -> y
-x !!! y = x ! y
+(!!!) :: Map String y -> String -> y
+x !!! y = fromMaybe (error ("Not referenced input: " ++ y)) $ x !? y
 
 getInstants :: Readers -> [String] -> [String] -> Map Ident Dynamic
 getInstants readers tags vals = let
   tagvals = zip tags vals
-  thelist = map (\(t,v) -> (t,readers !!! t $ v)) tagvals in
-  fromList thelist
+  dafun (t,v) = let
+    mreader = readers !? t
+    in maybe Nothing (\rdr -> Just (t, rdr v)) mreader
+  thelist = map dafun tagvals in
+  fromList (catMaybes thelist)
+
+getNonReferredInputs :: Readers -> [String] -> [String]
+getNonReferredInputs readers tags = 
+  filter (flip notMember readers) tags
 
 runSpecJSON :: Bool -> Specification -> IO ()
 runSpecJSON debug decs =
@@ -47,7 +56,11 @@ runSpecCSV debug decs =
   content <- getContents
   let csvs = map (++"\n") $ lines content
       (hd:instants) = concatMap (fromRight (error "No Right").parse csvFile "(stdin)") csvs
-      decodedinstants = map (getInstants (getReaders decs) hd) instants
+      readers = getReaders decs
+      nri = getNonReferredInputs readers hd
+      decodedinstants = map (getInstants readers hd) instants
+      outstderr = if null nri then "" else "Warning, non referenced inputs: " ++ show nri ++ "\n"
+  hPutStr stderr outstderr
   putStrLn $ intercalate "," $ map (dgetId.fst4) decs
   putStrLn $ run CSV debug decs decodedinstants
 

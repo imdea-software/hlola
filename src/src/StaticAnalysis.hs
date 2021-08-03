@@ -20,6 +20,10 @@ processExp (DAt decl (off,e)) fs = let
   (n1, fs1) = processExp e fs
   in
   ((dgetId decl,[off]):n1, addDecl fs1 decl)
+processExp (DSlice _ decl e) fs = let
+  (n1, fs1) = processExp e fs
+  in
+  ((dgetId decl,[0..50]):n1, addDecl fs1 decl)
 
 addDecl :: FState -> DeclarationDyn -> FState
 addDecl fs (DInp strid) = St (Set.insert strid (indexes fs)) (Map.insert strid [] (neighbours fs))

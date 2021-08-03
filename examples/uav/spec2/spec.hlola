@@ -3,14 +3,8 @@ use theory Geometry2D
 use theory SimulatedGuidance
 use theory GuidanceTheory
 use haskell Data.Either
-
-#HASKELL
-fst3 (x,_,_) = x
-snd3 (_,y,_) = y
-thd3 (_,_,z) = z
-
-fst5 (x,_,_,_,_) = x
-#ENDOFHASKELL
+use library Lola
+use innerspec simuguidance
 
 input NonLinearData navigation_data
 input Point2        target
@@ -19,40 +13,53 @@ input Vector2       velocity
 input Point2        position
 
 output Double intersDistance = let
-  r0 = '(,) (position [now]) (velocity [now])
-  r1 = '(,) (target [now])   (target_dir [now])
+  r0 = '(,) position [now] velocity [now]
+  r1 = '(,) target [now]   target_dir [now]
   in '(fromRight (-1)) (2'intersectionDistance r0 r1)
 
 define (Matrix, Double, Double) kfuStream = let
-  inroll            = 'initial_roll (navigation_data [now])
-  prev_initial_roll = 'initial_roll (navigation_data [-1|navigation_data [now]])
+  inroll            = 'initial_roll navigation_data [now]
+  prev_initial_roll = 'initial_roll navigation_data [-1| navigation_data [now]]
   dt                = 0.05
-  kfp               = 3'kalman_filter_predict (navigation_data [now]) 1 (tau [-1|0.5])
+  kfp               = 3'kalman_filter_predict navigation_data[now] 1 tau[-1|0.5]
   roll_pred         = 'fst kfp
   tau_pred          = 'snd kfp
   dfltM             = '(M [[0.01,0],[0,0.01]])
   in
-  7'kalman_filter_update (matrix_kfiltered [-1| dfltM]) prev_initial_roll (tau [-1|0.5]) inroll roll_pred tau_pred dt
+  7'kalman_filter_update matrix_kfiltered[-1| dfltM] prev_initial_roll tau[-1|0.5] inroll roll_pred tau_pred dt
 
-define Matrix matrix_kfiltered = 'fst3 (kfuStream [now])
+define Matrix matrix_kfiltered = let
+  fst3 (x,_,_) = x in 
+  'fst3 kfuStream[now]
 
-define Double tau = 'thd3 (kfuStream [now])
+define Double tau = let
+  thd3 (_,_,z) = z in
+  'thd3 kfuStream [now]
 
-define ([Point2], Double, Bool, Double, Double) simulated_guidance = 3'simulate_guidance_logic (navigation_data [now]) (tau [now]) 200
+define ([Point2], Double, Bool, Double, Double) simulated_guidance = let
+  wp_radius_pwp = get_wp_radius_pwp <$> navigation_data[now]
+  in
+  'runSpec (4'simuguidance navigation_data[now] tau[now] 200 wp_radius_pwp)
+  where
+  get_wp_radius_pwp nld@(NLD _ wp_list _ _ num_wp radius_list _ _ _ _ _) = filter farEnoughWP $ drop num_wp $ zip3 wp_list radius_list (Nothing : map Just wp_list)
+  farEnoughWP (_, _, Nothing) = True
+  farEnoughWP (next_wp, _, Just prev_wp) = norm (next_wp `minus` prev_wp) P.> 0.01
 
-define [Point2] simulated_guidance_wps = 'fst5 (simulated_guidance [now])
+define [Point2] simulated_guidance_wps = let
+  fst5 (x,_,_,_,_) = x in
+  'fst5 simulated_guidance[now]
 
-define (Double, Double) speed_integral = 'getVelIntegral (set_speed [-1|21]) (integral_for_speed [-1|0]) (simulated_guidance [now])
+define (Double, Double) speed_integral = 'getVelIntegral set_speed[-1|21] integral_for_speed[-1|0] simulated_guidance[now]
 
-define Double set_speed = 'fst (speed_integral [now])
+define Double set_speed = 'fst speed_integral[now]
 
-define Double integral_for_speed = 'snd (speed_integral [now])
+define Double integral_for_speed = 'snd speed_integral[now]
 
-define Estimation estim_data = 'simulate_guidance (tau [now]) (navigation_data [now])
+define Estimation estim_data = 'simulate_guidance tau[now] navigation_data[now]
 
-define Double err = 21 - 'dist (estim_data [now]) / 'time (estim_data [now])
+define Double err = 21 - 'dist estim_data[now] / 'time estim_data[now]
 
-define Double err_int = if 3'isSaturated (pi_controller [-1|21]) 15 30 then
+define Double err_int = if 3'isSaturated pi_controller[-1|21] 15 30 then
   err_int [-1|0] else err_int [-1|0] + err [now] * 0.03
 
 define Double pi_controller = 3'saturate (21 + err [now] * 0.5 + err_int [now]) 15 30

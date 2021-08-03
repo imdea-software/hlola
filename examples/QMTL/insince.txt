@@ -1,0 +1,4 @@
+phi,psi
+True,False
+True,False
+True,True

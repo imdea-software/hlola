@@ -1,0 +1,63 @@
+innerspec ReachStateType simuinner <NonLinearData nld> <Double tau> <Double maxtime> <Point2 dpos> <Double dyaw> <Double droll> <Double dtime> <Double ddistance> <(Point2, Double, Maybe Point2) wps>
+spread 3
+use theory GuidanceTheory hiding (time)
+use theory Geometry2D hiding (distance)
+
+#HASKELL
+data ReachStateType = RST {
+  reached_maxtime_field :: Bool,
+  reach_time_field :: Double,
+  reach_distance_field :: Double,
+  reach_yaw_field :: Double,
+  reach_roll_field :: Double,
+  reach_pos_field :: Point2} deriving (Generic, Show, ToJSON)
+dt = 0.05
+g = 9.8
+lim_roll_cd = 65 P.* pi P./ 180
+limit = sin lim_roll_cd
+#ENDOFHASKELL
+
+const (NLD navl1_d _ navl1_p _ _ _ _ gamma vel_a vel_w _) = nld
+const (P dposx dposy) = dpos
+const (next_wp, wp_radius, mprev_wp) = wps
+
+output Bool reached_maxtime = time[now] >= 'maxtime && '(maxtime P.> 0)
+output Bool stop_simulation = let
+  vnwp = '(verify_next_waypoint next_wp wp_radius) prev_wp[now] pos[now]
+  in reached_maxtime[now] || vnwp /== 'INTRAVEL
+
+output Double time = step_time [-1|'dtime]
+output Double step_time = time[now] + dt
+output Double yaw = step_yaw [-1|'dyaw]
+output Double step_yaw = let
+  yaw_dot = (g * ('sin (roll[now]))) / 'vel_a
+  in yaw[now] + dt * yaw_dot
+
+output Double step_posx = posx[now] + dt * ('vel_a * ('sin yaw[now]) + '(vel_w * sin gamma))
+output Double step_posy = posy[now] + dt * ('vel_a * ('cos yaw[now]) + '(vel_w * cos gamma))
+output Point2 pos = 'P posx[now] posy[now]
+output Double roll = step_roll [-1|'droll]
+output Double step_roll = let
+  vel_g = '(fst.get_ground_speed vel_w vel_a gamma) yaw[now]
+  hdg = '(snd.get_ground_speed vel_w vel_a gamma) yaw[now]
+  gcp = 4'(guidance_control_parameters navl1_d navl1_p next_wp) prev_wp[now] vel_g hdg pos[now]
+  fst3 (x,_,_) = x
+  snd3 (_,y,_) = y
+  thd3 (_,_,z) = z
+  l1 = 'fst3 gcp
+  k_l1 = 'snd3 gcp
+  eta = 'thd3 gcp
+  demanded_roll = '(asin.max (-limit).min limit) ((k_l1 * vel_g * vel_g * (1'sin eta)) / (l1 * g))
+  in
+  (dt * demanded_roll + 'tau * roll[now]) / ('tau + dt)
+output Double distance = step_distance [-1|'ddistance]
+output Double step_distance = let
+  step_pos = 'P step_posx[now] step_posy[now]
+  in distance[now] + 'norm (2'minus step_pos pos[now])
+output ReachStateType ret = 6'RST reached_maxtime[now] time[now] distance[now] yaw[now] roll[now] pos[now]
+
+output Double posx = step_posx [-1| 'dposx]
+output Double posy = step_posy [-1| 'dposy]
+output Point2 prev_wp = maybe pos[now] Leaf mprev_wp
+
+return ret when stop_simulation

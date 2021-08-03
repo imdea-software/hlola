@@ -57,6 +57,7 @@ data Expr a where
   (:@) :: Declaration a -- ^ For a given @e :: Expr a@
        -> (Int, Expr a) -- ^ an offset @i@ and default @c@
        -> Expr a -- ^ gives us back @id[i | c]@
+  (:@@) :: Streamable a => Declaration a -> Expr Int -> Expr [a] -- Slice of size n
 
 infixl 4 <$>
 (<$>) :: (Streamable a, Streamable b, ILFunction f, Streamable (f a b)) => f a b -> Expr a -> Expr b

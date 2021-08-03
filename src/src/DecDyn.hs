@@ -25,6 +25,7 @@ data ExprDyn where
   DApp  :: (Dynamic, Dynamic, Dynamic, Dynamic -> Maybe Dynamic) -> ExprDyn -> ExprDyn -> ExprDyn
   DNow :: DeclarationDyn -> ExprDyn
   DAt :: DeclarationDyn -> (Int, ExprDyn) -> ExprDyn
+  DSlice :: (Dynamic, Dynamic -> Dynamic -> Dynamic, [Dynamic] -> Dynamic) -> DeclarationDyn -> ExprDyn -> ExprDyn
 
 data DeclarationDyn where
   DInp :: Ident -> DeclarationDyn
@@ -76,6 +77,7 @@ exp2Dyn (Now dec) m = let
   m1 = dec2Dyn' m dec
   (ddec, readers, jsoners) = m1 Map.! getId dec in
   (m1, DNow ddec, readers, jsoners)
+exp2Dyn (dec :@ (0,_)) m = exp2Dyn (Now dec) m -- optimization
 exp2Dyn (dec :@ (i,d)) m = let
   m1 = dec2Dyn' m dec
   (ddec, readers, jsoners) = m1 Map.! getId dec
@@ -84,7 +86,21 @@ exp2Dyn (dec :@ (i,d)) m = let
   mymergereaders = MM.merge MM.preserveMissing MM.preserveMissing sndWhenMatched
   mymergejsoners = MM.merge MM.preserveMissing MM.preserveMissing sndWhenMatched
   in
-  (m1,DAt (ddec) (i,de), mymergereaders readers r1, mymergejsoners jsoners j1)
+  (m2,DAt (ddec) (i,de), mymergereaders readers r1, mymergejsoners jsoners j1)
+exp2Dyn (dec :@@ len) m = let
+  m1 = dec2Dyn' m dec
+  (ddec, readers, jsoners) = m1 Map.! getId dec
+  (m2, de, r1, j1) = exp2Dyn len m1
+  sndWhenMatched = MM.zipWithMatched (const$const id)
+  mymergereaders = MM.merge MM.preserveMissing MM.preserveMissing sndWhenMatched
+  mymergejsoners = MM.merge MM.preserveMissing MM.preserveMissing sndWhenMatched
+  slicetools = getSliceTools dec
+  in
+  (m2,DSlice slicetools ddec de, mymergereaders readers r1, mymergejsoners jsoners j1)
+
+getSliceTools :: Typeable a => Declaration a -> (Dynamic, Dynamic -> Dynamic -> Dynamic, [Dynamic] -> Dynamic)
+getSliceTools (dec :: Declaration a) = (toDyn ([] :: [a]), \x xs -> dynApp (dynApp (toDyn ((:) :: a -> [a] -> [a])) x) xs,
+  \ls -> toDyn (map (fromJust.fromDynamic :: Dynamic -> a) ls))
 
 fst4 (a,_,_,_) = a
 snd4 (_,b,_,_) = b
@@ -104,3 +120,32 @@ getFromJSONers decs = let
   mymerge = (MM.merge MM.preserveMissing MM.preserveMissing sndWhenMatched)
   readers = map fth4 decs in
   foldl mymerge Map.empty readers
+
+data InnerSpecification a where
+ IS :: (Typeable a, Show a, ToJSON a) => {
+    ins :: [(Ident, [Dynamic])],
+    retStream :: Stream a,
+    stopStream :: Stream Bool,
+    hint :: Int
+  } -> InnerSpecification a
+
+getDecs :: Typeable a => InnerSpecification a -> Specification
+getDecs (IS _ rs ss _) = [out rs, out ss]
+
+getIns :: InnerSpecification a -> [Map.Map Ident Dynamic]
+getIns (IS [] _ _ _) = repeat Map.empty
+getIns is = let
+  idwithin = [[(id,dyn) | dyn <- dyns] | (id, dyns) <- ins is] :: [[(Ident, Dynamic)]]
+  in createMap idwithin
+
+createMap :: [[(Ident, Dynamic)]] -> [Map.Map Ident Dynamic]
+createMap inis
+  | any null inis = []
+  | otherwise = Map.fromList (map head inis) : createMap (map tail inis)
+
+getFromDynner :: Typeable a => InnerSpecification a -> Dynamic -> a
+getFromDynner _ d = fromDyn d undefined
+
+bind :: Typeable a => Declaration a -> [a] -> (Ident, [Dynamic])
+bind str vals = (getId str, map toDyn vals)
+
