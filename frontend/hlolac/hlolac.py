@@ -32,13 +32,8 @@ if len(sys.argv) > 1:
 else:
     hlolafiles = list(Path(".").rglob("*.[hH][lL][oO][lL][aA]"))
 
-hlolabasedir = str(Path(os.path.dirname(os.path.realpath(__file__))).parent.parent) + "/src/src/"
+hlolabasedir = str(Path(os.path.dirname(os.path.realpath(__file__))).parent.parent) + "/src/"
 preprocbin = str(Path(os.path.dirname(os.path.realpath(__file__))).parent.parent) + "/frontend/hlolac/preproc/preproc"
-
-if os.path.isfile("/usr/local/bin/preproc"):
-    # We are in Docker container
-    hlolabasedir = "/HLola/src/"
-    preprocbin = "preproc"
 
 for file in hlolafiles:
     args = [preprocbin, outpath, file]
