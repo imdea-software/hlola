@@ -14,7 +14,7 @@ input Double pedal
 -- 
 -- We choose 1e-4 as a step
 
-const step = 0.0004 :: Double
+const step = 0.0004
 const simTime = round $ 50 P./ step
 const eta = round $ 1 P./ step
 const taus = round (10 P./ step) + eta
