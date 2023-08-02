@@ -1,8 +1,0 @@
-format JSON
-
-input Int n
-
-output Int clock = clock [-1|0] + 1
-
-output Bool clockodd = any (P.>3) <$> clock[:n[now]]
-

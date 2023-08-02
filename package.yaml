@@ -19,6 +19,7 @@ git:              "https://gitlab.software.imdea.org/streamrv/hlola"
 description:         Please see the README on GitLab at <https://gitlab.software.imdea.org/streamrv/hlola>
 
 dependencies:
+- time
 - base >= 4.7 && < 5
 - text
 - containers >= 0.6.0.1
@@ -36,6 +37,8 @@ dependencies:
 - QuickCheck
 - extra
 - dsp >= 0.2.5
+- data-default
+- process
   # - constraints
 
 # Array and Vector are very similar... But Vector should be more efficient

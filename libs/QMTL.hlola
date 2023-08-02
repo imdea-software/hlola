@@ -1,8 +1,0 @@
-library QMTL
-
-use library Utils
-
-output (Eq a, Fractional a, Streamable a) => a sumLastK <Int k> <Stream a str> = foldl (+) 0 [str [i|0] | i <- [(1-k)..0]]
-
-output (Eq a, Fractional a, Streamable a) => a medianLast <Int k> <Stream a str> = numr / denom
-  where denom=1'fromIntegral (2'min 'k (instantN[now])) ; numr=sumLastK k str [now]

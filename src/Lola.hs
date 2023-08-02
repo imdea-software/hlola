@@ -1,3 +1,4 @@
+{-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE FlexibleContexts #-}
 {-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE FlexibleInstances #-}
@@ -5,10 +6,14 @@
 
 module Lola where
 
-import           Prelude
+import           Prelude hiding ((<$>), (<*>))
 
 import           Data.Typeable
 import           Data.Aeson
+import qualified Data.Set as Set
+import qualified Data.Map.Strict as Map
+import Data.Dynamic
+import Data.Default
 
 type Ident = String
 type Streamable = Typeable
@@ -26,9 +31,15 @@ instance ILFunction LFunction where
   toLFunction = id
 
 getMayber :: LFunction a b -> Maybe a -> Maybe b
-getMayber (Simplifier f) x = f x
+getMayber (Simplifier f) x = let
+  -- !res = f x -- Activate this to always enforce strict evaluation of arguments
+  res = f x
+  in res
 getMayber (Pure _) Nothing = Nothing
-getMayber (Pure g) (Just x) = Just (g x)
+getMayber (Pure g) (Just x) = let
+  -- !res = g x -- Activate this to always enforce strict evaluation of arguments
+  res = g x
+  in Just res
 
 -- Public for simplifiers
 getsmp1 :: (Maybe a -> Maybe b) -> LFunction a b
@@ -58,6 +69,22 @@ data Expr a where
        -> (Int, Expr a) -- ^ an offset @i@ and default @c@
        -> Expr a -- ^ gives us back @id[i | c]@
   (:@@) :: Streamable a => Declaration a -> Expr Int -> Expr [a] -- Slice of size n
+  Over :: (Streamable a, Show a, ToJSON a) =>
+    (x->Stream a) ->
+    Stream (Set.Set x) ->
+    Initer x a ->
+    (Maybe (Expr (Set.Set x))) ->
+    (Expr (Map.Map x a) -> Expr (Map.Map x a)) ->
+    Expr (Map.Map x a)
+  MOver :: (Default x, ToJSON x, Show x, Ord x, Streamable x, Streamable a, Show a, ToJSON a) =>
+    (x->Stream a) ->
+    Stream (Maybe x) ->
+    Initer x a ->
+    (Maybe (Expr (Set.Set x))) ->
+    (Expr (Maybe a) -> Expr (Maybe a)) ->
+    Expr (Maybe a)
+
+type Initer x a = Expr ((x -> Stream a) -> [Map.Map Ident Value] -> x -> ([Map.Map Ident Dynamic], Maybe a))
 
 infixl 4 <$>
 (<$>) :: (Streamable a, Streamable b, ILFunction f, Streamable (f a b)) => f a b -> Expr a -> Expr b
@@ -142,3 +169,8 @@ magic4 f x y z a0 = f Lola.<$> x Lola.<*> y Lola.<*> z Lola.<*> a0
 magic5 f x y z a0 a1 = f Lola.<$> x Lola.<*> y Lola.<*> z Lola.<*> a0 Lola.<*> a1
 magic6 f x y z a0 a1 a2= f Lola.<$> x Lola.<*> y Lola.<*> z Lola.<*> a0 Lola.<*> a1 Lola.<*> a2
 magic7 f x y z a0 a1 a2 a3 = f Lola.<$> x Lola.<*> y Lola.<*> z Lola.<*> a0 Lola.<*> a1 Lola.<*> a2 Lola.<*> a3
+
+emap :: Typeable a => (x->Expr a) -> [x] -> Expr [a]
+emap f ls = let
+  exprs = map f ls
+  in foldr (\ea els -> (:) <$> ea <*> els) (Leaf []) exprs

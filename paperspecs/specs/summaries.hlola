@@ -1,0 +1,17 @@
+format JSON
+use innerspec flowAnalyzer
+use theory Attacks
+use theory Lola
+
+input String fileid
+input Int marker <AttackData ad>
+
+output [String] attacked_IPs = emap detect attacks
+  where detect atk = (attack_detection atk)[now]
+
+define String attack_detection <AttackData atk> =
+  if (marker atk)[now] > '(threshold atk) then
+  'applyspec fileid[now]
+  else '("No attack")
+  where
+  applyspec fileId = runSpec (flowAnalyzer atk fileId (flowRetriever atk fileId))

@@ -19,7 +19,7 @@ until (a, eb) phi psi = "until" <: (a,eb) <: phi <: psi =: untilaux :@ (a, if a 
   winpsis = psi :@@ (eb - Leaf a)
   untilexpr = runSpec <$> (untilspec <$> winphis <*> winpsis)
 
-untilspec phis psis = IS [bind phi phis, bind psi psis] psi stop 2
+untilspec phis psis = createIS [bind phi phis, bind psi psis] psi stop 2
   where
   psi = Input "psi"
   phi = Input "phi"

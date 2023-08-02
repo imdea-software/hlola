@@ -8,7 +8,7 @@ import Lola
 import GHC.Generics
 import Data.Aeson
 import Syntax.HLPrelude
-import DecDyn (InnerSpecification(IS), bind)
+import DecDyn (InnerSpecification(), createIS, bind)
 import Syntax.Booleans
 import Syntax.Ord
 import Syntax.Num
@@ -21,7 +21,7 @@ import Data.Dynamic
 
 
 foldaccumspec :: forall a.(Typeable a, Show a, ToJSON a, FromJSON a, Eq a, Read a) =>  (a->a->a) -> (a->a->a) -> Maybe a -> [a] -> [a] -> InnerSpecification a
-foldaccumspec op1 op2 mabs phi__arg psi__arg = IS [bind phi phi__arg, bind psi psi__arg] ret stop (2)
+foldaccumspec op1 op2 mabs phi__arg psi__arg = createIS [bind phi phi__arg, bind psi psi__arg] ret stop (2)
   where
 
   phi :: Stream a

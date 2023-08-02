@@ -44,7 +44,10 @@ type DebugInfo = (String, Int, [Vert], Vert, Vert, Int)
 -- and the max (most positive) path on it, and use these numbers to compute the
 -- size of the Past array required to run the system.
 getSystem :: [DeclarationDyn] -> [Map.Map Ident Dynamic] -> (DebugInfo, Sys)
-getSystem decs ins = let
+getSystem = getSystemWithPast []
+
+getSystemWithPast :: [Map.Map Ident Dynamic] -> [DeclarationDyn] -> [Map.Map Ident Dynamic] -> (DebugInfo, Sys)
+getSystemWithPast pastlist decs ins = let
   -- g is the dependency graph of the specification
   g = getFGraph decs
   -- dot is the dotfile to plot the dependency graph
@@ -57,7 +60,8 @@ getSystem decs ins = let
   -- We combine these values to get the array size
   arrsize = maxlen - minedge
   -- and create the empty past
-  past = emptyPast arrsize
+  epast = emptyPast arrsize
+  past = foldl (flip pastCons) epast (map (Map.map DLeaf) pastlist)
   -- to build the system
   focus = Focus past fut 0
   -- We get the expression of each output stream (the bottom part of the first
@@ -136,6 +140,8 @@ solveTop sys@(Focus _ (m:_) _) id = let
   -- and we replace the entry in the focused instant
   Focus p ((Map.adjust (const newexp) id h):r) ni
 
+mymapget m k = fromMaybe (error ("missing key: "++k)) (Map.lookup k m)
+
 peek :: Sys -> ExprDyn -> (Maybe Dynamic, Sys)
 peek sys (DLeaf d) = (Just d, sys)
 peek sys (DApp tools@(dtolfun, juster, nothing, unlifter) e1 e2) = let
@@ -143,7 +149,7 @@ peek sys (DApp tools@(dtolfun, juster, nothing, unlifter) e1 e2) = let
   in if isNothing mf then (Nothing, sys') else peekApply sys' tools (fromJust mf) e2
 peek sys@(Focus _ (m:_) _) (DNow dec) = let
   id = dgetId dec
-  exp = m Map.! id
+  exp = m `mymapget` id
   (ret, sys'@(Focus sa (sm:sb) sc)) = peek sys exp
   in
   (ret, maybe sys' (\d -> Focus sa (Map.insert id (DLeaf d) sm:sb) sc) ret)
@@ -153,7 +159,7 @@ peek sys (DAt dec (i, de))
     Nothing -> peek sys de
     Just sys'@(Focus _ (m:_) _) -> let
       id = dgetId dec
-      exp = m Map.! id
+      exp = m `mymapget` id
       (ret, sys'') = peek sys' exp
       in
       (ret, fromMaybe (error "wrong shift back") $ shiftN (-i) sys'')
@@ -234,7 +240,7 @@ solve sys (DSlice (nilList, dcons,tolistdyn) dec dlen) = let
   where
   sid = dgetId dec
   getSlice n sys
-    | n <= 0 = ([], sys)
+    | n == 0 = ([], sys)
     | n == 1 = ([undleaf nowval], nsys)
     | otherwise = let
       (innerlist, innersys) = case shiftNZero 1 sys of
@@ -294,8 +300,11 @@ showDebug (dot, maxlen, maxpath, minv0, minv1, minedge) =
   " of length "++ show minedge ++ ".\n"
 
 run :: Format -> Bool -> Specification -> [Map.Map Ident Dynamic] -> String
-run f debug decs ins = let
-  (deb, sys) = getSystem (map fst4 decs) ins
+run = runWithPast []
+
+runWithPast :: [Map.Map Ident Dynamic] -> Format -> Bool -> Specification -> [Map.Map Ident Dynamic] -> String
+runWithPast pastlist f debug decs ins = let
+  (deb, sys) = getSystemWithPast pastlist (map fst4 decs) ins
   header = if f==CSV then showCSVRow (map (dgetId.fst4) decs) ++ "\n" else ""
   outsys = concat $ procAndPrint f decs sys in
   if debug then showDebug deb ++ header ++ outsys else outsys

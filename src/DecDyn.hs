@@ -8,6 +8,7 @@ import qualified Data.Map.Strict as Map
 import Data.Maybe
 import Data.Aeson
 import Data.Aeson.Types
+import TraceRetrieving
 
 type Readers = Map.Map Ident (String -> Dynamic)
 type FromJSONers = Map.Map Ident (Value -> Dynamic)
@@ -97,6 +98,8 @@ exp2Dyn (dec :@@ len) m = let
   slicetools = getSliceTools dec
   in
   (m2,DSlice slicetools ddec de, mymergereaders readers r1, mymergejsoners jsoners j1)
+exp2Dyn over@(Over _ _ _ _ f) m = exp2Dyn (f over) m
+exp2Dyn mover@(MOver _ _ _ _ f) m = exp2Dyn (f mover) m
 
 getSliceTools :: Typeable a => Declaration a -> (Dynamic, Dynamic -> Dynamic -> Dynamic, [Dynamic] -> Dynamic)
 getSliceTools (dec :: Declaration a) = (toDyn ([] :: [a]), \x xs -> dynApp (dynApp (toDyn ((:) :: a -> [a] -> [a])) x) xs,
@@ -123,7 +126,7 @@ getFromJSONers decs = let
 
 data InnerSpecification a where
  IS :: (Typeable a, Show a, ToJSON a) => {
-    ins :: [(Ident, [Dynamic])],
+    ins :: [Map.Map Ident Dynamic],
     retStream :: Stream a,
     stopStream :: Stream Bool,
     hint :: Int
@@ -134,8 +137,11 @@ getDecs (IS _ rs ss _) = [out rs, out ss]
 
 getIns :: InnerSpecification a -> [Map.Map Ident Dynamic]
 getIns (IS [] _ _ _) = repeat Map.empty
-getIns is = let
-  idwithin = [[(id,dyn) | dyn <- dyns] | (id, dyns) <- ins is] :: [[(Ident, Dynamic)]]
+getIns (IS ins _ _ _) = ins
+
+inMap :: [(Ident, [Dynamic])] -> [Map.Map Ident Dynamic]
+inMap ins = let
+  idwithin = [[(id,dyn) | dyn <- dyns] | (id, dyns) <- ins] :: [[(Ident, Dynamic)]]
   in createMap idwithin
 
 createMap :: [[(Ident, Dynamic)]] -> [Map.Map Ident Dynamic]
@@ -149,3 +155,11 @@ getFromDynner _ d = fromDyn d undefined
 bind :: Typeable a => Declaration a -> [a] -> (Ident, [Dynamic])
 bind str vals = (getId str, map toDyn vals)
 
+createIS :: (Typeable a, Show a, ToJSON a) => [(Ident, [Dynamic])] -> Stream a -> Stream Bool -> Int -> InnerSpecification a
+createIS ins ret stop hint = IS (inMap ins) ret stop hint
+
+withTrace :: Typeable a => InnerSpecification a -> [Map.Map String Value] -> InnerSpecification a
+withTrace is jsons = let
+  decs = getDecs is
+  ins = map (checkAndConvert (getFromJSONers decs)) jsons
+  in is {ins = ins}
