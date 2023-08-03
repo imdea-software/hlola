@@ -33,17 +33,23 @@ The Python script `netFlow/process_netflow.py` processes the netflow data so it 
 
 #### Brute force and retroactive tests 
 
-In order to execute the **brute force tests** for a date, run the following: 
+In order to execute the **brute force tests** for the attack date in a batch **with no attack**,run the following: 
 
     $> python3 ./netFlow/process_netflow.py --flows --batches 1 | HLola netflow 
 
-(Note: the date or dates to be processed are listed it the variable `dates` in `process_netflow.py`).
+(Note: the date to be processed are listed it the variable `dates` in `process_netflow.py`).
 
 This will call the Python script that will read and process the netflow data, and pass it to the HLola monitor. 
     
 The argument `--flows` indicates that the script must output all the individual flows for the date (and not just the default aggregated data). 
 
-The argument `--batches 1` indicates that only one batch of data is to be processed. By default it will be the first batch of that date, but in the code the value of `skip` in line 67 can be changed to process a different batch (for example the moment of the attack). 
+The argument `--batches 1` indicates that only one batch of data is to be processed. By default it will be the first batch of that date.
+
+In order to execute the **brute force tests** for the attack date in the **attacked batch**, run the following: 
+
+    $> python3 ./netFlow/process_netflow.py --flows --batches 1 --skip 87 | HLola netflow 
+
+This will run the same test as previously, but the argument `--skip 87` indicates that it should skip the first 87 batches, and send to HLola the attacked batch (`--batches 1` indicates that only one batch will be processed after skipping the first 87).
 
 In order to execute the **retroactive tests** for a date, run the following: 
 
@@ -58,7 +64,7 @@ The aggregated tests can be executed by running:
 
     $> python3 ./netFlow/process_netflow.py | HLola netflowsummary 
 
-In this case, the Python script will output (in JSON format), an aggregated attack marker, that will be the input for the monitor. 
+In this case, the Python script will output (in JSON format), an aggregated attack marker per batch, that will be the input for the monitor. After 87 batches, the monitor will detect an attack.
 
 If a marker surpasses the threshold, the monitor in `src/Examples/NetflowSummary.hs` will create a nested monitor in `src/Examples/Netflow.hs`, and the Python script will be called from inside the monitor to obtain the full flows for the batch where the threshold is exceeded.
 The call to Python can be found in the function `innSpec` in `src/Examples/Netflow.hs`.

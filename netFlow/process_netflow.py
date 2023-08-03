@@ -10,7 +10,7 @@ import netfile as nf
 data_path = './data/'
 
 # dates = ['XXXXX1', 'XXXXX2']
-dates = ['XXXXX1'] 
+dates = ['20220713'] 
 
 csv_flow_dict = ['ts','te','td','sa','da','sp','dp','pr','flg','fwd','stos','ipkt','ibyt','opkt',
             'obyt','in','out','sas','das','smk','dmk','dtos','dir','nh','nhb','svln','dvln',
@@ -27,7 +27,6 @@ def get_all_flows_cmd(command, list_keys, csv_dict):
   Goes over the directory data_path, and calls nfdump for each
   file with the options defined in 'command'
   '''
-  
   for date in dates:
     file_path = data_path + date
     for file_name in sorted(os.listdir(file_path)):
@@ -55,22 +54,22 @@ def get_flows_filtered(my_file, attack="", addr="", until=0, sample=0):
   netfile.process_flow_file(list_keys, csv_flow_dict, command, until, sample)
   
   
-def get_all_flows(batches=0, until=0, sample=0):
+def get_all_flows(batches=0, until=0, skip=0, sample=0):
   '''
   Goes over the directory data_path, and calls nfdump for each
   file with the options defined in 'command'
   '''
   
   # Skip to flow 86 for NO ATTACK batch on XXXXX1
-  # Skip to flow 87 for ATTACK batch on XXXXX2
-  # skip = 87
-  skip = 0
+  # Skip to flow 87 for ATTACK batch on XXXXX1
   count_skip = 0
   count_batches = 0
   stop = False
   stopped = False
+  
   if batches and batches > 0:
     stop = True
+    
   for date in dates:
 
     # If enough batches have been printed, stop everything
@@ -112,7 +111,7 @@ def get_all_attack_markers_for_file(f):
   print(json.dumps(json_dict), flush = True)
 
   
-def get_markers_all_files(batches=0):
+def get_markers_all_files(batches=0, skip=0):
   '''
   Prints in json format all attack markers for all batches in 'dates'.
 
@@ -123,7 +122,7 @@ def get_markers_all_files(batches=0):
   
   # Change 'skip' value to skip an amount of batches
   # skip = 87
-  skip = 0
+  # skip = 0
   count = 0
   stop = False
   if batches and batches > 0:
@@ -155,6 +154,7 @@ def main():
   parser.add_argument('--markers', help='Get json with markers for all attacks', action='store_true')
   parser.add_argument('--addr', help='Get flows filtered by dest address', type=str)
   parser.add_argument('--until', help='Get the indicated number of flows', type=int)
+  parser.add_argument('--skip', help='Skip number of batches', default=0, type=int)
   parser.add_argument('--batches', help='Get all the flows from the indicated number of batches', type=int)
   parser.add_argument('--sampling', help='This will reduce the output by filtering to only 1 out of X flows', type=int)
   args = parser.parse_args()
@@ -188,7 +188,7 @@ def main():
             
     # No date
     else:
-      get_all_flows(batches=args.batches, until=args.until, sample=sampling)
+      get_all_flows(batches=args.batches, until=args.until, skip=args.skip, sample=sampling)
         
   # The outputs will be markers (summaries)
   else:
@@ -202,7 +202,7 @@ def main():
 
     # Markers for all files    
     else:    
-      get_markers_all_files(batches=args.batches)
+      get_markers_all_files(batches=args.batches, skip=args.skip)
            
     
 if __name__ == '__main__':
