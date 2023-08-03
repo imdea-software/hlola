@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python3 ./process_netflow.py $@
+python3 ./netFlow/process_netflow.py $@

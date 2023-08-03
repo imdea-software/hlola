@@ -9,7 +9,7 @@ For more information, visit the [HLola official website](https://software.imdea.
 The following instructions indicate how to replicate the empirical evaluation described in the paper "A Stream Runtime Verification Tool with Nested and Retroactive Parametrization".
 
 ### Prerequisites
-- A Unix-like installation 
+- A linux installation 
 - Python 3 
 - [Stack](https://docs.haskellstack.org/en/stable/install_and_upgrade/) 
 
@@ -35,7 +35,7 @@ The Python script `netFlow/process_netflow.py` processes the netflow data so it 
 
 In order to execute the **brute force tests** for the attack date in a batch **with no attack**,run the following: 
 
-    $> python3 ./netFlow/process_netflow.py --flows --batches 1 | HLola netflow 
+    $> python3 ./netFlow/process_netflow.py --flows --batches 1 | ./HLola netflow 
 
 (Note: the date to be processed are listed it the variable `dates` in `process_netflow.py`).
 
@@ -47,22 +47,21 @@ The argument `--batches 1` indicates that only one batch of data is to be proces
 
 In order to execute the **brute force tests** for the attack date in the **attacked batch**, run the following: 
 
-    $> python3 ./netFlow/process_netflow.py --flows --batches 1 --skip 87 | HLola netflow 
+    $> python3 ./netFlow/process_netflow.py --flows --batches 1 --skip 87 | ./HLola netflow 
 
 This will run the same test as previously, but the argument `--skip 87` indicates that it should skip the first 87 batches, and send to HLola the attacked batch (`--batches 1` indicates that only one batch will be processed after skipping the first 87).
 
 In order to execute the **retroactive tests** for a date, run the following: 
 
-    $> python3 ./netFlow/process_netflow.py --flows --batches 1 | HLola netflow --over 
+    $> python3 ./netFlow/process_netflow.py --flows --batches 1 | ./HLola netflow --over 
 
-In this case, `--over` indicates to the monitor that the it has to use this operator for calculating the entropy. The data from Python is identical from the previous case.
-
+In this case, `--over` indicates to the monitor that the it has to use this operator for calculating the entropy. The data from Python is identical from the previous case, but the monitor will behave differently.
 
 #### Aggregated tests
 
 The aggregated tests can be executed by running: 
 
-    $> python3 ./netFlow/process_netflow.py | HLola netflowsummary 
+    $> python3 ./netFlow/process_netflow.py | ./HLola netflowsummary 
 
 In this case, the Python script will output (in JSON format), an aggregated attack marker per batch, that will be the input for the monitor. After 87 batches, the monitor will detect an attack.
 

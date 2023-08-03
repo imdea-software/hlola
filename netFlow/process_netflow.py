@@ -9,7 +9,6 @@ import netfile as nf
 
 data_path = './data/'
 
-# dates = ['XXXXX1', 'XXXXX2']
 dates = ['20220713'] 
 
 csv_flow_dict = ['ts','te','td','sa','da','sp','dp','pr','flg','fwd','stos','ipkt','ibyt','opkt',
@@ -60,8 +59,8 @@ def get_all_flows(batches=0, until=0, skip=0, sample=0):
   file with the options defined in 'command'
   '''
   
-  # Skip to flow 86 for NO ATTACK batch on XXXXX1
-  # Skip to flow 87 for ATTACK batch on XXXXX1
+  # Skip to flow 86 for NO ATTACK batch on 20220713
+  # Skip to flow 87 for ATTACK batch on 20220713
   count_skip = 0
   count_batches = 0
   stop = False

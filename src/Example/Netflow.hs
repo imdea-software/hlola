@@ -97,9 +97,6 @@ flagU = Input "flagU"
 flagX :: Stream Bool
 flagX = Input "flagX"
 
--- bPp :: Stream Int
--- bPp = Input "bpp"
-
 bytes :: Stream Int
 bytes = Input "ibyt"
 
@@ -130,15 +127,6 @@ maxB = maxBound :: Int
   
 spec :: Specification
 spec = out timeEnd : out lastFlowFile : out fileId : out flowCounter : (map (out . countOut) ad ++ map (out . histSize) ad)
--- spec = out timeEnd : out lastFlowFile : out fileId : out flowCounter :  map (out . countOutOverContin) ad
--- spec = out timeEnd : out lastFlowFile : out fileId : out flowCounter :  map (out . countOutOver) ad
-
--- spec = out timeEnd : out lastFlowFile : out fileId : out flowCounter :  map (out . countOutOver) ad ++ map (out . maybeAddress) ad 
--- spec = out timeEnd : out lastFlowFile : out fileId : out flowCounter :  map (out . falsePosCounter) ad
--- spec = map (out . underAttack) ad
--- countOut :: AttackData -> Stream Int
--- countOut attData = "countOut" <: attData =:
---   avgPpsMaxAddr attData :@ (-1, Leaf 0)
 
 countOut :: AttackData -> Stream String
 countOut attData = "countOut" <: attData =:
@@ -149,10 +137,6 @@ countOut attData = "countOut" <: attData =:
       Leaf "Over threshold but not entropy"
   else
     Leaf "No attack"
-  
--- falsePosCounter :: AttackData -> Stream Int
--- falsePosCounter attData = "falsePosCounter" <: attData =:
---   Set.size <$> Now (maybeAddress attData)
   
 -- Should return TRUE if any marker for that attack is over the threshold
 attOverThreshold :: AttackData -> Stream Bool
@@ -232,11 +216,6 @@ maybeAddress attData = "maybeAddress" <: attData =:
       Set.singleton <$> (Now (maxDestAddress attData))
     else
       Leaf Set.empty
-  -- else
-  --   if Now (attOverThreshold attData) then
-  --     Set.insert <$> Now destAddr <*> maybeAddress attData :@ (-1, Leaf Set.empty)      
-  --   else
-  --     maybeAddress attData :@ (-1, Leaf Set.empty)      
     
 -- For an attack, the address which has received most flows during the batch
 maxDestAddress :: AttackData -> Stream String
@@ -412,19 +391,10 @@ getAddressData addr hist = Map.findWithDefault (0,0,0,0) addr hist
 innSpec :: AttackData -> String -> String -> InnerSpecification String
 innSpec attackData attack_name fileId = let
   jsons = unsafePerformIO (getAllJSONs (readproc scriptPath ["--flows", "--date", fileId, "--attack", attack_name]))
-  -- is = IS ins (underAttack attackData) ("false" =: Leaf False) 10
   is = IS ins (countOut attackData) ("false" =: Leaf False) 10
   decs = getDecs is
   ins = map (checkAndConvert (getFromJSONers decs)) jsons
   in is
-
--- underAttack :: AttackData -> Stream Bool
--- underAttack attData = "underAttack" <: attData =:
---   Now (ipEntropy attData) > Leaf (minEntropy attData)
-  -- if ipEntropy attData > Leaf (minEntropy attData) then
-  --   maxDestAddress attData :@ (-1, Leaf "")
-  -- else
-  --   Leaf ""
 
 underAttack :: AttackData -> Stream String
 underAttack attData = "underAttack" <: attData =:
@@ -445,31 +415,3 @@ underAttackDuration attData = "underAttackDuration" <: attData =:
   where
     timeDur = Now (teMaxAddr attData) - Now (tsMaxAddr attData)
     makeString s d = s ++ ", duration: " ++ show d    
-
--- -- If the marker is over the threshold in the summary, it is possible
--- -- that the most dst address doesn't have enough entropy, but an other address
--- -- also over the threshold is.
--- firstAddrThreshEntropy :: AttackData -> Stream String
--- firstAddrThreshEntropy attData = "firstAddrThreshEntr" <: attData =:
---   if Now (ipEntropy attData) > Leaf (minEntropy attData) then
---     Now (maxDestAddress attData)
---   else
---     findHighestEnt_ <$> Now (attackHist attData)    
---   where
---     findHighestEnt_ hist = undefined
---     findEntropyAddr ad = Set.size <$> (find_member <$> ad <*> Now (ipEntropyAllAddr attData))
---     findMember addr entropy = Map.findWithDefault (Set.empty) addr entropy      
-
--- -- Find the address with maximum occurrences that is over threshold and also is over entropy threshold
--- findHighestEnt :: AttackData -> Histogram -> String
--- findHighestEnt attData hist =
---   if Map.null hist then
---     ""
---   else
---     if (maxAddr hist ) > 
---   where
---     -- Calculate pps for 
---     calcPps = undefined 
---     -- Find the address with the maximum occurrences
---     maxAddr h = undefined
--- -- Find highest occurrences. Check entropy. If not enough, delete and try again
