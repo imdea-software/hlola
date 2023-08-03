@@ -23,6 +23,11 @@ Install HLola by cloning this branch of this repository and running the Haskell 
 
 This will create the executable `HLola` in the root directory.
 
+Download the data to the root of the repository by running the following command:
+
+    $> curl -o data.zip http://beastest.software.imdea.org/data.zip
+    $> unzip data.zip
+
 ### DDOS detection
 
 The data for the DDOS attack detection can be found in the `data` folder. 
