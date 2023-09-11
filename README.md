@@ -1,7 +1,7 @@
 [![HLola logo](hlola.png)](https://software.imdea.org/hlola/)
 # HLola
 
-**HLola** is a Haskell implementation of the Stream Runtime Verification language [Lola](http://software.imdea.org/~cesar/papers/2005/time05/time05.pdf).
+**HLola** is a Haskell implementation of the Stream Runtime Verification language [Lola](https://software.imdea.org/~cesar/publication/2005-dangelo05lola/).
 In this repository, you will find the source code of **HLola**, example specifications, and the steps to use the engine and define new specifications.
 For more information, visit the [HLola official website](https://software.imdea.org/hlola).
 
