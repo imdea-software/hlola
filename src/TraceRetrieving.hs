@@ -4,12 +4,17 @@ import Data.Aeson
 import Data.Dynamic
 import Data.Map.Strict (Map, insert)
 import qualified Data.ByteString.Lazy as B (getContents, split, null, readFile, ByteString, hGetContents)
+import qualified Data.Text.Lazy as TL
+import Data.Text.Lazy.Encoding as TLE
 import qualified Data.ByteString.Internal as BS (c2w)
 import qualified Data.Map.Merge.Strict as MM
 import System.IO.Unsafe (unsafePerformIO)
+import System.IO
+import System.Process
 import System.Environment (getArgs)
 import Data.Maybe
 import System.Process (createProcess, CreateProcess(..), proc, StdStream(CreatePipe))
+import Debug.Trace
 
 checkAndConvert :: Map String (Value -> Dynamic) -> Map String Value -> Map String Dynamic
 checkAndConvert fromjsoners vals = let
@@ -41,8 +46,9 @@ getRawContent str = do
 
 readproc :: String -> [String] -> IO B.ByteString
 readproc program args = do
-  (_, outhdl, _, _) <- createProcess (proc program args){ std_out = CreatePipe }
-  B.hGetContents (fromJust outhdl)
+  -- (_, Just outhdl, _, _) <- createProcess (proc program args){ std_out = CreatePipe }
+  content <- readCreateProcess (proc program args) ""
+  return $ TLE.encodeUtf8 $ TL.pack content
 
 getMArg :: String -> IO (Maybe String)
 getMArg flag = getArgs >>= return.getarg

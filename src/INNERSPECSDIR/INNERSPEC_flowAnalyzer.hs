@@ -14,10 +14,9 @@ import Syntax.Ord
 import Syntax.Num
 import qualified Prelude as P
 import Theories.Attacks
-import Data.Set hiding (empty,size,elems)
+import Data.Set hiding (empty,size)
 import qualified Data.Set (size,empty)
 import Data.Map.Strict hiding (union,singleton,insert)
-import Data.Maybe
 import Lib.DynPar
 
 
@@ -98,11 +97,11 @@ flowAnalyzer atk fileId flow__arg = createIS [bind flow flow__arg] attacked_addr
 
   ipEntropy :: Stream Int
   ipEntropy = "ipEntropy" =: (
-    (toolLift (maybe 0 setSize . listToMaybe . elems))  mset)
+    (toolLift (maybe 0 setSize))  mset)
     where
       mset = setSrcForDestAddr
-             `over` maybeAddress
-             `withInit` (magic1 (initer atk fileId))   (flowCounter:@(0, Leaf undefined))
+             `mover` maybeAddress
+             `mwithInit` (magic1 (initer atk fileId))   (flowCounter:@(0, Leaf undefined))
 
   setSrcForDestAddr :: String -> Stream (Set String)
   setSrcForDestAddr dst = "setSrcForDestAddr" <: dst =: (
@@ -110,11 +109,11 @@ flowAnalyzer atk fileId flow__arg = createIS [bind flow flow__arg] attacked_addr
     where
       prevSet =  ((setSrcForDestAddr dst):@(-1,(toolLift emptySet))) 
 
-  maybeAddress :: Stream (Set String)
+  maybeAddress :: Stream (Maybe String)
   maybeAddress = "maybeAddress" =: (
     if  (attack_detection:@(0, Leaf undefined)) 
-    then (toolLift singleton)  (maxDestAddress:@(0, Leaf undefined)) 
-    else (toolLift emptySet) )
+    then (toolLift Just)  (maxDestAddress:@(0, Leaf undefined)) 
+    else (toolLift Nothing) )
 
   falsestr :: Stream Bool
   falsestr = "falsestr" =: ((toolLift False) )

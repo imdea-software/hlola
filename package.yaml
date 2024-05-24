@@ -39,7 +39,13 @@ dependencies:
 - dsp >= 0.2.5
 - data-default
 - process
-  # - constraints
+- reflection
+- ghc
+- hashable
+- constraints
+- unification-fd
+- transformers
+- data-fix
 
 # Array and Vector are very similar... But Vector should be more efficient
 

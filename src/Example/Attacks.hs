@@ -28,6 +28,10 @@ suffix :: MarkerEnum -> String
 suffix BPS = "_ibps" 
 suffix PPS = "_ipps" 
 
+
+-- System Admin/Network/Anomaly/DDos Anomaly -> DDoS Anomaly para ver los filtros
+-- System Admin/Network/Anomaly/DDos Anomaly -> Anomaly Baseline para los umbrales por defecto
+
 tcpSynFloodPpsThreshold = 14030 
 tcpSynFloodIpEntropy = 50
 tcpSynFloodFilter :: Flow -> Bool
@@ -106,6 +110,21 @@ hostTcpTrafficFilter :: Flow -> Bool
 hostTcpTrafficFilter flow = proto flow == TCP
 hostTcpTraffic :: AttackData
 hostTcpTraffic = AD "HOST_TCP_TRAFFIC" hostTcpTrafficFilter [Marker BPS hostTcpTrafficBpsThreshold] hostTcpTrafficIpEntropy
+
+-- tcpPortScanPpsThreshold = 1200
+-- tcpPortScanIpEntropy = 50
+-- tcpPortScanFilter :: Flow -> Bool
+-- tcpPortScanFilter flow = proto flow == TCP
+--                          && (bpp flow) < 66
+--                          && fS flow
+--                          && not (fF flow)
+--                          && not (fR flow)
+--                          && not (fA flow)
+--                          && not (fP flow)
+--                          && not (fX flow)
+--                          && not (fU flow)
+-- tcpPortScan :: AttackData
+-- tcpPortScan = AD "TCP_PORT_SCAN" tcpPortScanFilter [Marker PPS tcpPortScanPpsThreshold] tcpPortScanIpEntropy 
 
 dnsAmplificationPpsThreshold = 49430
 dnsAmplificationBpsThreshold = 10000
@@ -311,7 +330,38 @@ greFlood = AD "GRE_FLOOD" greFloodFilter [Marker BPS greFloodBpsThreshold] greFl
 
 
 ad :: [AttackData]
+-- 1 attack
+-- ad = [malformUdp]
+
+-- 5 attacks
+-- ad = [
+--       tcpSynFlood,
+--       malformTcp,
+--       malformUdp,
+--       icmpMisuse,
+--       tcpRstFlood
+--      ]
+
+-- 10 attacks
+-- ad = [
+--       tcpSynFlood,
+--       malformTcp,
+--       malformUdp,
+--       icmpMisuse,
+--       tcpRstFlood,
+--       tcpSynFinFlood,
+--       tcpSynRstFlood,
+--       tcpFinFlood,
+--       greFlood,
+--       clapdAmplification
+--      ]
+     
+-- 15 attacksA
 ad = [
+      -- tcpFlagNull,
+      -- snmpAmplification,
+      -- hostTcpTraffic,  
+      -- tcpSynFlood,
       malformTcp,
       malformUdp,
       icmpMisuse,
@@ -328,3 +378,67 @@ ad = [
       steamAmplification
      ]
 
+-- 25 attacks     
+-- ad = [
+--       tcpSynFlood,
+--       tcpFlagNull,
+--       malformTcp,
+--       malformUdp,
+--       icmpMisuse,
+--       tcpRstFlood,
+--       tcpSynFinFlood,
+--       tcpSynRstFlood,
+--       tcpFinFlood,
+--       ntpAmplification,
+--       ssdpAmplification,
+--       chargenAmplification,
+--       snmpAmplification,
+--       tftpAmplification,
+--       netbiosAmplification,
+--       qotdAmplification,
+--       quakeAmplification,
+--       steamAmplification,
+--       portmapperAmplification,
+--       mssqlAmplification,
+--       ripv1Amplification,
+--       sentinelAmplification,
+--       memchached,
+--       clapdAmplification,
+--       greFlood
+--      ]
+
+
+-- ad = [
+--       tcpSynFlood,
+--       tcpFlagNull,
+--       malformTcp,
+--       malformUdp,
+--       icmpMisuse,
+--       tcpRstFlood,
+--       -- udpFlood, --
+--       hostTcpTraffic,
+-- --       dnsAmplification, --
+--       tcpSynFinFlood,
+--       tcpSynRstFlood,
+--       tcpFinFlood
+--       -- ntpAmplification,
+--       -- ssdpAmplification,
+--       -- xmasDdos,
+--       -- chargenAmplification,
+--       -- snmpAmplification,
+--       -- tftpAmplification,
+--       -- netbiosAmplification,
+--       -- qotdAmplification,
+--       -- quakeAmplification,
+--       -- steamAmplification,
+--       -- portmapperAmplification,
+--       -- mssqlAmplification,
+--       -- ripv1Amplification,
+--       -- sentinelAmplification,
+--       -- memchached,
+--       -- clapdAmplification,
+--       -- greFlood,
+--       -- httpFlood
+-- --       -- ipProtoNull
+--      ]
+-- -- --       tcpPortScan,

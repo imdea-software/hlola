@@ -12,7 +12,8 @@ import TraceRetrieving
 
 type Readers = Map.Map Ident (String -> Dynamic)
 type FromJSONers = Map.Map Ident (Value -> Dynamic)
-type DecDyn = (DeclarationDyn, (Dynamic -> String, Dynamic -> Value), Readers, FromJSONers)
+type Showers = (Dynamic -> String, Dynamic -> Value)
+type DecDyn = (DeclarationDyn, Showers, Readers, FromJSONers)
 
 type Specification = [DecDyn]
 
@@ -23,7 +24,7 @@ data Format = JSON | CSV deriving Eq
 -- type, it guarantees that no type mismatch can occur in runtime.
 data ExprDyn where
   DLeaf :: Dynamic -> ExprDyn
-  DApp  :: (Dynamic, Dynamic, Dynamic, Dynamic -> Maybe Dynamic) -> ExprDyn -> ExprDyn -> ExprDyn
+  DApp  :: ((Dynamic, Dynamic), Dynamic, Dynamic, Dynamic -> Maybe Dynamic) -> ExprDyn -> ExprDyn -> ExprDyn
   DNow :: DeclarationDyn -> ExprDyn
   DAt :: DeclarationDyn -> (Int, ExprDyn) -> ExprDyn
   DSlice :: (Dynamic, Dynamic -> Dynamic -> Dynamic, [Dynamic] -> Dynamic) -> DeclarationDyn -> ExprDyn -> ExprDyn
@@ -54,7 +55,10 @@ dec2Dyn dec = let
   thea = fromMaybe (error "020").(fromDynamic :: Dynamic -> Maybe a) in
   (ed, (show.thea, toJSON.thea), thereaders, thejsoners)
 
+wrongtype dyn = error $ "Error, got type " ++ (show$dynTypeRep dyn) ++ "."
+
 type DecMap = Map.Map Ident (DeclarationDyn, Readers, FromJSONers)
+type MegaDecMap = (DecMap, ExprDyn, Readers, FromJSONers)
 dec2Dyn' :: forall a. DecMap -> Declaration a -> DecMap
 dec2Dyn' themap dec | Map.member (getId dec) themap = themap
 dec2Dyn' themap dec@(Input id) = Map.insert id (DInp id, Map.singleton id (toDyn.(read :: String -> a)), Map.singleton id (toDyn.(fromMaybe (error "Wrong type in JSON").parseMaybe parseJSON :: Value -> a))) themap
@@ -63,7 +67,11 @@ dec2Dyn' themap dec@(Output (id,exp)) = let
   (themap2, ddec, readers, jsoners) = exp2Dyn exp (Map.insert id (outdec, Map.empty, Map.empty) themap) in
   Map.insert id (outdec, readers, jsoners) themap2
 
-exp2Dyn :: Expr a -> DecMap -> (DecMap, ExprDyn, Readers, FromJSONers)
+feliDynApp (fn :: f a b -> a -> b) = toDyn fn
+dynfunfixer (fun :: f a b) = let
+  in fromJust $ dynApply (feliDynApp (($) :: (a -> b) -> a -> b)) (toDyn fun)
+
+exp2Dyn :: Expr a -> DecMap -> MegaDecMap
 exp2Dyn (Leaf x) m = (m, DLeaf (toDyn x), Map.empty, Map.empty)
 exp2Dyn (App (e1 :: Expr (f a b)) e2) m = let
   (m1, de1, r1, j1) = exp2Dyn e1 m
@@ -72,8 +80,10 @@ exp2Dyn (App (e1 :: Expr (f a b)) e2) m = let
   mymergereaders = MM.merge MM.preserveMissing MM.preserveMissing sndWhenMatched
   mymergejsoners = MM.merge MM.preserveMissing MM.preserveMissing sndWhenMatched
   unlifter = (fmap toDyn).(fromJust.fromDynamic :: Dynamic -> Maybe b)
+  mayber = getMayber :: LFunction a b -> Maybe a -> Maybe b
+  dtolfun = (toDyn (Pure :: (a -> b) -> LFunction a b), toDyn mayber)
   in
-  (m2, DApp (toDyn (getMayber.toLFunction :: f a b -> Maybe a -> Maybe b), toDyn (Just :: a -> Maybe a), toDyn (Nothing :: Maybe a), unlifter) de1 de2, mymergereaders r1 r2, mymergejsoners j1 j2)
+  (m2, DApp (dtolfun, toDyn (Just :: a -> Maybe a), toDyn (Nothing :: Maybe a), unlifter) de1 de2, mymergereaders r1 r2, mymergejsoners j1 j2)
 exp2Dyn (Now dec) m = let
   m1 = dec2Dyn' m dec
   (ddec, readers, jsoners) = m1 Map.! getId dec in
@@ -136,7 +146,7 @@ getDecs :: Typeable a => InnerSpecification a -> Specification
 getDecs (IS _ rs ss _) = [out rs, out ss]
 
 getIns :: InnerSpecification a -> [Map.Map Ident Dynamic]
-getIns (IS [] _ _ _) = repeat Map.empty
+-- getIns (IS [] _ _ _) = repeat Map.empty
 getIns (IS ins _ _ _) = ins
 
 inMap :: [(Ident, [Dynamic])] -> [Map.Map Ident Dynamic]

@@ -3,6 +3,7 @@
 {-# LANGUAGE ConstraintKinds #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# Language MultiParamTypeClasses #-}
+{-#LANGUAGE TypeOperators#-}
 
 module Lola where
 
@@ -19,10 +20,12 @@ type Ident = String
 type Streamable = Typeable
 
 -- Data types for simplifiers
-data LFunction a b = Pure (a->b) | Simplifier (Maybe a -> Maybe b)
+data LFunction a b where
+  Pure :: (Typeable a, Typeable b) => (a->b) -> LFunction a b
+  Simplifier :: (Typeable a, Typeable b) => (Maybe a -> Maybe b) -> LFunction a b
 
 class ILFunction x where
-  toLFunction :: x a b -> LFunction a b
+  toLFunction :: (Typeable a, Typeable b) => x a b -> LFunction a b
 
 instance ILFunction (->) where
   toLFunction = Pure
@@ -42,13 +45,13 @@ getMayber (Pure g) (Just x) = let
   in Just res
 
 -- Public for simplifiers
-getsmp1 :: (Maybe a -> Maybe b) -> LFunction a b
+getsmp1 :: (Typeable a, Typeable b) => (Maybe a -> Maybe b) -> LFunction a b
 getsmp1 = Simplifier
 
-getsmp2 :: (Maybe a-> Maybe b -> Maybe c) -> LFunction a (LFunction b c)
+getsmp2 :: (Typeable a, Typeable b, Typeable c) => (Maybe a-> Maybe b -> Maybe c) -> LFunction a (LFunction b c)
 getsmp2 f = Simplifier $ Just .getsmp1.f
 
-getsmp3 :: (Maybe a-> Maybe b -> Maybe c -> Maybe d) -> LFunction a (LFunction b (LFunction c d))
+getsmp3 :: (Typeable a, Typeable b, Typeable c, Typeable d) => (Maybe a-> Maybe b -> Maybe c -> Maybe d) -> LFunction a (LFunction b (LFunction c d))
 getsmp3 f = Simplifier $ Just .getsmp2.f
 --
 
@@ -87,11 +90,11 @@ data Expr a where
 type Initer x a = Expr ((x -> Stream a) -> [Map.Map Ident Value] -> x -> ([Map.Map Ident Dynamic], Maybe a))
 
 infixl 4 <$>
-(<$>) :: (Streamable a, Streamable b, ILFunction f, Streamable (f a b)) => f a b -> Expr a -> Expr b
+(<$>) :: (Streamable a, Streamable b, ILFunction f, Typeable (f a b)) => f a b -> Expr a -> Expr b
 f <$> e = App (Leaf f) e
 
 infixl 4 <*>
-(<*>) :: (Streamable a, Streamable b, ILFunction f, Streamable (f a b)) => Expr (f a b) -> Expr a -> Expr b
+(<*>) :: (Streamable a, Streamable b, ILFunction f, Typeable (f a b)) => Expr (f a b) -> Expr a -> Expr b
 e0 <*> e1 = App e0 e1
 
 instance Show (Expr a) where
@@ -162,13 +165,13 @@ instance {-# OVERLAPS #-} (a ~ a', b~b', c~c', d~d', a0~a0', a1~a1', a2~a2', a3~
   toolLift = magic7
 
 magic0 f = Leaf f
-magic1 f x = f Lola.<$> x
-magic2 f x y = f Lola.<$> x Lola.<*> y
-magic3 f x y z = f Lola.<$> x Lola.<*> y Lola.<*> z
-magic4 f x y z a0 = f Lola.<$> x Lola.<*> y Lola.<*> z Lola.<*> a0
-magic5 f x y z a0 a1 = f Lola.<$> x Lola.<*> y Lola.<*> z Lola.<*> a0 Lola.<*> a1
-magic6 f x y z a0 a1 a2= f Lola.<$> x Lola.<*> y Lola.<*> z Lola.<*> a0 Lola.<*> a1 Lola.<*> a2
-magic7 f x y z a0 a1 a2 a3 = f Lola.<$> x Lola.<*> y Lola.<*> z Lola.<*> a0 Lola.<*> a1 Lola.<*> a2 Lola.<*> a3
+magic1 f x = f <$> x
+magic2 f x y = f <$> x <*> y
+magic3 f x y z = f <$> x <*> y <*> z
+magic4 f x y z a0 = f <$> x <*> y <*> z <*> a0
+magic5 f x y z a0 a1 = f <$> x <*> y <*> z <*> a0 <*> a1
+magic6 f x y z a0 a1 a2= f <$> x <*> y <*> z <*> a0 <*> a1 <*> a2
+magic7 f x y z a0 a1 a2 a3 = f <$> x <*> y <*> z <*> a0 <*> a1 <*> a2 <*> a3
 
 emap :: Typeable a => (x->Expr a) -> [x] -> Expr [a]
 emap f ls = let

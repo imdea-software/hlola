@@ -26,9 +26,15 @@ import qualified Example.AcceptableUptimes (spec)
 import qualified Example.AndoniEx (spec)
 import qualified Example.StateWithdrawn (spec)
 import qualified Example.Clustering.Test (spec, mainpast)
+import qualified Example.SWSEx (spec)
+import qualified Example.ListedAreOk (spec)
+import qualified Example.ConsistentMetadata (spec)
+import Interpreter.TypedInterpreter (interpret)
 import qualified Example.Test (spec)
+import qualified Example.Tezos_Execution_Order (spec)
 
 main :: IO ()
+-- main = interpret
 main = getArgs >>= parseArgs
 
 parseArgs :: [String] -> IO ()
@@ -59,4 +65,8 @@ specfromargsold ("statewithdrawn":_) = Example.StateWithdrawn.spec
 specfromargsold ("acceptableuptimes":_) = Example.AcceptableUptimes.spec
 specfromargsold ("andoni":_) = Example.AndoniEx.spec
 specfromargsold ("testdiv":_) = Example.Test.spec
+specfromargsold ("tezosexecorder":_) = Example.Tezos_Execution_Order.spec
+specfromargsold ("sws":_) = Example.SWSEx.spec
+specfromargsold ("listedareok":_) = Example.ListedAreOk.spec
+specfromargsold ("consistentMetadata":_) = Example.ConsistentMetadata.spec
 specfromargsold _ = error "Unkown spec"

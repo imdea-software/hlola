@@ -9,7 +9,8 @@ import StaticAnalysis
 import DecDyn
 import Data.Tuple.Utils
 import Data.Aeson
-import qualified Data.HashMap.Strict as HM
+import qualified Data.Aeson.KeyMap as KM
+import Data.Aeson.Key (fromString)
 import qualified Data.ByteString.Lazy.Char8 as BS
 import qualified Data.Text as T
 import Data.Dynamic
@@ -134,7 +135,7 @@ solveFocus sys@(Focus past (m:_) _) = Map.foldlWithKey (\s k _ -> solveTop s k) 
 solveTop :: Sys -> Ident -> Sys
 solveTop sys@(Focus _ (m:_) _) id = let
   -- We get the associated expression,
-  exp = m Map.! id
+  exp = Map.findWithDefault (error$"Could not find stream \"" ++ id ++ "\"") id m
   -- we solve it using the auxiliary function solve,
   (newexp, Focus p (h:r) ni) = solve sys exp in
   -- and we replace the entry in the focused instant
@@ -144,7 +145,7 @@ mymapget m k = fromMaybe (error ("missing key: "++k)) (Map.lookup k m)
 
 peek :: Sys -> ExprDyn -> (Maybe Dynamic, Sys)
 peek sys (DLeaf d) = (Just d, sys)
-peek sys (DApp tools@(dtolfun, juster, nothing, unlifter) e1 e2) = let
+peek sys (DApp tools@(_, juster, nothing, unlifter) e1 e2) = let
   (mf, sys') = peek sys e1
   in if isNothing mf then (Nothing, sys') else peekApply sys' tools (fromJust mf) e2
 peek sys@(Focus _ (m:_) _) (DNow dec) = let
@@ -182,13 +183,16 @@ listofmaybe2maybelist tools@(_, dcons) (Just v:rest) = case listofmaybe2maybelis
   Nothing -> Nothing
   Just l -> Just (dcons v l)
 
-peekApply :: Sys -> (Dynamic, Dynamic, Dynamic, Dynamic -> Maybe Dynamic) -> Dynamic -> ExprDyn -> (Maybe Dynamic, Sys)
-peekApply sys (dtolfun, juster, nothing, unlifter) f e2 = let
+peekApply :: Sys -> ((Dynamic, Dynamic), Dynamic, Dynamic, Dynamic -> Maybe Dynamic) -> Dynamic -> ExprDyn -> (Maybe Dynamic, Sys)
+peekApply sys ((dtolfun, dmayber), juster, nothing, unlifter) f e2 = let
   -- we peek its argument,
   (maybeDynarg, sys') = peek sys e2 -- Maybe Dynamic <a>
   argDynMaybe = maybe nothing (dynApp juster) maybeDynarg
   -- (DLeaf y, sys'') = solve sys' e2
-  mayber = dynApp dtolfun f -- mayber :: Dynamic<Maybe a -> Maybe b>
+  dlfun = case dynApply dtolfun f of
+    Just f' -> f'
+    Nothing -> f
+  mayber = dynApp dmayber dlfun -- mayber :: Dynamic<Maybe a -> Maybe b>
   dynMaybe = dynApp mayber argDynMaybe -- dynMaybe :: Dynamic <Maybe b>
   maybeDyn = unlifter dynMaybe
   in (maybeDyn, sys')
@@ -199,7 +203,7 @@ solve :: Sys -> ExprDyn -> (ExprDyn, Sys)
 -- A DLeaf is already a ground value
 solve sys x@(DLeaf _) = (x,sys)
 -- To solve an application,
-solve sys expr@(DApp tools@(dtolfun, juster, nothing, unlifter) e1 e2) = let
+solve sys expr@(DApp tools@(_, juster, nothing, unlifter) e1 e2) = let
   -- we solve the function to apply,
   (DLeaf f, sys'') = solve sys e1
   (maybeDyn, sys') = peekApply sys'' tools f e2
@@ -264,9 +268,9 @@ printFocus f (Focus _ (m:_) _) decs = let
   funs = map snd4 decs
   ids = map (dgetId.fst4) decs
   undleaf (DLeaf x) = x
-  thedyns = map (undleaf.((Map.!) m) ) ids
+  thedyns = map (undleaf.(mymapget m) ) ids
   apps = zipWith (\(cf,jf) dyn -> (cf dyn, jf dyn)) funs thedyns
-  thejsonmap = Object $ HM.fromList $ zipWith (\id (_,val) -> (T.pack id,val)) ids apps
+  thejsonmap = Object $ KM.fromList $ zipWith (\id (_,val) -> (fromString id,val)) ids apps
   line = if f==CSV then showCSVRow $ map fst apps else BS.unpack$encode thejsonmap
   in
   line ++ "\n"
@@ -327,16 +331,22 @@ justProc decs sys@(Focus _ (_:_) _) = let (newfocus@(Focus _ (m:_) _)) = solveFo
 undleaf (DLeaf x) = x
 
 runSpec :: Typeable a => InnerSpecification a -> a
-runSpec innerspec = let
+runSpec innerspec = fromMaybe (error "Innerspec executed with empty input") (mRunSpec innerspec)
+
+mRunSpec :: Typeable a => InnerSpecification a -> Maybe a
+mRunSpec innerspec = let
   decs = getDecs innerspec
   ins = getIns innerspec
   sys = getHintedSystem (hint innerspec) (map fst4 decs) ins in
   procWithRet innerspec sys
 
-procWithRet :: Typeable a => InnerSpecification a -> Sys -> a
-procWithRet innerspec sys@(Focus _ [] _) = error "Innerspec executed with empty input"
--- procWithRet innerspec sys@(Focus _ [_] _) = let (_, _, ret) = solveFocusWithRet innerspec sys in ret
-procWithRet innerspec sys@(Focus _ (_:fut) _) = let (newfocus, stop, ret) = solveFocusWithRet innerspec sys in if stop || null fut then ret else procWithRet innerspec (rshift' newfocus)
+procWithRet :: Typeable a => InnerSpecification a -> Sys -> Maybe a
+procWithRet innerspec sys@(Focus _ [] _) = Nothing
+procWithRet innerspec sys@(Focus _ [_] _) = let (_, _, ret) = solveFocusWithRet innerspec sys in Just ret
+procWithRet innerspec sys@(Focus _ (_:fut) _) = let
+  (newfocus, stop, ret) = solveFocusWithRet innerspec sys
+  procrest = procWithRet innerspec (rshift' newfocus)
+  in if stop then Just ret else Just (fromMaybe ret procrest)
 
 solveFocusWithRet :: Typeable a => InnerSpecification a -> Sys -> (Sys, Bool, a)
 solveFocusWithRet innerspec sys = let
