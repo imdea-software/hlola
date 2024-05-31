@@ -36,6 +36,9 @@ hlolabasedir = str(Path(os.path.dirname(os.path.realpath(__file__))).parent.pare
 preprocbin = str(Path(os.path.dirname(os.path.realpath(__file__))).parent.parent) + "/frontend/hlolac/preproc/preproc"
 
 for file in hlolafiles:
+    if not os.path.isfile(file):
+        print("File does not exist: "+str(file))
+        sys.exit()
     args = [preprocbin, outpath, file]
     cp = subprocess.run(args)
     if cp.returncode != 0:

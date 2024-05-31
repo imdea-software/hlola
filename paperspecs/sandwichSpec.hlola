@@ -1,0 +1,38 @@
+use innerspec innSpec
+const cd = 40
+define Int counterTr = counterTr [-1|0] + 1
+define Bool called3route =
+  (targetalias[now] == "3Route v4") && (paramentry[now] == "execute")
+BREAK
+define Transactions willSwapTwice =
+  if called3route[now] then
+    intersection listAddressesPast listAddressesFuture
+  else
+    emptyMap
+  where
+    past = pastRetriever block[now] counterTr[now]
+    listAddressesPast = runSpec (innSpec `withInit` past)
+    listAddressesFuture =
+      runSpec (innSpec paramentry[:cd] targetaddr[:cd] atokenamnt[:cd])
+
+output Bool sandwichAttack = called3route[now] && not (null willSwapTwice[now])
+
+output String attacker =
+  if sandwichAttack[now] then
+    fst (head (willSwapTwice[now]))
+  else
+    ""
+
+output (Set String) attackers =
+  if sandwichAttack[now] then
+    insert attacker[now] attackers[-1|emptySet]
+  else
+    attackers[-1|emptySet]
+
+output (Set String) fellows <String acc> =
+  insert senderaddr[now] (fellows acc) [-1|emptySet]
+
+output (Set String) setSuspicious = let
+  past = pastRetriever attacker[now]
+  getSets mp = foldl union emptySet (elems mp) in
+  getSets (fellows `over` attackers `withInit` past `updating` singleton (attacker[now]))

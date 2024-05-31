@@ -1,0 +1,10 @@
+type Transactions = Map String String
+
+input Int level
+input String senderaddr
+input String targetaddr
+input String paramentry
+input String senderalias
+input String targetalias
+input Int atokenamt
+input Int btokenamt

@@ -30,7 +30,7 @@ type Route = (Point2, Double, Maybe Point2)
 
 simuspec :: NonLinearData -> Double -> Double -> [Route] -> InnerSpecification ([Point2], Double, Bool, Double, Double)
 simuspec nld tau maxtime routestrm = 
-  IS [("route", map toDyn routestrm)] ret has_reached 5
+  createIS [("route", map toDyn routestrm)] ret has_reached 5
   where
   route = Input "route" :: Declaration Route
   reaching_state = runSpec <$> (innerspec nld tau maxtime <$> pos <*> yaw <*> roll <*> time <*> distance <*> Now route)

@@ -24,6 +24,14 @@ type TypeAndDef struct {
 	hidden      bool
 }
 
+type InTypeAndDef struct {
+	id          string
+	typ         string
+	template    string
+	params      []TypeId
+	constraints string
+}
+
 type HeaderInfo struct {
 	constants            string
 	libname              string
@@ -48,18 +56,21 @@ var outwriter *bufio.Writer
 var outpath string = ""
 var outfname string = "/Main.hs"
 
-var typedInputs map[string]string = make(map[string]string)
+var typedInputs map[string]InTypeAndDef = make(map[string]InTypeAndDef)
 var typedOutputs map[string]TypeAndDef = make(map[string]TypeAndDef)
 var datas map[string]string = make(map[string]string)
 var lastid string = ""
 var order []IOid = make([]IOid, 0)
 var headerinfo = new(HeaderInfo)
 
-var inputTemplate string = `%s :: Stream %s
-%s = Input "%s"
+var inputTemplate string = `%s :: %s%sStream %s
+%s %s= Input $ "%s" %s
 `
-var inputIndentedTemplate string = `  %s :: Stream %s
-  %s = Input "%s"
+// `%s :: Stream %s
+// %s = Input "%s"
+// `
+var inputIndentedTemplate string = `  %s :: %s%sStream %s
+  %s %s= Input $ "%s" %s
 `
 var outputTemplate string = `
 %s :: %s%sStream %s
@@ -140,7 +151,7 @@ import Lola
 import GHC.Generics
 import Data.Aeson
 import Syntax.HLPrelude
-import DecDyn (InnerSpecification(IS), bind)
+import DecDyn (InnerSpecification(),createIS, bind)
 import Syntax.Booleans
 import Syntax.Ord
 import Syntax.Num
@@ -154,7 +165,7 @@ import qualified Prelude as P
 %s
 
 %s :: %s %s %s InnerSpecification %s
-%s %s %s = IS [%s] %s %s (%s)
+%s %s %s = createIS [%s] %s %s (%s)
   where
 %s
 `
@@ -164,7 +175,7 @@ args: Libname, custom imports, custom haskell, constants
 */
 var headerLib = `{-# LANGUAGE RebindableSyntax  #-}
 {-# LANGUAGE DuplicateRecordFields #-}
-module Lib.%s where
+module Lib.%s (%s) where
 import Lola
 import Syntax.HLPrelude
 import Syntax.Booleans
@@ -282,10 +293,12 @@ func getLastWord(s string) (string, string) {
 }
 
 func processConstDeclaration(s string) {
-	if !strings.HasPrefix(s, "const ") {
-		return
+	if strings.HasPrefix(s, "const ") {
+    headerinfo.constants += getIndentation() + s[6:] + "\n"
 	}
-	headerinfo.constants += getIndentation() + s[6:] + "\n"
+	if strings.HasPrefix(s, "fun ") {
+    headerinfo.constants += getIndentation() + s[4:] + "\n"
+	}
 }
 
 func processDataDeclaration(s string) {
@@ -382,15 +395,22 @@ func getParamIds(params []TypeId) string {
 }
 
 func processInputDeclaration(s string) {
-	inputRE := regexp.MustCompile(`^input (?P<type>[^ ]*) +(?P<id>[^ ]*)$`)
-	themap := FindStringSubmatchMap(inputRE, s)
-	if len(themap) == 0 {
+	if !strings.HasPrefix(s, "input ") {
 		return
 	}
+	// We can use type constraints
+	re := regexp.MustCompile(`^input (?P<lhs>([^=]|=>)*)$`)
+	themap := FindStringSubmatchMap(re, s)
+	s = themap["lhs"]
+	f := bufio.NewWriter(os.Stdout)
+	f.Flush()
+	id, typ, params, constr := getIdTypParamsConstraints(s)
+	template := inputTemplate
+	if headerinfo.innerspecname != "" {
+		template = inputIndentedTemplate
+	}
+	typedInputs[id] = InTypeAndDef{id, typ, template, params, constr}
 	lastid = ""
-	id := themap["id"]
-	typ := themap["type"]
-	typedInputs[id] = typ
 	order = append(order, IOid{id, false})
 	//fmt.Println(typedInputs)
 }
@@ -492,9 +512,9 @@ func processUsage(s string) {
 		newimport = newimport + "qualified "
 	}
 	newimport = newimport + usekind
-	if qualified {
-		newimport = newimport + " as " + thename
-	}
+  //if qualified {
+	//	newimport = newimport + " as " + thename
+	//}
 	headerinfo.imports += newimport + "\n"
 }
 
@@ -577,11 +597,9 @@ func printToFile(format string, args ...interface{}) {
 }
 
 func printIn(id string) {
-	template := inputTemplate
-	if headerinfo.innerspecname != "" {
-		template = inputIndentedTemplate
-	}
-	printToFile(template, id, typedInputs[id], id, id)
+  tad := typedInputs[id]
+	// printToFile(template, id, typedInputs[id], id, id)
+	printToFile(tad.template, id, tad.constraints, getParamTypes(tad.params), tad.typ, id, getParamNames(tad.params), id, getParamIds(tad.params))
 }
 
 func printOut(id string) {
@@ -651,24 +669,39 @@ func isMainSpec() bool {
 	return headerinfo.libname == "" && headerinfo.innerspecname == ""
 }
 
+func getouts(forMain bool) string {
+  prefix := ""
+  if forMain {
+    prefix = "out "
+  }
+  ret := ""
+  outputs := make([]string, 0, len(typedOutputs))
+  for id, tad := range typedOutputs {
+    if !tad.hidden {
+      if !forMain || len(tad.params) == 0 {
+        outputs = append(outputs, id)
+      }
+    }
+  }
+  fst := true
+  for _, id := range outputs {
+    if !fst {
+      ret += ", "
+    }
+    fst = false
+    ret += prefix + id
+  }
+  return ret
+}
+
 func printSystem() {
-	if !isMainSpec() {
-		return
-	}
-	printToFile(`specification :: Specification
+  if !isMainSpec() {
+    return
+  }
+  printToFile(`specification :: Specification
 specification = [`)
-	fst := true
-	for id, tad := range typedOutputs {
-		if len(tad.params) > 0 || tad.hidden {
-			continue
-		}
-		if !fst {
-			printToFile(", ")
-		}
-		fst = false
-		printToFile("out " + id)
-	}
-	printToFile("]\n")
+  printToFile(getouts(true))
+  printToFile("]\n")
 }
 
 func printHeader() {
@@ -677,7 +710,7 @@ func printHeader() {
 		datastext = datastext + "\n" + txt
 	}
 	if headerinfo.libname != "" {
-		printToFile(headerLib, headerinfo.libname, headerinfo.imports, datastext, headerinfo.verbatim, headerinfo.constants)
+		printToFile(headerLib, headerinfo.libname, getouts(false), headerinfo.imports, datastext, headerinfo.verbatim, headerinfo.constants)
 	} else if headerinfo.innerspecname != "" {
 		var inputstreamtypes []string = make([]string, 0)
 		var inputstreamargnames []string = make([]string, 0)
@@ -686,7 +719,7 @@ func printHeader() {
 		for _, idout := range order {
 			if !idout.isOut {
 				id := idout.id
-				typ := typedInputs[id]
+				typ := typedInputs[id].typ
 				inputstreamtypes = append(inputstreamtypes, "["+typ+"] ->")
 				argname := id + "__arg"
 				inputstreamargnames = append(inputstreamargnames, argname)

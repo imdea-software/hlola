@@ -7,7 +7,7 @@ import Lola
 import GHC.Generics
 import Data.Aeson
 import Syntax.HLPrelude
-import DecDyn (InnerSpecification(IS), bind)
+import DecDyn (InnerSpecification(), createIS, bind)
 import Syntax.Booleans
 import Syntax.Ord
 import Syntax.Num
@@ -18,7 +18,7 @@ import qualified Prelude as P
 
 
 untilspec ::  [Bool] -> [Bool] -> InnerSpecification Bool
-untilspec  phi__arg psi__arg = IS [bind phi phi__arg, bind psi psi__arg] psi stop 2
+untilspec  phi__arg psi__arg = createIS [bind phi phi__arg, bind psi psi__arg] psi stop 2
   where
 
   phi :: Stream Bool

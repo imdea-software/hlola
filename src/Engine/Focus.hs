@@ -1,7 +1,8 @@
 {-# LANGUAGE BangPatterns #-}
-module Engine.Focus (Focus (..), shiftN, emptyPast, shiftNZero) where
+module Engine.Focus (Focus (..), shiftN, emptyPast, shiftNZero, Past(), pastCons, past2list, rshiftForce) where
 import Prelude
 import Data.Array
+import Data.Maybe (catMaybes)
 
 -- Semi Finite implementation
 
@@ -25,6 +26,15 @@ data Past a = P {
 maxInd :: Past a -> Int
 maxInd (P arr _) = snd$bounds arr
 
+
+past2list :: Past a -> [a]
+past2list p@(P arr ind) = let
+  splitind = mod (ind+2) (maxInd p+1)
+  lst = shiftList ind (elems arr)
+  in catMaybes.map fromMaybe$lst
+  where
+  shiftList n xs = let (a,b) = splitAt n xs in b++a
+
 -- Focus is a data structure that represents a stream of values where one of
 -- them has the focus. The element in focus is the head of the list of future
 -- values.
@@ -46,7 +56,8 @@ shiftNZero x y = fmap stepon (shiftN x y)
 
 rshift :: Int -> Focus a -> Maybe (Focus a)
 rshift _ (Focus _ [_] _) = Nothing
-rshift x (Focus p (f:fut) i) = let
+rshift a b = rshiftForce a b
+rshiftForce x (Focus p (f:fut) i) = let
   !pc = pastCons f p
   !newi = (i-1)
   !newx = (x-1)
@@ -54,17 +65,18 @@ rshift x (Focus p (f:fut) i) = let
 
 lshift :: Int -> Focus a -> Maybe (Focus a)
 lshift x (Focus p@(P arr ind) f i) =
-  case fromMaybe $ arr!ind of
+  case fromMaybe $ arr!newind of
   Nothing -> Nothing
   Just p0 -> let
-    newarr = arr // [(ind, Fail)]
-    newind = if ind==0 then maxInd p else ind-1
+    newarr = arr // [(newind, Fail)]
     in shiftN (x+1) (Focus (P newarr newind) (p0:f) (i+1))
+  where
+    newind = if ind==0 then maxInd p else ind-1
 
 pastCons :: a -> Past a -> Past a
 pastCons elem p@(P arr ind) = let
   newind = mod (ind+1) (maxInd p+1)
-  !newarr = arr // [(newind,JustPos elem)] in
+  !newarr = arr // [(ind,JustPos elem)] in
   P newarr newind
 
 -- Constructor method to get a Past capable of storing the amount of elements

@@ -8,20 +8,21 @@ import Lola
 import GHC.Generics
 import Data.Aeson
 import Syntax.HLPrelude
-import DecDyn (InnerSpecification(IS), bind)
+import DecDyn (InnerSpecification(), createIS, bind)
 import Syntax.Booleans
 import Syntax.Ord
 import Syntax.Num
 import qualified Prelude as P
-import Lib.Utils
-import Data.Dynamic
+
+
+-- Custom datas
 
 
 -- Custom Haskell
 
 
 headismax ::   [Double] -> InnerSpecification Bool
-headismax  vals__arg = IS [bind vals vals__arg] ret stop (2)
+headismax  vals__arg = createIS [bind vals vals__arg] ret stop (2)
   where
 
   vals :: Stream Double
@@ -31,7 +32,7 @@ headismax  vals__arg = IS [bind vals vals__arg] ret stop (2)
   head = "head" =: ((head:@(-1, (vals:@(0, Leaf undefined)) )))
 
   ret :: Stream Bool
-  ret = "ret" =: ((head:@(0, Leaf undefined))  >  (vals:@(0, Leaf undefined)))
+  ret = "ret" =: ((head:@(0, Leaf undefined))  >=  (vals:@(0, Leaf undefined)))
 
   stop :: Stream Bool
   stop = "stop" =: (not  (ret:@(0, Leaf undefined)))
