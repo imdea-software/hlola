@@ -22,8 +22,8 @@ This will create the executable `HLola` in the root directory.
 
 Download the data to the root of the repository by running the following command:
 
-    $> curl -o data.zip http://beastest.software.imdea.org/data.zip
-    $> unzip data.zip
+    $> curl -o Tezos/sandwichData.zip http://beastest.software.imdea.org/sandwichData.zip
+    $> unzip Tezos/sandwichData.zip -d Tezos
 
 ### Sandwich attack detection
 
