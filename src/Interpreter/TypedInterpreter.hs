@@ -22,8 +22,6 @@ import qualified Type.Reflection as TR
 import Data.Constraint ((\\))
 import Control.Monad.State
 import Interpreter.ExampleTheory
-import Interpreter.JusterTheory
-import Interpreter.TzExecutionTheory
 import Data.Typeable
 import Data.Aeson(encode)
 
@@ -96,10 +94,7 @@ createOutput nm (KnownVal (kve :: e))
   | otherwise = Left $ "Not an expression for output: " ++ show (TR.typeRep @e)
 
 theorybuilder :: TheoryBuilder
-theorybuilder =
-  exampletheory
-  >> justertheory
-  >> tzexectheory
+theorybuilder = exampletheory
 
 interpret :: String -> IO ()
 interpret filename = do
