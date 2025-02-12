@@ -1,8 +1,0 @@
-innerspec Bool mtluntilspec
-spread 2
-
-input Bool phi
-input Bool psi
-output Bool stop = psi[now] || not phi[now]
-
-return psi when stop

@@ -30,6 +30,9 @@ infix 7 /
 (/) :: (Streamable a,Fractional a) => Expr a -> Expr a -> Expr a
 a / b = (P./) <$> a <*> b
 
+div :: (Streamable a, Integral a) => Expr a -> Expr a -> Expr a
+div a b = P.div <$> a <*> b
+
 -- TODO This can be simplified
 intdiv :: Expr Int -> Expr Int -> Expr Double
 intdiv n m = (fromIntegral <$> n) / (fromIntegral <$> m)

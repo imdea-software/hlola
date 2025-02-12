@@ -19,14 +19,17 @@ myand _ (Just False) = Just False
 myand (Just x) (Just y) = Just (x P.&& y)
 myand _ _ = Nothing
 
+lfor = getsmp2 myor
+lfand = getsmp2 myand
+
 infixr 2 ||
 (||) :: Expr Bool -> Expr Bool -> Expr Bool
 -- a || b = (P.||) <$> a <*> b
-a || b = getsmp2 myor <$> a <*> b
+a || b = lfor <$> a <*> b
 
 infixr 3 &&
 (&&) :: Expr Bool -> Expr Bool -> Expr Bool
-a && b = getsmp2 myand <$> a <*> b
+a && b = lfand <$> a <*> b
 
 not :: Expr Bool -> Expr Bool
 not a = P.not <$> a
@@ -41,7 +44,10 @@ ite (Just False) _ y = y
 ite Nothing _ _ = Nothing
 
 ifThenElse :: Streamable a => Expr Bool -> Expr a -> Expr a -> Expr a
-ifThenElse b t e = getsmp3 ite <$> b <*> t <*> e
+ifThenElse b t e = itelfun <$> b <*> t <*> e
+
+itelfun :: Streamable a => LFunction Bool (LFunction a (LFunction a a))
+itelfun = getsmp3 ite
 
 infixr 4 ===
 (===) :: (Eq a, Streamable a) => Expr a -> Expr a -> Expr Bool

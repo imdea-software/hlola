@@ -1,0 +1,11 @@
+{ "worker1" : 3 , "worker2" : 4 , "worker3" : 5 }
+{ "worker1" : 3 , "worker2" : 4 , "worker3" : 5 }
+{ "worker1" : 0 , "worker2" : 0 , "worker3" : 5 }
+{ "worker1" : 0 , "worker2" : 4 , "worker3" : 5 }
+{ "worker1" : 3 , "worker2" : 4 , "worker3" : 5 }
+{ "worker1" : 3 , "worker2" : 4 , "worker3" : 5 }
+{ "worker1" : 1 , "worker2" : 3 , "worker3" : 5 }
+{ "worker1" : 1 , "worker2" : 1 , "worker3" : 3 }
+{ "worker1" : 0 , "worker2" : 2 , "worker3" : 3 }
+{ "worker1" : 2 , "worker2" : 4 , "worker3" : 5 }
+{ "worker1" : 3 , "worker2" : 4 , "worker3" : 5 }

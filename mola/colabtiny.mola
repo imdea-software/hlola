@@ -1,0 +1,30 @@
+input Int worker1
+input Int worker2
+input Int worker3
+
+define Int instantN = instantN[-1|0] + 1
+
+define Int currentUsage <(Stream Int) s> <Int max> = 100 - ((s[now] * 100) / max)
+
+define Int historicSum <(Stream Int) s> = s[now] + (historicSum s)[-1|0]
+
+define Int historicAvg <(Stream Int) s> = (historicSum s)[now] / instantN[now]
+
+output Int worker1Usage = (currentUsage worker1 3)[now]
+output Int worker2Usage = (currentUsage worker2 4)[now]
+output Int worker3Usage = (currentUsage worker3 5)[now]
+output Int averageWorker1Usage = (historicAvg worker1Usage)[now]
+output Int averageWorker2Usage = (historicAvg worker2Usage)[now]
+output Int averageWorker3Usage = (historicAvg worker3Usage)[now]
+
+// Moving average
+
+output Int sumLast <(Stream Int) s> <Int offset> =
+  ((sumLast s offset)[-1|0] + s[now] - s[(-1) * offset|0])
+
+output Int movingAvg <(Stream Int) s> <Int offset> =
+  (sumLast s offset)[now] / (min instantN[now] offset)
+
+output Int movingAvgUsageWorker1 = (movingAvg worker1Usage 3)[now]
+output Int movingAvgUsageWorker2 = (movingAvg worker2Usage 3)[now]
+output Int movingAvgUsageWorker3 = (movingAvg worker3Usage 3)[now]

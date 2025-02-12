@@ -1,30 +1,19 @@
 module InFromFile where
 
-import Data.Aeson
 import Lola
 import Engine.Engine
 import StaticAnalysis
 import Data.Dynamic
-import Data.Map.Strict ((!),Map,fromList,(!?), notMember)
-import qualified Data.ByteString.Lazy as B (getContents,split,null)
-import qualified Data.ByteString.Internal as BS (c2w)
+import Data.Map.Strict (Map,fromList,(!?), notMember)
 import Data.CSV
 import Text.ParserCombinators.Parsec
 import Data.Either
 import Data.Maybe
 import DecDyn
-import qualified Data.Map.Merge.Strict as MM
 import System.Exit
 import System.IO (hPutStr, stderr)
 import Data.List
-
-checkAndConvert :: Map Ident (Value -> Dynamic) -> Map Ident Value -> Map Ident Dynamic
-checkAndConvert fromjsoners vals = let
-  applyWhenMatched = MM.zipWithMatched (const ($))
-  --errMissing = MM.mapMissing (\k _ -> error $ "Missing jsoner for "++(T.unpack k))
-  --mymerge = MM.merge MM.dropMissing errMissing applyWhenMatched in
-  mymerge = MM.merge MM.dropMissing MM.dropMissing applyWhenMatched in
-  mymerge fromjsoners vals
+import TraceRetrieving
 
 (!!!) :: Map String y -> String -> y
 x !!! y = fromMaybe (error ("Not referenced input: " ++ y)) $ x !? y
@@ -43,12 +32,13 @@ getNonReferredInputs readers tags =
   filter (flip notMember readers) tags
 
 runSpecJSON :: Bool -> Specification -> IO ()
-runSpecJSON debug decs =
-  do
-  content <- B.getContents
-  let jsons = B.split (BS.c2w '\n') content
-      instants = map (maybe (error "No json") (checkAndConvert (getFromJSONers decs)).decode) (filter (not.B.null) jsons) in
-    putStrLn (run JSON debug decs instants)
+runSpecJSON = runSpecJSONWithPast []
+
+runSpecJSONWithPast :: [Map Ident Dynamic] -> Bool -> Specification -> IO ()
+runSpecJSONWithPast pastlist debug decs = do
+  jsons <- getJSONs "ROOT" (-1)
+  let instants = map (checkAndConvert (getFromJSONers decs)) jsons
+  putStrLn (runWithPast pastlist JSON debug decs instants)
 
 runSpecCSV :: Bool -> Specification -> IO ()
 runSpecCSV debug decs =

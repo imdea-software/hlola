@@ -1,0 +1,26 @@
+input Int histology_Workers
+input Int embedding_Machine
+
+define Int instantN = instantN[-1|0] + 1
+
+define Int currentUsage <(Stream Int) s> <Int max> = 100 - ((s[now] * 100) / max)
+
+define Int historicSum <(Stream Int) s> = s[now] + (historicSum s)[-1|0]
+
+define Int historicAvg <(Stream Int) s> = (historicSum s)[now] / instantN[now]
+
+output Int currentUsageWorker = (currentUsage histology_Workers 10)[now]
+output Int averageUsageWorker = (historicAvg currentUsageWorker)[now]
+output Int currentUsageMachine = (currentUsage embedding_Machine 4)[now]
+output Int averageUsageMachine = (historicAvg currentUsageMachine)[now]
+
+// Moving average
+
+output Int sumLast <(Stream Int) s> <Int offset> =
+  ((sumLast s offset)[-1|0] + s[now] - s[(-1) * offset|0])
+
+output Int movingAvg <(Stream Int) s> <Int offset> =
+  (sumLast s offset)[now] / (min instantN[now] offset)
+
+output Int movingAvgUsageWorker = (movingAvg currentUsageWorker 10)[now]
+output Int movingAvgUsageMachine = (movingAvg currentUsageMachine 10)[now]

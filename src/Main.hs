@@ -1,6 +1,5 @@
 {-# LANGUAGE RebindableSyntax  #-}
 module Main where
-import qualified Example.Accum as Accum (spec)
 import InFromFile
 import System.IO
 import Lola
@@ -8,12 +7,12 @@ import System.Environment
 import Prelude
 import qualified Prelude as P
 import DecDyn
-
-importedSpec :: Specification
-importedSpec = Accum.spec
+import Interpreter.TypedInterpreter (interpret)
 
 main :: IO ()
-main = do
-  hSetBuffering stdin LineBuffering
-  hSetBuffering stdout LineBuffering
-  runSpecCSV False importedSpec
+main = getArgs >>= parseArgs
+
+parseArgs :: [String] -> IO ()
+parseArgs ["--interpret" , fname] = interpret fname
+parseArgs ("--interpret" : _) = error "Interpret what?"
+parseArgs ls = error "Use with --interpret FILE"

@@ -1,3 +1,3 @@
 module Syntax.HLPrelude (module All)  where
 
-import Prelude as All hiding (mod, not, (&&), (/), (<$>), (<*>), (<=),(<), (>), (||), (>=), until)
+import Prelude as All hiding (mod, not, (&&), (/), div, (<$>), (<*>), (<=),(<), (>), (||), (>=), until)

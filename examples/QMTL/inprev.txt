@@ -1,6 +1,0 @@
-phi
-False
-False
-True
-False
-False
