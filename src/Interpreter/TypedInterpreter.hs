@@ -22,8 +22,6 @@ import qualified Type.Reflection as TR
 import Data.Constraint ((\\))
 import Control.Monad.State
 import Interpreter.ExampleTheory
-import Interpreter.JusterTheory
-import Interpreter.TzExecutionTheory
 import Data.Typeable
 import Data.Aeson(encode)
 
@@ -98,8 +96,6 @@ createOutput nm (KnownVal (kve :: e))
 theorybuilder :: TheoryBuilder
 theorybuilder =
   exampletheory
-  >> justertheory
-  >> tzexectheory
 
 interpret :: String -> IO ()
 interpret filename = do
