@@ -17,6 +17,18 @@ hFoldl name combiner neutral dec = name <: dec =: combiner <$> hFoldl name combi
 instantN :: Stream Int
 instantN = "N" =: (+1) <$> instantN:@(-1,0)
 
+plusone :: Stream Int -> Stream Int
+plusone s = "plusone" <: s =: (+1) <$> Now s
+
+instantPlusN :: Int -> Stream Int
+instantPlusN n = "N+" <: n =: (+n) <$> Now instantN
+
+pluser :: Stream Int -> Int -> Stream Int
+pluser s n = "pluser" <: s <: n =: (+n) <$> Now s
+
+instantiator5 :: (Int -> Stream Int) -> Stream Int
+instantiator5 s = "instant" <: s 5 =: Now(s 5)
+
 constStr :: (Streamable a) => Ident -> a -> Stream a
 constStr name val = name =: Leaf val
 

@@ -5,73 +5,71 @@
 In this repository, you will find the source code of **HLola**, example specifications, and the steps to use the engine and define new specifications.
 For more information, visit the [HLola official website](https://software.imdea.org/hlola).
 
-## Docker image
+## RV 2023
+The following instructions indicate how to replicate the empirical evaluation described in the paper "A Stream Runtime Verification Tool with Nested and Retroactive Parametrization".
 
-We provide a [Docker image](https://hub.docker.com/r/imdeasoftware/hlola) ready to build and execute **HLola** specifications out of the box.
+### Prerequisites
+- A linux installation 
+- Python 3 
+- [Stack](https://docs.haskellstack.org/en/stable/install_and_upgrade/) 
 
-You can run the image with no arguments to execute a batch of specifications:
-```bash
-$> docker run imdeasoftware/hlola:tacas
-```
-or you can run a set of specifications passing [their ids](#list-of-example-specifications) as arguments. You can also pass the argument `--live` to see the monitors work online. For example:
-```bash
-$> docker run imdeasoftware/hlola:tacas --live PLTLCSV # or
-$> docker run imdeasoftware/hlola:tacas MTLJSON # or
-$> docker run imdeasoftware/hlola:tacas --live UAV2
-```
-See the following section to find out the specification ids.
+### Installation 
 
-## List of example specifications
-- [PLTLCSV](https://software.imdea.org/hlola/specs.html#PLTLCSV): PLTL example in CSV format
-- [PLTLJSON](https://software.imdea.org/hlola/specs.html#PLTLJSON): PLTL example in JSON format
-- [MTLCSV](https://software.imdea.org/hlola/specs.html#MTLCSV): MTL example in CSV format
-- [MTLJSON](https://software.imdea.org/hlola/specs.html#MTLJSON): MTL example in JSON format
-- [PinescriptCSV](https://software.imdea.org/hlola/specs.html#PinescriptCSV): Pinescript example in CSV format
-- [PinescriptJSON](https://software.imdea.org/hlola/specs.html#PinescriptJSON): Pinescript example in JSON format
-- [UAV1](https://software.imdea.org/hlola/specs.html#UAV1): UAV monitor example 1
-- [UAV2](https://software.imdea.org/hlola/specs.html#UAV2): UAV monitor example 2
-- [Libraries](https://software.imdea.org/hlola/specs.html#Libraries)
+Install HLola by cloning this branch of this repository and running the Haskell builder tool Stack, as follows: 
 
-## Description of example specifications
-- [PLTL example](https://software.imdea.org/hlola/specs.html#PLTLCSV): a Past-Linear Temporal Logic (PLTL) property for a sender/receiver model taken from [[1]](#references):
-  ```
-    G (sender.state = waitForAck => Y (H sender.state != waitForAck))
-  ```
-  which states that, it **G**lobally holds that if the _sender_ is *wait*ing*ForAck*, then **Y**esterday (i.e. at the previous instant), **H**istorically it held that the _sender state_ was not *wait*ing*ForAck*.
-  In other words, the sender waits for acknowledgement at most once during the execution.
-  The only input stream is the state of the sender at each instant.
-  The only output stream is the value of the property at each instant. (TOFIX)
+    $> git clone -b RV2023 https://github.com/imdea-software/hlola.git
+    $> cd hlola
+    $> stack install --local-bin-path .
 
-- [MTL example](https://software.imdea.org/hlola/specs.html#MTLCSV): a Metric Temporal Logic (MTL) property to establish deadlines between environment events and the corresponding system responses taken from [[2]](#references):
-  ```
-  G (alarm => (F[0,10] allclear || F[10,10] shutdown))
-  ```
-  The property assesses that an _alarm_ is followed by a _shutdown_ event in exactly 10 time units unless _all clear_ is sounded first.
-  The only input stream is the event happening at each instant.
-  The only output stream is the value of the property at each instant.
+This will create the executable `HLola` in the root directory.
 
-- [Pinescript example](https://software.imdea.org/hlola/specs.html#PinescriptCSV): [TradingView](https://www.tradingview.com/) is an online charting platform for stock exchange, which offers a series-oriented language to create customized studies and signals (called Pinescript) and run them in the company servers.
-  We have implemented the indicators of Pinescript in **HLola** as a [library](https://software.imdea.org/hlola/specs.html#Libraries), and we show the implementation of [a trading strategy](https://www.tradingview.com/script/DushajXt-MACD-Strategy/) using the **HLola** Pinescript library.
-  The input streams are the _close_ and _high_ values of a stock at each day.
-  The output streams indicate how much stock to _buy_ or _sell_ every day.
+Download the data to the root of the repository by running the following command:
 
-- [UAV specification 1](https://software.imdea.org/hlola/specs.html#UAV1): This specification is an online monitor to assess two properties over the flight of an UAV in real time:
-  1. That the UAV does not fly over forbidden regions, and
-  2. That the UAV is in good position when it takes a picture.
+    $> curl -o data.zip http://beastest.software.imdea.org/data.zip
+    $> unzip data.zip
 
-  The input streams of this specification consist of the state of the UAV at every instant and the onboard camera events to detect when a picture is being captured.
-  The output streams are the values of properties 1. and 2.
+### DDOS detection
 
-- [UAV specification 2](https://software.imdea.org/hlola/specs.html#UAV2): This specification estimates the trajectory of a flying UAV to assess if it will reach its target destination.
-  ![Fly gif](fly.gif "Fly gif")
+The data for the DDOS attack detection can be found in the `data` folder. 
 
-  The input streams are data on the state of the vehicle at every instant and its target destination.
-  The output stream shows how close to the target destination will the vehicle fly.
+The attacks, thresholds and types are defined in `src/Example/Attack.hs`; while the monitors are in `src/Example/Netflow.hs` and `src/Example/NetflowSummary.hs`.
 
-- [Libraries](https://software.imdea.org/hlola/specs.html#Libraries): These files encompass the implementations of the libraries PLTL, MTL, Quantitative Metric Temporal Logic (QMTL) and Pinescript.
+The Python script `netFlow/process_netflow.py` processes the netflow data so it can serve as input streams for the monitor. 
 
-## References
-[1]: Alessandro Cimatti, Marco Roveri and Daniel Sheridan "[Bounded Verification of Past LTL](https://link.springer.com/chapter/10.1007/978-3-540-30494-4_18)".  In Proc. of the 5th Int'l  Conf on Formal Methods in Computer-Aided Design
-(FMCAD'04)', pp 245-259, vol 3312 of LNCS, Springer, 2004.
+#### Brute force and retroactive tests 
 
-[2]: Ouaknine J., Worrell J. (2008) [Some Recent Results in Metric Temporal Logic](https://link.springer.com/chapter/10.1007/978-3-540-85778-5_1). In: Cassez F., Jard C. (eds) Formal Modeling and Analysis of Timed Systems. FORMATS 2008. Lecture Notes in Computer Science, vol 5215. Springer, Berlin, Heidelberg.
+In order to execute the **brute force tests** for the attack date in a batch **with no attack**,run the following: 
+
+    $> python3 ./netFlow/process_netflow.py --flows --batches 1 | ./HLola netflow 
+
+(Note: the date to be processed are listed it the variable `dates` in `process_netflow.py`).
+
+This will call the Python script that will read and process the netflow data, and pass it to the HLola monitor. 
+    
+The argument `--flows` indicates that the script must output all the individual flows for the date (and not just the default aggregated data). 
+
+The argument `--batches 1` indicates that only one batch of data is to be processed. By default it will be the first batch of that date.
+
+In order to execute the **brute force tests** for the attack date in the **attacked batch**, run the following: 
+
+    $> python3 ./netFlow/process_netflow.py --flows --batches 1 --skip 87 | ./HLola netflow 
+
+This will run the same test as previously, but the argument `--skip 87` indicates that it should skip the first 87 batches, and send to HLola the attacked batch (`--batches 1` indicates that only one batch will be processed after skipping the first 87).
+
+In order to execute the **retroactive tests** for a date, run the following: 
+
+    $> python3 ./netFlow/process_netflow.py --flows --batches 1 | ./HLola netflow --over 
+
+In this case, `--over` indicates to the monitor that the it has to use this operator for calculating the entropy. The data from Python is identical from the previous case, but the monitor will behave differently.
+
+#### Aggregated tests
+
+The aggregated tests can be executed by running: 
+
+    $> python3 ./netFlow/process_netflow.py | ./HLola netflowsummary 
+
+In this case, the Python script will output (in JSON format), an aggregated attack marker per batch, that will be the input for the monitor. After 87 batches, the monitor will detect an attack.
+
+If a marker surpasses the threshold, the monitor in `src/Examples/NetflowSummary.hs` will create a nested monitor in `src/Examples/Netflow.hs`, and the Python script will be called from inside the monitor to obtain the full flows for the batch where the threshold is exceeded.
+The call to Python can be found in the function `innSpec` in `src/Examples/Netflow.hs`.
+The parameters `--date` and `--attack` are received when the monitor is created and allow the Python script to filter the flows so that the monitor does not need to process all of them, but only those related to the attack in one batch.

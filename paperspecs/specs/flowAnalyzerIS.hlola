@@ -1,0 +1,96 @@
+innerspec String flowAnalyzer<AttackData atk><String fileId>
+spread 5
+
+use theory Attacks
+use haskell Data.Set hiding (empty,size,elems)
+use qualified haskell Data.Set (size,empty)
+use haskell Data.Map.Strict hiding (union,singleton,insert)
+use haskell Data.Maybe
+use library DynPar
+
+type Entropy = Map String (Set String)
+type Histogram = Map String Int
+-- packets, bits, starttime, endtime
+type AddressInfo = Map String (Int, Int, Int)
+fun getMarker (x,_,_) = x
+fun getTS (_,x,_) = x
+fun getTE (_,_,x) = x
+
+const emptySet = Data.Set.empty
+const setSize = Data.Set.size
+
+input Flow flow
+
+define Int flowCounter = flowCounter[-1|0] + 1
+
+define String destAddr = 'dA flow[now]
+define String srcAddr = 'sA flow[now]
+
+define String attacked_addr =
+  if attack_detection[now] then
+    maxDestAddress[now]
+  else '("No attack")
+
+define Bool attack_detection =
+  markerRate[now] > '(threshold atk) &&
+  ipEntropy[now] > '(maxEntropy atk)
+
+define Int markerRate =
+  if timeDur === 0 then 0
+  else 2'div (1'getMarker addrData) timeDur
+  where
+    timeDur = 'getTE addrData - 'getTS addrData
+    addrData = '(!) addrInfo[now] maxDestAddress[now]
+
+define String maxDestAddress =
+  if occurrencesCurrent > occurrencesPrev
+  then currentAddr else previousMaxAddr
+  where
+    currentAddr = destAddr[now]
+    currentHist = attackHist[now]
+    occurrencesCurrent = '(!) currentHist currentAddr
+    occurrencesPrev = '(!) currentHist previousMaxAddr
+    previousMaxAddr = maxDestAddress[-1|'""]
+
+define AddressInfo addrInfo =
+  3'(insertWith updateValue) destAddr[now] ('(getInfo (markerEnum (head (markers atk)))) flow[now]) prev
+  where
+    prev = addrInfo [-1|'empty]
+    updateValue (m,ts,te) (m',ts',te') = (m+m',min ts ts',max te te')
+    getInfo BPS f = (bts f * 8, ts f, te f)
+    getInfo PPS f = (pkts f * 8, ts f, te f)
+
+define Histogram attackHist =
+  3'(insertWith (+)) destAddr[now] 1 hist
+  where
+    hist = attackHist [-1|'empty]     
+
+
+-- define Int ipEntropy =
+--   1'setSize (2'(!) ipEntropyAllAddr[now] maxDestAddress[now])
+-- 
+-- define Entropy ipEntropyAllAddr =
+--   3'(insertWith union) destAddr[now] ('singleton srcAddr[now]) prevEntropy
+--   where
+--     prevEntropy = ipEntropyAllAddr [-1|'empty]     
+
+define Int ipEntropy =
+  '(maybe 0 setSize . listToMaybe . elems) mset
+  where
+    mset = setSrcForDestAddr
+           `over` maybeAddress
+           `withInit` 1'(initer atk fileId) flowCounter[now]
+
+define (Set String) setSrcForDestAddr <String dst> =
+  'insert srcAddr[now] prevSet
+  where
+    prevSet = (setSrcForDestAddr dst) [-1|'emptySet]
+
+define (Set String) maybeAddress =
+  if attack_detection[now]
+  then 'singleton maxDestAddress[now]
+  else 'emptySet
+
+define Bool falsestr = 'False
+
+return attacked_addr when falsestr

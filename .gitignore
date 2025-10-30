@@ -22,3 +22,4 @@ dsl/testfiles/*
 frontend/hlolac/preproc/preproc
 frontend/html_highlighter/html_highlighter
 frontend/latex_highlighter/latex_highlighter
+stack.yaml.lock

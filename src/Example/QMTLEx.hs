@@ -11,7 +11,7 @@ specification :: Specification
 specification = [out qprevex]
 
 prevex :: Stream Bool
-prevex =  "prevex" =: Now (previously (-1,1) phi)
+prevex =  "prevex" =: Now (eventually (-1,1) phi)
 
 phi :: Stream Bool
 phi = Input "phi"
@@ -26,4 +26,4 @@ qphi :: Stream Int
 qphi = Input "qphi"
 
 qprevex :: Stream Int
-qprevex =  "qprevex" =: Now (previously (-1,1) qphi)
+qprevex =  "qprevex" =: Now (eventually (-1,1) qphi)

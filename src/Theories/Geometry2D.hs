@@ -1,12 +1,24 @@
 {-# LANGUAGE DeriveAnyClass #-}
 {-# LANGUAGE DeriveGeneric #-}
-module Theories.Geometry2D (Point2(..), Vector2(..), angle_between_vectors, plus, norm, distance, minus, dot, cross, intersectionDistance, Polygon, pointInPoly, polygonSides, distancePointSegment) where
+module Theories.Geometry2D where
+-- (Point2(..), Vector2(..), angle_between_vectors, plus, norm, distance, minus, dot, cross, intersectionDistance, Polygon, pointInPoly, polygonSides, distancePointSegment, pointbetween) where
 
 import Data.Aeson
+import Data.Tuple
+import Data.Maybe
+import Data.List
+import Data.Function
 import GHC.Generics
+-- import Debug.Trace
 
-data Point2 = P {x :: Double, y :: Double} deriving (Show,Generic,Read,FromJSON,ToJSON)
+data Point2 = P {x :: Double, y :: Double} deriving (Show,Generic,Read,FromJSON,ToJSON,Eq)
 type Vector2 = Point2
+
+type Polygon = [Point2]
+data Line = Sloped {lineSlope, lineYIntercept :: Double} |
+            Vert {lineXIntercept :: Double} deriving (Eq, Show, Generic, FromJSON, ToJSON, Read)
+
+-- data LineDir = Pos | Neg deriving (Show, Eq)
 
 data DebugGeo = DG {
   uavVector :: Double, targVector :: Double,
@@ -87,10 +99,6 @@ distancePointSegment p (a,b)
 -- https://rosettacode.org/wiki/Ray-casting_algorithm#Haskell
 -- https://www.codewars.com/kata/530265044b7e23379d00076a/train/haskell
 
-type Polygon = [Point2]
-data Line = Sloped {lineSlope, lineYIntercept :: Double} |
-            Vert {lineXIntercept :: Double}
-
 polygonSides :: Polygon -> [(Point2, Point2)]
 polygonSides poly@(p1 : ps) = zip poly $ ps ++ [p1]
 
@@ -133,3 +141,124 @@ pointInPoly p@(P px py) = f 0 . polygonSides
                     (py /= by || ay < py)
                 ((P ax ay), (P bx by)) = side
                 line = carrier side
+
+pointbetween :: Point2 -> Point2 -> Point2 -> Bool
+pointbetween (P px py) (P p0x p0y) (P p1x p1y) = between px p0x p1x && between py p0y p1y
+
+data Side = LS | RS | ZS deriving (Show, Eq)
+
+pointside :: Line -> Point2 -> Side
+pointside l p
+  | inline p l = ZS
+  | intersects p l = LS
+  | otherwise = RS
+  where
+  inline (P px _) (Vert xint)  = px `approx` xint
+  inline  (P px py) (Sloped m b) = py `approx` (m * px + b)
+  approx x y = abs (x-y) < 0.00001
+
+perpLine :: Line -> Point2 -> Line
+perpLine (Vert _) (P _ py) = Sloped 0 py
+perpLine (Sloped 0 _) (P px _) = Vert px
+perpLine (Sloped m _) (P px py) = Sloped m' (py-m'*px)
+  where m' = tan (atan m + pi/2)
+
+sweepPerp :: Point2 -> Polygon -> Line -> Maybe ((Point2, Point2), Point2)
+sweepPerp uavloc poly wind = let
+  perpl = perpLine wind
+  edges = filter (isdivider perpl poly) poly
+  lines = concatMap (around 10 perpl) edges
+  -- vectors = map line2points lines
+  sides = polygonSides poly
+  crosses = [[fmap (\x->(x,originp)) $ lineCrossSide l s | s <- sides] | (l, originp) <- lines]
+  inters = map (\([(x,op),(y,_)]) -> ((x,y),op)) $ filter ((==2).length) (map catMaybes crosses)
+  interss = inters ++ map (\((x,y),op) -> ((y,x),op)) inters
+  (nearest,op) = head (sortBy (compare `on` (distance uavloc.fst.fst)) interss)
+  in if inters == [] then Nothing else Just (nearest, op)
+
+lineCrossSide :: Line -> (Point2, Point2) -> Maybe Point2
+lineCrossSide l s@(p0, p1) = let
+  ls = carrier s
+  inters = lineCross l ls
+  in inters >>= (\x->if pointbetween x p0 p1 then Just x else Nothing)
+
+lineCross :: Line -> Line -> Maybe Point2
+lineCross (Vert _) (Vert _) = Nothing
+lineCross (Sloped m y) (Vert x) = Just (P x (m*x+y))
+lineCross (Vert x) (Sloped m y) = Just (P x (m*x+y))
+lineCross (Sloped m0 y0) (Sloped m1 y1)
+  | m0 == m1 = Nothing
+  | otherwise = let
+    x = (y1 - y0) / (m0-m1)
+    in Just (P x (m0*x + y0))
+
+-- line2points :: Line -> (Point2, Vector2)
+-- line2points (Vert x) = ((P x 0), (P x 1))
+-- line2points (Sloped m y) = ((P 0 y), (P 1 (m+y)))
+
+around :: Double -> (Point2 -> Line) -> Point2 -> [(Line, Point2)]
+around d specializer p = let
+  line = specializer p
+  in [(moveline d line, p), (moveline (-d) line, p)]
+
+moveline :: Double -> Line -> Line
+moveline d (Vert x) = Vert (d+x)
+moveline d (Sloped m y) = let
+  diffy = d / cos (atan m)
+  in Sloped m (y+diffy)
+
+isdivider :: (Point2 -> Line) -> Polygon -> Point2 -> Bool
+isdivider specializer poly p = let
+  line = specializer p
+  sides = map (pointside line) poly
+  nubfilteredsides = nub (filter (/=ZS) sides)
+  in length nubfilteredsides == 1
+
+slicer :: Polygon -> ((Point2, Point2), Point2) -> Polygon
+slicer poly (trip, originpoint) = let
+  parts = partition (comparewithline (carrier trip)) poly
+  newpolypoints = keepPart originpoint parts
+  newpoly = joinwith trip newpolypoints poly
+  in newpoly
+  where
+  keepPart p (x,y) = if elem p x then y else x
+
+comparewithline :: Line -> Point2 -> Bool
+comparewithline l p = pointside l p == RS
+
+joinwith :: (Point2, Point2) -> [Point2] -> [Point2] -> [Point2]
+joinwith x y z = (jw' [] x y z)
+  where
+    jw' l (t1,t2) [] _ = let
+      tryp1 = t1:t2:l
+      tryp2 = t2:t1:l
+      in if validpoly tryp1 then tryp1 else if validpoly tryp2 then tryp2 else error "invalid1"
+    jw' l trip@(t1,t2) (np:npr) (p:pr)
+      | p /= np = let
+        tryp1 = l ++ (t1:t2:np:npr)
+        tryp2 = l ++ (t2:t1:np:npr)
+        in if validpoly tryp1 then tryp1 else if validpoly tryp2 then tryp2 else error "invalid2"
+      | otherwise = jw' (l++[np]) trip npr pr
+
+validpoly :: [Point2] -> Bool
+validpoly poly = let
+  sides = polygonSides poly
+  intersections = [s1a==s2a||s1a==s2b||s1b==s2a||s1b==s2b || check s1 s2 | s1@(s1a,s1b) <- sides, s2@(s2a,s2b) <- sides]
+  check s1 (s2a,s2b) = let
+    ret = pointside (carrier s1) s2a == pointside (carrier s1) s2b
+    in ret
+  in and intersections
+
+
+-- polygonSides :: Polygon -> [(Point2, Point2)]
+-- carrier :: (Point2, Point2) -> Line
+-- lineCross :: Line -> Line -> Maybe Point2
+
+
+getangle :: (Point2, Point2) -> Double
+getangle (P x0 y0,P x1 y1) = let
+  p = (x1-x0, y1-y0)
+  in angle p
+  where
+  angle (0,y) = if y>0 then pi/2 else -pi/2
+  angle (x,y) = atan (x/y)
