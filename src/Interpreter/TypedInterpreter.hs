@@ -94,8 +94,7 @@ createOutput nm (KnownVal (kve :: e))
   | otherwise = Left $ "Not an expression for output: " ++ show (TR.typeRep @e)
 
 theorybuilder :: TheoryBuilder
-theorybuilder =
-  exampletheory
+theorybuilder = exampletheory
 
 interpret :: String -> IO ()
 interpret filename = do
